@@ -1,0 +1,29 @@
+{
+  "name": "Pattern-Guide",
+  "version": "0.0.0",
+  "description": "Utility to parse YAML in stylesheets and use it to generate a style guide.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matt-diehl/Pattern-Guide.git"
+  },
+  "keywords": [
+    "style",
+    "guide",
+    "pattern",
+    "library"
+  ],
+  "author": "info@portstreetdesign.com (http://portstreetdesign.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matt-diehl/Pattern-Guide/issues"
+  },
+  "homepage": "https://github.com/matt-diehl/Pattern-Guide",
+  "devDependencies": {
+    "mocha": "~1.20.1",
+    "chai": "~1.9.1"
+  }
+}
