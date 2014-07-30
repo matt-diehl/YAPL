@@ -1,0 +1,87 @@
+// Define global variables here. Module-specific go with individual module files.
+
+$desktopRem: 16px;
+$mobileRem: 14px;
+
+// Primary Palette
+$red: #ED2939;
+$black: #000;
+$white: #FFF;
+
+// Neutral Palette
+$tan1: #EDE8C4;
+$tan2: #DCD6B2;
+$tan3: #D2C295;
+$tan4: #F7EFDE;
+$tan5: #FBF7EE;
+$gray1: #928B81;
+$gray2: #776F65;
+$gray3: #F4F3F2;
+
+// Secondary Palette
+$orange: #DD4814;
+$gold: #EFBD47;
+$green: #3F9C35;
+$lightPurple: #6639B7;
+$blue: #3D7EDB;
+$skyBlue: #0098DB;
+$burgundy: #782327;
+$dkGreen: #024731;
+$dkPurple: #42145F;
+$dkBlue: #002857;
+
+// Other colors
+$linkBlue: #006CD8;
+$transparentDkBlue: rgba(0,40,87, .9);
+$errorRed: #C70D10;
+
+// Body Text
+$lightGray: #F4F4F4;
+$darkGray: #666;
+$darkerGray: #444;
+$redHeading: #DD4613;
+
+// Borders
+
+
+// Type
+$VAGLight: "VAG Rounded W01 Light", Arial, sans-serif;
+$VAGBold: "VAG Rounded W01 Bold", Arial, sans-serif;
+
+// Base width/padding for different screen sizes
+$mobileSidePad: 4%;
+$tabletSidePad: 20px;
+$tabletSidePad2: 25px;
+$tabletSidePad3: 35px;
+$tabletSidePad4: 45px;
+$tabletSidePad5: 55px;
+$desktopInnerWidth: 96%;
+$desktopMaxWidth: 1215px;
+$desktopSidePad1: 1%;
+$desktopSidePad2: 3%;
+
+
+// Some default top/bottom margins for modules in a page
+$defaultModuleMarginDesktop: 50px auto;
+$defaultModuleMarginMobile: 40px auto;
+
+//== Tables
+//
+//## Customizes the `.table` component with basic values, each used across all table variations.
+
+//** Padding for `<th>`s and `<td>`s.
+$table-cell-padding:            8px !default;
+//** Padding for cells in `.table-condensed`.
+$table-condensed-cell-padding:  5px !default;
+
+//** Default background color used for all tables.
+$table-bg:                      transparent !default;
+//** Background color used for `.table-striped`.
+$table-bg-accent:               #f9f9f9 !default;
+//** Background color used for `.table-hover`.
+$table-bg-hover:                #f5f5f5 !default;
+$table-bg-active:               $table-bg-hover !default;
+
+//** Border color for table and cell borders.
+$table-border-color:            #ddd !default;
+

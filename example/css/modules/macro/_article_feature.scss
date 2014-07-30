@@ -1,0 +1,31 @@
+
+.article_feature {
+    margin: 20px 0;
+}
+
+.article_feature-copy,
+.article_feature-img {
+    margin-bottom: 20px;
+}
+
+.article_feature-copy {
+    min-width: 250px;
+    overflow: hidden;
+
+    a {
+        @extend %a;
+    }
+}
+
+.article_feature-img {
+    float: left;
+}
+
+.article_feature-meta {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.article_feature-title {
+    margin-bottom: 8px;
+}

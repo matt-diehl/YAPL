@@ -1,0 +1,161 @@
+// Global Footer Styles
+
+.footer-contact, .footer-social {
+    font-family: $VAGBold;
+}
+
+.footer-contact {
+    font-size: 16px;
+    letter-spacing : .05em;
+}
+.footer-contact-group {
+    + .footer-contact-group {
+        margin-top: 15px;
+    }
+}
+
+.footer-section1 {
+    background-color: #635B50;
+}
+
+.footer-section2 {
+    background-color: #EBEAE8;
+}
+
+.footer-section3 {
+    color: $gray2;
+    font-size: 13px;
+    line-height: 1.2;
+    > .l-inner {
+        padding: 20px 0;
+    }
+}
+
+.footer-social-links {
+    height: 34px;
+    li {
+        display: inline;
+        margin-left: 5px;
+        &:first-child {
+            margin-left: 0;
+        }
+        > a {
+            display: inline-block;
+            height: 34px;
+            width: 34px;
+        }
+    }
+}
+
+.footer-utility_nav {
+    li {
+        border-right: 1px solid #AAA;
+        display: inline;
+        font-weight: bold;
+        line-height: 1.6;
+        margin-right: 9px;
+        padding-right: 6px;
+        &:last-child {
+            border-right: 0;
+            margin-right: 0;
+            padding-right: 0;
+        }
+        > a {
+            color: #FFF;
+        }
+    }
+}
+
+
+@include small-only {
+
+    .footer-contact, .footer-social {
+        padding: 18px 25px;
+        text-align: center;
+    }
+
+    .footer-social {
+        border-top: 1px solid #C8C5C0;
+        h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+    }
+
+    .footer-utility_nav {
+        padding: 20px 10px;
+        li {
+            font-size: 13px;
+        }
+    }
+
+}
+
+
+@include medium-and-below {
+
+    .footer-copyright, .footer-utility_nav {
+        text-align: center;
+    }
+    .footer-utility_nav {
+        border-top: 1px solid #423B32;
+        &:first-child {
+            border-top: 0;
+        }
+    }
+
+}
+
+
+@include medium-only {
+
+    .footer-section2 {
+        > .l-inner {
+            padding: 25px $tabletSidePad;
+        }
+    }
+    .footer-utility_nav {
+        padding: 15px;
+    }
+
+}
+
+
+@include medium-and-above {
+
+    .footer-contact {
+        float: left;
+    }
+    .footer-social {
+        float: right;
+        text-align: right;
+        h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            letter-spacing: 1pt;
+        }
+    }
+    .footer-utility_nav {
+        li {
+            font-size: 14px;
+        }
+    }
+
+}
+
+@include large-and-above {
+
+    .footer {
+        .l-inner {
+            @include desktopInner;
+        }
+    }
+
+    .footer-section1 {
+        padding: 20px 0;
+    }
+    .footer-section2 {
+        padding: 30px 0;
+    }
+
+}

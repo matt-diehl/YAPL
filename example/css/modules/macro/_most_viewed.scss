@@ -1,0 +1,58 @@
+.most_viewed {
+    background-color: $gray3;
+    margin-bottom: 40px;
+    padding: 20px;
+}
+
+.most_viewed-list {
+    counter-reset: most-viewed-counter;
+    li {
+        position:relative;
+        counter-increment: most-viewed-counter;
+        display: table;
+        height: 55px;
+        font-family: $VAGLight;
+        a {
+            color: #000;
+            display: table-cell;
+            font-size: 17px;
+            line-height: 1.1;
+            padding: 4px 8px 0 42px;
+            position: relative;
+            vertical-align: middle;
+            &:hover {
+                color: $orange;
+                text-decoration: none;
+            }
+            &:before {
+                background-color: #EDAC28;
+                border-radius: 50%;
+                color: #FFF;
+                content: counter(most-viewed-counter);
+                display: block;
+                font-family: $VAGBold;
+                font-size: 21px;
+                height: 35px;
+                line-height: 37px;
+                position: absolute;
+                left: 0; top: 10px;
+                text-align: center;
+                width: 35px;
+            }
+        }
+    }
+}
+
+@include large-and-above {
+
+    .most_viewed-list {
+        li {
+            float: left;
+            width: 25%;
+            a {
+                display: table-cell;
+            }
+        }
+    }
+
+}

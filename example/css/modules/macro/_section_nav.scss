@@ -1,0 +1,141 @@
+.section_nav {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    [data-col-wrap] {
+        display: none;
+        &.is-sorted {
+            display: block;
+        }
+    }
+}
+
+.section_nav-alpha_group {
+    display: none;
+    &.is-visible {
+        display: block;
+    }
+}
+
+.section_nav-content {
+    h4 {
+        margin-bottom: 9px;
+    }
+    p {
+        margin-bottom: 18px;
+    }
+}
+
+.section_nav-alpha_nav {
+    background-color: $gray3;
+    padding: 13px;
+    position: relative;
+    .section_nav-title + & {
+        top: -23px;
+    }
+    > a {
+        @extend %a;
+        display: block;
+        float: left;
+        font-size: 15px;
+        font-weight: bold;
+        text-align: center;
+        &.is-active,
+        &.is-disabled {
+            cursor: default;
+            pointer-events: none;
+        }
+        &.is-active {
+            color: #000;
+            text-decoration: underline;
+        }
+        &.is-disabled {
+            color: #D1CDCA;
+        }
+    }
+}
+
+.section_nav-list {
+    a {
+        @extend %a;
+        font-weight: bold;
+    }
+    li {
+        font-size: 15px;
+        line-height: 1.3;
+        margin-top: 18px;
+        &:first-child {
+            .section_nav-col:nth-of-type(1) & {
+                margin-top: 0;
+            }
+        }
+        @include medium-and-above {
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.section_nav-title {
+    border-bottom: 1px solid #D1CECA;
+    color: $lightPurple;
+    margin-bottom: 23px;
+    padding-bottom: 9px;
+    font-size: 27px;
+    .section_nav-alpha & {
+        color: #000;
+    }
+}
+
+@include small-only {
+
+    .section_nav-alpha_nav {
+        > a {
+            padding: 10px;
+            width: 7.4%;
+        }
+    }
+
+}
+
+@include medium-and-above {
+
+    .section_nav {
+
+        .l-cols-2 {
+            .section_nav-col {
+                float: left;
+                width: 50%;
+            }
+        }
+
+        .l-cols-3 {
+            .section_nav-col {
+                float: left;
+                width: 33%;
+            }
+        }
+
+    }
+
+    .section_nav-col {
+        padding-left: 10px;
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+
+    .section_nav-alpha_nav {
+        > a {
+            width: 3.7%;
+        }
+    }
+
+}
+
+
+@include large-and-above {
+    .section_nav {
+        margin-bottom: 0;
+    }
+}

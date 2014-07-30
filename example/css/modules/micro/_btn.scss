@@ -1,0 +1,45 @@
+/* SG
+name: Submit Button
+notes: The submit button is great. Use it all the time.
+partial: btn
+context: btn.submit
+*/
+
+$btns: ;
+
+.btn {
+    background-repeat: no-repeat;
+}
+
+// All svg icons following the standard approach. Must have png fallback.
+@each $btn in $btns {
+    .btn-#{$btn} {
+        @extend .btn;
+        .svg & {
+            background-image: url(/images/assets/btn-#{$btn}.svg);
+        }
+        .no-svg & {
+            background-image: url(/images/assets/btn-#{$btn}.png); /*ImageEmbed:skip*/
+        }
+    }
+}
+
+/* SG
+name: Error Button
+notes: The error button is great. Use it all the time.
+partial: btn
+context: btn.error
+*/
+
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1;
+    &[class*="icon"] { // Add padding if the button contains an icon image.
+        background-position: 12px 50%;
+        padding-left: 42px;
+    }
+    &:hover {
+        text-decoration: none;
+    }
+}

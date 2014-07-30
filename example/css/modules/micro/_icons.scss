@@ -1,0 +1,132 @@
+
+$icons:
+    "alert",
+    "arrow-nav-white-e",
+    "award",
+    "blog",
+    "chevron-sm-grey-n",
+    "chevron-sm-grey-s",
+    "chevron-sm-white-e",
+    "chevron-sm-white-n",
+    "chevron-sm-white-s",
+    "chevron-transparentblack-s",
+    "circle-appt",
+    "circle-arrow-blue",
+    "circle-bullet",
+    "circle-bullet-empty",
+    "circle-connect",
+    "circle-finance",
+    "circle-find-a-doc",
+    "circle-gift",
+    "circle-location",
+    "circle-minus-blue",
+    "circle-minus-green",
+    "circle-minus-purple",
+    "circle-minus-white",
+    "circle-mychart",
+    "circle-pay-my-bill",
+    "circle-plus-blue",
+    "circle-plus-green",
+    "circle-plus-purple",
+    "circle-plus-white",
+    "circle-search-conditions",
+    "circle-stethoscope",
+    "circle-tan-chevron-gold",
+    "circle-tan-chevron-gold-e",
+    "circle-visitor",
+    "circle-volunteer",
+    "circle-white-chevron-blue-e",
+    "circle-white-chevron-blue-e-hover",
+    "circle-white-chevron-blue-s",
+    "circle-white-minus-blue",
+    "circle-white-plus-blue",
+    "circle-x-gray",
+    "doctor",
+    "education",
+    "facebook",
+    "facebook-sm",
+    "googleplus",
+    "gplus-sm",
+    "linkedin",
+    "linkedin-sm",
+    "marker-red",
+    "marker-green",
+    "marker-blue",
+    "more-like-this",
+    "nav-display",
+    "nav-hide",
+    "nav-toggle",
+    "nav-toggle-active",
+    "pagination-next",
+    "pagination-prev",
+    "patient-story",
+    "print",
+    "search-sm-blue",
+    "search-sm-gold",
+    "search-sm-white",
+    "select-arrows",
+    "twitter",
+    "twitter-sm",
+    "video-play",
+    "youtube";
+
+// All svg icons following the standard approach. Must have png fallback.
+@each $icon in $icons {
+    // Extend only class (use this to extend in other files)
+    %icon-#{$icon} {
+        background-repeat: no-repeat;
+        .svg & {
+            background-image: url(/images/assets/icon-#{$icon}.svg);
+        }
+        .no-svg & {
+            background-image: url(/images/assets/icon-#{$icon}.png); /*ImageEmbed:skip*/
+        }
+    }
+    // Icon class (do not extend this, only use in html)
+    .icon-#{$icon} {
+        @extend %icon-#{$icon};
+    }
+}
+
+// Fallbacks for IE8 because no background size
+.lt-ie9.no-svg {
+    .icon-circle-location {
+        background: url(/images/ie/icons/icon-circle-location.png) no-repeat 0 12px; /*ImageEmbed:skip*/
+    }
+    .icon-circle-stethoscope {
+        background: url(/images/ie/icons/icon-circle-stethoscope.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-appt {
+        background: url(/images/ie/icons/icon-circle-appt.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-gift {
+        background: url(/images/ie/icons/icon-circle-gift.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-find-a-doc {
+        background: url(/images/ie/icons/icon-circle-find-a-doc.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-connect {
+        background: url(/images/ie/icons/icon-circle-connect.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-pay-my-bill {
+        background: url(/images/ie/icons/icon-circle-pay-my-bill.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-finance {
+        background: url(/images/ie/icons/icon-circle-finance.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-volunteer {
+        background: url(/images/ie/icons/icon-circle-volunteer.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-search-conditions {
+        background: url(/images/ie/icons/icon-circle-search-conditions.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-visitor {
+        background: url(/images/ie/icons/icon-circle-visitor.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+    .icon-circle-mychart {
+        background: url(/images/ie/icons/icon-circle-mychart.png) no-repeat 0 12px;/*ImageEmbed:skip*/
+    }
+}
+
+
+

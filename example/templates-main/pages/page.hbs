@@ -1,0 +1,32 @@
+---
+pageData: <%= styles.micro.btn %>
+---
+
+{{#each pageData.blocks}}
+
+    <article class="sg_block">
+
+        <div class="sg_block-top">
+            <h1 class="sg_block-name">{{this.name}}</h1>
+            <button class="sg_block-expand js-sg_block-expand">
+                <span class="show-if-collapsed">Hide</span>
+                <span class="show-if-expanded">Show</span>
+                Code/Annotations
+            </button>
+        </div>
+
+        <div class="sg_block-bottom">
+            <div class="sg_block-example">
+                {{{this.example}}}
+            </div>
+            <div class="sg_block-html js-sg_block-html">
+                {{this.example}}
+            </div>
+            <div class="sg_block-notes">
+                {{this.notes}}
+            </div>
+        </div>
+
+    </article>
+
+{{/each}}

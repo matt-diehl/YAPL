@@ -1,0 +1,22 @@
+
+.letters {
+    width: calc(100% + 9px);
+    a {
+        background-color: #CED6DF;
+        border-radius: 4px;
+        color: #000;
+        display: block;
+        float: left;
+        height: 30px;
+        line-height: 30px;
+        margin: 0 7px 7px 0;
+        text-align: center;
+        text-transform: uppercase;
+        width: 30px;
+        &:hover,
+        &.is-active {
+            background-color: #FFF;
+            color: $linkBlue;
+        }
+    }
+}

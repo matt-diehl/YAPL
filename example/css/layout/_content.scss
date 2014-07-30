@@ -1,0 +1,243 @@
+// Global content styles
+
+$offCanvasColWidth: 250px;
+
+.content-nav,
+.content-primary,
+.content-secondary {
+    @include removeFirstChildMargins();
+}
+
+.content-primary {
+    position: relative;
+}
+
+.content-wrap {
+    position: relative;
+}
+
+.l-content-inner {
+    padding-top: 30px;
+    .flexbox &,
+    .flexbox-legacy & {
+        display: flex;
+    }
+    .content-secondary {
+        padding-left: 20px;
+    }
+}
+
+.l-site_search {
+    .content-primary {
+        width: 100%;
+    }
+}
+
+
+@include medium-and-below {
+
+    .l-content-inner {
+        padding-top: 10px;
+        @include desktopInner;
+        .flexbox &,
+        .flexbox-legacy & {
+            flex-direction: column;
+        }
+        .content-secondary {
+            padding-left: 0;
+        }
+    }
+
+    // Search landing 3 column layout
+    .l-3-col-search_landing {
+        // Right Column
+        .content-secondary {
+            display: none;
+        }
+    }
+
+    .content-primary {
+        margin-top: 18px;
+        .content-toggles ~ & {
+            margin-top: 0;
+        }
+    }
+
+    // Flip the order of the secondary nav and related content
+    .content-secondary {
+        order: 2;
+    }
+    .content-tertiary {
+        margin-bottom: 22px;
+        order: 1;
+        .no-flexbox.no-flexboxlegacy & {
+            float:left;
+            clear:left;
+        }
+    }
+}
+
+
+@include medium-only {
+
+    .content-secondary-col1,
+    .content-secondary-col2 {
+        float: left;
+        width: 50%;
+    }
+    .content-secondary-col1 {
+        padding-right: 22px;
+    }
+
+    .l-2-col-search_landing,
+    .l-3-col-search_landing {
+        .flexbox &,
+        .flexbox-legacy & {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        // Top Row
+        .content-intro {
+            width: 100%;
+        }
+        // Left Column
+        .content-nav {
+            padding-right: 20px;
+            width: 30%;
+        }
+        // Left column
+        .content-primary {
+            width: 70%;
+        }
+    }
+
+    // Site search template
+    .l-site_search {
+        .content-primary {
+            padding-left: 30%;
+        }
+    }
+
+}
+
+@include medium-and-above {
+
+    .l-content-inner {
+        padding-bottom: 50px;
+    }
+
+}
+
+@include large-and-above {
+
+    .content-intro {
+        width: 100%;
+    }
+
+    // With Flexbox support
+    .l-content-inner {
+        @include desktopInner;
+        .flexbox &,
+        .flexbox-legacy & {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+
+    // Without Flexbox support
+    .l-content-inner {
+        .content-nav,
+        .content-primary,
+        .content-secondary {
+            .no-flexbox &,
+            .no-flexboxlegacy &,
+            .no-js & {
+                float: left;
+            }
+        }
+    }
+
+    // Main 2 column layout
+    // And 2 column search landing layout
+    .l-2-col-master,
+    .l-2-col-search_landing {
+        // Left Column
+        .content-nav {
+            padding-right: 20px;
+            width: 19.9%;
+        }
+        // Left column
+        .content-primary {
+            width: 79.9%;
+        }
+    }
+
+    // Main 3 column layout
+    .l-3-col-master {
+        // Left Column
+        .content-nav {
+            padding-right: 20px;
+            width: 19.9%;
+        }
+        // Middle column
+        .content-primary {
+            width: 59.9%;
+        }
+        // Right Column
+        .content-secondary {
+            padding-left: 20px;
+            width: 19.9%;
+        }
+    }
+
+    // Search landing 3 column layout
+    .l-3-col-search_landing {
+        // Left Column
+        .content-nav {
+            padding-right: 20px;
+            width: 19.9%;
+        }
+        // Middle column
+        .content-primary {
+            width: 49.9%;
+        }
+        // Right Column
+        .content-secondary {
+            padding-left: 20px;
+            width: 30%;
+        }
+    }
+
+    // Section landing template
+    .l-section_landing {
+        // Left column
+        .content-primary {
+            width: 60.9%;
+        }
+        // Right column
+        .content-secondary {
+            padding-left: 20px;
+            width: 38.9%;
+        }
+    }
+
+    // Site search template
+    .l-site_search {
+        .content-primary {
+            padding-left: 19.9%;
+        }
+    }
+
+
+    // Top row and bottom row
+    // Both always 100% width
+    .content-intro,
+    .content-tertiary {
+        width: 100%;
+        .no-flexbox &,
+        .no-flexboxlegacy & {
+            clear: both;
+        }
+    }
+
+}

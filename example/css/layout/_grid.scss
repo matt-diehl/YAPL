@@ -1,0 +1,61 @@
+
+@mixin grid1($selector, $cols, $margin) {
+
+    $colWidth: (100% - (($cols - 1) * $margin)) / $cols;
+    $colMargin: $margin;
+
+    #{$selector} {
+        float: left;
+        margin-bottom: $colMargin;
+        margin-right: $colMargin;
+        width: $colWidth;
+        &:nth-child(#{$cols}n) {
+            margin-right: 0;
+        }
+        &.nth-#{$cols}n {
+            margin-right: 0;
+        }
+    }
+}
+
+.grid1-2col {
+    @include grid1(".grid-col", 2, 2%);
+}
+.grid1-3col {
+    @include grid1(".grid-col", 3, 2%);
+}
+
+@include small-only {
+
+    .grid-col {
+        margin-bottom: 20px;
+    }
+
+    .grid1-2col-mq-small {
+        @include grid1(".grid-col", 2, 2%);
+    }
+    .grid1-3col-mq-small {
+        @include grid1(".grid-col", 3, 2%);
+    }
+
+}
+@include medium-only {
+
+    .grid1-2col-mq-medium {
+        @include grid1(".grid-col", 2, 2%);
+    }
+    .grid1-3col-mq-medium {
+        @include grid1(".grid-col", 3, 2%);
+    }
+
+}
+@include large-and-above {
+
+    .grid1-2col-mq-large {
+        @include grid1(".grid-col", 2, 2%);
+    }
+    .grid1-3col-mq-large {
+        @include grid1(".grid-col", 3, 2%);
+    }
+
+}

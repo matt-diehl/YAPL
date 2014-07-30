@@ -1,0 +1,8 @@
+submit:
+    modifier: btn-submit
+    tag: a
+    text: Submit
+error:
+    modifier: btn-error
+    tag: a
+    text: Error

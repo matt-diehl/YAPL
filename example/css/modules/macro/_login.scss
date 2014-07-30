@@ -1,0 +1,96 @@
+
+// Login
+
+.login {
+    display: none;
+    .form-error {
+        margin-bottom: 15px;
+    }
+}
+
+.login-form-submit {
+    @extend %icon-circle-arrow-blue;
+    background-color: transparent;
+    background-position: 100% 50%;
+    border: 0;
+    color: $dkBlue;
+    cursor: pointer;
+    display: inline-block;
+    font-family: $VAGBold;
+    font-size: 18px;
+    margin: 0;
+    padding: 7px 42px 7px 0;
+    right: 0;
+}
+
+.login-links {
+    margin-left: 5px;
+    a {
+        color: #006CD8;
+        font-size: 13px;
+        font-weight: bold;
+    }
+}
+
+
+@include small-only {
+
+    .login-form {
+        margin-bottom: 18px;
+        .form-input-text {
+            margin-bottom: 10px;
+        }
+    }
+
+    .login-form-submit {
+        position: absolute;
+        right: 0; bottom: 0;
+    }
+
+    .login-links {
+        > li {
+            margin-top: 10px;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+
+}
+
+
+@include medium-and-below {
+
+    .login {
+        display: none;
+        position: relative;
+        &.is-active {
+            display: block;
+        }
+    }
+
+}
+
+@include medium-only {
+
+    .login-form {
+        margin-bottom: 20px;
+        .form-input-text {
+            display: inline-block;
+            margin-right: 2%;
+            width: 40%;
+        }
+    }
+
+    .login-form-submit {
+        vertical-align: top;
+    }
+
+    .login-links {
+        > li {
+            display: inline;
+            margin-right: 10px;
+        }
+    }
+
+}

@@ -1,0 +1,72 @@
+/* ======  Generic Display State Style ====== */
+
+@mixin is-collapsed {
+    .csstransitions & {
+        border: 0 !important;
+        max-height: 0px;
+        opacity: 0;
+        overflow-y: hidden;
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+    }
+    .no-csstransitions & {
+        display: none;
+    }
+    .no-js & {
+        display: block;
+    }
+}
+
+@mixin is-expanded {
+    .csstransitions & {
+        display: block;
+        //max-height: 2000px;
+        opacity: 1;
+        overflow-y: hidden;
+    }
+    .no-csstransitions &, .no-js &  {
+        display: block;
+    }
+}
+
+
+.is-collapsed {
+    @include is-collapsed;
+}
+.is-expanded {
+    @include is-expanded;
+}
+
+@include small-only {
+
+
+    .is-collapsed-mq-small {
+        @include is-collapsed;
+    }
+    .is-expanded-mq-small {
+        @include is-expanded;
+    }
+
+}
+
+@include medium-only {
+
+    .is-collapsed-mq-medium {
+        @include is-collapsed;
+    }
+    .is-expanded-mq-medium {
+        @include is-expanded;
+    }
+
+}
+
+@include large-and-above {
+
+    .is-collapsed-mq-large {
+        @include is-collapsed;
+    }
+    .is-expanded-mq-large {
+        @include is-expanded;
+    }
+
+}

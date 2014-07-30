@@ -1,0 +1,68 @@
+
+.sitemap {
+    max-width: $desktopMaxWidth;
+    overflow: hidden; // For 100% height appearance of final group in col
+}
+
+.sitemap-section {
+    background-color: $gray3;
+    margin-bottom: 20px;
+}
+
+.sitemap-section-level1 {
+    > li {
+        margin-top: 35px;
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+    a {
+        @extend %a;
+    }
+}
+
+.sitemap-section-level2 {
+    margin-bottom: 0;
+    > li {
+        padding-left: 12px;
+        background: url('/images/assets/icon-circle-bullet.svg') no-repeat 0 9px;
+        margin-top: 8px;
+        .lt-ie9 & {
+            background: url('/images/ie/icon-circle-bullet.png') no-repeat 0 9px; /*ImageEmbed:skip*/
+        }
+    }
+}
+
+.sitemap-section-inner {
+    padding: 20px;
+}
+
+.sitemap-section-title {
+    background-color: #CED6DF;
+    border-top: 1px solid #BEBEBE;
+    margin: 0;
+    padding: 15px 20px;
+    > a {
+        color: #000;
+        text-decoration: none;
+        &:hover {
+            color: $orange;
+        }
+    }
+}
+
+
+
+@include medium-and-above {
+
+
+.sitemap-section {
+    &:last-child {
+        margin-bottom: -9980px; // For 100% height appearance of final group in col
+        padding-bottom: 10000px; // For 100% height appearance of final group in col
+    }
+}
+
+
+}
+

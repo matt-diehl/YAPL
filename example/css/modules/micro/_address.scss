@@ -1,0 +1,8 @@
+.adr {
+	span {
+		display: inline-block;
+		&.street-address {
+			display: block;
+		}
+	}
+}

@@ -1,0 +1,329 @@
+// Global base/reusable layout rules
+
+@mixin desktopInner {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $desktopMaxWidth;
+    width: $desktopInnerWidth;
+}
+
+.l-align-l {
+    text-align: left;
+}
+.l-align-r {
+    text-align: right;
+}
+.l-block {
+    display: block !important;
+}
+.l-centered {
+    text-align: center;
+}
+.l-contain {
+    margin: 0 auto;
+    position: relative;
+}
+.l-float-l {
+    float: left;
+}
+.l-float-r {
+    float: right;
+}
+.l-group:before, .l-group:after {
+    content: " "; display: table;
+}
+.l-group:after {
+    clear: both;
+}
+.l-group {
+    *zoom: 1;
+}
+.l-hidden {
+    display: none !important;
+}
+.l-img-border-pad {
+    background-color: #FFF;
+    border: 1px solid #CACACA;
+    padding: 4px;
+}
+.l-img-float-l {
+    float: left;
+    margin: 0 20px 20px 0;
+    max-width: 50%;
+}
+.l-img-float-r {
+    float: right;
+    margin: 0 0 20px 20px;
+    max-width: 50%;
+}
+.l-inline {
+    display: inline !important;
+}
+.l-inline-block {
+    display: inline-block;
+    margin-right: -2px;
+    .lt-ie8 & {
+        display: block;
+        float: left;
+    }
+}
+.l-overflow-visible {
+    overflow: visible !important;
+}
+.l-overflow-x-scroll {
+    overflow-x: scroll;
+}
+
+
+@include small-only {
+
+    .l-align-l-mq-small {
+        text-align: left;
+    }
+    .l-align-r-mq-small {
+        text-align: right;
+    }
+    .l-block-mq-small {
+        display: block !important;
+    }
+    .l-centered-mq-small {
+        text-align: center;
+    }
+    .l-contain-mq-small {
+        margin: 0 auto;
+        position: relative;
+    }
+    .l-float-l-mq-small {
+        float: left;
+    }
+    .l-float-r-mq-small {
+        float: right;
+    }
+    .l-group-mq-small:before, .l-group-mq-small:after {
+        content: " "; display: table;
+    }
+    .l-group:after-mq-small {
+        clear: both;
+    }
+    .l-group-mq-small {
+        *zoom: 1;
+    }
+    .l-hidden-mq-small {
+        display: none !important;
+    }
+    .l-img-float-l-mq-small {
+        float: left;
+        margin: 0 20px 20px 0;
+    }
+    .l-img-float-r-mq-small {
+        float: right;
+        margin: 0 0 20px 20px;
+    }
+    .l-inline-mq-small {
+        display: inline !important;
+    }
+    .l-inline-block-mq-small {
+        display: inline-block;
+        margin-right: -2px;
+        .lt-ie8 & {
+            display: block;
+            float: left;
+        }
+    }
+    .l-overflow-visible-mq-small {
+        overflow: visible !important;
+    }
+    .l-overflow-x-scroll-mq-small {
+        overflow-x: scroll;
+    }
+    .l-visuallyhidden-mq-small {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    .l-visuallyhidden-mq-small.focusable:active,
+    .l-visuallyhidden-mq-small.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+
+}
+
+
+@include medium-only {
+
+    // Reusable Layout Rules
+
+    .l-align-l-mq-medium {
+        text-align: left;
+    }
+    .l-align-r-mq-medium {
+        text-align: right;
+    }
+    .l-block-mq-medium {
+        display: block !important;
+    }
+    .l-centered-mq-medium {
+        text-align: center;
+    }
+    .l-contain-mq-medium {
+        margin: 0 auto;
+        position: relative;
+    }
+    .l-float-l-mq-medium {
+        float: left;
+    }
+    .l-float-r-mq-medium {
+        float: right;
+    }
+    .l-group-mq-mediu:before, .l-group-mq-mediu:afterm {
+        content: " "; display: table;
+    }
+    .l-group:after-mq-medium {
+        clear: both;
+    }
+    .l-group-mq-medium {
+        *zoom: 1;
+    }
+    .l-hidden-mq-medium {
+        display: none !important;
+    }
+    .l-img-float-l-mq-medium {
+        float: left;
+        margin: 0 20px 20px 0;
+    }
+    .l-img-float-r-mq-medium {
+        float: right;
+        margin: 0 0 20px 20px;
+    }
+    .l-inline-mq-medium {
+        display: inline !important;
+    }
+    .l-inline-block-mq-medium {
+        display: inline-block;
+        margin-right: -2px;
+        .lt-ie8 & {
+            display: block;
+            float: left;
+        }
+    }
+    .l-overflow-visible-mq-medium {
+        overflow: visible !important;
+    }
+    .l-overflow-x-scroll-mq-medium {
+        overflow-x: scroll;
+    }
+    .l-visuallyhidden-mq-medium {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    .l-visuallyhidden-mq-medium.focusable:active,
+    .l-visuallyhidden-mq-medium.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+
+}
+
+@include large-and-above {
+
+    // Reusable Layout Rules
+    .l-align-l-mq-large {
+        text-align: left;
+    }
+    .l-align-r-mq-large {
+        text-align: right;
+    }
+    .l-block-mq-large {
+        display: block !important;
+    }
+    .l-centered-mq-large {
+        text-align: center;
+    }
+    .l-contain-mq-large {
+        margin: 0 auto;
+        position: relative;
+    }
+    .l-float-l-mq-large {
+        float: left;
+    }
+    .l-float-r-mq-large {
+        float: right;
+    }
+    .l-group-mq-large:before, .l-group-mq-large:after {
+        content: " "; display: table;
+    }
+    .l-group:after-mq-large {
+        clear: both;
+    }
+    .l-group-mq-large {
+        *zoom: 1;
+    }
+    .l-hidden-mq-large {
+        display: none !important;
+    }
+    .l-img-float-l-mq-large {
+        float: left;
+        margin: 0 20px 20px 0;
+    }
+    .l-img-float-r-mq-large {
+        float: right;
+        margin: 0 0 20px 20px;
+    }
+    .l-inline-mq-large {
+        display: inline !important;
+    }
+    .l-inline-block-mq-large {
+        display: inline-block;
+        margin-right: -2px;
+        .lt-ie8 & {
+            display: block;
+            float: left;
+        }
+    }
+    .l-overflow-visible-mq-large {
+        overflow: visible !important;
+    }
+    .l-overflow-x-scroll-mq-large {
+        overflow-x: scroll;
+    }
+    .l-visuallyhidden-mq-large {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    .l-visuallyhidden-mq-large.focusable:active,
+    .l-visuallyhidden-mq-large.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        width: auto;
+    }
+
+}

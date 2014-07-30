@@ -1,0 +1,216 @@
+.search_results {
+    margin-bottom: 48px;
+    i {
+        background: #F4CD7E;
+        padding: 2px;
+    }
+    .h4 {
+        span {
+            font-family: $VAGLight;
+        }
+    }
+}
+
+.search_results-item {
+    border-top: 1px solid #BEBEBE;
+    color: $darkerGray;
+    font-size: 15px;
+    line-height: 150%;
+    padding: 25px 8px 20px;
+    &:first-child {
+        border-top: 0;
+    }
+
+    li {
+        line-height: 1.5;
+    }
+}
+
+.search_results-item-detail {
+    overflow: hidden;
+    font-size:14px;
+    a {
+        @extend %a;
+        font-weight: bold;
+    }
+}
+
+.search_results-item-detail-group {
+    margin-top: 20px;
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.search_results-item-img {
+    float: left;
+    margin-right: 15px;
+}
+
+.search_results-item-link {
+    word-break: break-all;
+}
+
+.search_results-item-subtitle {
+    color: #928B80;
+    display: block;
+}
+.search_results-item-title {
+    font-family: $VAGBold;
+    margin-bottom: 16px;
+    a {
+        @extend %a;
+    }
+}
+
+.search_results-item-inline_list {
+    li {
+        display: inline;
+        border-left: 2px solid #ADA8A0;
+        line-height: 1;
+        margin-left: 8px;
+        padding-left: 10px;
+        &:first-child {
+            border-left: 0;
+            margin-left: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+.search_results-meta {
+    padding-top: 10px;
+    > h2 {
+        color: #000;
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: 6px;
+    }
+    .search_sort-pagination {
+        float: none;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+}
+
+.search_results-term,
+.search_results-meta-key,
+.search_results-meta-value {
+    font-size: 17px;
+    line-height: 1.3;
+}
+.search_results-meta-value {
+    color: #000;
+    font-family: $VAGLight;
+    font-style: italic;
+    .search_results-site & {
+        font-size: 20px;
+        font-family: $VAGBold;
+    }
+}
+.search_results-meta-key {
+    border-left: 1px solid #BEBEBE;
+    color: $darkerGray;
+    display: inline-block;
+    font-family: $VAGBold;
+    margin-left: 8px;
+    padding-left: 12px;
+    h2 + & {
+        border-left: 0;
+        margin-left: 0;
+        padding-left: 0;
+    }
+}
+
+.search_results-recommended {
+    padding-top: 7px;
+    padding-bottom: 17px;
+    margin-bottom: 20px;
+}
+
+.search_results-item-teaser {
+    margin-bottom: 5px;
+}
+
+
+// Site-wide search modifications
+.search_results-site {
+    .search_results-item {
+        border-top: 0;
+        padding: 25px 0 15px;
+    }
+    .search_results-item-title {
+        margin-bottom: 6px;
+    }
+    .search_results-meta {
+        border-bottom: 1px solid #BEBEBE;
+        padding-bottom: 12px;
+    }
+}
+
+
+@include small-only {
+
+    .search_results-item-img {
+        display: none;
+    }
+    .search_results-view-map {
+        display: none;
+    }
+
+
+}
+
+
+@include medium-and-below {
+
+    .search_results-meta {
+        .search_sort-pagination {
+            margin-top: 20px;
+        }
+    }
+
+}
+
+
+@include large-and-above {
+    .search_results {
+        margin-bottom: 0;
+    }
+    .search_results-item-col1 {
+        border-right: 1px solid #BEBEBE;
+        float: left;
+        margin-right: 18px;
+        padding-right: 18px;
+    }
+    .search_results-item-col2 {
+        min-width: 170px;
+        overflow: hidden;
+    }
+
+    .search_results-doctors {
+        .search_results-item-col1 {
+            width: 46%;
+        }
+    }
+
+    .search_results-meta {
+        position: relative;
+        .search_sort-pagination {
+            position: absolute;
+            top: 4px; right: 0;
+        }
+    }
+
+    .search_results-locations {
+        .search_results-item-col1 {
+            width: 60%;
+        }
+    }
+    .search_results-item-detail-group {
+        > .italic {
+            display:none;
+        }
+    }
+
+}

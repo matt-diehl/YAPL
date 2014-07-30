@@ -1,0 +1,98 @@
+// Media Queries in Sass 3.2
+//
+// These mixins make media queries a breeze with Sass.
+// The media queries from mobile up until desktop all
+// trigger at different points along the way
+//
+// An important point to remember is that and width
+// over the portrait width is considered to be part of the
+// landscape width. This allows us to capture widths of devices
+// that might not fit the dimensions exactly. This means the break
+// points are seamless.
+
+$mq-0: 290px !default;
+$mq-1: 675px !default;
+$mq-2: 1050px !default;
+$mq-3: 1215px !default;
+
+// Handles super skinny
+@mixin extra-small-only {
+    @media only screen and (max-width : $mq-0) {
+        @content;
+    }
+}
+
+// Both portrait and landscape
+@mixin small-only {
+    @media (max-width : $mq-1) {
+        @content;
+    }
+}
+
+@mixin medium-only {
+    @media only screen and (min-width : $mq-1 + 1) and (max-width : $mq-2) {
+        @content;
+    }
+}
+
+@mixin medium-and-above {
+    @media only screen and (min-width : $mq-1 + 1) {
+        @content;
+    }
+}
+
+@mixin medium-and-below {
+    @media only screen and (max-width : $mq-2) {
+        @content;
+    }
+}
+
+@mixin large-only {
+    @media only screen and (min-width : $mq-2 + 1) and (max-width : $mq-3) {
+        @content;
+    }
+}
+
+@mixin large-and-above {
+    @media only screen and (min-width : $mq-2 + 1) {
+        @content;
+    }
+}
+
+@mixin large-and-below {
+    @media only screen and (max-width : $mq-3) {
+        @content;
+    }
+}
+
+@mixin very-large-only {
+    @media only screen and (min-width : $mq-3 + 1) {
+        @content;
+    }
+}
+
+// Unique combination media queries
+@mixin small-and-large-only {
+    @media only screen and (max-width : $mq-1), (min-width : $mq-2 + 1) and (max-width : $mq-3) {
+        @content;
+    }
+}
+
+@mixin small-and-large-and-above {
+    @media only screen and (max-width : $mq-1), (min-width : $mq-2 + 1) {
+        @content;
+    }
+}
+
+@mixin medium-and-very-large-only {
+    @media only screen and (min-width : $mq-1 + 1) and (max-width : $mq-2), screen and (min-width : $mq-3 + 1) {
+        @content;
+    }
+}
+
+// Retina screens have a 1.5 pixel ratio, not 2
+@mixin retina {
+    @media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+        @content;
+    }
+}
