@@ -1,6 +1,18 @@
 
 /*
- * Pattern Guide
+ * PATTERN GUIDE
+ *
+ * Steps:
+ * - Create a "styles" object, broken down by the folder structure of that containing all of the CSS (base, layout, modules, etc.)
+ * - Find all source files containing style guide YAML blocks, and add them to the "styles" object (layout.header, modules.micro.btn, etc.)
+ * - For each file, create an array of objects (using js-yaml), one for each style guide YAML block
+ * - For each object in the array, check if there is an associated handlebars partial (as well as data/context)
+ * - If there if an associated handlebars partial, compile the example, clean it up, and add it to the object
+ *
+ * Options:
+ * - Directories to css, partials, and data
+ * - Regular expression for finding style guide blocks in css
+ * - Whether to save "styles" object as JSON file, and what to call it
  *
  */
 
@@ -11,103 +23,117 @@ var fs = require('fs'),
     glob = require('glob'),
     handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
-    yaml = require('js-yaml');
+    yaml = require('js-yaml'),
+    extend = require('node.extend');
 
 // register built-in helpers
-if(helpers && helpers.register) {
-  helpers.register(handlebars, {}, {});
+if (helpers && helpers.register) {
+    helpers.register(handlebars, {}, {});
 }
 
-// Create settings - future task will be to have them set via grunt task
 
-// RegEx to find YAML blocks in css/scss files
-var sgBlockRegEx = /\/\*\s*?SG\n([\s\S]*?)\*\//g;
+var PatternGuide = (function() {
+    var files = {},
+        styles = {},
+        s;
 
-// styles object will be the base for all the data collected by parsing the css files
-var styles = {},
-    settings = {
-        scssFiles: 'example/css/**/*.scss',
-        partialsDir: 'example/templates-main/partials',
-        dataDir: 'example/templates-main/data'
-    };
+    return {
 
-// Get all style blocks from Sass files
+        settings: {
+            sgBlockRegEx: /\/\*\s*?SG\n([\s\S]*?)\*\//g,
+            outputFile: false
+        },
 
-// Convert style blocks to JSON
+        init: function(args) {
+            s = extend({}, this.settings, args);
 
-// Compile the HTML example for a style block
-var compileHtmlExample = function(partialLink, contextLink) {
+            if (s.cssDir) {
+                this.getFiles();
+                this.gatherJSON();
+                s.outputFile && this.saveJSONFile();
+                return styles;
+            } else {
+                console.log('No CSS directory was specified');
+            }
+        },
 
-    var source,
-        template,
-        html,
-        context = '',
-        contextFile,
-        contextFileRoot = contextLink ? contextLink.split('.')[0] : null,
-        contextFileTip = contextLink ? contextLink.split('.')[1] : null;
+        getFiles: function() {
+            files.css = glob.sync(s.cssDir + '/**/*.{css,scss}');
+            files.partials = s.partialsDir ? glob.sync(s.partialsDir) : [];
+            files.data = s.dataDir ? glob.sync(s.dataDir) : [];
+        },
 
-    sourceFiles = glob.sync(settings.partialsDir + '/**/' + partialLink + '.hbs')
-    if (sourceFiles && sourceFiles.length) {
-        source = fs.readFileSync(sourceFiles[0], 'utf8');
-    }
+        gatherJSON: function() {
+            for (var index in files.css) {
+                var filePath = files.css[index],
+                    filePathBase = path.basename(filePath, '.scss').replace('_', ''),
+                    filePathArray = path.dirname(filePath).split(path.sep),
+                    fileParent = filePathArray[filePathArray.length - 1],
+                    fileContent = fs.readFileSync(filePath, 'utf8'),
+                    matches = fileContent.match(s.sgBlockRegEx),
+                    sgBlocks = [];
 
-    if (contextLink) {
+                if (matches && matches.length) {
+                    matches.forEach(function(val) {
+                        var newString = val.replace(/\/\*\s*?SG\n/, ''),
+                            json;
+                        newString = newString.replace('*/', '');
+                        json = yaml.safeLoad(newString);
 
-        contextFiles = glob.sync(settings.dataDir + '/**/' + contextFileRoot + '.{json,yaml}');
-        if (contextFiles && contextFiles.length) {
-            contextFile = fs.readFileSync(contextFiles[0], 'utf8');
-            context = yaml.safeLoad(contextFile)[contextFileTip];
-        }
+                        if (json.partial && s.partialsDir) {
+                            json.example = PatternGuide.compileHtmlExample(json.partial, json.context);
+                        }
 
-    }
+                        sgBlocks.push(json);
+                    });
+                    styles[fileParent] = styles[fileParent] ? styles[fileParent] : {};
+                    styles[fileParent][filePathBase] = sgBlocks;
+                }
+            }
+        },
 
-    if (source) {
-        template = handlebars.compile(source);
-        html = template(context);
-        return html;
-    }
+        compileHtmlExample: function(partialLink, contextLink) {
+            var source,
+                template,
+                html,
+                context = '',
+                contextFile,
+                contextFileRoot = contextLink ? contextLink.split('.')[0] : null,
+                contextFileTip = contextLink ? contextLink.split('.')[1] : null;
 
-};
+            sourceFiles = glob.sync(s.partialsDir + '/**/' + partialLink + '.hbs')
+            if (sourceFiles && sourceFiles.length) {
+                source = fs.readFileSync(sourceFiles[0], 'utf8');
+            }
 
+            if (contextLink && s.dataDir) {
 
-glob(settings.scssFiles, function (err, files) {
-    if (err) {
-        throw err;
-    }
-    for (var index in files) {
-        var filePath = files[index],
-            filePathBase = path.basename(filePath, '.scss').replace('_', ''),
-            filePathDir = path.dirname(filePath),
-            filePathArray = filePathDir.split(path.sep),
-            fileParent = filePathArray[filePathArray.length - 1],
-            fileContent = fs.readFileSync(filePath, 'utf8'),
-            matches = fileContent.match(sgBlockRegEx),
-            sgBlocks = [];
-
-        if (matches && matches.length) {
-            matches.forEach(function(val) {
-                var newString = val.replace(/\/\*\s*?SG\n/, ''),
-                    json;
-                newString = newString.replace('*/', '');
-                json = yaml.safeLoad(newString);
-
-                if (json.partial) {
-                    json.example = compileHtmlExample(json.partial, json.context);
+                contextFiles = glob.sync(s.dataDir + '/**/' + contextFileRoot + '.{json,yaml}');
+                if (contextFiles && contextFiles.length) {
+                    contextFile = fs.readFileSync(contextFiles[0], 'utf8');
+                    context = yaml.safeLoad(contextFile)[contextFileTip];
                 }
 
-                sgBlocks.push(json);
+            }
+
+            if (source) {
+                template = handlebars.compile(source);
+                html = template(context);
+                return html;
+            }
+        },
+
+        saveJSONFile: function() {
+            fs.writeFile(s.outputFile, JSON.stringify(styles), function(err) {
+                if (err) {
+                    throw err;
+                }
+                console.log('File saved');
             });
-            styles[fileParent] = styles[fileParent] ? styles[fileParent] : {};
-            styles[fileParent][filePathBase] = sgBlocks;
         }
-    }
 
-    //console.log(styles);
+    };
+})();
 
-    fs.writeFile('example/styleguide.json', JSON.stringify(styles), function(err) {
-        if (err) {
-            throw err;
-        }
-        console.log('File saved');
-    });
-});
+module.exports = PatternGuide.init;
+
