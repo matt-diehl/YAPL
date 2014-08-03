@@ -1,5 +1,5 @@
 {
-  "name": "Pattern-Guide",
+  "name": "patternguide",
   "version": "0.0.0",
   "description": "Utility to parse YAML in stylesheets and use it to generate a style guide.",
   "main": "index.js",
