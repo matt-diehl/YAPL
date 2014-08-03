@@ -1,6 +1,6 @@
 
 /*
- * PATTERN GUIDE
+ * PATTERN LIBRARY
  *
  * Steps:
  * - Create a "styles" object, broken down by the folder structure of that containing all of the CSS (base, layout, modules, etc.)
@@ -32,7 +32,7 @@ if (helpers && helpers.register) {
 }
 
 
-var PatternGuide = (function() {
+var PatternLibrary = (function() {
     var files = {},
         styles = {},
         s;
@@ -81,7 +81,7 @@ var PatternGuide = (function() {
                         json = yaml.safeLoad(newString);
 
                         if (json.partial && s.partialsDir) {
-                            json.example = PatternGuide.compileHtmlExample(json.partial, json.context);
+                            json.example = PatternLibrary.compileHtmlExample(json.partial, json.context);
                         }
 
                         sgBlocks.push(json);
@@ -130,5 +130,5 @@ var PatternGuide = (function() {
     };
 })();
 
-module.exports = PatternGuide;
+module.exports = PatternLibrary;
 
