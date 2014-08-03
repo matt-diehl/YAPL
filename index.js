@@ -44,8 +44,8 @@ var PatternGuide = (function() {
             outputFile: false
         },
 
-        init: function(args) {
-            s = extend({}, this.settings, args);
+        init: function(options) {
+            s = extend({}, this.settings, options);
 
             if (s.cssDir) {
                 this.getFiles();
@@ -124,16 +124,11 @@ var PatternGuide = (function() {
         },
 
         saveJSONFile: function() {
-            fs.writeFile(s.outputFile, JSON.stringify(styles), function(err) {
-                if (err) {
-                    throw err;
-                }
-                console.log('File saved');
-            });
+            fs.writeFileSync(s.outputFile, JSON.stringify(styles));
         }
 
     };
 })();
 
-module.exports = PatternGuide.init;
+module.exports = PatternGuide;
 
