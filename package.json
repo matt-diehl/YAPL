@@ -22,13 +22,15 @@
     "url": "https://github.com/matt-diehl/PatternLibrary/issues"
   },
   "homepage": "https://github.com/matt-diehl/PatternLibrary",
-  "devDependencies": {
-    "mocha": "~1.20.1",
-    "chai": "~1.9.1",
+  "dependencies": {
     "js-yaml": "~3.1.0",
     "glob": "~4.0.4",
     "handlebars": "~2.0.0-alpha.4",
     "handlebars-helpers": "~0.5.5",
     "node.extend": "~1.0.10"
+  },
+  "devDependencies": {
+    "mocha": "~1.20.1",
+    "chai": "~1.9.1"
   }
 }
