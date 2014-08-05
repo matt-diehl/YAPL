@@ -1,5 +1,5 @@
 {
-  "name": "patternlibrary",
+  "name": "yapl",
   "version": "0.0.4",
   "description": "Utility to parse YAML in stylesheets and use it to generate a style guide.",
   "main": "index.js",
