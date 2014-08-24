@@ -119,7 +119,7 @@ var YAPL = (function() {
             if (source) {
                 template = handlebars.compile(source);
                 html = template(context);
-                return html;
+                return html.replace(/\n+/g, '\n');
             }
         },
 
