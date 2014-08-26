@@ -134,8 +134,9 @@ var YAPL = (function() {
             if (source) {
                 template = handlebars.compile(source);
                 html = template(context);
-                html.trim();
-                return html.replace(/\n+/g, '\n');
+                html = html.replace(/^\s+|\s+$/g, '');
+                html = html.replace(/\n+/g, '\n');
+                return html;
             }
         },
 
