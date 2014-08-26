@@ -39,6 +39,11 @@ var YAPL = (function() {
 
     return {
 
+        // Default settings
+        // Other settings passed as arguments in init include:
+        // - cssDir (mandatory)
+        // - partialsDir (optional)
+        // - dataDir (optional)
         settings: {
             sgBlockRegEx: /\/\*\s*?SG\n([\s\S]*?)\*\//g,
             outputFile: false
@@ -47,6 +52,7 @@ var YAPL = (function() {
         init: function(options) {
             s = extend({}, this.settings, options);
 
+            // Only continue if a css directory was spec'd
             if (s.cssDir) {
                 this.getFiles();
                 this.gatherJSON();
@@ -59,11 +65,10 @@ var YAPL = (function() {
 
         getFiles: function() {
             files.css = glob.sync(s.cssDir + '/**/*.{css,scss}');
-            files.partials = s.partialsDir ? glob.sync(s.partialsDir) : [];
-            files.data = s.dataDir ? glob.sync(s.dataDir) : [];
         },
 
         gatherJSON: function() {
+            // Loop through each of the css files
             for (var index in files.css) {
                 var filePath = files.css[index],
                     filePathBase = path.basename(filePath, '.scss').replace('_', ''),
@@ -80,8 +85,10 @@ var YAPL = (function() {
                         newString = newString.replace('*/', '');
                         json = yaml.safeLoad(newString);
 
-                        if (json.partial && s.partialsDir) {
-                            json.example = YAPL.compileHtmlExample(json.partial, json.context);
+                        if (s.partialsDir) {
+                            // If a specific partial wasn't spec'd, use the css file name
+                            var partial = json.partial || filePathBase;
+                            json.example = YAPL.compileHtmlExample(partial, json.context);
                         }
 
                         sgBlocks.push(json);
@@ -119,6 +126,7 @@ var YAPL = (function() {
             if (source) {
                 template = handlebars.compile(source);
                 html = template(context);
+                html.trim();
                 return html.replace(/\n+/g, '\n');
             }
         },

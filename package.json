@@ -4,7 +4,7 @@
   "description": "Utility to parse YAML in stylesheets and use it to generate a style guide.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/index.js"
   },
   "repository": {
     "type": "git",
