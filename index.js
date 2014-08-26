@@ -93,8 +93,16 @@ var YAPL = (function() {
 
                         sgBlocks.push(json);
                     });
+
+                    // Create an object for the current module if one doesn;t already exist
                     styles[fileParent] = styles[fileParent] ? styles[fileParent] : {};
-                    styles[fileParent][filePathBase] = sgBlocks;
+
+                    // Save module info and array of blocks to the master styles object
+                    styles[fileParent][filePathBase] = {
+                        name: filePathBase,
+                        parent: fileParent,
+                        blocks: sgBlocks
+                    };
                 }
             }
         },
