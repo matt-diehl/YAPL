@@ -72,7 +72,7 @@ var YAPL = (function() {
             for (var index in files.css) {
                 var filePath = files.css[index],
                     filePathBase = path.basename(filePath, '.scss').replace('_', ''),
-                    filePathArray = path.dirname(filePath).split(path.sep),
+                    filePathArray = path.dirname(filePath).split('/'),
                     fileParent = filePathArray[filePathArray.length - 1],
                     fileContent = fs.readFileSync(filePath, 'utf8'),
                     matches = fileContent.match(s.sgBlockRegEx),
