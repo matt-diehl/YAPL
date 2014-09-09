@@ -24,7 +24,8 @@ var fs = require('fs'),
     handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
     yaml = require('js-yaml'),
-    extend = require('node.extend');
+    extend = require('node.extend'),
+    cheerio = require('cheerio');
 
 // register built-in helpers
 if (helpers && helpers.register) {
@@ -43,9 +44,11 @@ var YAPL = (function() {
         // Other settings passed as arguments in init include:
         // - cssDir (mandatory)
         // - partialsDir (optional)
+        // - templatesDir (optional)
         // - dataDir (optional)
         settings: {
-            sgBlockRegEx: /\/\*\s*?SG\n([\s\S]*?)\*\//g,
+            cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
+            htmlBlockRegEx: /\<!--\s*?YAPL\n([\s\S]*?)--\>/g,
             outputFile: false
         },
 
@@ -55,7 +58,8 @@ var YAPL = (function() {
             // Only continue if a css directory was spec'd
             if (s.cssDir) {
                 this.getFiles();
-                this.gatherJSON();
+                this.gatherCssJSON();
+                s.templatesDir && this.gatherTemplateJSON();
                 s.outputFile && this.saveJSONFile();
                 return styles;
             } else {
@@ -65,9 +69,10 @@ var YAPL = (function() {
 
         getFiles: function() {
             files.css = glob.sync(s.cssDir + '/**/*.{css,scss}');
+            files.templates = glob.sync(s.templatesDir + '/**/*.html');
         },
 
-        gatherJSON: function() {
+        gatherCssJSON: function() {
             // Loop through each of the css files
             for (var index in files.css) {
                 var filePath = files.css[index],
@@ -75,12 +80,12 @@ var YAPL = (function() {
                     filePathArray = path.dirname(filePath).split('/'),
                     fileParent = filePathArray[filePathArray.length - 1],
                     fileContent = fs.readFileSync(filePath, 'utf8'),
-                    matches = fileContent.match(s.sgBlockRegEx),
+                    YAPLBlocks = fileContent.match(s.cssBlockRegEx),
                     sgBlocks = [];
 
-                if (matches && matches.length) {
-                    matches.forEach(function(val) {
-                        var newString = val.replace(/\/\*\s*?SG\n/, ''),
+                if (YAPLBlocks && YAPLBlocks.length) {
+                    YAPLBlocks.forEach(function(val) {
+                        var newString = val.replace(/\/\*\s*?YAPL\n/, ''),
                             json;
                         newString = newString.replace('*/', '');
                         json = yaml.safeLoad(newString);
@@ -94,17 +99,91 @@ var YAPL = (function() {
                         sgBlocks.push(json);
                     });
 
-                    // Create an object for the current module if one doesn;t already exist
+                    // Create an object for the current module if one doesn't already exist
                     styles[fileParent] = styles[fileParent] ? styles[fileParent] : {};
 
                     // Save module info and array of blocks to the master styles object
                     styles[fileParent][filePathBase] = {
                         name: filePathBase,
                         parent: fileParent,
+                        path: filePath,
                         blocks: sgBlocks
                     };
                 }
             }
+        },
+
+        findModulesinHTML: function(html, templateMeta) {
+            var $template = cheerio.load(html),
+                modules = {};
+
+            for (var folder in styles) {
+
+                for (var file in styles[folder]) {
+                    styles[folder][file].blocks.forEach(function(val, index, arr) {
+                        if (val.example) {
+                            var partialName = val.name;
+                                $partialHTML = cheerio.load(val.example),
+                                partialClass = '.' + $partialHTML('*').eq(0).attr('class').replace(' ', '.');
+
+                            if ($template(partialClass).length) {
+
+                                modules[folder] = modules[folder] ? modules[folder] : [];
+                                modules[folder].push(partialName);
+
+                                if (templateMeta) {
+                                    styles[folder][file].blocks[index].templates = styles[folder][file].blocks[index].templates ? styles[folder][file].blocks[index].templates : [];
+                                    styles[folder][file].blocks[index].templates.push(templateMeta);
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+            }
+
+            return modules;
+        },
+
+        gatherTemplateJSON: function() {
+
+            var templates = {};
+
+            for (var index in files.templates) {
+                // Loop through each of the template files
+                var filePath = files.templates[index],
+                    filePathBase = path.basename(filePath, '.html'),
+                    filePathArray = path.dirname(filePath).split('/'),
+                    fileParent = filePathArray[filePathArray.length - 1],
+                    fileContent = fs.readFileSync(filePath, 'utf8'),
+                    YAPLBlocks = fileContent.match(s.htmlBlockRegEx),
+                    templateModules,
+                    json = {};
+
+                templates[filePathBase] = {
+                    name: filePathBase.replace(/\-/g, ' '), // Use this in case no name spec'd in YAPL block
+                    path: filePath,
+                    pathBase: filePathBase,
+                    parent: fileParent
+                };
+
+                templateModules = YAPL.findModulesinHTML(fileContent, templates[filePathBase]);
+
+                if (YAPLBlocks && YAPLBlocks.length) {
+                    var newString = YAPLBlocks[0].replace(/\<!--\s*?YAPL\n/, '');
+
+                    newString = newString.replace('-->', '');
+                    json = yaml.safeLoad(newString);
+                }
+
+                // Save module info to the master templates object
+                templates[filePathBase].modules = templateModules;
+                templates[filePathBase] = extend({}, templates[filePathBase], json);
+
+            }
+
+            styles.templates = templates;
         },
 
         compileHtmlExample: function(partialLink, contextLink) {
