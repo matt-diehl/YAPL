@@ -124,14 +124,15 @@ var YAPL = (function() {
                         if (val.example) {
                             var partialName = val.name;
                                 $partialHTML = cheerio.load(val.example),
-                                partialChildren = $partialHTML('*');
+                                partialChildren = $partialHTML('*'),
+                                partialClass = '';
 
                             if (partialChildren && partialChildren.length) {
-                                partialClass = '.' + partialChildren.eq(0).attr('class');
-                                partialClass.replace(' ', '.');
+                                partialClass = partialChildren.eq(0).attr('class').trim();
+                                partialClass = '.' + partialClass.replace(/ /g, '.');
                             }
 
-                            if ($template(partialClass).length) {
+                            if (partialClass && $template(partialClass).length) {
 
                                 modules[folder] = modules[folder] ? modules[folder] : [];
                                 modules[folder].push(partialName);
