@@ -124,7 +124,12 @@ var YAPL = (function() {
                         if (val.example) {
                             var partialName = val.name;
                                 $partialHTML = cheerio.load(val.example),
-                                partialClass = '.' + $partialHTML('*').eq(0).attr('class').replace(' ', '.');
+                                partialChildren = $partialHTML('*');
+
+                            if (partialChildren && partialChildren.length) {
+                                partialClass = '.' + partialChildren.eq(0).attr('class');
+                                partialClass.replace(' ', '.');
+                            }
 
                             if ($template(partialClass).length) {
 
