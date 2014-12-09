@@ -77,6 +77,7 @@ var YAPL = (function() {
             for (var index in files.css) {
                 var filePath = files.css[index],
                     filePathBase = path.basename(filePath, '.scss').replace('_', ''),
+                    filePathBaseCamelized = filePathBase.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); }),
                     filePathArray = path.dirname(filePath).split('/'),
                     fileParent = filePathArray[filePathArray.length - 1],
                     fileContent = fs.readFileSync(filePath, 'utf8'),
@@ -103,7 +104,7 @@ var YAPL = (function() {
                     styles[fileParent] = styles[fileParent] ? styles[fileParent] : {};
 
                     // Save module info and array of blocks to the master styles object
-                    styles[fileParent][filePathBase] = {
+                    styles[fileParent][filePathBaseCamelized] = {
                         name: filePathBase,
                         parent: fileParent,
                         path: filePath,
