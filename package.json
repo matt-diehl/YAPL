@@ -28,7 +28,8 @@
     "handlebars": "~2.0.0-alpha.4",
     "handlebars-helpers": "~0.5.5",
     "node.extend": "~1.0.10",
-    "cheerio": "~0.17.0"
+    "cheerio": "~0.17.0",
+    "template": "~0.5.4"
   },
   "devDependencies": {
     "mocha": "~1.20.1",
