@@ -1,0 +1,28 @@
+
+$dlKeyWidth: 120px;
+
+
+.dl__key {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.dl__val {
+    margin-bottom: 30px;
+}
+
+
+@include medium-and-above {
+
+    .dl__key {
+        clear: left;
+        float: left;
+        padding-right: 15px;
+        width: $dlKeyWidth;
+    }
+
+    .dl__val {
+        margin-left: $dlKeyWidth;
+    }
+
+}

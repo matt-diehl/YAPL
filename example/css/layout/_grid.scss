@@ -1,61 +1,147 @@
+/* ======  Grid Styles - A basic grid and mixin. Change or remove as necessary ====== */
 
-@mixin grid1($selector, $cols, $margin) {
+$gridGutter: 2.5%;
+$gridGutter2: 5%;
+$gridGutter3: 2.5%;
 
-    $colWidth: (100% - (($cols - 1) * $margin)) / $cols;
-    $colMargin: $margin;
+
+// Simple mixin for a multi-column grid
+
+@mixin grid($selector, $cols, $marginRight, $marginBottom) {
+
+    $colWidth: (100% - (($cols - 1) * $marginRight)) / $cols;
 
     #{$selector} {
         float: left;
-        margin-bottom: $colMargin;
-        margin-right: $colMargin;
+        margin-bottom: $marginBottom;
+        margin-right: $marginRight;
         width: $colWidth;
         &:nth-child(#{$cols}n) {
             margin-right: 0;
         }
+        &:nth-child(#{$cols}n + 1) {
+            clear: left;
+        }
         &.nth-#{$cols}n {
             margin-right: 0;
+        }
+        &.nth-#{$cols}n-plus-1 {
+            clear: left;
         }
     }
 }
 
-.grid1-2col {
-    @include grid1(".grid-col", 2, 2%);
+
+// Simple mixin for a 1 row grid of 3, with items that can span 1 or 2 cells
+
+@mixin gridOf3($span1Selector, $span2Selector, $margin) {
+
+    $cols: 3;
+
+    $1colWidth: (100% - (($cols - 1) * $margin)) / $cols;
+    $2colWidth: ($1colWidth * 2) + $gridGutter;
+
+    #{$span1Selector},
+    #{$span2Selector} {
+        float: left;
+        margin-left: $margin;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+    #{$span1Selector} {
+        width: $1colWidth;
+    }
+    #{$span2Selector} {
+        width: $2colWidth;
+    }
+
 }
-.grid1-3col {
-    @include grid1(".grid-col", 3, 2%);
+
+
+.l-grid--2col {
+    @include grid(".l-grid__col", 2, $gridGutter2, $gridGutter2);
 }
+.l-grid--3col {
+    @include grid(".l-grid__col", 3, $gridGutter3, $gridGutter3);
+}
+.l-grid-of-3 {
+    @include gridOf3(".l-grid__col", ".l-grid__col--2", $gridGutter);
+}
+
+
+.l-grid__col--bordered {
+    border-left: 1px solid $lightGray;
+    padding: 0 2%;
+    &:first-child {
+        border-left: none;
+        padding-left: 0%;
+    }
+}
+
+
 
 @include small-only {
 
-    .grid-col {
+    .l-grid__col {
         margin-bottom: 20px;
     }
 
-    .grid1-2col-mq-small {
-        @include grid1(".grid-col", 2, 2%);
+    .l-grid--2col-mq-small {
+        @include grid(".l-grid__col", 2, $gridGutter2, $gridGutter2);
     }
-    .grid1-3col-mq-small {
-        @include grid1(".grid-col", 3, 2%);
+    .l-grid--3col-mq-small {
+        @include grid(".l-grid__col", 3, $gridGutter3, $gridGutter3);
+    }
+    .l-grid-of-3-mq-small {
+        .l-grid__col,
+        .l-grid__col--2 {
+            margin-left: 0;
+            width: 100%;
+        }
+    }
+
+    .l-grid--2col-mq-medium,
+    .l-grid--3col-mq-medium,
+    .l-grid--2col-mq-large,
+    .l-grid--3col-mq-large {
+        .l-grid__col {
+            margin-bottom: 20px;
+        }
+    }
+
+    .l-grid-of-3-mq-medium,
+    .l-grid-of-3-mq-large {
+        .l-grid__col,
+        .l-grid__col--2 {
+            margin-bottom: 20px;
+        }
     }
 
 }
 @include medium-only {
 
-    .grid1-2col-mq-medium {
-        @include grid1(".grid-col", 2, 2%);
+    .l-grid--2col-mq-medium {
+        @include grid(".l-grid__col", 2, $gridGutter2, $gridGutter2);
     }
-    .grid1-3col-mq-medium {
-        @include grid1(".grid-col", 3, 2%);
+    .l-grid--3col-mq-medium {
+        @include grid(".l-grid__col", 3, $gridGutter3, $gridGutter3);
+    }
+    .l-grid-of-3-mq-medium {
+        @include gridOf3(".l-grid__col", ".l-grid__col--2", $gridGutter);
     }
 
 }
 @include large-and-above {
 
-    .grid1-2col-mq-large {
-        @include grid1(".grid-col", 2, 2%);
+    .l-grid--2col-mq-large {
+        @include grid(".l-grid__col", 2, $gridGutter2, $gridGutter2);
     }
-    .grid1-3col-mq-large {
-        @include grid1(".grid-col", 3, 2%);
+    .l-grid--3col-mq-large {
+        @include grid(".l-grid__col", 3, $gridGutter3, $gridGutter3);
+    }
+    .l-grid-of-3-mq-large {
+        @include gridOf3(".l-grid__col", ".l-grid__col--2", $gridGutter);
     }
 
 }

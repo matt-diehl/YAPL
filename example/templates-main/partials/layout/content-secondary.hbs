@@ -1,0 +1,18 @@
+<!-- Secondary content container -->
+<section class="content-secondary cf">
+
+    <!-- CTAs go in here -->
+    <div class="content-secondary-col">
+    {{#each ctas}}
+        {{> cta this}}
+    {{/each}}
+    </div><!-- .content-secondary-col -->
+
+    <!-- Other portlets go in here -->
+    <div class="content-secondary-col">
+    {{#each portlets}}
+        {{> portlet this}}
+    {{/each}}
+    </div><!-- .content-secondary-col -->
+
+</section><!-- .content-secondary -->

@@ -1,6 +1,28 @@
+/* ======  Sass Mixins ====== */
 
+@mixin helveticaLight {
+    font-family: $helveticaLight;
+}
+
+@mixin helveticaRegular {
+    font-family: $helveticaRegular;
+}
+
+@mixin helveticaMedium {
+    font-family: $helveticaMedium;
+}
+
+@mixin serif {
+    font-family: Georgia, serif;
+}
 
 @mixin triangle($width, $height, $direction, $color) {
+    content: "";
+    height: 0;
+    position: absolute;
+    width: 0;
+    transform: scale(.99);
+
     // Right/East
     @if $direction == e {
         border-top: $height/2 solid transparent;
@@ -31,27 +53,15 @@
 
 }
 
-@mixin borderBox {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
 @mixin removeFirstChildMargins {
     > *:first-child {
         margin-top: 0;
-        > *:first-child {
-            margin-top: 0;
-        }
     }
 }
 
 @mixin removeLastChildMargins {
     > *:last-child {
         margin-bottom: 0;
-        > *:last-child {
-            margin-bottom: 0;
-        }
     }
 }
 
@@ -65,90 +75,26 @@
     }
 }
 
-@mixin bg-img-none {
-    .svg & {
-        background-image: none;
+@mixin contain1 {
+    margin: 0 auto;
+    max-width: $desktopMaxWidth;
+    width: 92%;
+}
+
+@mixin sectionBottomShadow {
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, .10)
+}
+
+@mixin padBox1 {
+    background-color: #FFF;
+    overflow: hidden; // alt clearfix so we can still use pseudo elements
+    position: relative;
+
+    @include small-only {
+        padding: 20px 4%;
     }
-    .no-svg & {
-        background-image: none;
+
+    @include medium-and-above {
+        padding: 35px 35px 15px;
     }
-}
-
-%bg-img-none {
-    @include bg-img-none;
-}
-
-@mixin ie8-box-shadow {
-    .no-boxshadow & {
-        border: 1px solid #CCC;
-        outline: 1px solid #F0F0F0;
-    }
-}
-
-.ie8-box-shadow {
-    @include ie8-box-shadow;
-}
-
-@mixin gradient($from, $to, $fallback) {
-    background: $fallback;
-    background: -moz-linear-gradient(top, $from 0%, $to 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$from), color-stop(100%,$to));
-    background: -webkit-linear-gradient(top, $from 0%,$to 100%);
-    background: -o-linear-gradient(top, $from 0%,$to 100%);
-    background: -ms-linear-gradient(top, $from 0%,$to 100%);
-    background: linear-gradient(to bottom, $from 0%,$to 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#{$from}', endColorstr='#{$to}');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr='#{$from}', endColorstr='#{$to}')";
-}
-
-@mixin rotate($degrees) {
-    -moz-transform: rotate(#{$degrees}deg);
-    -o-transform: rotate(#{$degrees}deg);
-    -webkit-transform: rotate(#{$degrees}deg);
-    -ms-transform: rotate(#{$degrees}deg);
-    transform: rotate(#{$degrees}deg);
-
-    // Convert from radians to degrees
-    $pi: 3.1415926535897;
-    $radians: $degrees * $pi / 180;
-
-    $x: $radians;
-
-    // IE6–IE9
-    filter: progid:DXImageTransform.Microsoft.Matrix(M11=#{cos($x)}, M12=#{-1*sin($x)},M21=#{sin($x)}, M22=#{cos($x)}, sizingMethod='auto expand');
-    zoom: 1;
-}
-
-
-@mixin width($context, $target) {
-    width: percentage($target / $context);
-}
-
-// Tables
-
-@mixin table-row-variant($state, $background) {
-  // Exact selectors below required to override `.table-striped` and prevent
-  // inheritance to nested tables.
-  .table > thead > tr,
-  .table > tbody > tr,
-  .table > tfoot > tr {
-    > td.#{$state},
-    > th.#{$state},
-    &.#{$state} > td,
-    &.#{$state} > th {
-      background-color: $background;
-    }
-  }
-
-  // Hover states for `.table-hover`
-  // Note: this is not available for cells or rows within `thead` or `tfoot`.
-  .table-hover > tbody > tr {
-    > td.#{$state}:hover,
-    > th.#{$state}:hover,
-    &.#{$state}:hover > td,
-    &:hover > .#{$state},
-    &.#{$state}:hover > th {
-      background-color: darken($background, 5%);
-    }
-  }
 }

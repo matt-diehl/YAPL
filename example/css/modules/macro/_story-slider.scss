@@ -1,0 +1,130 @@
+/* ======  Story Slider Styles ====== */
+
+
+/* YAPL
+name: Story Slider
+notes: Displays up to 10 patient stories, etc. Number displaying at a time changes based on layout and screen size
+*/
+
+.story-slider {
+    background-color: #FFF;
+    border-top: $medDkBlueBorder;
+    margin: $defaultModuleMarginDesktop;
+    padding: 20px 4% 50px;
+    position: relative;
+}
+.story-slider--half-bottom {
+    padding-bottom: 30px;
+}
+
+.story-slider__next,
+.story-slider__prev {
+    @extend %icon-slider-prevnext;
+    height: 64px;
+    margin-top: -32px;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+}
+
+.story-slider__next {
+    background-position: 100% 0;
+    right: 4%;
+}
+
+.story-slider__prev {
+    background-position: 0 0;
+    left: 4%;
+}
+
+.story-slider__stories {
+    font-size: 0;
+    position: relative;
+    white-space: nowrap;
+    transition: left 1s;
+}
+
+.story-slider__stories-wrap {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 85%;
+}
+
+.story-slider__story {
+    display: inline-block;
+    font-size: 15px;
+    padding: 0 10px;
+    white-space: normal; // reset white-space so name can go below img
+}
+
+.story-slider__story-img,
+.story-slider__story-text {
+    display: block;
+    width: 100%;
+}
+
+.story-slider__story-text {
+    color: $bodyTextColor;
+    margin-top: 8px;
+}
+
+.story-slider__title {
+    margin-bottom: 1.8em;
+}
+.story-slider__subtitle {
+    font-size: 16px;
+    margin: 30px 0 0;
+
+    a {
+        color: #004C85;
+    }
+}
+
+
+@include small-only {
+
+    .story-slider__story {
+        width: 100%;
+    }
+
+    .story-slider__stories-wrap {
+        width: 70%;
+    }
+
+    @for $i from 0 through 9 {
+
+        [data-position="#{$i}"] .story-slider__stories {
+            left: -100% * $i;
+        }
+
+    }
+
+}
+
+
+@include medium-and-above {
+
+    @for $i from 0 through 9 {
+
+        [data-position="#{$i}"] .story-slider__stories {
+            left: -33.333% * $i;
+        }
+
+    }
+
+    .story-slider__story {
+
+        .l-2-col-master & {
+            width: 33.333%;
+        }
+        .l-3-col-master & {
+            width: 50%;
+        }
+
+    }
+
+    .story-slider__stories-wrap {
+        width: 85%;
+    }
+
+}

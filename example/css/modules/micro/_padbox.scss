@@ -1,0 +1,75 @@
+.padbox1 {
+    @include padBox1;
+
+    .rtf,
+    &.rtf {
+        color: #505050;
+    }
+}
+.padbox1--bordered {
+    border: $thinGrayBorder;
+}
+.padbox1--full-bottom {
+    padding-bottom: 35px;
+
+    @include small-only {
+        padding-bottom: 20px;
+    }
+}
+
+.padbox1-grid {}
+
+.padbox1-grid__col {
+    float: left;
+
+    @include small-only {
+        float: none;
+        width: 100% !important;
+    }
+
+    @include medium-and-above {
+        padding-left: 35px;
+
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+}
+
+.padbox1-grid__col--narrow {
+    width: 27%;
+}
+
+.padbox1-grid__col--wide {
+    width: 73%;
+}
+
+.padbox1-grid__col--bordered {
+    padding-right: 35px;
+
+    &:first-child {
+        border-right: $thinGrayBorder;
+        padding-bottom: 120px;
+    }
+
+    @include small-only {
+        border-bottom: $thinGrayBorder;
+        margin-bottom: 31px;
+        padding-bottom: 30px;
+        padding-right: 0;
+
+        &:first-child {
+            border-right: none;
+            padding-bottom: 30px;
+        }
+    }
+}
+
+.padbox1-grid-of-3 {
+    .padbox1-grid__col {
+        width: 33.3%;
+    }
+    .padbox1-grid__col--2 {
+        width: 66.6%;
+    }
+}

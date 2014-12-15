@@ -1,0 +1,400 @@
+---
+layout: 2-col-master-w-content-secondary.hbs
+title: Types of Cancer
+description: Description
+section: 1
+ctas:
+    - <%= cta.appt %>
+portlets:
+    - <%= portlet.trials %>
+    - <%= portlet.text %>
+    - <%= portlet.text %>
+---
+
+<!-- YAPL
+name: Cancer Types Landing
+notes: Landing page for all cancer types.
+-->
+
+<div class="l-row">
+    <div class="section-search padbox1">
+        <label for="" class="h4 u-block">Search for a cancer by name</label>
+        {{> search search.largeRed }}
+    </div>
+</div><!-- .l-row -->
+
+
+<div class="l-row">
+    <div class="section-nav padbox1 cf js-section-nav">
+        <div class="u-cf">
+            <h2 class="section-nav__title h2">Frequently Searched Cancer Types</h2>
+        </div>
+        <div class="section-nav__col">
+            <ul class="section-nav__level1">
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Bladder Cancer</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Breast Cancer</span>
+                        <span class="section-nav__toggle-icon js-expand-toggle"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Colon Cancer</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Endometrial Cancer</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Kidney Cancer</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Leukemia</span>
+                        <span class="section-nav__toggle-icon js-expand-toggle"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Lung Cancer</span>
+                        <span class="section-nav__toggle-icon js-expand-toggle"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- .section-nav__col -->
+        <div class="section-nav__col">
+            <ul class="section-nav__level1">
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Melanoma</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Non-Hodgkin Lymphoma</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Pancreatic Cancer</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Prostate Cancer</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Rectal Cancer</span>
+                    </a>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#">
+                        <span class="section-nav__toggle-text a">Thyroid Cancer</span>
+                    </a>
+                </li>
+            </ul>
+        </div><!-- .section-nav__col -->
+    </div><!-- .section-nav -->
+</div><!-- .l-row -->
+
+
+<div class="l-row">
+    <div class="section-nav padbox1 cf js-section-nav js-expand-all-wrap">
+        <div class="u-cf">
+            <h2 class="section-nav__title h2">Cancers A-Z</h2>
+            <button type="button" class="section-nav__expand-all a js-expand-all-toggle is-all-collapsed">
+                <span class="show-if-collapsed">Expand all Menus</span>
+                <span class="show-if-expanded">Collapse all Menus</span>
+            </button>
+        </div>
+        <div class="section-nav__col">
+            <ul class="section-nav__level1">
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">A</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">B</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">C</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">D</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">E</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">F</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">G</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">H</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">I</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">J</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">K</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">L</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- .section-nav__col -->
+        <div class="section-nav__col">
+            <ul class="section-nav__level1">
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">M</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">N</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">O</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">P</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">Q</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">R</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">S</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">T</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">U</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">V</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+                <li class="module-is-collapsed js-expand-wrap">
+                    <a href="#" class="js-expand-toggle">
+                        <span class="section-nav__toggle-text a">W</span>
+                        <span class="section-nav__toggle-icon"></span>
+                    </a>
+                    <ul class="section-nav__level2 is-collapsed js-expand-item">
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                        <li><a href="#">Child Item</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- .section-nav__col -->
+    </div><!-- .section-nav -->
+</div><!-- .l-row -->
+
+

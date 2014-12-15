@@ -1,0 +1,47 @@
+---
+layout: 3-col-master.hbs
+title: Tracy Birnhak Nutritional Counseling Program
+subtitle: Optional tagline goes here lorem ipsum dolor sit amet
+description: Description
+section: 2
+showOffcanvasToggles: true
+breadcrumbData: <%= breadcrumbs.master %>
+portlets:
+    - <%= portlet.links %>
+    - <%= portlet.links %>
+    - <%= portlet.links %>
+inPageCTAs:
+    - <%= cta.inPageResearch %>
+    - <%= cta.inPageAppt %>
+---
+
+<!-- YAPL
+name: Program Landing
+-->
+
+<div class="cta-row l-row u-cf">
+{{#each inPageCTAs}}
+    {{> cta this}}
+{{/each}}
+</div>
+
+<div class="rtf u-cf"><!-- "rtf" class wraps sections of rich text (in general) -->
+
+    {{> figure figure.master }}
+
+    <p>Nutrition counseling by Registered Dietitians is available for all patients being treated for cancer at the Abramson Cancer Center. Our dietitians specialize in cancer nutrition and provide information based on sound nutritional therapies. We offer classes and workshops as well as individual advice. To make an appointment with the Cancer Center’s Nutritional Counseling Program, call 215-615-0534.</p>
+    <h3>Oncolink Content Goes Below - Nutrition During Cancer Treatment</h3>
+    <p>Good nutrition is especially important for people with cancer. That is because the illness itself, as well as its treatments, may affect your appetite. Cancer and cancer treatments may also alter your body’s ability to tolerate certain foods and to use nutrients.</p>
+    <p>The nutrient needs of a cancer patient vary from person to person. Your doctors, nurses, and dietitians can help you identify your nutrition goals and plan strategies to help you meet them. Eating well while undergoing cancer therapy can help you to:</p>
+    <ul>
+        <li>Feel better</li>
+        <li>Keep up your strength and energy</li>
+        <li>Keep up your weight and your body’s store of nutrients</li>
+        <li>Tolerate treatment-related side effects</li>
+        <li>Decrease your risk of infection</li>
+        <li>Heal and recover quickly</li>
+    </ul>
+    <p>Eating well means eating a variety of foods that provide the nutrients you need to maintain your health while fighting cancer. These nutrients include protein, carbohydrates, fat, water, vitamins, and minerals. </p>
+    <p>Read more about nutrition at Oncolink</p>
+
+</div><!-- .rtf -->

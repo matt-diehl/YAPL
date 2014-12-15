@@ -1,181 +1,215 @@
+/* ====== Form Styles ====== */
+
 /* YAPL
 name: Form
-notes: Base form styles - wrap in an element with class "form"
+notes: Default styles for form elements. Styles can be applied with a single wrapping "form" class, or a class, based on the tagname can be applied directly to the element.
 partial: form
 */
 
-// Base form styles
-
-::-webkit-input-placeholder { color: #363636; text-overflow: ellipsis; }
-v:-moz-placeholder { color: #363636; text-overflow: ellipsis; }
-::-moz-placeholder { color: #363636; text-overflow: ellipsis; }
-:-ms-input-placeholder { color: #363636; text-overflow: ellipsis; }
-.placeholder { color: #363636; text-overflow: ellipsis; } // IE9 and lower polyfill
-
-input[type="search"]::-webkit-search-cancel-button {
-    /* Remove default x */
-    -webkit-appearance: none;
-
-}
-input[type=text]::-ms-clear,
-input[type=search]::-ms-clear
- {
-    /* Remove default x */
-    display: none;
+::-webkit-input-placeholder {
+    color: #999;
+    text-overflow: ellipsis;
 }
 
-.form.is-error {
-    ::-webkit-input-placeholder { color: $errorRed; }
-    :-moz-placeholder { color: $errorRed; }
-    ::-moz-placeholder { color: $errorRed; }
-    :-ms-input-placeholder { color: $errorRed; }
-    .placeholder { color: $errorRed; } // IE9 and lower polyfill
+:-moz-placeholder {
+    color: #999;
+    text-overflow: ellipsis;
 }
 
-.form {
+::-moz-placeholder {
+    color: #999;
+    text-overflow: ellipsis;
+}
 
-    input[type="text"],
-    textarea,
-    select[multiple] {
-        border: 1px solid #A3A3A3;
-        box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.4);
-        margin: 0;
-        padding: 5px 8px;
-        max-width: 100%;
-        .lt-ie9 .portlet & {
-            width: 100%;
+:-ms-input-placeholder {
+    color: #999;
+    text-overflow: ellipsis;
+}
+
+// IE9 and lower polyfill - requires https://github.com/mathiasbynens/jquery-placeholder
+.placeholder {
+    color: #999;
+    text-overflow: ellipsis;
+}
+
+.input-text, .form input[type="text"] {}
+
+.input-search, .form input[type="search"] {}
+
+.input-submit, .form input[type="submit"] {
+    text-indent: -9999px;
+}
+
+.select, .form select {
+    background-color: #FFF;
+    border: $thinGrayBorder;
+    color: #919891;
+
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+.selects-wrap {
+    display: table;
+    width: 90%;
+
+    .selects-wrap__title,
+    .select-wrap {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    @include small-only {
+        width: 100%;
+    }
+}
+.selects-wrap__title {
+    font-size: 20px;
+    width: 90px;
+
+    @include small-only {
+        display: table-row !important;
+        font-size: inherit;
+        line-height: 2em;
+        text-align: center;
+        width: 60px;
+    }
+}
+.selects-wrap__title--choice {
+    color: #003F72;
+    font-size: 17px;
+    font-style: italic;
+    text-align: center;
+
+    @include small-only {
+        font-size: inherit;
+        line-height: 3em;
+    }
+}
+
+.select-wrap {
+    background-color: #FFF;
+    border: $thinGrayBorder;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    &:after,
+    &:before {
+        pointer-events: none; // Allows clicking the arrow to trigger the <select> (except in IE < 11)
+    }
+    &:after {
+        top: 50%;
+        z-index: 10; // Places it over the child <select> element
+    }
+    &:before {
+        background-color: $dkRed;
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0; right: 0;
+        z-index: 10; // Places it over the child <select> element
+    }
+
+    > .select {
+        background: transparent;
+        background-image: none;
+        border: none;
+        box-shadow: none;
+        font-size: inherit;
+        line-height: 1;
+        padding: 7px 8px 5px;
+        position: relative;
+        width: 110%;
+        -webkit-appearance: none;
+        &:focus {
+            outline: 0;
         }
     }
+}
 
-    select[multiple] {
-        font-size: 14px;
+.select-wrap--sm {
+    font-size: 14px;
+
+    &:after {
+        margin-top: -4px;
+        right: 17px;
+        @include triangle(14px, 8px, s, #FFF);
+    }
+    &:before {
+        width: 50px;
     }
 
+    .select {
+        height: 40px;
+    }
+}
+
+.select-wrap--lg {
+    font-size: 18px;
+
+    &:after {
+        margin-top: -5px;
+        right: 21px;
+        @include triangle(18px, 10px, s, #FFF);
+    }
+    &:before {
+        width: 64px;
+    }
+
+    .select {
+        @extend %helveticaLight;
+        height: 48px;
+    }
+}
+
+.select-wrap--trials {
+    &:before {
+        background-color: $mediumBlue;
+    }
+}
+
+
+
+.textarea, .form textarea {}
+
+.form {
+    input[type="text"] {}
     textarea {
         width: 100%;
     }
 }
 
-// Error message wrapper. Hidden by default
-// Shows when parent form has "is-error" class
-.form-error {
-    color: $errorRed;
-    display: none;
-    font-size: 15px;
-    font-weight: bold;
-    .form.is-error & {
-        display: block;
-    }
-}
-
-.form-input-text {
-    background-color: #CED6DF;
-    border-radius: 15px;
-    height: 29px;
-    position: relative;
-    > input[type="text"],
-    > input[type="search"] {
-        background: transparent;
-        border: 0;
-        font-size: 13px;
-        height: 100%;
-        padding: 0 12px 0 12px;
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        .lt-ie9 .search_sort & {
-            line-height: 46px;
-        }
-    }
-}
-
-.form-row > * {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.form-row {
-    margin-top: 17px;
-    &.form-row-radio {
-        margin-top: 8px;
-    }
-    &.form-row-submit {
-        margin-top: 30px;
-        .portlet & {
-            margin-top: 20px;
-        }
-    }
-}
-.form-section {
-    padding: 10px 0;
-
-    .search-filter & {
-        border-bottom: 1px solid #BEBEBE;
-        padding: 22px 0 19px;
-    }
-
+.form__row {
+    margin-top: 20px;
     &:first-child {
-        padding-top: 0;
+        margin-top: 0;
     }
-    &:last-child {
-        padding-bottom: 0;
-        border: none;
-    }
-}
-.form-section-title {
-    color: #000;
-    font-family: $VAGBold;
-    font-size: 17px;
-    margin-bottom: 15px;
-}
 
-.form-select {
-    background: #CED6DF url(/images/assets/icon-select-arrows.svg) no-repeat right center;
-    border-radius: 5px;
-    display: inline-block;
-    overflow: hidden;
-    width: 100%;
+    input[type="checkbox"],
+    input[type="radio"] {
+        float: left;
 
-    select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        font-family: Arial, sans-serif;
-        font-size: 13px;
-        font-weight: bold;
-        margin: 0;
-        padding: 6px 26px 6px 10px;
-        width: 150% !important;
-
-        &:focus {
-            outline: -webkit-focus-ring-color auto 0;
+        + label {
+            display: block;
+            margin-left: 30px;
+            padding-top: 4px;
         }
     }
 }
 
-.form-submit {
-    background: #006DD9;
-    border: 0;
-    border-radius: 18px;
-    color: #FFF;
-    cursor: pointer;
-    font-family: $VAGBold;
-    font-size: 17px;
-    height: 36px;
-    line-height: 1;
-    padding: 9px 0;
-    text-align: center;
-    white-space: nowrap;
-    width: 100%;
-    letter-spacing: .05em;
 
-    .no-touch & {
-        &:hover,
-        &:active {
-            background-color: $orange;
-        }
+.input--shadow {
+    border: 1px solid #cecece;
+    
+    input[type="text"],
+    input.text,
+    select,
+    select.select {
+        background-color: #fff;
+        background-image: linear-gradient(#fff, #f5f5f5);
+        background: linear-gradient(to bottom, #fff 0%, #fff 50%, #f5f5f5 100%);
+        color: $bodyTextColor;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0 );
     }
 }

@@ -1,0 +1,49 @@
+
+/* YAPL
+name: Accordion
+notes: Simple accordion with only one section open at a time
+partial: accordion--filters
+*/
+
+.accordion {
+    background-color: $bgDkGray;
+    border-top: $lightBlueBorder;
+}
+
+.accordion__item {
+    border-top: $thinGrayBorderLight;
+    &.is-active {
+        background-color: #FFF;
+    }
+}
+
+.accordion__item-inner {
+    display: none;
+    .accordion__item.is-active & {
+        display: block;
+    }
+}
+
+.accordion__item-inner {
+    padding: 0 4% 4%;
+}
+
+.accordion__item-title {
+    border-top: 1px solid #FFF;
+    margin: 0;
+    padding: 0 4%;
+    > a {
+        @extend %icon-circle-plus-thin;
+        background-position: 100% 50%;
+        display: block;
+        padding: 20px 0;
+        text-indent: 10px;
+        .accordion__item.is-active & {
+            @extend %icon-circle-minus-thin;
+        }
+    }
+}
+
+.accordion__title {
+    margin-bottom: 1.2em;
+}

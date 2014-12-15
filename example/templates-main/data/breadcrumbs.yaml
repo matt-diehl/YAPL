@@ -1,0 +1,216 @@
+master:
+  -
+    moduleStateClass: "module-is-collapsed"
+    itemStateClass: "is-collapsed"
+    parent:
+      name: "Navigating Cancer Care"
+      activeClass: ""
+    children:
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: "is-active"
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+  -
+    moduleStateClass: "module-is-collapsed"
+    itemStateClass: "is-collapsed"
+    parent:
+      name: "Programs"
+      activeClass: ""
+    children:
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: "is-active"
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+  -
+    moduleStateClass: "module-is-collapsed"
+    itemStateClass: "is-collapsed"
+    parent:
+      name: "Basser Research Center"
+      activeClass: ""
+    children:
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: "is-active"
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+  -
+    moduleStateClass: "module-is-collapsed"
+    itemStateClass: "is-collapsed"
+    parent:
+      name: "For Researchers"
+      activeClass: ""
+    children:
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: "is-active"
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+  -
+    moduleStateClass: "module-is-expanded"
+    itemStateClass: "is-expanded"
+    parent:
+      name: "Basser-Funded Research"
+      activeClass: ""
+    children:
+      -
+        name: "Basser Grant Awardee"
+        activeClass: "is-active"
+      -
+        name: "Grant Awardee 2"
+        activeClass: ""
+      -
+        name: "Grant Awardee 3"
+        activeClass: ""
+      -
+        name: "Grant Awardee 4"
+        activeClass: ""
+
+typesofcancer:
+  -
+    moduleStateClass: "module-is-collapsed"
+    itemStateClass: "is-collapsed"
+    parent:
+      name: "Types of Cancer"
+      activeClass: ""
+    children:
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+  -
+    moduleStateClass: "module-is-expanded"
+    itemStateClass: "is-expanded"
+    parent:
+      name: "Gestational Trophoblastic Disease and Choriocarcinoma"
+      activeClass: ""
+    children:
+      -
+        name: "Definition"
+        activeClass: ""
+      -
+        name: "Types"
+        activeClass: ""
+      -
+        name: "Risks & Prevention"
+        activeClass: ""
+      -
+        name: "Diagnosis"
+        activeClass: ""
+      -
+        name: "Questions to Ask Your Doctor"
+        activeClass: ""
+      -
+        name: "Treatment"
+        activeClass: ""
+      -
+        name: "Team"
+        activeClass: "is-active"
+      -
+        name: "Living With"
+        activeClass: ""
+      -
+        name: "Living Well After"
+        activeClass: ""
+      -
+        name: "Patient Stories"
+        activeClass: ""
+      -
+        name: "Support Services"
+        activeClass: ""
+
+patientstorylanding:
+  -
+    moduleStateClass: "module-is-collapsed"
+    itemStateClass: "is-collapsed"
+    parent:
+      name: "Types of Cancer"
+      activeClass: ""
+    children:
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: "is-active"
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+  -
+    moduleStateClass: "module-is-collapsed"
+    itemStateClass: "is-collapsed"
+    parent:
+      name: "Brain Tumors"
+      activeClass: ""
+    children:
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+      -
+        name: "Ancestor Page"
+        activeClass: "is-active"
+      -
+        name: "Ancestor Page"
+        activeClass: ""
+  -
+    moduleStateClass: "module-is-expanded"
+    itemStateClass: "is-expanded"
+    parent:
+      name: "Brain Tumor Patient Stories"
+      activeClass: ""
+    children:
+      -
+        name: "Patient Story #1"
+        activeClass: ""
+      -
+        name: "Patient Story #2"
+        activeClass: ""
+      -
+        name: "Sallie's Story"
+        activeClass: "is-active"
+      -
+        name: "Patient Story #4"
+        activeClass: ""

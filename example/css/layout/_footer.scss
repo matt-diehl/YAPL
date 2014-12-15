@@ -1,92 +1,76 @@
-// Global Footer Styles
+/* ======  Footer Styles ====== */
 
-.footer-contact, .footer-social {
-    font-family: $VAGBold;
+.footer {
+    background-color: #DADADA;
+    padding: 28px 0;
 }
 
-.footer-contact {
-    font-size: 16px;
-    letter-spacing : .05em;
-}
-.footer-contact-group {
-    + .footer-contact-group {
-        margin-top: 15px;
-    }
-}
-
-.footer-section1 {
-    background-color: #635B50;
-}
-
-.footer-section2 {
-    background-color: #EBEAE8;
-}
-
-.footer-section3 {
-    color: $gray2;
-    font-size: 13px;
+.footer__address {
+    color: #3B3B3B;
     line-height: 1.2;
-    > .l-inner {
-        padding: 20px 0;
+    a {
+        color: inherit;
     }
 }
 
-.footer-social-links {
-    height: 34px;
+.footer__address,
+.footer__nav {
+    font-size: 13px;
+}
+
+.footer__logos {
+    clear: both;
+}
+
+.footer__nav {
     li {
-        display: inline;
-        margin-left: 5px;
-        &:first-child {
-            margin-left: 0;
+        display: inline-block;
+        margin-bottom: 15px;
+        &:after {
+            color: #999;
+            content: "\00a0|";
+            margin: 0 4px;
+        }
+        &:last-child:after {
+            content: "";
+            margin: 0;
         }
         > a {
-            display: inline-block;
-            height: 34px;
-            width: 34px;
+            color: #054685;
         }
     }
 }
 
-.footer-utility_nav {
-    li {
-        border-right: 1px solid #AAA;
-        display: inline;
-        font-weight: bold;
-        line-height: 1.6;
-        margin-right: 9px;
-        padding-right: 6px;
-        &:last-child {
-            border-right: 0;
-            margin-right: 0;
-            padding-right: 0;
-        }
-        > a {
-            color: #FFF;
-        }
+.footer__social > a,
+.footer__social-text {
+    margin-right: 10px;
+    vertical-align: middle;
+    &:last-child {
+        margin-right: 0;
     }
+}
+
+.footer__social {
+    margin-bottom: 25px;
+    > a {
+        background-size: 100%;
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+    }
+}
+
+.footer__social-text {
+    color: #858593;
+    font-weight: bold;
 }
 
 
 @include small-only {
 
-    .footer-contact, .footer-social {
-        padding: 18px 25px;
-        text-align: center;
-    }
-
-    .footer-social {
-        border-top: 1px solid #C8C5C0;
-        h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-    }
-
-    .footer-utility_nav {
-        padding: 20px 10px;
-        li {
-            font-size: 13px;
-        }
+    .footer__address,
+    .footer__nav {
+        padding: 0 8px;
     }
 
 }
@@ -94,68 +78,32 @@
 
 @include medium-and-below {
 
-    .footer-copyright, .footer-utility_nav {
-        text-align: center;
+    .footer__group {
+        &:after {
+            border-bottom: 1px solid #E9E9E9;
+            border-top: 1px solid #C1C1C1;
+            content: "";
+            display: block;
+            margin: 20px 0;
+            width: 100%;
+        }
     }
-    .footer-utility_nav {
-        border-top: 1px solid #423B32;
-        &:first-child {
-            border-top: 0;
+
+    .footer__social {
+        > a {
+            &:first-child {
+                margin-left: 0;
+            }
         }
     }
 
 }
 
-
-@include medium-only {
-
-    .footer-section2 {
-        > .l-inner {
-            padding: 25px $tabletSidePad;
-        }
-    }
-    .footer-utility_nav {
-        padding: 15px;
-    }
-
-}
-
-
-@include medium-and-above {
-
-    .footer-contact {
-        float: left;
-    }
-    .footer-social {
-        float: right;
-        text-align: right;
-        h4 {
-            font-size: 18px;
-            margin-bottom: 15px;
-            letter-spacing: 1pt;
-        }
-    }
-    .footer-utility_nav {
-        li {
-            font-size: 14px;
-        }
-    }
-
-}
 
 @include large-and-above {
 
-    .footer {
-        .l-inner {
-            @include desktopInner;
-        }
-    }
-
-    .footer-section1 {
-        padding: 20px 0;
-    }
-    .footer-section2 {
-        padding: 30px 0;
+    .footer__group {
+        margin-bottom: 30px;
     }
 
 }

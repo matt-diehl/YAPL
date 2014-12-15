@@ -1,0 +1,22 @@
+{
+  "name": "Helper-JS-Modules",
+  "version": "0.3.0",
+  "homepage": "https://github.com/matt-diehl/Helper-JS-Modules",
+  "authors": [
+    "Matt Diehl <matt.diehl@berndtgroup.net>"
+  ],
+  "description": "Site agnostic modules for solid responsive web development",
+  "keywords": [
+    "Responsive",
+    "javascript",
+    "rapid"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

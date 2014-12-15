@@ -1,0 +1,33 @@
+{{! The Table Partial }}
+
+<table class="table {{modifier}}">
+
+{{#if thead}}
+    <thead>
+    {{#each thead.rows}}
+        <tr>
+        {{#each this}}
+            <th>{{this}}</th>
+        {{/each}}
+        </tr>
+    {{/each}}
+    </thead>
+{{/if}}
+
+{{#if tbody}}
+    <tbody>
+    {{#each tbody.rows}}
+        <tr>
+        {{#each this}}
+            {{#if @first}}
+                <th>{{this}}</th>
+            {{else}}
+                <td>{{this}}</td>
+            {{/if}}
+        {{/each}}
+        </tr>
+    {{/each}}
+    </tbody>
+{{/if}}
+
+</table>

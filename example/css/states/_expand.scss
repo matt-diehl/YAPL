@@ -1,0 +1,51 @@
+/* ======  Generic State Styles ====== */
+
+@mixin is-collapsed {
+    display: none;
+}
+
+@mixin is-expanded {
+    display: block;
+}
+
+
+.is-collapsed {
+    @include is-collapsed;
+}
+.is-expanded {
+    @include is-expanded;
+}
+
+@include small-only {
+
+
+    .is-collapsed-mq-small {
+        @include is-collapsed;
+    }
+    .is-expanded-mq-small {
+        @include is-expanded;
+    }
+
+}
+
+@include medium-only {
+
+    .is-collapsed-mq-medium {
+        @include is-collapsed;
+    }
+    .is-expanded-mq-medium {
+        @include is-expanded;
+    }
+
+}
+
+@include large-and-above {
+
+    .is-collapsed-mq-large {
+        @include is-collapsed;
+    }
+    .is-expanded-mq-large {
+        @include is-expanded;
+    }
+
+}

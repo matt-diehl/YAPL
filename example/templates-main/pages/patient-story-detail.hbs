@@ -1,0 +1,46 @@
+---
+layout: 2-col-master-w-content-nav.hbs
+title: Patient Story Detail
+subtitle: Brain Tumor
+description: Description
+section: 1
+showOffcanvasToggles: true
+breadcrumbData: <%= breadcrumbs.patientstorylanding %>
+inPageCTAs:
+    - <%= cta.inPageAppt %>
+    - <%= cta.inPageDonate %>
+related_content:
+    - <%= relatedContent.linksWideRelated %>
+---
+
+<!-- YAPL
+name: Patient Story Detail
+-->
+
+
+
+<div class="cta-row u-cf">
+    {{#each inPageCTAs}}
+        {{> cta this}}
+    {{/each}}
+</div><!-- .cta-row -->
+
+
+<div class="banner l-row">
+    <h2>Sallie was given a year and a half to live. <span class="u-inline-block">That was seven years ago.</span></h2>
+</div><!-- .l-row -->
+
+
+<div class="rtf l-row">
+    <img class="u-float-r" src="http://placehold.it/474x300" alt="">
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
+
+    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Sed quia non numquam eius modi tempora incidunt ut labore et dolore</p>
+
+    <p>Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.</p>
+
+    <a class="link-more" href="#">Have a story you&rsquo;d like to share?</a>
+</div>
+
+{{> story-slider storySlider.profiles }}

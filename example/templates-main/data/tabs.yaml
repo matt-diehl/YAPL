@@ -1,0 +1,21 @@
+master:
+  -
+    number: 1
+    shortTitle: Horizontal Tab 1
+    longTitle: Tab 1 Longer Title Goes Here
+    content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p>"
+  -
+    number: 2
+    shortTitle: Horizontal Tab 2
+    longTitle: Tab 2 Longer Title Goes Here
+    content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p>"
+  -
+    number: 3
+    shortTitle: Horizontal Tab 3
+    longTitle: Tab 3 Longer Title Goes Here
+    content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p>"
+  -
+    number: 4
+    shortTitle: Horizontal Tab 4
+    longTitle: Tab 4 Longer Title Goes Here
+    content: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ipsum tortor, consectetur at viverra vel, volutpat ac sapien. Nulla ac ante pretium, pharetra quam scelerisque, egestas justo. In id ante in risus suscipit congue sit amet.<\/p>"

@@ -1,0 +1,38 @@
+linksHalf:
+  modifier: portlet--half portlet--white
+  title: Related List of Links
+  list:
+    - "Related Link"
+    - "Another Related Link Here"
+    - "Ssit amet ultrices"
+    - "Lorem ipsum dolor sit amet"
+linksWideRelated:
+  modifier: portlet--white
+  title: Related Links
+  titleModifier: icon-related-stack
+  list:
+    - "Combining Metformin with Chemotherapy and Radiation May Improve Outcomes in Patients with Gestational Choriocarcinoma"
+    - "Mindfulness, CBT Could Ease Sleep Woes for Cancer Patients"
+    - "Paths Not Taken: Notch Signaling Pathway Keeps Immature T Cells on the Right Track"
+    - "What Younger Women Need to Know to be Proactive About Trophoblastic Disease"
+  listModifier: portlet__list--row
+linksWideNews:
+  modifier: portlet--white
+  title: Related News
+  titleModifier: icon-related-news
+  list:
+    - "Combining Metformin with Chemotherapy and Radiation May Improve Outcomes in Patients with Gestational Choriocarcinoma"
+    - "Mindfulness, CBT Could Ease Sleep Woes for Cancer Patients"
+    - "Paths Not Taken: Notch Signaling Pathway Keeps Immature T Cells on the Right Track"
+    - "What Younger Women Need to Know to be Proactive About Trophoblastic Disease"
+  listModifier: portlet__list--row
+linksWideBreakthroughs:
+  modifier: portlet--white
+  title: Related Breakthroughs
+  titleModifier: icon-related-breakthroughs
+  list:
+    - "New Breakthroughs in Gestational Trophoblastic Disease"
+    - "Clinical Trial: Proton Therapy for Choriocarcinomas"
+    - "Clinical Trial” Retreatment of Recurrent Tumors Using Proton Therapy"
+    - "Clinical Trial: A Phase I-II Open Label Non-Randomized Study Using TL32711 for Patients with Gestational Choriocarcinoma"
+  listModifier: portlet__list--row

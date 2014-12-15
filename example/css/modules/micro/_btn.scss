@@ -1,43 +1,37 @@
-/* YAPL
-name: Submit Button
-notes: The submit button is great. Use it all the time.
-context: btn.submit
-*/
-
-$btns: ;
-
-.btn {
-    background-repeat: no-repeat;
-}
-
-// All svg icons following the standard approach. Must have png fallback.
-@each $btn in $btns {
-    .btn-#{$btn} {
-        @extend .btn;
-        .svg & {
-            background-image: url(/images/assets/btn-#{$btn}.svg);
-        }
-        .no-svg & {
-            background-image: url(/images/assets/btn-#{$btn}.png); /*ImageEmbed:skip*/
-        }
-    }
-}
+/* ====== Button Styles ====== */
 
 /* YAPL
-name: Error Button
-notes: The error button is great. Use it all the time.
-context: btn.error
+name: Default button
+notes: The button without any modifying classes
+partial: btn
+context: btn.default
 */
 
 .btn {
+    @extend %helveticaMedium;
+    border-radius: 6px;
     cursor: pointer;
     display: inline-block;
     line-height: 1;
-    &[class*="icon"] { // Add padding if the button contains an icon image.
-        background-position: 12px 50%;
-        padding-left: 42px;
-    }
     &:hover {
         text-decoration: none;
+    }
+}
+
+
+/* YAPL
+name: Blue button
+notes: The default button, but blue
+partial: btn
+context: btn.blue
+*/
+
+.btn--blue,
+a.button--blue {
+    background-color: #3393CF;
+    background-image: linear-gradient(to bottom, #4F9CD5 0%, #3C87C9 100%);
+    color: #FFF;
+    &:hover {
+        background-image: none;
     }
 }

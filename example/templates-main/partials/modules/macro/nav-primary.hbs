@@ -1,0 +1,227 @@
+{{! The Primary Navigation Partial }}
+
+<nav class="nav-primary js-nav-primary">
+    <a href="#" id="nav-primary"></a>
+    <ul class="nav__level1 nav-primary__level1">
+        <li class="u-hidden-mq-large">
+            <!-- Remove "js-nav__level1-toggle" class if no children -->
+            <a href="#" class="nav__level1-toggle nav-primary__level1-toggle">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Home</span>
+            </a>
+        </li>
+        <li class="module-is-collapsed">
+            <!-- active section gets "is-active" class -->
+            <a href="#" class="nav__level1-toggle js-nav__level1-toggle nav-primary__level1-toggle{{#is section 1}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Types of Cancer</span>
+                <span class="nav__level1-toggle-icon nav-primary__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <div class="nav__level2-wrap nav-primary__level2-wrap js-nav-primary-inner js-expand-item is-collapsed">
+                <div class="nav-primary__level2-col-wrap l-contain-mq-large cf">
+                    <div class="nav-primary__level2-col nav-primary__level2-col--narrow">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Common Cancers</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Bladder Cancer</a></li>
+                                    <li><a href="#">Breast Cancer</a></li>
+                                    <li><a href="#">Colon Cancer</a></li>
+                                    <li><a href="#">Endometrial Cancer</a></li>
+                                    <li><a href="#">Kidney Cancer</a></li>
+                                    <li><a href="#">Leukemia</a></li>
+                                    <li><a href="#">Lung Cancer</a></li>
+                                    <li><a href="#">Melanoma</a></li>
+                                    <li><a href="#">Non-Hodgkin Lymphoma</a></li>
+                                    <li><a href="#">Rectal Cancer</a></li>
+                                    <li><a href="#">Pancreatic Cancer</a></li>
+                                    <li><a href="#">Prostate Cancer</a></li>
+                                    <li><a href="#">Thyroid Cancer</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">View all cancer types</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col nav-primary__level2-col--wide u-hidden-mq-small u-hidden-mq-medium">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                Quick Search for Cancer Types:
+                                <div class="nav-primary__level3">
+                                    {{> search search.largeRed }}
+                                </div>
+                            </li>
+                            <li>
+                                Cancers A-Z
+                                <div class="nav-primary__level3">
+                                    {{> letters }}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col u-hidden-mq-small u-hidden-mq-medium">
+                        <figure class="nav-primary__figure">
+                            <img src="http://placehold.it/295x221" alt="">
+                            <figcaption>
+                                <p><a href="#">Proton therapy</a> for his <a href="#">prostate cancer</a> allowed Bill to maintain his passion for cycling, even during treatment. Watch his story</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div><!-- .l-contain-mq-large -->
+                <button type="button" class="nav__level2-close ir js-nav__level2-close"></button>
+            </div><!-- .nav__level2-wrap -->
+        </li>
+        <li class="module-is-collapsed">
+            <!-- active section gets "is-active" class -->
+            <a href="#" class="nav__level1-toggle js-nav__level1-toggle nav-primary__level1-toggle{{#is section 2}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Navigating Cancer Care</span>
+                <span class="nav__level1-toggle-icon nav-primary__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <div class="nav__level2-wrap nav-primary__level2-wrap js-nav-primary-inner js-expand-item is-collapsed">
+                <div class="nav-primary__level2-col-wrap l-contain-mq-large cf">
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Getting Started</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Getting an Accurate Diagnosis</a></li>
+                                    <li><a href="#">Becoming a Patient: What To Expect</a></li>
+                                    <li><a href="#">Get a Second Opinion</a></li>
+                                    <li><a href="#">Your Role in Your Care</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Risks &amp; Prevention</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Understanding Risk Factors</a></li>
+                                    <li><a href="#">Genetic Factors</a></li>
+                                    <li><a href="#">Screening Services</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Treatment Types</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Clinical Trials</a></li>
+                                    <li><a href="#">Treatment Options</a></li>
+                                    <li><a href="#">Integrative Medicine &amp; Wellness</a></li>
+                                    <li><a href="#">Managing Treatment Side Effects</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Programs</a></li>
+                            <li><a href="#">Living After Cancer</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Support Services</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Patient Navigators</a></li>
+                                    <li><a href="#">Nutrition Counseling</a></li>
+                                    <li><a href="#">Integrative Medicine &amp; Wellness</a></li>
+                                    <li><a href="#">Patient Educations</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                            <li class="u-hidden-mq-small u-hidden-mq-medium">
+                                Search for Active Clinical Trials
+                                <div class="nav-primary__level3 select-wrap select-wrap--lg select-wrap--trials">
+                                    <!-- set option value to the URL it should redirect to on change -->
+                                    <select class="select js-select--follow">
+                                        <option value="">Find an active clinical trial</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 1</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 2</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 3</option>
+                                    </select>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col u-hidden-mq-small u-hidden-mq-medium">
+                        <figure class="nav-primary__figure">
+                            <img src="http://placehold.it/295x221" alt="">
+                            <figcaption>
+                                <p><a href="#">Proton therapy</a> for his <a href="#">prostate cancer</a> allowed Bill to maintain his passion for cycling, even during treatment. Watch his story</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div><!-- .l-contain-mq-large -->
+                <button type="button" class="nav__level2-close ir js-nav__level2-close"></button>
+            </div><!-- .nav__level2-wrap -->
+        </li>
+        <li class="module-is-collapsed">
+            <!-- active section gets "is-active" class -->
+            <a href="#" class="nav__level1-toggle js-nav__level1-toggle nav-primary__level1-toggle{{#is section 3}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Cancer Research</span>
+                <span class="nav__level1-toggle-icon nav-primary__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <div class="nav__level2-wrap nav-primary__level2-wrap js-nav-primary-inner js-expand-item is-collapsed">
+                <div class="nav-primary__level2-col-wrap l-contain-mq-large cf">
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Clinical Trials</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Clinical Research Trials: The Basics</a></li>
+                                    <li><a href="#">Interpreting Cancer Research Studies</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                            <li class="u-hidden-mq-small u-hidden-mq-medium">
+                                Search for Active Clinical Trials
+                                <div class="nav-primary__level3 select-wrap select-wrap--lg select-wrap--trials">
+                                    <!-- set option value to the URL it should redirect to on change -->
+                                    <select class="select js-select--follow">
+                                        <option value="">Find an active clinical trial</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 1</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 2</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 3</option>
+                                    </select>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">For Researchers</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Research Programs</a></li>
+                                    <li><a href="#">Shared Resources</a></li>
+                                    <li><a href="#">Investigators Only</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Translating Research to Practice</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col u-hidden-mq-small u-hidden-mq-medium">
+                        <figure class="nav-primary__figure">
+                            <img src="http://placehold.it/295x221" alt="">
+                            <figcaption>
+                                <p><a href="#">Proton therapy</a> for his <a href="#">prostate cancer</a> allowed Bill to maintain his passion for cycling, even during treatment. Watch his story</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div><!-- .l-contain-mq-large -->
+                <button type="button" class="nav__level2-close ir js-nav__level2-close"></button>
+            </div><!-- .nav__level2-wrap -->
+        </li>
+    </ul><!-- .nav-primary__level1 -->
+</nav><!-- .nav-primary -->

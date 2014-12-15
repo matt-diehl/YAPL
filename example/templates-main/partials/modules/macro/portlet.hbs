@@ -1,0 +1,35 @@
+{{! The Portlet Partial }}
+
+<article class="portlet {{modifier}}">
+    <h2 class="portlet__title {{titleModifier}}">{{title}}</h2>
+
+    {{#if list}}
+        <ul class="portlet__list js-ie-row {{listModifier}} cf">
+        {{#list}}
+            <li><a href="#" class="link-more">{{this}}</a></li>
+        {{/list}}
+        </ul>
+    {{/if}}
+
+    {{#if text}}
+        <div class="portlet__text js-ie-row rtf rtf--small">
+            <p>{{text}}</p>
+        {{#if moreLink}}
+            <p><a href="#" class="portlet__more link-more">{{moreLink}}</a></p>
+        {{/if}}
+        </div>
+    {{/if}}
+
+    {{#if showTrials}}
+        <div class="select-wrap select-wrap--sm select-wrap--trials">
+            <!-- set option value to the URL it should redirect to on change -->
+            <select class="select js-select--follow">
+                <option value="">Find an active clinical trial</option>
+                <option value="/ProductionTemplates/mastersub.html">Clinical Trial 1</option>
+                <option value="/ProductionTemplates/mastersub.html">Clinical Trial 2</option>
+                <option value="/ProductionTemplates/mastersub.html">Clinical Trial 3</option>
+            </select>
+        </div>
+    {{/if}}
+
+</article><!-- .portlet -->

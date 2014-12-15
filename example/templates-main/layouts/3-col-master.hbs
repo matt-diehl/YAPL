@@ -1,0 +1,24 @@
+---
+layout: default.hbs
+cols: 3
+---
+
+
+<div class="l-contain l-3-col-master cf">
+
+    {{> share-button }}
+
+    {{> content-nav }}
+
+    {{> h1-main }}
+
+    <!-- Primary content container -->
+    <main class="content-primary">
+        {{> body }}
+        {{> related-content }}
+        {{> sharebar }}
+    </main><!-- .content-primary -->
+
+    {{> content-secondary }}
+
+</div><!-- .l-3-col-master -->

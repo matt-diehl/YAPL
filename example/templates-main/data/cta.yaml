@@ -1,0 +1,30 @@
+img:
+  modifier: cta--img
+  text: Donate to make a difference
+  imgSrc: http://placehold.it/450x273
+contactUs:
+  modifier: cta--btn cta--contact btn btn--blue
+  text: Contact Us
+appt:
+  modifier: cta--btn cta--appt btn btn--blue
+  text: Request Appointment
+inPageAppt:
+  modifier: cta--in-page icon-cta-appt
+  text: Request an Appointment
+  textModifier: link-more
+inPageClinicalTrial:
+  modifier: cta--in-page icon-cta-clinical-trial
+  text: Find a Clinical Trial
+  textModifier: link-more
+inPageDoctor:
+  modifier: cta--in-page icon-cta-doctor
+  text: Find a Doctor
+  textModifier: link-more
+inPageDonate:
+  modifier: cta--in-page icon-cta-donate
+  text: Donate
+  textModifier: link-more
+inPageResearch:
+  modifier: cta--in-page icon-cta-research
+  text: Inquire About Research
+  textModifier: link-more

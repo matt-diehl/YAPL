@@ -1,0 +1,31 @@
+master:
+  modifier: 
+  title: Patient Stories For Breast Cancer
+  subtitle: false
+  slides:
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+    - Fname Lname
+profiles:
+  modifier: story-slider--with-half-bottom
+  title: Stories of Other Patients with Brain Tumor
+  subtitle: Browse All Abramson Cancer Center Patient Stories
+  slides:
+    - Jill
+    - Jane
+    - Barbara
+    - Scott
+    - John
+    - Susan
+    - Jospeh
+    - Sallie
+    - Anne
+    - Jane
+    - Jill

@@ -1,0 +1,56 @@
+/* ======  Utility Navigation Styles ====== */
+
+
+@include medium-and-below {
+
+    .nav-utility__level1 {
+        > li:last-child {
+            border-bottom: 0;
+            > a {
+                border-bottom: 0;
+            }
+        }
+    }
+
+}
+
+
+@include large-and-above {
+
+    .nav-utility {
+        position: fixed;
+        top: 30px;
+        text-align: right;
+        z-index: $zindexUtilityNav;
+        @include contain1;
+
+        &.is-unfixed {
+            position: absolute;
+        }
+    }
+
+    .nav-utility__level1 {
+        > li {
+            border-left: 1px solid #C2C2C2;
+            color: #645D5F;
+            display: inline;
+            margin-left: 5px;
+            padding-left: 9px;
+            &:first-child {
+                border-left: 0;
+            }
+            > a {
+                color: inherit;
+            }
+        }
+
+        a.is-active {
+            color: #0059a3;
+        }
+    }
+
+    .nav-utility__level2 {
+        display: none;
+    }
+
+}

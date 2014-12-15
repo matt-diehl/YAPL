@@ -1,0 +1,10 @@
+
+.filters__datepicker {
+    float: left;
+    margin-right: 40px;
+}
+
+.filters__datepicker + .filters__form {
+    min-width: 250px;
+    overflow: hidden;
+}

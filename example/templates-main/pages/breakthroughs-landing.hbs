@@ -1,0 +1,112 @@
+---
+layout: default.hbs
+title: Why Penn?
+description: Description
+section: 0
+subSection: 1
+ctas:
+    - <%= cta.contactUs %>
+portlets:
+    - <%= portlet.links %>
+---
+
+<!-- YAPL
+name: Breakthroughs Landing
+notes: This template uses a unique layout.
+-->
+
+<div class="l-contain">
+
+    <div class="l-1-col-master">
+
+        {{> share-button }}
+
+        <div class="content-primary">
+
+            <div class="hero hero--slider js-slider" data-depend="/js/modules/Slider.js">
+                <ul class="hero__slides">
+                    <li class="hero__slide u-cf is-active js-slider__slide">
+                        <div class="hero__text">
+                            <span class="hero__tag">Why Penn?</span>
+                            <span class="hero__title h1 u-block">Gene Therapy Scores Big Wins Against Blood Cancers</span>
+                            <div class="hero__copy rtf">
+                                <p>"This is absolutely one of the more exciting advances I&rsquo;ve seen in cancer therapy in the last 20 years," said co-investigator David Porter, MD</p>
+                            </div>
+                        </div>
+                        <div class="hero__img">
+                            <img src="http://placehold.it/857x508" alt="">
+                        </div>
+                    </li>
+                    <li class="hero__slide u-cf js-slider__slide">
+                        <div class="hero__text">
+                            <span class="hero__tag">Why Penn?</span>
+                            <span class="hero__title h1 u-block">Hero Feature Number Two Title</span>
+                            <div class="hero__copy rtf">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam obcaecati tempora, maiores dolorum, suscipit inventore ducimus.</p>
+                            </div>
+                        </div>
+                        <div class="hero__img">
+                            <img src="http://placehold.it/857x508" alt="">
+                        </div>
+                    </li>
+                    <li class="hero__slide u-cf js-slider__slide">
+                        <div class="hero__text">
+                            <span class="hero__tag">Why Penn?</span>
+                            <span class="hero__title h1 u-block">A Third Slide</span>
+                            <div class="hero__copy rtf">
+                                <p>Lorem ipsum dolor sit amet mollitia officiis iusto laboriosam dicta ipsam, repellat sunt asperiores veniam tenetur tempora, saepe excepturi ab optio autem cum temporibus officia non.</p>
+                            </div>
+                        </div>
+                        <div class="hero__img">
+                            <img src="http://placehold.it/857x508" alt="">
+                        </div>
+                    </li>
+                </ul>
+                <button type="button" class="hero__next u-ir js-slider__next-btn">Next</button>
+            </div><!-- .hero -->
+
+        </div><!-- .content-primary -->
+
+    </div><!-- .l-1-col-master -->
+
+    <div class="l-2-col-master l-2-col-master--w-content-secondary cf">
+
+        {{> h1-main }}
+
+        <div class="l-row">
+            <div class="padbox1">
+                <div class="figure-row">
+                    {{> figure figure.rowLink }}
+                    {{> figure figure.rowLinkVideo }}
+                    {{> figure figure.rowLink }}
+                </div><!-- .figure-row -->
+            </div><!-- .padbox1 -->
+        </div><!-- .l-row -->
+
+        <!-- Primary content container -->
+        <main class="content-primary">
+
+            <div class="rtf u-cf"><!-- "rtf" class wraps sections of rich text (in general) -->
+
+                <h2>Up to the Minute Advances in Research</h2>
+
+                <h2><a href="#">Self-Journalism Title 1</a></h2>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non.n lacinia erat sed felis</p>
+
+                <h2><a href="#">Self-Journalism Title 2</a></h2>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non.n lacinia erat sed felis</p>
+
+                <h2><a href="#">Self-Journalism Title 3</a></h2>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non.n lacinia erat sed felis</p>
+
+            </div><!-- .rtf -->
+
+            {{> sharebar }}
+
+        </main><!-- .content-primary -->
+
+        {{> content-secondary }}
+
+    </div><!-- .l-2-col-master -->
+
+</div><!-- .l-contain -->

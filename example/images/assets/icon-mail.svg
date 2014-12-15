@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px"
+	 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<title>icon-mail</title>
+<description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+<g id="Page-1" sketch:type="MSPage">
+	<g id="icon-mail" sketch:type="MSArtboardGroup">
+		<g id="envelope-alt" sketch:type="MSLayerGroup">
+			
+				<linearGradient id="Path_1_" gradientUnits="userSpaceOnUse" x1="-369.05" y1="391.2444" x2="-369.05" y2="390.55" gradientTransform="matrix(20 0 0 -20 7391 7831)">
+				<stop  offset="0" style="stop-color:#00B200"/>
+				<stop  offset="1" style="stop-color:#006633"/>
+			</linearGradient>
+			<path id="Path" sketch:type="MSShapeGroup" fill="url(#Path_1_)" d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10
+				S15.5,0,10,0L10,0z"/>
+			<g id="layer1" transform="translate(4.991490, 6.165622)" sketch:type="MSShapeGroup">
+				<path id="path2990" fill="#FFFFFF" d="M-0.1,0.1h10.2v1.4L5,4.5l-5.1-2.9V0.1L-0.1,0.1z M-0.1,2.5L2.5,4l-2.6,2.7V2.5L-0.1,2.5z
+					 M10.1,2.5v4.2L7.5,4L10.1,2.5L10.1,2.5z M3.2,4.4l1.8,1l1.8-1l3.3,3.5H-0.1L3.2,4.4L3.2,4.4z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

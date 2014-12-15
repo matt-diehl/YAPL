@@ -1,0 +1,28 @@
+master:
+  modifier: u-float-l
+  src: http://placehold.it/376x255
+  alt: alt text
+  caption: Caption for photo goes here
+event:
+  modifier: u-float-r
+  src: http://placehold.it/376x255
+  alt: alt text
+  caption: Optional caption for photo goes here and can wrap to multiple lines as required
+video:
+  link: true
+  modifier: figure--video video-player u-table figure--on-white
+  src: http://placehold.it/376x255
+  alt: alt text
+  caption: Penn’s Research Model Brings New Therapy to Patients
+rowLink:
+  link: true
+  modifier:
+  src: http://placehold.it/376x255
+  alt: alt text
+  caption: Penn’s Research Model Brings New Therapy to Patients
+rowLinkVideo:
+  link: true
+  modifier: figure--video video-player
+  src: http://placehold.it/376x255
+  alt: alt text
+  caption: Penn’s Research Model Brings New Therapy to Patients

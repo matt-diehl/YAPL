@@ -18,494 +18,572 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="/css/main.css">
-    <!--[if lt IE 8]><link rel="stylesheet" href="/css/main-ie7.css"><![endif]-->
-
+<!--[if lt IE 8]><link rel="stylesheet" href="/css/main-ie7.css"><![endif]-->
     <!--[if lt IE 9]>
-    <!-- build:js /js/vendor/respond.js -->
-    <script src="/bower_components/respond/src/respond.js"></script>
-    <!-- endbuild -->
-    <![endif]-->
+<!-- build:js /js/vendor/respond.js -->
+<script src="/bower_components/respond/dest/respond.src.js"></script>
+<!-- endbuild -->
+<![endif]-->
 
-    <!-- build:js /js/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
+<!-- build:js /js/vendor/modernizr.js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<!-- endbuild -->
 
 </head>
 <body>
+
     
 
-<header id="header" class="header">
+<header class="l-header js-header">
 
-    <div class="l-inner cf">
+    <div class="l-contain cf">
 
-        <div class="header-tab_links"><!-- For keyboard & screen reader users -->
-            <a href="#main" class="visuallyhidden focusable">Skip to main content</a>
-            <a href="#nav-primary" class="visuallyhidden focusable">Skip to navigation</a>
+        <a href="#main" class="u-visuallyhidden u-focusable">Skip to main content</a>
+        <a href="#nav-primary" class="u-visuallyhidden u-focusable">Skip to navigation</a>
+
+        <a href="/ProductionTemplates/home.html" class="l-header__logo ir" title="Go to the home page">Penn Medicine - Abramson Cancer Center</a>
+
+        <a href="tel:800-789-7366" class="l-header__phone">800-789-PENN</a>
+
+        <div class="l-header__toggles cf">
+            <button type="button" class="l-header__nav-toggle icon-nav-toggle ir u-hidden-mq-large js-nav-toggle" title="Open navigation">Menu</button>
+            <button type="button" class="l-header__search-toggle icon-search-blue ir u-hidden-mq-large js-search-toggle">Expand Search</button>
+            <div class="l-header__search">
+                <input type="search" placeholder="Search this site" class="l-header__search-input">
+                <input type="submit" class="input-submit l-header__search-submit icon-search-blue ir" value="Submit">
+            </div>
         </div>
 
-        <a href="/ProductionTemplates/home.html" class="header-logo" title="Go to the home page">
-            <!-- <img src="/images/assets/logo.jpg" alt="Dallas Children's logo"> -->
-        </a>
+        <!-- Navigation is in bottom of document, visually placed in header with CSS -->
 
-        <div class="header-utility">
+    </div><!-- .l-inner1 -->
 
-            <nav class="header-utility-nav">
-                <a href="#">Login</a>
-                <a href="#" class="l-hidden-mq-small">Careers</a>
-                <a href="#" class="l-hidden-mq-small">Employees</a>
-            </nav>
-            <button type="button" class="header-search-toggle js-header-search-toggle"></button>
-            <button type="button" class="nav-breadcrumbs-toggle js-nav-breadcrumbs-toggle"></button>
+</header><!-- .l-header -->
 
-            <div class="header-forms js-header-forms">
-                <div class="header-forms-inner">
-                    <div class="header-search form-input-text js-header-search">
-                        <input type="search" class="header-search-input" placeholder="Search site">
-                        <input type="submit" class="header-search-submit ir">
-                    </div>
-                </div>
-            </div>
-
-        </div><!-- .header-utility -->
-
-        <nav id="nav-primary" class="nav-primary js-nav-primary">
-    <ul class="nav-primary-level1 js-nav-primary-level1 cf">
-        <li class="nav-primary-back">
-            <button type="button" class="js-nav-primary-reset">Back</button>
-        </li>
-        <li class="nav-primary-level1-specialties-services">
-            <a href="#">Specialties &amp; Services</a>
-            <div class="nav-primary-level2 cf">
-                <h2>Specialties &amp; Services</h2>
-                <ul class="nav-primary-level2-mainlinks">
-                    <li><a href="#">Deciding on Care</a></li>
-                    <li><a href="#">Conditions We Treat</a></li>
-                    <li><a href="#">Specialty Center &amp; Programs</a></li>
-                    <li><a href="#">Primary Care</a></li>
-                </ul>
-                <div class="nav-primary-level2-quicklinks">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Find a Doctor or Primary Care Pediatrician</a></li>
-                        <li><a href="#">Request an Appointment</a></li>
-                        <li><a href="#">Locations &amp; Directions</a></li>
-                        <li><a href="#">Patient Stories</a></li>
-                    </ul>
-                </div>
-            </div><!-- .nav-primary-level2 -->
-        </li>
-        <li class="nav-primary-level1-patient-resources">
-            <a href="#">Patient Resources</a>
-            <div class="nav-primary-level2 cf">
-                <h2>Patient Resources</h2>
-                <ul class="nav-primary-level2-mainlinks">
-                    <li><a href="#">Find a Doctor</a></li>
-                    <li><a href="#">Visitor &amp; Patient Guide</a></li>
-                    <li><a href="#">Preparing for Your Visit or Stay</a></li>
-                    <li><a href="#">Manage Your Care</a></li>
-                    <li><a href="#">Children's Med Blog</a></li>
-                </ul>
-                <div class="nav-primary-level2-quicklinks">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Locations &amp; Directions</a></li>
-                        <li><a href="#">Find a Doctor</a></li>
-                        <li><a href="#">Billing &amp; Insurance</a></li>
-                        <li><a href="#">Visiting Hours &amp; Policies</a></li>
-                        <li><a href="#">MyChart Login</a></li>
-                    </ul>
-                </div>
-            </div><!-- .nav-primary-level2 -->
-        </li>
-        <li class="nav-primary-level1-for-healthcare-professionals">
-            <a href="#">For Healthcare Professionals</a>
-            <div class="nav-primary-level2 cf">
-                <h2>For Healthcare Professionals</h2>
-                <ul class="nav-primary-level2-mainlinks">
-                    <li><a href="#">Referral Tools</a></li>
-                    <li><a href="#">Department, Institutes &amp; Programs</a></li>
-                    <li><a href="#">Education &amp; Resources</a></li>
-                    <li><a href="#">Clinical Resources</a></li>
-                    <li><a href="#">Physician Networks</a></li>
-                </ul>
-                <div class="nav-primary-level2-quicklinks">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Refer a Patient</a></li>
-                        <li><a href="#">Find a Location</a></li>
-                        <li><a href="#">Pediatric Residency Program</a></li>
-                        <li><a href="#">Continuing Medical Education Credits</a></li>
-                    </ul>
-                </div>
-            </div><!-- .nav-primary-level2 -->
-        </li>
-        <li class="nav-primary-level1-research-innovation">
-            <a href="#">Research &amp; Innovation</a>
-            <div class="nav-primary-level2 cf">
-                <h2>Research &amp; Innovation</h2>
-                <ul class="nav-primary-level2-mainlinks">
-                    <li><a href="#">Research Initiatives</a></li>
-                    <li><a href="#">Research Centers</a></li>
-                    <li><a href="#">Find a Researcher</a></li>
-                    <li><a href="#">Clinical Trials</a></li>
-                    <li><a href="#">Clinical Research &amp; News</a></li>
-                    <li><a href="#">Innovative Care</a></li>
-                </ul>
-                <div class="nav-primary-level2-quicklinks">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Children's Research Institute at UTSW</a></li>
-                        <li><a href="#">Nobel Prize Winning Research</a></li>
-                        <li><a href="#">Find a Location</a></li>
-                        <li><a href="#">Give to Children's</a></li>
-                    </ul>
-                </div>
-            </div><!-- .nav-primary-level2 -->
-        </li>
-        <li class="nav-primary-level1-keeping-families-healthy">
-            <a href="#">Keeping Families Healthy</a>
-            <div class="nav-primary-level2 cf">
-                <h2>Keeping Families Healthy</h2>
-                <ul class="nav-primary-level2-mainlinks">
-                    <li><a href="#">We're Different</a></li>
-                    <li><a href="#">Health Programs</a></li>
-                    <li><a href="#">Networks and Coverage Programs</a></li>
-                    <li><a href="#">Community Research</a></li>
-                    <li><a href="#">Child Advocacy</a></li>
-                    <li><a href="#">Health &amp; Wellness</a></li>
-                </ul>
-                <div class="nav-primary-level2-quicklinks">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Childhood Safety &amp; Prevention</a></li>
-                        <li><a href="#">Complex Chronic Care Clinic</a></li>
-                        <li><a href="#">Children's Med Magazine</a></li>
-                        <li><a href="#">Children's Med Blog</a></li>
-                    </ul>
-                </div>
-            </div><!-- .nav-primary-level2 -->
-        </li>
-        <li class="nav-primary-level1-get-involved">
-            <a href="#">Get Involved</a>
-            <div class="nav-primary-level2 cf">
-                <h2>Get Involved</h2>
-                <ul class="nav-primary-level2-mainlinks">
-                    <li><a href="#">Donate</a></li>
-                    <li><a href="#">Volunteer</a></li>
-                    <li><a href="#">News &amp; Events</a></li>
-                </ul>
-                <div class="nav-primary-level2-quicklinks">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Give to Children's</a></li>
-                        <li><a href="#">Stay Connected</a></li>
-                        <li><a href="#">Donor Stories</a></li>
-                        <li><a href="#">Host a Fundraising Event</a></li>
-                    </ul>
-                </div>
-            </div><!-- .nav-primary-level2 -->
-        </li>
-    </ul><!-- .nav-primary-level1 -->
-</nav><!-- .nav-primary -->
-
-    </div><!-- .l-inner -->
-
-</header><!-- .header -->
-    <div id="main" class="content-wrap js-content-wrap cf">
+    <div class="content-wrap js-content-wrap cf">
         
 
-<nav class="nav-breadcrumbs js-nav-breadcrumbs">
-    <ul class="nav-breadcrumbs-level1">
-    
-        <li class="js-expand-wrap module-is-expanded">
+
+
         
-            <div class="nav-breadcrumbs-level1-toggle">
-                <a href="#" class="nav-breadcrumbs-toggle-text ">Home</a>
-            </div>
-            <div class="nav-breadcrumbs-level2 is-expanded">
-            
-                <ul>
-                
-                    <li><a href="#" class="">Specialties &amp; Services</a></li>
-                
-                    <li><a href="#" class="">Patient Resources</a></li>
-                
-                    <li><a href="#" class="">For Healthcare Professionals</a></li>
-                
-                    <li><a href="#" class="">Research &amp; Innovation</a></li>
-                
-                    <li><a href="#" class="">Keeping Families Healthy</a></li>
-                
-                    <li><a href="#" class="">Get Involoved</a></li>
-                
-                </ul>
-            
-            </div>
-        
-        </li>
-    
-    </ul>
-</nav><!-- .nav-breadcrumbs -->
+
+<!-- YAPL
+name: Home Page
+notes: The global site home page for Penn Cancer
+-->
+
 
 <div class="content-home">
 
-    <div class="hero js-hero" data-img="/images/temp/home-bg-lg.jpg">
+    
 
-    <div class="hero-section hero-section-purple js-hero-section" data-img="/images/hero/bg-city.jpg">
-        <a href="#" class="hero-section-toggle l-hidden-mq-medium l-hidden-mq-large js-hero-section-toggle" data-section="1">Find a Location</a>
-        <div class="hero-section-content js-hero-section-content">
-            <h2 class="l-hidden-mq-small">Find a Location</h2>
-            <div class="form">
-                <div class="form-row">
-                    <div class="form-input-text">
-                        <input type="text" placeholder="Enter zip code">
-                    </div>
-                    <input type="submit" value="Go">
-                </div>
-                <div class="form-row">
-                    <input name="loc" id="loc-any" type="radio" checked>
-                    <label for="loc-any">Any</label>
-                </div>
-                <div class="form-row">
-                    <input name="loc" id="loc-hospital" type="radio">
-                    <label for="loc-hospital">Hospital/ER</label>
-                </div>
-                <div class="form-row">
-                    <input name="loc" id="loc-specialty" type="radio">
-                    <label for="loc-specialty">Specialty Care</label>
-                </div>
-                <div class="form-row">
-                    <input name="loc" id="loc-pediatric" type="radio">
-                    <label for="loc-pediatric">Pediatric Primary Care</label>
+<!--
+    The hero randomly picks one image on load, and chooses the correct one based on the screen width.
+    Each array of images should match based on index. Separate each image with a vertical bar.
+-->
+<div class="hp-hero js-hero"
+    data-depend="/js/modules/HpHero.js"
+    data-images-lg="/images/temp/hero-bg-1-lg.jpg|/images/temp/hero-bg-2-lg.jpg|/images/temp/hero-bg-3-lg.jpg"
+    data-images-med="/images/temp/hero-bg-1-med.jpg|/images/temp/hero-bg-2-med.jpg|/images/temp/hero-bg-3-med.jpg"
+    data-images-sm="/images/temp/hero-bg-1-sm.jpg|/images/temp/hero-bg-2-sm.jpg|/images/temp/hero-bg-3-sm.jpg">
+
+    <div class="hp-hero__bg hp-hero__bg--sm js-hero__bg--sm u-hidden-mq-medium u-hidden-mq-large"></div>
+    <div class="hp-hero__bg hp-hero__bg--med js-hero__bg--med u-hidden-mq-small u-hidden-mq-large"></div>
+    <div class="hp-hero__bg hp-hero__bg--lg js-hero__bg--lg u-hidden-mq-small u-hidden-mq-medium"></div>
+
+    <div class="l-contain">
+
+        <div class="hp-hero__content">
+            <div class="hp-hero__content-inner">
+                <h2 class="hp-hero__title">
+                    <span class="hp-hero__title-text">Only at Penn Medicine</span>
+                </h2>
+                <p class="hp-hero__copy u-hidden-mq-small">With every new breakthrough at Penn’s Abramson Cancer Center, we’re discovering that the cure for cancer isn’t just within reach, it’s within us all.</p>
+                <div class="hp-hero__ctas cf">
+                    <a href="#" class="hp-hero__cta hp-hero__cta--doctor btn btn--blue">
+                        <span class="hp-hero__cta-text">Find a Doctor</span>
+                    </a>
+                    <a href="#" class="hp-hero__cta hp-hero__cta--appt btn btn--blue">
+                        <span class="hp-hero__cta-text">Request an Appointment</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </div><!-- .hero-section -->
+        </div><!-- .hp-hero__content -->
 
-    <div class="hero-section hero-section-blue js-hero-section" data-img="/images/hero/bg-doctor.jpg">
-        <a href="#" class="hero-section-toggle l-hidden-mq-medium l-hidden-mq-large js-hero-section-toggle" data-section="2">See Conditions &amp; Treatments</a>
-        <div class="hero-section-content js-hero-section-content">
-            <h2 class="l-hidden-mq-small">Conditions &amp; Treatments</h2>
-            <div class="form">
-                <div class="form-row">
-                    <div class="form-input-text">
-                        <input type="text" placeholder="Search a disease, condition, test, or treatment">
-                    </div>
-                    <input type="submit" value="Go">
-                </div>
-                <div class="form-row">
-                    <a href="#" class="link-arrow">See All Conditions &amp; Treatments</a>
-                </div>
+    </div><!-- .l-contain -->
+
+</div><!-- .hp-hero -->
+
+
+    <div class="content__region-wrap l-contain cf">
+
+        <div class="content__region content__region--slider u-hidden-mq-small">
+            
+
+<div class="slider js-slider"
+    data-depend="/js/modules/Slider.js"
+    data-random="true">
+
+    <div class="slider__slides">
+        <div class="slider__slide js-slider__slide">
+            <div class="slider__slide-img">
+                <img src="/images/temp/slider-home-1.jpg" alt="alt text">
+            </div>
+            <div class="slider__slide-text">
+                <span class="slider__slide-title">Lorem Ipsum Dolor Sit Amet</span>
+                <p class="slider__slide-copy">Dolor sit amet consectetur adipiscing elit morg treng rewc venud pomg weghik.</p>
+                <a href="#" class="slider__slide-more link-more">Call to action link</a>
             </div>
         </div>
-    </div><!-- .hero-section -->
-
-    <div class="hero-section hero-section-green js-hero-section" data-img="/images/hero/bg-doctor.jpg">
-        <a href="#" class="hero-section-toggle l-hidden-mq-medium l-hidden-mq-large js-hero-section-toggle" data-section="3">Find a Doctor</a>
-        <div class="hero-section-content js-hero-section-content">
-            <h2 class="l-hidden-mq-small">Find a Doctor</h2>
-            <div class="form">
-                <div class="form-row">
-                    <div class="form-input-text">
-                        <input type="text" placeholder="Search by first or last name">
-                    </div>
-                    <input type="submit" value="Go">
-                </div>
-                <div class="form-row">
-                    <input name="doc-type" id="doc-type-all" type="radio" checked>
-                    <label for="doc-type-all">All</label>
-                </div>
-                <div class="form-row">
-                    <input name="doc-type" id="doc-type-specialty" type="radio">
-                    <label for="doc-type-specialty">Specialty Doctor</label>
-                </div>
-                <div class="form-row">
-                    <input name="doc-type" id="doc-type-primary" type="radio">
-                    <label for="doc-type-primary">Primary Care Pediatrician</label>
-                </div>
+        <div class="slider__slide js-slider__slide">
+            <div class="slider__slide-img">
+                <img src="/images/temp/slider-home-2.jpg" alt="alt text">
+            </div>
+            <div class="slider__slide-text">
+                <span class="slider__slide-title">Slide 2 Title</span>
+                <p class="slider__slide-copy">Slide 2 descriptive text.</p>
+                <a href="#" class="slider__slide-more link-more">Call to action link</a>
             </div>
         </div>
-    </div><!-- .hero-section -->
-
-
-    <div class="hero-section-toggles js-hero-section-toggles l-hidden-mq-small">
-        <a href="#" class="hero-section-toggle hero-section-toggle-purple js-hero-section-toggle" data-section="1"><span>Find a Location</span></a>
-        <a href="#" class="hero-section-toggle hero-section-toggle-blue js-hero-section-toggle" data-section="2"><span>See Conditions &amp; Treatments</span></a>
-        <a href="#" class="hero-section-toggle hero-section-toggle-green js-hero-section-toggle" data-section="3"><span>Find a Doctor</span></a>
+        <div class="slider__slide js-slider__slide">
+            <div class="slider__slide-img">
+                <img src="/images/temp/slider-home-3.jpg" alt="alt text">
+            </div>
+            <div class="slider__slide-text">
+                <span class="slider__slide-title">Third Slide Longer Title</span>
+                <p class="slider__slide-copy">Dolor sit amet consectetur adipiscing elit morg.</p>
+                <a href="#" class="slider__slide-more link-more">Call to action link</a>
+            </div>
+        </div>
+        <div class="slider__slide js-slider__slide">
+            <div class="slider__slide-img">
+                <img src="/images/temp/slider-home-4.jpg" alt="alt text">
+            </div>
+            <div class="slider__slide-text">
+                <span class="slider__slide-title">Slide Number 4</span>
+                <p class="slider__slide-copy">Adipiscing elit morg treng rewc venud pomg weghik.</p>
+                <a href="#" class="slider__slide-more link-more">Call to action link</a>
+            </div>
+        </div>
     </div>
 
-</div><!-- .hero -->
-
-    <div class="action_links">
-    <div class="l-inner cf">
-        <a href="#" class="icon-circle-location"><span class="link-arrow">Locations &amp; Directions</span></a>
-        <a href="#" class="icon-circle-appt"><span class="link-arrow">Request an Appointment</span></a>
-        <a href="#" class="icon-circle-gift"><span class="link-arrow">Give to Children&rsquo;s</span></a>
-        <a href="#" class="icon-circle-stethoscope"><span class="link-arrow">Refer a Patient</span></a>
-        <a href="#" class="icon-circle-mychart"><span class="link-arrow">Login to MyChart</span></a>
-        <a href="#" class="icon-circle-connect"><span class="link-arrow">Stay Connected</span></a>
+    <div class="slider__pager js-slider__pager">
+        <button type="button" class="slider__pager-btn js-slider__pager-btn">1</button>
+        <button type="button" class="slider__pager-btn js-slider__pager-btn">2</button>
+        <button type="button" class="slider__pager-btn js-slider__pager-btn">3</button>
+        <button type="button" class="slider__pager-btn js-slider__pager-btn">4</button>
     </div>
-</div><!-- .action_links -->
 
-    <div class="media_list-wrap js-media_list-wrap">
+</div>
 
-    <h2 class="media_list-title">Children&rsquo;s Changes Lives Every Day</h2>
+        </div><!-- .content__region -->
 
-    <section class="media_list is-expandable cf js-media_list">
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
+        <div class="content__region content__region--trials">
+            <h2>Clinical Trials Quick Search:</h2>
+            <div class="select-wrap select-wrap--lg select-wrap--trials">
+                <!-- set option value to the URL it should redirect to on change -->
+                <select class="select js-select--follow">
+                    <option value="">Find an active clinical trial</option>
+                    <option value="/ProductionTemplates/mastersub.html">Clinical Trial 1</option>
+                    <option value="/ProductionTemplates/mastersub.html">Clinical Trial 2</option>
+                    <option value="/ProductionTemplates/mastersub.html">Clinical Trial 3</option>
+                </select>
             </div>
-            <h3 class="media_list-item-title">Texas Rangers Pitcher Derek Holland Makes a Difference.</h3>
-        </a>
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img media_list-item-video">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
-            </div>
-            <h3 class="media_list-item-title">New Technology Sniff Out Bacterial Infections</h3>
-        </a>
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
-            </div>
-            <h3 class="media_list-item-title">Children’s Research Institute Examines Cancer Biology</h3>
-        </a>
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
-            </div>
-            <h3 class="media_list-item-title">Children’s Research Institute Examines Cancer Biology</h3>
-        </a>
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
-            </div>
-            <h3 class="media_list-item-title">Texas Rangers Pitcher Derek Holland Makes a Difference.</h3>
-        </a>
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
-            </div>
-            <h3 class="media_list-item-title">New Technology Sniff Out Bacterial Infections</h3>
-        </a>
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
-            </div>
-            <h3 class="media_list-item-title">Children’s Research Institute Examines Cancer Biology</h3>
-        </a>
-        <a href="#" class="media_list-item js-media_list-item">
-            <div class="media_list-item-img">
-                <img src="http://placehold.it/270x192" alt="" width="270" height="192">
-            </div>
-            <h3 class="media_list-item-title">Children’s Research Institute Examines Cancer Biology</h3>
-        </a>
+            <p>Our Cancer Center gives you access to options you can't find anywhere else.</p>
+            <p><a href="#" class="link-more">What is a clinical trial?</a></p>
+        </div><!-- .content__region -->
 
-    </section><!-- media_list -->
-
-    <a href="#" class="media_list-more js-media_list-more">
-        <span class="show-if-collapsed">More</span>
-        <span class="show-if-expanded">Less</span>
-    </a>
-
-</div><!-- media_list -->
+    </div><!-- .content__region-wrap -->
 
 </div><!-- content-home -->
+
     </div><!-- .content-wrap -->
-    <footer class="footer">
-    <div class="footer-section1">
-        <div class="l-inner cf">
-            <nav class="footer-utility_nav l-float-l-mq-large">
+
+    
+
+<footer class="footer">
+    <div class="l-contain cf">
+
+        <div class="footer__group u-float-l-mq-large">
+            <nav class="footer__nav">
                 <ul>
-                    <li><a href="#">Site Map</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Penn Medicine Home</a></li>
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Statement</a></li>
+                    <li><a href="#">Legal Disclaimer</a></li>
                     <li><a href="#">Terms of Use</a></li>
                 </ul>
             </nav>
-            <nav class="footer-utility_nav l-float-r-mq-large">
-                <ul>
-                    <li><a href="#">Departments &amp; Institutes</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Employees</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Newsroom</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div><!-- .footer-section -->
-    <div class="footer-section2">
-        <div class="l-inner cf">
-            <address class="footer-contact">
-                <div class="footer-contact-group">
-                    1935 Medical District Dr.<br>
-                    Dallas, Texas 75235
-                </div>
-                <div class="footer-contact-group">
-                    Main Line: 214-456-7000
-                </div>
+
+            <address class="footer__address">
+                Penn Medicine, Philadelphia, PA
+                <a href="tel:8007897366">800-789-7366</a>
+                &copy; 2014, The Trustees of the University of Pennsylvania
             </address>
-            <div class="footer-social">
-                <h4>Stay Connected to Children’s Medical Center</h4>
-                <ul class="footer-social-links">
-                    <li><a href="#" class="icon-facebook ir">Facebook</a></li>
-                    <li><a href="#" class="icon-googleplus ir">Google Plus</a></li>
-                    <li><a href="#" class="icon-twitter ir">Twitter</a></li>
-                    <li><a href="#" class="icon-linkedin ir">LinkedIn</a></li>
-                    <li><a href="#" class="icon-youtube ir">YouTube</a></li>
-                    <li><a href="#" class="icon-blog ir">Blog</a></li>
-                </ul>
-            </div>
         </div>
-    </div><!-- .footer-section -->
-    <div class="footer-section3">
-        <div class="l-inner l-centered">
-            <span class="l-block-mq-small">Copyright &copy; 2014 </span>
-            <span class="l-block-mq-small">Children’s Medical Center Dallas, Texas</span>
+
+        <div class="footer__social u-float-r-mq-large">
+            <span class="footer__social-text u-hidden-mq-small u-hidden-mq-medium">Follow Us</span>
+            <a href="#" class="icon-facebook ir">Facebook</a>
+            <a href="#" class="icon-twitter ir">Twitter</a>
+            <a href="#" class="icon-youtube ir">YouTube</a>
         </div>
-    </div><!-- .footer-section -->
+
+        <div class="footer__logos">
+            <img src="/images/temp/logo-nciccc.png" alt="A National Cancer Center Designed by the National Cancer Institute">
+        </div>
+
+    </div><!-- .l-contain -->
 </footer><!-- .footer -->
 
+    <div class="nav-wrap js-nav-wrap">
+        <div class="l-contain">
+            
+
+<nav class="nav-primary js-nav-primary">
+    <a href="#" id="nav-primary"></a>
+    <ul class="nav__level1 nav-primary__level1">
+        <li class="u-hidden-mq-large">
+            <!-- Remove "js-nav__level1-toggle" class if no children -->
+            <a href="#" class="nav__level1-toggle nav-primary__level1-toggle">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Home</span>
+            </a>
+        </li>
+        <li class="module-is-collapsed">
+            <!-- active section gets "is-active" class -->
+            <a href="#" class="nav__level1-toggle js-nav__level1-toggle nav-primary__level1-toggle">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Types of Cancer</span>
+                <span class="nav__level1-toggle-icon nav-primary__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <div class="nav__level2-wrap nav-primary__level2-wrap js-nav-primary-inner js-expand-item is-collapsed">
+                <div class="nav-primary__level2-col-wrap l-contain-mq-large cf">
+                    <div class="nav-primary__level2-col nav-primary__level2-col--narrow">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Common Cancers</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Bladder Cancer</a></li>
+                                    <li><a href="#">Breast Cancer</a></li>
+                                    <li><a href="#">Colon Cancer</a></li>
+                                    <li><a href="#">Endometrial Cancer</a></li>
+                                    <li><a href="#">Kidney Cancer</a></li>
+                                    <li><a href="#">Leukemia</a></li>
+                                    <li><a href="#">Lung Cancer</a></li>
+                                    <li><a href="#">Melanoma</a></li>
+                                    <li><a href="#">Non-Hodgkin Lymphoma</a></li>
+                                    <li><a href="#">Rectal Cancer</a></li>
+                                    <li><a href="#">Pancreatic Cancer</a></li>
+                                    <li><a href="#">Prostate Cancer</a></li>
+                                    <li><a href="#">Thyroid Cancer</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">View all cancer types</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col nav-primary__level2-col--wide u-hidden-mq-small u-hidden-mq-medium">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                Quick Search for Cancer Types:
+                                <div class="nav-primary__level3">
+                                    <div class="search search--large input__shadow">
+    <input type="text" class="search__input" placeholder="Search for cancers by name">
+    <input type="submit" class="search__submit search__submit--red ir">
+</div>
+                                </div>
+                            </li>
+                            <li>
+                                Cancers A-Z
+                                <div class="nav-primary__level3">
+                                    <div class="letters cf">
+    <a href="#">A</a>
+    <a href="#">B</a>
+    <a href="#">C</a>
+    <a href="#">D</a>
+    <a href="#">E</a>
+    <a href="#">F</a>
+    <a href="#">G</a>
+    <a href="#">H</a>
+    <a href="#">I</a>
+    <a href="#">J</a>
+    <a href="#">K</a>
+    <a href="#">L</a>
+    <a href="#">M</a>
+    <a href="#">N</a>
+    <a href="#">O</a>
+    <a href="#">P</a>
+    <a href="#">Q</a>
+    <a href="#">R</a>
+    <a href="#">S</a>
+    <a href="#">T</a>
+    <a href="#">U</a>
+    <a href="#">V</a>
+    <a href="#">W</a>
+    <a href="#">X</a>
+    <a href="#">Y</a>
+    <a href="#">Z</a>
+</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col u-hidden-mq-small u-hidden-mq-medium">
+                        <figure class="nav-primary__figure">
+                            <img src="http://placehold.it/295x221" alt="">
+                            <figcaption>
+                                <p><a href="#">Proton therapy</a> for his <a href="#">prostate cancer</a> allowed Bill to maintain his passion for cycling, even during treatment. Watch his story</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div><!-- .l-contain-mq-large -->
+                <button type="button" class="nav__level2-close ir js-nav__level2-close"></button>
+            </div><!-- .nav__level2-wrap -->
+        </li>
+        <li class="module-is-collapsed">
+            <!-- active section gets "is-active" class -->
+            <a href="#" class="nav__level1-toggle js-nav__level1-toggle nav-primary__level1-toggle">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Navigating Cancer Care</span>
+                <span class="nav__level1-toggle-icon nav-primary__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <div class="nav__level2-wrap nav-primary__level2-wrap js-nav-primary-inner js-expand-item is-collapsed">
+                <div class="nav-primary__level2-col-wrap l-contain-mq-large cf">
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Getting Started</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Getting an Accurate Diagnosis</a></li>
+                                    <li><a href="#">Becoming a Patient: What To Expect</a></li>
+                                    <li><a href="#">Get a Second Opinion</a></li>
+                                    <li><a href="#">Your Role in Your Care</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Risks &amp; Prevention</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Understanding Risk Factors</a></li>
+                                    <li><a href="#">Genetic Factors</a></li>
+                                    <li><a href="#">Screening Services</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Treatment Types</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Clinical Trials</a></li>
+                                    <li><a href="#">Treatment Options</a></li>
+                                    <li><a href="#">Integrative Medicine &amp; Wellness</a></li>
+                                    <li><a href="#">Managing Treatment Side Effects</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Programs</a></li>
+                            <li><a href="#">Living After Cancer</a></li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Support Services</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Patient Navigators</a></li>
+                                    <li><a href="#">Nutrition Counseling</a></li>
+                                    <li><a href="#">Integrative Medicine &amp; Wellness</a></li>
+                                    <li><a href="#">Patient Educations</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                            <li class="u-hidden-mq-small u-hidden-mq-medium">
+                                Search for Active Clinical Trials
+                                <div class="nav-primary__level3 select-wrap select-wrap--lg select-wrap--trials">
+                                    <!-- set option value to the URL it should redirect to on change -->
+                                    <select class="select js-select--follow">
+                                        <option value="">Find an active clinical trial</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 1</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 2</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 3</option>
+                                    </select>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col u-hidden-mq-small u-hidden-mq-medium">
+                        <figure class="nav-primary__figure">
+                            <img src="http://placehold.it/295x221" alt="">
+                            <figcaption>
+                                <p><a href="#">Proton therapy</a> for his <a href="#">prostate cancer</a> allowed Bill to maintain his passion for cycling, even during treatment. Watch his story</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div><!-- .l-contain-mq-large -->
+                <button type="button" class="nav__level2-close ir js-nav__level2-close"></button>
+            </div><!-- .nav__level2-wrap -->
+        </li>
+        <li class="module-is-collapsed">
+            <!-- active section gets "is-active" class -->
+            <a href="#" class="nav__level1-toggle js-nav__level1-toggle nav-primary__level1-toggle">
+                <span class="nav__level1-toggle-text nav-primary__level1-toggle-text">Cancer Research</span>
+                <span class="nav__level1-toggle-icon nav-primary__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <div class="nav__level2-wrap nav-primary__level2-wrap js-nav-primary-inner js-expand-item is-collapsed">
+                <div class="nav-primary__level2-col-wrap l-contain-mq-large cf">
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Clinical Trials</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Clinical Research Trials: The Basics</a></li>
+                                    <li><a href="#">Interpreting Cancer Research Studies</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                            <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                            <li class="u-hidden-mq-small u-hidden-mq-medium">
+                                Search for Active Clinical Trials
+                                <div class="nav-primary__level3 select-wrap select-wrap--lg select-wrap--trials">
+                                    <!-- set option value to the URL it should redirect to on change -->
+                                    <select class="select js-select--follow">
+                                        <option value="">Find an active clinical trial</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 1</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 2</option>
+                                        <option value="/ProductionTemplates/mastersub.html">Clinical Trial 3</option>
+                                    </select>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">For Researchers</a>
+                                <ul class="nav__level3 nav-primary__level3">
+                                    <li><a href="#">Research Programs</a></li>
+                                    <li><a href="#">Shared Resources</a></li>
+                                    <li><a href="#">Investigators Only</a></li>
+                                    <li class="nav-primary__more"><a href="#" class="link-arrow">More</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav-primary__level2-col">
+                        <ul class="nav__level2 nav-primary__level2">
+                            <li>
+                                <a href="#">Translating Research to Practice</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- This group hidden at mobile/tablet. Tech: Let me know if there's any issue adding these classes here -->
+                    <div class="nav-primary__level2-col u-hidden-mq-small u-hidden-mq-medium">
+                        <figure class="nav-primary__figure">
+                            <img src="http://placehold.it/295x221" alt="">
+                            <figcaption>
+                                <p><a href="#">Proton therapy</a> for his <a href="#">prostate cancer</a> allowed Bill to maintain his passion for cycling, even during treatment. Watch his story</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div><!-- .l-contain-mq-large -->
+                <button type="button" class="nav__level2-close ir js-nav__level2-close"></button>
+            </div><!-- .nav__level2-wrap -->
+        </li>
+    </ul><!-- .nav-primary__level1 -->
+</nav><!-- .nav-primary -->
+
+            
+
+<nav class="nav-utility js-nav-utility">
+    <ul class="nav__level1 nav-utility__level1">
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">About</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li>
+            <!-- Remove "js-nav__level1-toggle" class if no children -->
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Why Penn?</span>
+            </a>
+        </li>
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Giving</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Locations</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Events</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">For Physicians</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">My PennMedicine</span>
+            </a>
+        </li>
+    </ul><!-- .nav-utility__level1 -->
+</nav><!-- .nav-utility -->
+        </div>
+    </div>
+
     <!-- <script>
-        var _gaq=[['_setAccount','UA-4044071-6'],['_trackPageview']];
+        var _gaq=[['_setAccount','UA-XXXXXXX-X'],['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src='//www.google-analytics.com/ga.js';
         s.parentNode.insertBefore(g,s)}(document,'script'));
     </script> -->
 
     <div id="page-scripts">
+    <!-- build:js /js/main.js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="/js/modules/Media.js"></script>
+    <script src="/js/modules/Expand.js"></script>
+    <script src="/js/modules/Nav.js"></script>
+    <script src="/js/modules/Header.js"></script>
+    <script src="/js/modules/OffCanvas.js"></script>
+    <script src="/js/modules/Select.js"></script>
+    <script src="/js/modules/Table.js"></script>
+    <script src="/js/modules/Tabs.js"></script>
+    <script src="/js/modules/Video.js"></script>
 
-        <!-- build:js /js/vendor/jquery.js -->
-        <script src="/bower_components/jquery/dist/jquery.js"></script>
-        <!-- endbuild -->
+    <script src="/bower_components/Helper-JS-Modules/Dependencies.js"></script>
+    <!-- endbuild -->
 
-        <!-- build:js /js/main.js -->
-        <script src="/bower_components/hammerjs/hammer.js"></script>
-        <script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
-        <script src="/bower_components/Helper-JS-Modules/Media.js"></script>
-
-
-        <script src="/bower_components/Helper-JS-Modules/Dependencies.js"></script>
-        <script src="/js/main.js"></script>
-
-        <script src="/js/modules/Alert.js"></script>
-        <script src="/js/modules/AlphaNav.js"></script>
-        <script src="/js/modules/Breadcrumbs.js"></script>
-        <script src="/js/modules/Caption.js"></script>
-        <script src="/js/modules/Expand-NoAnim.js"></script>
-        <script src="/js/modules/ColSort.js"></script>
-        <script src="/js/modules/Faq.js"></script>
-        <script src="/js/modules/HeaderForms.js"></script>
-        <script src="/js/modules/Hero.js"></script>
-        <script src="/js/modules/IEFixes.js"></script>
-        <script src="/js/modules/Locations.js"></script>
-        <script src="/js/modules/MediaList.js"></script>
-        <script src="/js/modules/OffCanvas.js"></script>
-        <script src="/js/modules/SearchHighlight.js"></script>
-        <script src="/js/modules/Social.js"></script>
-        <script src="/js/modules/Tabs.js"></script>
-        <!-- endbuild -->
-    </div>
+    <!--[if lte IE 9]><script src="/js/modules/IEfixes.js"></script><![endif]-->
+</div>
 
 
 </body>

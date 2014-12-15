@@ -1,8 +1,8 @@
-submit:
-    modifier: btn-submit
-    tag: a
-    text: Submit
-error:
-    modifier: btn-error
-    tag: a
-    text: Error
+default:
+  tag: "button"
+  modifier: ""
+  text: "Button"
+blue:
+  tag: "a"
+  modifier: "btn--blue"
+  text: "Blue Button"

@@ -1,0 +1,22 @@
+
+.share-button {
+    color: #858592;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 1px 30px 1px 0;
+    position: absolute;
+    top: 15px; right: 3px;
+
+    &:after {
+        background-color: #DD5400;
+        color: #FFF;
+        content: "+";
+        height: 18px;
+        line-height: 18px;
+        position: absolute;
+        top: 0; right: 0;
+        text-align: center;
+        width: 18px;
+    }
+}

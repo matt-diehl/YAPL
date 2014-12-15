@@ -1,0 +1,68 @@
+/* ======  News Feed Styles ====== */
+
+.feed {
+    @include padBox1;
+}
+
+.feed:before {
+    background-color: $skyBlue;
+    background-position: 50%;
+    content: "";
+    height: 56px;
+    width: 100%;
+}
+
+/* YAPL
+name: Twitter Feed
+notes: Displays a single tweet
+*/
+
+.feed--twitter:before {
+    @extend %icon-twitterbird-white;
+}
+
+.feed__date {
+    color: #777;
+    display: block;
+    margin-top: 10px;
+}
+
+.feed__inner {
+    overflow: hidden;
+}
+
+.feed__title {
+    margin-bottom: 1.5em;
+}
+
+.feed__title-hash {
+    color: $linkBlue;
+    margin-left: 10px;
+}
+
+
+@include small-only {
+
+    .feed {
+        padding-top: 76px;
+    }
+
+    .feed:before {
+        display: block;
+        position: absolute;
+        top: 0; left: 0;
+    }
+
+}
+
+
+@include medium-and-above {
+
+    .feed:before {
+        float: left;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        width: 80px;
+    }
+
+}

@@ -1,0 +1,51 @@
+/* ======  Spotlight Hero Styles ====== */
+
+/* YAPL
+name: Spotlight Hero
+*/
+
+.spotlight-hero {
+    background: #133D71;
+
+    @include medium-and-below {
+        display: table;
+        position: relative;
+    }
+}
+
+.spotlight-hero,
+.spotlight-hero__text,
+.spotlight-hero__img {
+    @include medium-and-below {
+        width: 100%;
+    }
+
+    @include large-and-above {
+        height: 450px;
+    }
+}
+
+.spotlight-hero__text {
+    background-image: radial-gradient(ellipse at 25% 60%, rgba(#204C86, .25) 0%, rgba(#133D71, 1) 50%);
+
+    &:after {
+        display: none;
+    }
+
+    @include large-and-above {
+        width: 47%;
+    }
+}
+
+.spotlight-hero__img {
+    @include large-and-above {
+        padding: 35px;
+        text-align: center;
+        vertical-align: middle;
+
+        img {
+            max-height: 375px;
+            width: auto;
+        }
+    }
+}

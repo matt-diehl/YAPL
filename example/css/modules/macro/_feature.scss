@@ -1,0 +1,40 @@
+
+
+.feature {}
+
+.feature--event {
+    .feature__more {
+        font-weight: bold;
+    }
+}
+
+.feature__date {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+.feature__details {
+    margin-top: 15px;
+    min-width: 200px;
+    overflow: hidden;
+    @include removeFirstChildMargins;
+}
+
+.feature__more {
+    font-size: 15px;
+    margin-bottom: 1em;
+}
+
+.feature__title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: .5em;
+}
+
+.feature__type {
+    color: $lightGray;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: .5em;
+    text-transform: uppercase;
+}

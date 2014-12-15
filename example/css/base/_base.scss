@@ -1,68 +1,169 @@
+/* ======  Base styles - Some starting defaults with low specificity. ====== */
+
+
+// Import @font-face rules here
+// Check for the font locally first
+
 @font-face {
-  font-family:'VAG Rounded W01 Light';
-  src:url(/fonts/VAGRoundedW01-Light.eot); /*ImageEmbed:skip*/
-  src:url(/fonts/VAGRoundedW01-Light.eot?#iefix) format('embedded-opentype'), /*ImageEmbed:skip*/
-      url(/fonts/VAGRoundedW01-Light.woff) format('woff'), /*ImageEmbed:skip*/
-      url(/fonts/VAGRoundedW01-Light.ttf)  format('truetype'), /*ImageEmbed:skip*/
-      url(/fonts/VAGRoundedW01-Light.svg#webfontmvIrHXJB) format('svg'); /*ImageEmbed:skip*/
+    font-family: 'HelveticaNeue-Light';
+    src: url("/fonts/2BC1F2_0_0.eot"); /*ImageEmbed:skip*/
+    src: local("HelveticaNeue-Light"),
+         local("Helvetica Neue Light"),
+         url("/fonts/2BC1F2_0_0.eot?#iefix") format("embedded-opentype"), /*ImageEmbed:skip*/
+         url("/fonts/2BC1F2_0_0.woff") format("woff"), /*ImageEmbed:skip*/
+         url("/fonts/2BC1F2_0_0.ttf") format("truetype"); /*ImageEmbed:skip*/
 }
 @font-face {
-  font-family:'VAG Rounded W01 Bold';
-  src:url(/fonts/VAGRoundedW01-Bold.eot); /*ImageEmbed:skip*/
-  src:url(/fonts/VAGRoundedW01-Bold.eot?#iefix) format('embedded-opentype'), /*ImageEmbed:skip*/
-      url(/fonts/VAGRoundedW01-Bold.woff) format('woff'), /*ImageEmbed:skip*/
-      url(/fonts/VAGRoundedW01-Bold.ttf)  format('truetype'), /*ImageEmbed:skip*/
-      url(/fonts/VAGRoundedW01-Bold.svg#webfontwypHja6U) format('svg'); /*ImageEmbed:skip*/
+    font-family: 'HelveticaNeue-Regular';
+    src: url("/fonts/2BC1F2_1_0.eot"); /*ImageEmbed:skip*/
+    src: local("HelveticaNeue-Regular"),
+         local("Helvetica Neue"),
+         url("/fonts/2BC1F2_1_0.eot?#iefix") format("embedded-opentype"), /*ImageEmbed:skip*/
+         url("/fonts/2BC1F2_1_0.woff") format("woff"), /*ImageEmbed:skip*/
+         url("/fonts/2BC1F2_1_0.ttf") format("truetype"); /*ImageEmbed:skip*/
+}
+@font-face {
+    font-family: 'HelveticaNeue-Medium';
+    src: url("/fonts/2BC1F2_2_0.eot"); /*ImageEmbed:skip*/
+    src: local("HelveticaNeue-Medium"),
+         local("Helvetica Neue Medium"),
+         url("/fonts/2BC1F2_2_0.eot?#iefix") format("embedded-opentype"), /*ImageEmbed:skip*/
+         url("/fonts/2BC1F2_2_0.woff") format("woff"), /*ImageEmbed:skip*/
+         url("/fonts/2BC1F2_2_0.ttf") format("truetype"); /*ImageEmbed:skip*/
 }
 
-html, button, input, select, textarea { color: #5A5A5A; font-family: Arial; font-size: 16px; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-body {  }
-::-moz-selection { background: #b3d4fc; text-shadow: none; }
-::selection { background: #b3d4fc; text-shadow: none; }
-fieldset { border: 0; margin: 0; padding: 0; }
-textarea { resize: vertical; }
-input[type=submit], input[type=search] {
-    -moz-appearance:none;
+
+// Set all elements to use border-box by default. Use "inherit" for better specificity
+// http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+html {
+    box-sizing: border-box;
+    height: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-font-smoothing: inherit;
+}
+
+body {
+    height: 100%;
+}
+
+html, button, input, select, textarea {
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+::-moz-selection {
+    background: #B3D4FC;
+    text-shadow: none;
+}
+::selection {
+    background: #B3D4FC;
+    text-shadow: none;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input[type="submit"], input[type="search"] {
+    -moz-appearance: none;
     -webkit-appearance: none;
 }
-*, *:after, *:before { @include borderBox; } // Firefox doesn't auto apply box-sizing to pseudo elements
 
-strong, b { font-weight: bold; }
-a { text-decoration: none; }
-a:hover { text-decoration: underline; }
-img { height: auto; max-width: 100%; vertical-align: middle; }
-.lt-ie9 img { width: auto; } // Prevent height distortion in IE8
+input[type="search"] {
+    -webkit-appearance: textfield;
+    &::-webkit-search-decoration {
+        -webkit-appearance: none;
+    }
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+em, i {
+    font-style: italic;
+}
+
+a {
+    text-decoration: none;
+}
+
+[type="button"] {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+// Prevent height distortion in IE8
+.lt-ie9 img {
+    width: auto;
+}
 
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 
-.ir { background-color: transparent; border: 0; overflow: hidden; *text-indent: -9999px; }
-.ir:before { content: ""; display: block; width: 0; height: 100%; }
-.hidden { display: none !important; visibility: hidden; }
-.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
-.visuallyhidden.focusable:active,
-.visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
-.invisible { visibility: hidden; }
-.cf:before, .group:before,
-.cf:after, .group:after { content: " "; display: table; }
-.cf:after, .group:after { clear: both; }
-.cf, .group { *zoom: 1; }
+.ir {
+    background-color: transparent;
+    border: 0;
+    color: transparent;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
 
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+// Micro clearfix
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
 
 /* ==========================================================================
    Modifiers
    ========================================================================== */
 
-.no-after:after { content: "" !important; }
-.no-before:before { content: "" !important; }
-
-.js-disabled { cursor: default !important; }
-.js-expand-toggle { cursor: pointer; } // Allows iphone/ipad to understand click events on non-anchor elements
-
-/* ==========================================================================
-   Chrome Frame prompt
-   ========================================================================== */
-
-.chromeframe { margin: 0.2em 0; background: #ccc; color: #000; padding: 0.2em 0; }
+// Allows iphone/ipad to understand click events on non-anchor elements
+.js-expand-toggle {
+    cursor: pointer;
+}

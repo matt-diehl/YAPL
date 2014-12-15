@@ -1,0 +1,77 @@
+/* ======  Context Box (with arrow indicator) ====== */
+
+.context-box {
+    float: left;
+    margin-bottom: 24px;
+    margin-top: 10px;
+    padding-left: 24px;
+    position: relative;
+    width: 100%;
+
+    > .inner {
+        background: #fff;
+        box-shadow: 0 0 10px rgba(#000, .25);
+        height: 100%;
+        padding: 38px 48px;
+        position: relative;
+    }
+}
+
+.context-box__arrow {
+    background-image: url(/images/assets/arrow-n.png); /*ImageEmbed:skip*/
+    bottom: 100%;
+    height: 23px;
+    left: 0;
+    margin-left: 22px;
+    position: absolute;
+    width: 45px;
+    z-index: 2;
+}
+
+.context-box__image,
+.context-box__text {
+    float: left;
+    width: 50%;
+}
+
+.context-box__text {
+    padding-left: 48px;
+
+    .title {
+        color: #588D1F;
+        font-size: 36px;
+        margin-bottom: 0;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        margin-top: 0;
+    }
+}
+
+.context-box__link-more {
+    &:after {
+        @extend %icon-circle-chevron-ltblue-e;
+        color: transparent;
+        content: "\0a00";
+        display: inline-block;
+        height: 26px;
+        left: 10px;
+        padding-right: 12px;
+        position: relative;
+        top: -2px;
+        vertical-align: middle;
+        width: 26px;
+    }
+}
+
+.context-box__exit {
+    @extend %icon-exit-blue;
+    content: '';
+    display: block;
+    height: 43px;
+    position: absolute;
+    right: 30px;
+    top: 16px;
+    width: 43px;
+}

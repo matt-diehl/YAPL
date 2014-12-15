@@ -1,0 +1,204 @@
+default:
+  modifier:
+  thead:
+    rows:
+      -
+        -
+        - Column 1
+        - Column 2
+        - Column 3
+        - Column 4
+        - Column 5
+  tbody:
+    rows:
+      -
+        - Data Row 1
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 2
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 3
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+master:
+  modifier: table--bordered table--striped
+  thead:
+    rows:
+      -
+        -
+        - Column 1
+        - Column 2
+        - Column 3
+        - Column 4
+        - Column 5
+  tbody:
+    rows:
+      -
+        - Data Row 1
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 2
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 3
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+condensed:
+  modifier: table--condensed
+  thead:
+    rows:
+      -
+        -
+        - Column 1
+        - Column 2
+        - Column 3
+        - Column 4
+        - Column 5
+  tbody:
+    rows:
+      -
+        - Data Row 1
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 2
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 3
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+bordered:
+  modifier: table--bordered
+  thead:
+    rows:
+      -
+        -
+        - Column 1
+        - Column 2
+        - Column 3
+        - Column 4
+        - Column 5
+  tbody:
+    rows:
+      -
+        - Data Row 1
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 2
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 3
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+striped:
+  modifier: table--striped
+  thead:
+    rows:
+      -
+        -
+        - Column 1
+        - Column 2
+        - Column 3
+        - Column 4
+        - Column 5
+  tbody:
+    rows:
+      -
+        - Data Row 1
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 2
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 3
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+hover:
+  modifier: table--hover
+  thead:
+    rows:
+      -
+        -
+        - Column 1
+        - Column 2
+        - Column 3
+        - Column 4
+        - Column 5
+  tbody:
+    rows:
+      -
+        - Data Row 1
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 2
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+      -
+        - Data Row 3
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum
+        - Lorem Ipsum

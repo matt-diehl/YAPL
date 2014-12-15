@@ -1,14 +1,6 @@
-// Media Queries in Sass 3.2
-//
-// These mixins make media queries a breeze with Sass.
-// The media queries from mobile up until desktop all
-// trigger at different points along the way
-//
-// An important point to remember is that and width
-// over the portrait width is considered to be part of the
-// landscape width. This allows us to capture widths of devices
-// that might not fit the dimensions exactly. This means the break
-// points are seamless.
+/* ===== Media Queries ===== */
+
+// Change "mq" values as needed for the project
 
 $mq-0: 290px !default;
 $mq-1: 675px !default;

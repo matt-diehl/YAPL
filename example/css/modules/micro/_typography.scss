@@ -1,4 +1,4 @@
-// Base Typography Styles
+/* ======  Typography / RTF Styles ====== */
 
 // To prevent overwriting issues, we have very few tag-only styles.
 // Instead, we define a class that can be extended
@@ -7,13 +7,39 @@ body {
     font-size: 14px;
 }
 
-// Base extend type sizes/line-heights
+// Base fonts
 
-%txt-meta {
-    font-size: 13px;
-    font-weight: normal;
-    line-height: 1.2;
+%helveticaLight {
+    @include helveticaLight;
 }
+
+%helveticaRegular {
+    @include helveticaRegular;
+}
+
+%helveticaMedium {
+    @include helveticaMedium;
+}
+
+%serif {
+    @include serif;
+}
+
+
+// Base
+
+.rtf {
+    color: $bodyTextColor;
+    line-height: 1.61;
+}
+
+
+// Clear extra margin
+
+.rtf > *:first-child {
+    margin-top: 0;
+}
+
 
 // Anchor Styles
 
@@ -21,8 +47,7 @@ body {
     color: $linkBlue;
     cursor: pointer;
     &:hover {
-        color: $orange;
-        text-decoration: none;
+        text-decoration: underline;
     }
 }
 .a,
@@ -30,276 +55,385 @@ body {
     @extend %a;
 }
 
-// RTF Image Styles
-
-.rtf figure,
-.figure {
-    margin-right: 16px;
-    margin-bottom: 10px;
-    figcaption {
-        background: $gray3;
-        color: $gray2;
-        font-family: $VAGBold;
-        font-size: 14px;
-        padding: 12px 14px;
-    }
-    &.l-float-r {
-        margin-left: 16px;
-        margin-right: 0;
-    }
-}
-
-.rtf img[style*="float"] {
-    max-width: 50%;
-}
-
-.rtf img[style*="left"] {
-    margin-bottom: 8px;
-    margin-right: 20px;
-}
-
-.rtf img[style*="right"] {
-    margin-bottom: 8px;
-    margin-left: 20px;
-}
-
 
 // Header Styles
 
-.h1-main-title,
-.h1-main-subtitle {
-    display: block;
+.h1-main {
+    margin-top: 15px;
+    overflow: hidden;
+    padding-bottom: 5px;
 }
 
 .h1,
-.rtf h1,
-.h1-main,
-.h2,
+.h1-main__title {
+    color: #173972;
+    line-height: 1.1;
+}
+.h1-main__subtitle {
+    @extend %helveticaRegular;
+    color: #000;
+    margin-top: .5em;
+}
+
+// Only apply top margins when it's actually in a rich text field to prevent unnecessary overriding later on
 .rtf h2,
-.h3,
 .rtf h3,
-.h4,
-.rtf h4,
-.h5,
-.rtf h5 {
-    font-family: $VAGBold;
-    letter-spacing: 1pt;
-    margin-bottom: 15px;
-}
-.h1,
-.rtf h1,
-.h1-main {
-    color: $redHeading;
-    font-family: $VAGBold;
-    font-size: 36px;
-    margin-bottom: 15px;
-    padding-top: 10px;
-}
-.h1-main-subtitle {
-    color: $gray1;
-    font-size: 20px;
-}
-.h2,
-.rtf h2 {
-    color: $lightPurple;
-    font-size: 29px;
-}
-.content-primary {
-    > h2:first-child {
-        margin-top: 10px;
-    }
-}
-.h3,
-.rtf h3 {
-    color: $green;
-    font-size: 24px;
-}
-.h4,
 .rtf h4 {
-    color: #D3720D;
-    font-size: 20px;
+    margin-top: 2em;
 }
-.h5,
-.rtf h5 {
-    color: $skyBlue;
-    font-size: 16px;
-    letter-spacing: 0;
-    //font-weight: bold;
+.h2, .rtf h2,
+.h3, .rtf h3,
+.h4, .rtf h4 {
+    margin-bottom: 1em;
+}
+.h2, .rtf h2 {
+    color: #000;
+}
+.h3, .rtf h3 {
+    color: #013A73;
+}
+.h4, .rtf h4 {
+    color: #000;
+}
+.h5, .rtf h5 {}
+
+
+// Banner
+
+.banner {
+    @extend %serif;
+    border-bottom: $thinGrayBorder;
+    border-top: $thinGrayBorder;
+    color: #003D73;
+    font-size: 32px;
+    line-height: 1.3em;
+    padding: .5em 0;
+    text-align: center;
+
+    @include small-only {
+        .u-inline-block {
+            display: inline !important;
+        }
+    }
 }
 
 
 // Body Copy Style
-.rtf em {
-    font-style: italic;
+
+.p, .rtf p,
+.ul, .rtf ul,
+.ol, .rtf ol {
+    color: inherit;
+    font-family: $arial;
+    font-size: inherit;
+    line-height: inherit;
 }
 
-.p,
-.rtf p,
-.ul,
-.rtf ul,
-.rtf ol {
-    color: $darkerGray;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.75;
-    margin-bottom: 24px;
-    flex-flow: row wrap;
+.p, .rtf p {
+    margin-bottom: 1em;
+}
+.ul, .rtf ul {
+    font-family: $arial;
+    margin: 0.5em 0;
 }
 
-.content-primary-social + .rtf.cf {
-    max-width: $desktopMaxWidth;
-}
-
-.ul,
-.rtf ul {
-    margin-left: 22px;
-    ul {
-        padding-left: 1em;
-        margin-bottom: 0;
-    }
-}
-.ol,
-.rtf ol {
-    list-style-type: decimal;
-    list-style-position: outside;
-    margin-left: 22px;
-    ol {
-        padding-left: 1em;
-        margin-bottom: 0;
-    }
-}
-.li,
+// UL - Level 1 / General
+.ul li,
 .rtf ul li {
-    margin-top: 10px;
-    padding-left: 16px;
-    background: url('/images/assets/icon-circle-bullet.svg') no-repeat 0 9px;
-    .lt-ie9 & {
-        background: url('/images/ie/icon-circle-bullet.png') no-repeat 0 9px; /*ImageEmbed:skip*/
+    margin-bottom: 0.5em;
+    min-width: 200px;
+    overflow: hidden;
+    padding-left: 20px;
+    position: relative;
+    &:before {
+        color: #FF8000;
+        content: "\2022";
+        top: -6px; left: 0;
+        font-size: 24px;
+        position: absolute;
     }
-    &:first-child {
-        margin-top: 0;
-    }
-    li {
-        margin-top: 0;
-        padding-left: 1em;
-        background: url('/images/assets/icon-circle-bullet-empty.svg') no-repeat 0 9px;
-        background-size: 6px 6px;
-        .lt-ie9 & {
-            background: url('/images/ie/icon-circle-bullet-empty.png') no-repeat 0 9px; /*ImageEmbed:skip*/
-        }
+    > a {
+        color: #0059A3;
     }
 }
 
-.li-short,
-.rtf-short li,
-.ul-short,
-.rtf-short ul,
-.p-short,
-.rtf-short p,
-.rtf-short ol {
-    line-height: 1.5;
-}
-
-.italic {
-    font-style: italic;
-}
-.bold {
-    font-weight: bold;
-}
-
-// General Link Styles
-.link-arrow:after {
-    content: '\00a0\203A';
-    @include large-only {
-        .portlet-action_links &,
-        .portlet-appt & {
-            content: '' !important;
-        }
+// UL - Level 2
+.ul li > ul > li,
+.rtf ul > li > ul > li {
+    &:before {
+        content: "\00b0";
+        font-size: 21px;
+        top: 0px;
     }
 }
-.link-arrows:after {
-    content: '\00a0\00bb';
+
+// UL - Level 3
+.ul li > ul > li > ul > li,
+.rtf ul > li > ul > li > ul > li {
+    &:before {
+        color: #646464;
+        content: "\2013";
+        font-size: 14px;
+        font-weight: bold;
+        top: 0px;
+    }
 }
-.link-download {
-    padding-right: 30px;
-    &:after {
-        margin-left: 8px;
-        margin-top: -2px;
+
+
+// Big List (UL)
+.big-list {
+    padding-bottom: 20px;
+}
+
+// Big List (UL) - Level 1
+.big-list > li,
+.rtf .big-list > li {
+    padding-bottom: 10px;
+    padding-left: 0;
+
+    &:before {
+        display: none;
+    }
+}
+
+// Big List (UL) - Level 2
+.big-list li > ul > li,
+.rtf .big-list li > ul > li {
+    margin-left: 20px;
+
+    &:before {
+        color: #FF8000;
+        content: "\2022";
+        top: -6px; left: 0;
+        font-size: 24px;
         position: absolute;
     }
 }
-.link-download-pdf:after {
-    content: url(/images/assets/icon-doc-pdf.png);
+
+// Big List (UL) - Level 3
+.big-list li > ul > li > ul > li,
+.rtf .big-list li > ul > li > ul > li {
+    &:before {
+        content: "\2022";
+        font-size: 21px;
+        top: 0px;
+    }
 }
-.link-download-word:after {
-    content: url(/images/assets/icon-doc-word.png);
+
+
+.ol, .rtf ol {}
+
+
+.link-generic-action {
+    color: #004C85;
+    display: block;
+    margin-top: .5em;
 }
-.link-more {
+
+// Link with a right-pointing single arrow quote
+
+.link-arrow:after {
+    content: '\00a0\203A';
+}
+
+
+// Link with a right-pointing double arrow quote
+
+.link-arrows:after {
+    content: '\00a0\00bb';
+}
+
+
+// Link that takes the user back one page
+
+.link-back {
+    font-weight: bold;
+    color: #005186;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2px 0px 2px 26px;
+    position: relative;
+    // Circle
+    &:before {
+        background-color: #E8E8E8;
+        border-radius: 50%;
+        content: "";
+        height: 18px;
+        position: absolute;
+        top: 0; left: 0;
+        width: 18px;
+    }
+    // Triangle
+    &:after {
+        @include triangle(6px, 8px, w, #0054AB);
+        top: 5px; left: 5px;
+    }
+}
+
+
+// Link with right-pointing chevron
+
+%link-more {
     display: inline;
     font-family: Arial, sans-serif;
     font-size: 14px;
     line-height: 1.21;
+    .rtf & {
+        font-size: 15px;
+        // font-weight: bold;
+    }
     &:after {
         // Some css trickery with non-breaking space characters so the icon will stay connected to the last word
-        // extend an icon
-        background-repeat: no-repeat;
+        @extend %icon-chevron-ltblue-e;
+        background-position: 0 50%;
         color: transparent;
         content: "\0a00";
         display: inline;
+        font-family: Arial, sans-serif; // So that it displays consistently, no matter what the preceding font is
         height: 14px;
-        margin-left: 4px;
-        padding-right: 5px;
+        margin-left: 8px;
+        padding-right: 12px;
         vertical-align: middle;
         width: 14px;
+        .ie9 &,
+        .lt-ie9 & {
+            background-position: 0 100%;
+            height: 16px;
+            width: 22px;
+            padding-right: 10px;
+            position: relative;
+            top: -2px;
+        }
+        .lt-ie9 & {
+            display: inline-block;
+            text-indent: -9999px;
+        }
     }
     &:hover {
-        border-bottom: 1px solid #257DCA;
+        color: #0091CF;
         text-decoration: none;
     }
 }
-.link-more-large {
-    // extend an icon
-    background-repeat: no-repeat;
-    background-position: 100% 50%;
-    display: inline-block;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    padding: 10px 45px 10px 0;
+.link-more {
+    @extend %link-more;
 }
-.link-hide-text {
-    display: block;
-    overflow: hidden;
-    text-indent: -9999px;
-    white-space: nowrap;
-}
-.link-left-nav {
-    @extend %a;
-    font-family: $VAGBold;
-    font-size: 16px;
-    line-height: 110%;
-}
-.link-bg {
-    display: block;
-    min-height: 36px;
-    background: #F4F3F2;
-    border-radius: 18px;
-    line-height: 36px;
-    font-size: 17px;
-    text-align: center;
-    letter-spacing: .02em;
+.rtf .link-more {
+    font-weight: bold;
 }
 
 
 @include small-only {
 
+    // Header Styles
+
+    .h1-main {
+        margin-bottom: 20px;
+    }
+    .h1,
+    .h1-main__title {
+        font-size: 26px;
+    }
+    .h2, .rtf h2,
+    .h1-main__subtitle {
+        font-size: 23px;
+    }
+    .h3, .rtf h3 {
+        font-size: 19px;
+    }
+    .h4, .rtf h4 {
+        font-size: 16px;
+    }
+
+
+    // Body Copy Style
+
     .rtf {
-        figure {
-            display: none;
+        font-size: 14px
+    }
+
+}
+
+@include medium-only {
+
+    // Header Styles
+
+    .h1-main {
+        margin-bottom: 25px;
+    }
+
+
+    // Body Copy Style
+
+    .rtf {
+        font-size: 15px;
+    }
+
+    .rtf--small {
+        font-size: 14px;
+    }
+
+}
+
+
+@include medium-and-below {
+
+    .h1-main__title {
+        @include helveticaRegular;
+    }
+
+}
+
+
+@include medium-and-above {
+
+    // Header Styles
+
+    .h1,
+    .h1-main__title {
+        font-size: 36px;
+    }
+    .h2, .rtf h2,
+    .h1-main__subtitle {
+        font-size: 25px;
+    }
+    .h3, .rtf h3 {
+        font-size: 21px;
+    }
+    .h4, .rtf h4 {
+        font-size: 18px;
+    }
+
+}
+
+
+@include large-and-above {
+
+    // Header Styles
+
+    .h1-main {
+        margin-bottom: 30px;
+
+        .l-2-col-master--w-content-secondary & {
+            padding-right: 25%;
+        }
+        .l-3-col-master & {
+            padding-right: 23%;
         }
     }
-    .h1-main-title {
-        font-size: 32px;
+    .h1,
+    .h1-main__title {
+        @include helveticaLight;
+    }
+
+
+    // Body Copy Style
+
+    .rtf {
+        font-size: 16px;
+    }
+
+    .rtf--small {
+        font-size: 15px;
     }
 
 }

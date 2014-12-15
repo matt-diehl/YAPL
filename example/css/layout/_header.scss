@@ -1,196 +1,100 @@
-// Global header styles
+/* ======  Header Styles ====== */
 
-.header {
-    background-color: $dkBlue;
+.l-header {
+    background-color: #FFF;
+    border-top: $thickDkBlueBorder;
+    padding: 18px 0 10px;
     position: relative;
-    z-index: 100;
+    @include sectionBottomShadow;
 }
 
-// Logo
-.header-logo {
+.l-header__logo {
     background-repeat: no-repeat;
-    background-size: 100% 100%;
     display: block;
     float: left;
-    .svg & {
-        background-image: url(/images/assets/logo.svg);
-    }
-    .no-svg & {
-        background-image: url(/images/assets/logo.png); /*ImageEmbed:skip*/
-    }
-}
-
-// Search
-.header-search {
-    width: 260px;
-}
-.header-search-input {
-    padding-right: 40px; // Account for submit button
-    .lt-ie9 & {
-        line-height: 28px;
-    }
-}
-.header-search-submit {
-    @extend .icon-search-sm-blue;
-    background-color: transparent;
-    background-position: 50% 50%;
-    border: 0;
-    color: transparent;
-    cursor: pointer;
-    height: 100%;
-    position: absolute;
-    top: 0; right: 0;
-    width: 40px;
-}
-
-.header-search-toggle, .header-utility-nav a {
     position: relative;
-    &.is-active:after {
-        @extend .triangle;
-        @include triangle(21px, 11px, n, #FFF);
-        left: 50%;
-        z-index: 2;
-    }
+    z-index: $zindexLogo;
 }
-.header-search-toggle {
-    @extend .icon-search-sm-white;
-    background-color: transparent;
-    border: 0;
+
+.l-header__nav-toggle {
+    margin-left: 10px;
+}
+
+.l-header__nav-toggle,
+.l-header__search-submit,
+.l-header__search-toggle {
     cursor: pointer;
-    height: 19px;
-    width: 19px;
-    &:focus {
-        outline: 0;
-    }
-    &.is-active {
-        @extend .icon-search-sm-gold;
-        &:after {
-            margin-left: -11px;
-            top: 47px;
-        }
-    }
+    display: block;
+    height: 32px;
+    width: 41px;
 }
 
-// Utility Area
-.header-utility {
+.l-header__nav-toggle,
+.l-header__search-toggle {
     float: right;
-    text-align: right;
-    > button,
-    > div,
-    > nav {
-        vertical-align: middle;
-    }
-    .nav-breadcrumbs-toggle {
-        margin-left: 6px;
-    }
-}
-.header-utility-nav {
-    display: inline-block;
-    > a {
-        font-size: 13px;
-        &.is-active:after {
-            margin-left: -14px;
-            top: 47px;
-        }
-        &:hover {
-            @extend .a:hover;
-        }
-    }
 }
 
+.l-header__phone {
+    @extend %helveticaLight;
+    color: #172571;
+    float: right;
+}
+
+.l-header__search {
+    border: $thinGrayBorder;
+    float: right;
+}
+
+.l-header__search {
+    position: relative;
+}
+
+.l-header__search-input {
+    border: 0;
+    font-size: 15px;
+    height: 100%;
+    padding-left: 12px;
+    padding-right: 45px;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+}
+
+.l-header__search-submit,
+.l-header__search-toggle {
+    background-color: #E3E3E3;
+    background-position: 50% 50%;
+}
+
+.l-header__search-submit {
+    position: absolute;
+    top: -1px; right: -1px;
+}
+
+.l-header__toggles {
+    clear: right;
+    float: right;
+}
 
 @include small-only {
 
-    .header {
-        padding: 8px $mobileSidePad 0;
+    .l-header__logo {
+        background-image: url(/images/assets/logo-sm.svg); /*ImageEmbed:skip*/
+        height: 60px;
+        width: 149px;
+    }
+    .no-svg .l-header__logo {
+        background-image: url(/images/assets/logo-sm.png); /*ImageEmbed:skip*/
     }
 
-    .header-forms {
-        background-color: $dkBlue;
-        padding: 2px $mobileSidePad $mobileSidePad;
-        top: 74px;
-    }
-    .header-forms-inner {
-        padding: $mobileSidePad;
+    .l-header__phone {
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
-    .header-logo,
-    .header-utility {
-        margin-bottom: 8px;
-        max-width: 50%;
-    }
-
-    .header-logo {
-        height: 58px;
-        width: 136px;
-    }
-
-    .header-search-toggle, .header-utility-nav a {
-        &.is-active:after {
-            top: 36px;
-        }
-    }
-
-    .header-utility {
-        margin-top: 5px;
-    }
-
-}
-
-
-@include medium-and-below {
-
-    .header {
-        background-color: $dkBlue;
-        .hero-is-active & {
-            background-color: $transparentDkBlue;
-        }
-    }
-
-    .header-forms {
+    // TEMP
+    .l-header__search {
         display: none;
-        position: absolute;
-        left: 0;
-        text-align: left;
-        width: 100%;
-        &.is-active {
-            display: block;
-        }
-        .form-input-text {
-            border-radius: 17px;
-            height: 34px;
-        }
-    }
-    .header-forms-inner {
-        background-color: #FFF;
-        border-radius: 6px;
-    }
-
-    .header-search {
-        display: none;
-        &.is-active {
-            display: block;
-        }
-    }
-
-    .header-search {
-        width: 100%;
-    }
-
-    .header-utility-nav {
-        > a {
-            border-right: 1px solid rgba(255,255,255, .89);
-            color: rgba(255,255,255, .89);
-            margin-right: 6px;
-            padding-right: 8px;
-            .no-rgba & {
-                border-right: 1px solid #FFF;
-                color: #FFF;
-            }
-            &.is-active {
-                color: $gold;
-            }
-        }
     }
 
 }
@@ -198,98 +102,70 @@
 
 @include medium-only {
 
-    .header {
-        padding: 10px $tabletSidePad 0;
+    .l-header__logo {
+        background-image: url(/images/assets/logo-lg.svg); /*ImageEmbed:skip*/
+        height: 57px;
+        width: 392px;
+    }
+    .no-svg .l-header__logo {
+        background-image: url(/images/assets/logo-med.png); /*ImageEmbed:skip*/
     }
 
-    .header-forms {
-        background-color: $transparentDkBlue;
-        padding: 4px $tabletSidePad $tabletSidePad;
-        top: 90px;
-    }
-    .header-forms-inner {
-        padding: $tabletSidePad;
-    }
-
-    .header-logo,
-    .header-utility {
+    .l-header__phone {
+        font-size: 23px;
         margin-bottom: 10px;
     }
 
-    .header-logo {
-        height: 70px;
-        width: 164px;
-    }
-
-    .header-search-toggle {
-        margin: 0 20px;
-    }
-
-    .header-utility {
-        margin-top: 10px;
-    }
-    .header-utility-nav {
-        > a:last-child {
-            border-right: 0;
-            margin-right: 0;
-        }
+    .l-header__search {
+        display: none;
+        height: 32px;
+        width: 270px;
     }
 
 }
 
+
 @include large-and-above {
 
-    .header {
-        background-color: $transparentDkBlue;
-        border-top: 45px solid #FFF;
-        padding: 10px 0;
-        > .l-inner {
-            position: relative;
-            @include desktopInner;
+    .l-header {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%;
+        z-index: $zindexHeader;
+
+        &.is-unfixed {
+            position: absolute;
         }
     }
 
-    .header-forms {
-        display: inline-block;
+    .l-header__logo {
+        background-image: url(/images/assets/logo-lg.svg); /*ImageEmbed:skip*/
+        height: 67px;
+        width: 462px;
+    }
+    .no-svg .l-header__logo {
+        background-image: url(/images/assets/logo-lg.png); /*ImageEmbed:skip*/
     }
 
-    .header-logo {
-        height: 73px;
-        width: 172px;
+    .l-header__phone {
+        font-size: 26px;
+        margin-bottom: 16px;
+        margin-top: 38px; // Accounts for utility nav being absolutely position above
     }
 
-    .header-search-toggle, .header-utility-nav a {
-        &.is-active:after {
-            display: none;
-        }
+    .l-header__search {
+        height: 39px;
+        width: 320px;
     }
 
-    .header-search-toggle {
+    .l-header__search-submit,
+    .l-header__search-toggle {
+        height: 39px;
+        width: 50px;
+    }
+
+    .l-header__search-toggle {
         display: none;
-    }
-
-    .header-tab_links, .header-utility {
-        position: absolute;
-        top: -47px; right: 0;
-    }
-    .header-tab_links {
-        left: 0;
-    }
-    .header-utility {
-        right: 0;
-    }
-
-    .header-utility-nav {
-        margin-right: 25px;
-        > a {
-            border-left: 1px solid #363636;
-            color: #363636;
-            margin-left: 6px;
-            padding-left: 8px;
-            &:first-child {
-                border-left: 0;
-            }
-        }
     }
 
 }

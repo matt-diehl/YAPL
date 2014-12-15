@@ -1,0 +1,101 @@
+
+/* YAPL
+name: Slider
+notes: The default slider - randomizes the "1" position (slides stay in the same order, but start position is randomized)
+partial: slider
+*/
+
+.slider {
+    position: relative;
+}
+
+.slider__pager {
+    margin-top: 15px;
+}
+
+.slider__pager-btn {
+    @extend %helveticaRegular;
+    background-color: transparent;
+    border: 2px solid #C2C2C2;
+    border-radius: 50%;
+    color: #434343;
+    font-size: 18px;
+    height: 34px;
+    line-height: 1.5;
+    margin: 0 0 0 10px;
+    padding: 0;
+    text-align: center;
+    width: 34px;
+    &:focus,
+    &:hover,
+    &.is-active {
+        background-color: #FFF;
+        color: #D6432D;
+        outline: 0;
+    }
+
+    &:first-child {
+        margin-left: 0;
+    }
+}
+
+.slider__slide {
+    opacity: 0;
+    position: absolute;
+    top: 0; left: 0;
+    visibility: hidden;
+    transition: opacity .5s, visibility .5s;
+    &.is-active,
+    .no-js &:first-child {
+        opacity: 1;
+        position: relative;
+        visibility: visible;
+        transition: opacity .5s, visibility 0s;
+    }
+}
+
+.slider__slide-copy {
+    color: #666;
+    line-height: 1.36;
+    margin-bottom: 10px;
+}
+
+.slider__slide-title {
+    @extend %helveticaLight;
+    color: $mediumBlue;
+    display: block;
+    font-size: 31px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+@include medium-and-below {
+
+    .slider__slide-img {
+        margin-bottom: 15px;
+    }
+
+}
+
+@include large-and-above {
+
+    .slider__slide-img {
+        float: left;
+        margin: 0 25px 15px 0;
+        max-width: 60%;
+    }
+
+    .slider__slide-more {
+        font-size: inherit;
+    }
+
+    .slider__pager {
+        clear: both;
+    }
+
+    .slider__slide-text {
+        min-width: 200px;
+        overflow: hidden;
+    }
+
+}

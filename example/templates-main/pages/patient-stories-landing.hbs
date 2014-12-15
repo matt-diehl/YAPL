@@ -1,0 +1,428 @@
+---
+layout: default.hbs
+title: Patient Stories Landing
+description: Description
+subSection: 1
+---
+
+<!-- YAPL
+name: Patient Stories Landing
+notes: This template uses a unique layout.
+-->
+
+<div class="l-contain">
+
+    <div class="l-1-col-master">
+
+        {{> share-button }}
+
+        <div class="content-primary">
+            <div class="hero spotlight-hero">
+                <div class="hero__text spotlight-hero__text">
+                    <div class="spotlight-hero__badge hero__badge"></div>
+
+                    <span class="hero__tag">Patient Spotlight</span>
+                    <span class="hero__title h1 u-block">Annalisa's Story</span>
+                    <span class="hero__subtitle h3 u-block">Paraneoplastic Tumor</span>
+                    <div class="hero__copy rtf">
+                        <p>It's amazing to me that people who didn&rsquo;t know me – the custodians, the therapists, all the doctors and nurses – all went out of their way to help me. I had the feeling I was blessed, well-cared for, and loved.</p>
+                    </div>
+                    <span class="hero__more h3 u-block">Read Annalisa's Story</span>
+                </div>
+                
+                <div class="hero__img spotlight-hero__img">
+                    <img src="http://placehold.it/592x390" alt="">
+                </div>
+            </div><!-- .hero -->
+        </div><!-- .content-primary -->
+
+    </div><!-- .l-1-col-master -->
+
+    <div class="l-1-col-master cf">
+
+        <span class="h1-main__title u-block">More Patient Stories</span>
+
+        <div class="l-row">
+            <div class="padbox1 padbox1--full-bottom padbox1--bordered">
+                <div class="selects-wrap">
+                    <span class="selects-wrap__title">Filter by:</span>
+                    
+                    <div class="select-wrap select-wrap--sm input--shadow">
+                        <select class="select">
+                            <option value="">Cancer Type</option>
+                        </select>
+                    </div>
+
+                    <span class="selects-wrap__title selects-wrap__title--choice">- or -</span>
+
+                    <div class="select-wrap select-wrap--sm input--shadow">
+                        <select class="select">
+                            <option value="">Treatments</option>
+                        </select>
+                    </div>
+                </div>
+            </div><!-- .padbox1 -->
+        </div><!-- .l-row -->
+
+        <div class="l-row">
+            <div class="thumb-list thumb-list--profiles">
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="susan">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Susan&rsquo;s Story</h3>
+                            <h5 class="subtitle">Breast Cancer</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="sallie">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image play-button">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Sallie&rsquo;s Story</h3>
+                            <h5 class="subtitle">Brain Tumor</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="avi">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Avi&rsquo;s Story</h3>
+                            <h5 class="subtitle">Paraneoplastic Cancer</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="tanya">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Tanya&rsquo;s Story</h3>
+                            <h5 class="subtitle">Leukemia</h5>
+                        </div>
+                    </div>
+                </a>
+
+
+
+                <!-- first row context boxes -->
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="susan">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Susan&rsquo;s Story</h2>
+                            <h4 class="subtitle">Breast Cancer</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Susan&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target susan -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="sallie">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Sallie&rsquo;s Story</h2>
+                            <h4 class="subtitle">Brain Tumor</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Sallie&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target sallie -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="avi">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Avi&rsquo;s Story</h2>
+                            <h4 class="subtitle">Paraneoplastic Cancer</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Avi&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target avi -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="tanya">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Tanya&rsquo;s Story</h2>
+                            <h4 class="subtitle">Leukemia</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Tanya&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target tanya -->
+
+
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="konstantino">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Konstantino&rsquo;s Story</h3>
+                            <h5 class="subtitle">Colon Cancer</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="jospeh">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Jospeh&rsquo;s Story</h3>
+                            <h5 class="subtitle">Andrenal Cancer</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="aasim">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Aasim&rsquo;s Story</h3>
+                            <h5 class="subtitle">Lung Cancer</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="sabrina">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Sabrina&rsquo;s Story</h3>
+                            <h5 class="subtitle">Leukemia</h5>
+                        </div>
+                    </div>
+                </a>
+
+
+                
+                <!-- second row context boxes -->
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="konstantino">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Konstantino&rsquo;s Story</h2>
+                            <h4 class="subtitle">Colon Cancer</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Konstantino&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target konstantino -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="jospeh">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Jospeh&rsquo;s Story</h2>
+                            <h4 class="subtitle">Andrenal Cancer</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Jospeh&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target jospeh -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="aasim">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Aasim&rsquo;s Story</h2>
+                            <h4 class="subtitle">Lung Cancer</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Aasim&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target aasim -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="sabrina">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Sabrina&rsquo;s Story</h2>
+                            <h4 class="subtitle">Leukemia</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Sabrina&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target sabrina -->
+
+
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="jorn">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Jorn&rsquo;s Story</h3>
+                            <h5 class="subtitle">Long Condition Name on More Than One Line</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="alexandra-anne">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Alexandra-Anne&rsquo;s Story</h3>
+                            <h5 class="subtitle">Breast Cancer</h5>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="thumb-list__item thumb-list__item--profile js-expand-toggle"
+                    data-expand-context="mq-large"
+                    data-expand-target="martin">
+                    <div class="thumb-list__item--shadowed inner rtf">
+                        <div class="image">
+                            <img src="http://placehold.it/242x159" alt="">
+                        </div>
+                        <div class="titles">
+                            <h3 class="title">Martin&rsquo;s Story</h3>
+                            <h5 class="subtitle">Colon Cancer</h5>
+                        </div>
+                    </div>
+                </a>
+
+
+
+                <!-- third row context boxes -->
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="jorn">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Jorn&rsquo;s Story</h2>
+                            <h4 class="subtitle">Long Condition Name on More Than One Line</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Jorn&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target jorn -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="alexandra-anne">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Alexandra-Anne&rsquo;s Story</h2>
+                            <h4 class="subtitle">Breast Cancer</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Alexandra-Anne&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target alexandra-anne -->
+
+                <div class="context-box js-context-box js-expand-target u-hidden-mq-medium-and-below is-collapsed"
+                    data-expand-trigger="martin">
+                    <div class="inner u-cf">
+                        <div class="context-box__image">
+                            <img src="http://placehold.it/527x347" alt="">
+                        </div>
+                        <div class="context-box__text rtf">
+                            <h2 class="title">Martin&rsquo;s Story</h2>
+                            <h4 class="subtitle">Colon Cancer</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu ex eget dui finibus mattis at sed odio. Suspendisse dignissim nunc leo, ut suscipit quam imperdiet eget. <b>That was seven years ago.</b></p>
+                            <a class="h3 context-box__link-more" href="#">Watch Martin&rsquo;s Story</a>
+                        </div>
+                        <a class="context-box__exit js-exit" href="#"></a>
+                    </div>
+                    <div class="context-box__arrow js-indicator"></div>
+                </div><!-- .js-expand-target martin -->
+
+            </div>
+        </div><!-- .l-row -->
+
+    </div><!-- .l-1-col-master -->
+
+</div><!-- .l-contain -->

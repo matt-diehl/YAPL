@@ -1,0 +1,269 @@
+/* ======  Hero Styles ====== */
+
+/* YAPL
+name: Home Hero
+notes: Main feature on the homepage. Chooses a random background image on load.
+*/
+
+.hp-hero {
+    background-color: #000;
+    position: relative;
+}
+
+.hp-hero__bg {
+    background-color: #000;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    height: 100%;
+    opacity: 0;
+    width: 100%;
+    transition: opacity 2s ease-out;
+    .hp-hero.is-loaded & {
+        opacity: 1;
+    }
+}
+
+.hp-hero__copy,
+.hp-hero__title {
+    color: #FFF;
+}
+
+.hp-hero__copy {
+    @extend %helveticaRegular;
+    line-height: 1.36;
+    &:after {
+        @extend %icon-circle-chevron-trans-sm-e;
+        content: "";
+        display: inline-block;
+        height: 26px;
+        margin-left: 8px;
+        vertical-align: middle;
+        width: 26px;
+    }
+}
+
+.hp-hero__cta {
+    display: table;
+    vertical-align: middle;
+    position: relative;
+    &:before {
+        background-position: 50%;
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0; left: 0;
+        width: 50px;
+    }
+}
+
+.hp-hero__cta--appt {
+    float: right;
+    &:before {
+        @extend %icon-calendar;
+    }
+}
+
+.hp-hero__cta--doctor {
+    float: left;
+    &:before {
+        @extend %icon-stethoscope;
+    }
+}
+
+.hp-hero__cta-text {
+    @extend %helveticaRegular;
+    display: table-cell;
+    font-size: 19px;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.hp-hero__title {
+    @extend %helveticaLight;
+}
+
+
+@include small-only {
+
+    .hp-hero {
+        background-color: #F9F9F9;
+    }
+
+    .hp-hero__bg {
+        background-size: cover;
+        padding-bottom: 67.1875%; // maintain aspect ratio
+    }
+
+    .hp-hero__ctas {
+        padding: 18px 0;
+    }
+
+    .hp-hero__cta {
+        height: 52px;
+    }
+
+    .hp-hero__cta--appt {
+        width: 158px;
+        &:before {
+            background-size: 28px 27px;
+        }
+    }
+
+    .hp-hero__cta--doctor {
+        width: 116px;
+        &:before {
+            background-size: 32px 30px;
+        }
+    }
+
+    .hp-hero__cta-text {
+        font-size: 16px;
+        padding-left: 50px;
+    }
+
+    .hp-hero__title {
+        background-color: rgba(78,66,59, .61);
+        display: table;
+        height: 78px;
+        margin-top: -78px;
+        position: absolute;
+        left: 0;
+        width: 100%;
+    }
+
+    .hp-hero__title-text {
+        display: table-cell;
+        font-size: 22px;
+        padding: 10px 15px;
+        vertical-align: middle;
+        @include helveticaRegular;
+    }
+
+}
+
+@include medium-only {
+
+    .hp-hero {
+        border-bottom: 12px solid #FFF;
+        height: 400px;
+        margin-bottom: 30px;
+        @include sectionBottomShadow;
+    }
+
+    .hp-hero__content {
+        width: 277px;
+    }
+
+    .hp-hero__copy {
+        font-size: 18px;
+    }
+
+    .hp-hero__cta {
+        height: 52px;
+    }
+
+    .hp-hero__cta--appt {
+        width: 56%;
+    }
+
+    .hp-hero__cta--doctor {
+        width: 40%;
+    }
+
+    .hp-hero__cta-text {
+        font-size: 16px;
+        padding-left: 50px;
+    }
+
+    .hp-hero__title {
+        font-size: 36px;
+    }
+
+}
+
+
+@include medium-and-above {
+
+    .hp-hero {
+        .l-contain {
+            height: 100%;
+            position: relative;
+        }
+    }
+
+    .hp-hero__bg {
+        position: absolute;
+        top: 0; left: 0;
+    }
+
+    .hp-hero__content {
+        display: table;
+        height: 100%;
+        position: absolute;
+        top: 0; right: 0;
+    }
+
+    .hp-hero__content-inner {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .hp-hero__ctas {
+        margin-top: 60px;
+    }
+
+    .hp-hero__title {
+        margin-bottom: 10px;
+    }
+
+}
+
+
+@include large-and-above {
+
+    .hp-hero {
+        border-bottom: 13px solid #FFF;
+        height: 432px;
+        margin-bottom: 35px;
+        @include sectionBottomShadow;
+    }
+
+    .hp-hero__content {
+        right: 50px;
+        width: 430px;
+    }
+
+    .hp-hero__copy {
+        font-size: 21px;
+    }
+
+    .hp-hero__cta {
+        height: 65px;
+        &:before {
+            width: 72px;
+        }
+    }
+
+    .hp-hero__cta--appt {
+        width: 47%;
+        &:before {
+            background-size: 35px 34px;
+        }
+    }
+
+    .hp-hero__cta--doctor {
+        width: 48%;
+        &:before {
+            background-size: 38px 38px;
+        }
+    }
+
+    .hp-hero__cta-text {
+        padding-left: 72px;
+    }
+
+    .hp-hero__title {
+        font-size: 40px;
+    }
+
+}

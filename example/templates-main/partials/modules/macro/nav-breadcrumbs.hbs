@@ -1,0 +1,38 @@
+{{! The Breadcrumb Navigation Partial }}
+
+<nav class="nav-breadcrumbs js-nav-breadcrumbs">
+    <ul class="nav-breadcrumbs__level1">
+    {{#each this}}
+        <li class="js-expand-wrap {{this.moduleStateClass}}">
+        {{#is this.moduleStateClass "module-is-collapsed"}}
+            <div class="nav-breadcrumbs__toggle">
+                <a href="#" class="nav-breadcrumbs__toggle-text">{{{ this.parent.name }}}</a>
+                <span class="nav-breadcrumbs__toggle-icon js-expand-toggle" data-collapse=".nav-breadcrumbs .js-expand-item.is-expanded"></span>
+            </div>
+            <div class="nav-breadcrumbs__level2 js-expand-item {{this.itemStateClass}}">
+                <button type="button" class="nav-breadcrumbs__scroll-prev js-nav-breadcrumbs__scroll-prev"></button>
+                <ul>
+                {{#each this.children}}
+                    <li><a href="#" class="{{this.activeClass}}">{{ this.name }}</a></li>
+                {{/each}}
+                </ul>
+                <button type="button" class="nav-breadcrumbs__scroll-next js-nav-breadcrumbs__scroll-next"></button>
+            </div>
+        {{else}}
+            <div class="nav-breadcrumbs__toggle">
+                <a href="#" class="nav-breadcrumbs__toggle-text">{{{ this.parent.name }}}</a>
+            </div>
+            <div class="nav-breadcrumbs__level2 {{this.itemStateClass}}">
+                <button type="button" class="nav-breadcrumbs__scroll-prev js-nav-breadcrumbs__scroll-prev"></button>
+                <ul>
+                {{#each this.children}}
+                    <li><a href="#" class="{{this.activeClass}}">{{ this.name }}</a></li>
+                {{/each}}
+                </ul>
+                <button type="button" class="nav-breadcrumbs__scroll-next js-nav-breadcrumbs__scroll-next"></button>
+            </div>
+        {{/is}}
+        </li>
+    {{/each}}
+    </ul>
+</nav><!-- .nav-breadcrumbs -->

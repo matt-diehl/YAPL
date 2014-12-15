@@ -1,0 +1,64 @@
+---
+layout: 2-col-master-w-content-nav.hbs
+title: Event Calendar
+description: Description
+section: 0
+subSection: 0
+showOffcanvasToggles: true
+breadcrumbData: <%= breadcrumbs.master %>
+---
+
+<!-- YAPL
+name: Event Calendar
+-->
+
+<!-- Load js dependencies -->
+<div class="js-event-listing" data-depend="/bower_components/pikaday/pikaday.js|/js/modules/EventListing.js">
+
+    <div class="l-row">
+        <div class="feature feature--event padbox1">
+            <div class="feature__date event-date event-date--lg icon-calendar-80">
+                <span class="event-date__month">Mar</span>
+                <span class="event-date__day">4</span>
+            </div>
+
+            <div class="feature__details">
+                <h2 class="feature__type">Featured Event</h2>
+                <span class="feature__title u-block">
+                    <a href="#" class="a">Update in Hematologic Cancers CME/CE Certified Course</a>
+                </span>
+                <div class="feature__desc rtf">
+                    <p>The support group is for people preparing for and recovering from bariatric surgery. Friends and family are welcome to attend. For details about an upcoming support group session at this location, please call 215-662-4170. </p>
+                </div>
+                <a href="#" class="feature__more link-more a u-inline-block">Details for this event</a>
+            </div>
+        </div><!-- .feature -->
+    </div>
+
+    <div class="l-row">
+        {{> accordion--filters }}
+    </div><!-- .l-row -->
+
+    <div class="l-row">
+        <div class="event-listing padbox1">
+
+            <div class="u-cf">
+                <h2 class="event-listing__title h2">Event Listings</h2>
+
+                <div class="event-listing__shift">
+                    <a href="#" class="event-listing__shift-prev">Previous</a>
+                    <div class="event-listing-shift-type select-wrap select-wrap--sm">
+                        <select class="select">
+                            <option value="">Week</option>
+                            <option value="">Day</option>
+                        </select>
+                    </div>
+                    <a href="#" class="event-listing__shift-next">Next</a>
+                </div>
+            </div>
+
+            {{> table--events }}
+        </div>
+    </div><!-- .l-row -->
+
+</div><!-- .js-event-listing -->

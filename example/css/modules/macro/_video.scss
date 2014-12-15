@@ -1,0 +1,25 @@
+/* ======  Video Player ====== */
+
+%video-play-button {
+    @extend %icon-video-play;
+    background-position: 50% 50%;
+    content: "";
+    height: 70px;
+    margin-left: -35px;
+    margin-top: -35px;
+    opacity: .8;
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 70px;
+    .lt-ie9 & {
+        filter: alpha(opacity=80);
+    }
+}
+
+.play-button {
+    position: relative;
+
+    &:after {
+        @extend %video-play-button;
+    }
+}

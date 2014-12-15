@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>icon-facebook-sm</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs>
+        <linearGradient x1="49.5678125%" y1="31.3065625%" x2="51.986875%" y2="133.9575%" id="linearGradient-1">
+            <stop stop-color="#3E72C8" offset="0%"></stop>
+            <stop stop-color="#1A3F7C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="icon-facebook-sm" sketch:type="MSArtboardGroup">
+            <g id="Shape-+-Shape-+-Shape" sketch:type="MSLayerGroup">
+                <path d="M-0.21875,9.880625 C-0.21875,4.355625 4.25625,-0.119375 9.78125,-0.119375 C15.306875,-0.119375 19.78125,4.355625 19.78125,9.880625 C19.78125,15.405625 15.306875,19.880625 9.78125,19.880625 C4.256875,19.880625 -0.21875,15.405625 -0.21875,9.880625 L-0.21875,9.880625 Z" id="Shape" fill="url(#linearGradient-1)" sketch:type="MSShapeGroup"></path>
+                <path d="M12.00625,10.486875 L10.46875,10.486875 L10.46875,15.980625 L8.18125,15.980625 L8.18125,10.486875 L7.09375,10.486875 L7.09375,8.543125 L8.18125,8.543125 L8.18125,7.286875 C8.18125,6.393125 8.6125,4.980625 10.4875,4.980625 L12.18125,4.993125 L12.18125,6.874375 L10.95,6.874375 C10.75,6.874375 10.468125,6.974375 10.468125,7.405625 L10.468125,8.543125 L12.205625,8.543125 L12.00625,10.486875 L12.00625,10.486875 Z" id="Shape" opacity="0.3" fill="#0F0102" sketch:type="MSShapeGroup"></path>
+                <path d="M12.00625,9.861875 L10.46875,9.861875 L10.46875,15.355625 L8.18125,15.355625 L8.18125,9.861875 L7.09375,9.861875 L7.09375,7.918125 L8.18125,7.918125 L8.18125,6.661875 C8.18125,5.768125 8.6125,4.355625 10.4875,4.355625 L12.18125,4.368125 L12.18125,6.249375 L10.95,6.249375 C10.75,6.249375 10.468125,6.349375 10.468125,6.780625 L10.468125,7.918125 L12.205625,7.918125 L12.00625,9.861875 L12.00625,9.861875 Z" id="Shape" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

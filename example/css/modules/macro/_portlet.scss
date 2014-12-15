@@ -1,0 +1,93 @@
+/* ======  Portlet Styles ====== */
+
+.portlet {
+    border-top: 3px solid #7BA9DD;
+    margin-bottom: 30px;
+    padding: 10px 16px;
+
+    .select-wrap {
+        display: block;
+        margin-bottom: 1em;
+    }
+}
+
+// Modifiers
+
+.portlet--important {
+    border-top-color: $dkRed;
+}
+
+.portlet--white {
+    background-color: #FFF;
+}
+
+
+// Elements
+
+.portlet__list > li,
+a.portlet__more,
+.portlet__text {
+    color: #777;
+}
+
+.portlet__list {
+    > li {
+        font-size: 15px;
+        margin-bottom: 7px;
+        > a {
+            color: inherit;
+        }
+    }
+}
+
+.portlet__list--row {
+    > li {
+        float: left;
+        line-height: 1.61;
+        padding-left: 20px;
+        width: 25%;
+
+        &:first-child {
+            padding-left: 0;
+        }
+    }
+}
+
+a.portlet__more:hover {
+    text-decoration: none;
+}
+
+.portlet__title {
+    @extend %helveticaRegular;
+    color: #3D80CB;
+    font-size: 23px;
+    line-height: 1.11;
+    margin-bottom: 13px;
+
+    .portlet--important & {
+        color: $dkRed;
+    }
+}
+
+
+@include medium-only {
+
+    .portlet__list--row {
+        @include grid("li", 2, $gridGutter2, $gridGutter2);
+    }
+
+}
+
+
+@include large-and-above {
+
+    .portlet__list--row {
+        .l-2-col-master & {
+            @include grid("li", 4, $gridGutter, $gridGutter);
+        }
+        .l-3-col-master & {
+            @include grid("li", 2, $gridGutter2, $gridGutter2);
+        }
+    }
+
+}

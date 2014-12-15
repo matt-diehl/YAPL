@@ -1,0 +1,227 @@
+/* ====== Table Styles - Uses bootstrap tables as a base ====== */
+
+$table-cell-padding: 16px 10px 12px !default;
+$table-condensed-cell-padding: 8px !default;
+$table-bg: #FFF !default;
+$table-bg-accent: #FAFAFA !default;
+$table-bg-hover: #F5F5F5 !default;
+$table-bg-active: $table-bg-hover !default;
+$table-border-color: #DDD !default;
+
+
+/* YAPL
+name: Table
+notes: The default table style. If it's used outside of a <div class="rtf">, it must have the "table" class applied
+context: table.default
+*/
+
+.table, .rtf table {
+    background-color: $table-bg;
+    font-size: 15px;
+    max-width: 100%;
+    margin: 30px 0;
+    width: 100%;
+    th {
+        color: #003976;
+        font-weight: bold;
+        text-align: left;
+        vertical-align: middle;
+    }
+    td {
+        vertical-align: top;
+    }
+    th,
+    td {
+        background-color: $table-bg;
+        padding: $table-cell-padding;
+        line-height: 1.2;
+        min-width: 110px;
+        border-top: 1px solid $table-border-color;
+
+        &:first-child {
+            min-width: 168px;
+        }
+    }
+    // Bottom align for column headings
+    > thead th {
+        border-bottom: 2px solid $table-border-color;
+        vertical-align: bottom;
+    }
+    // Remove top border from thead by default
+    > thead:first-child {
+        > tr:first-child {
+            > th,
+            > td {
+                border-top: 0;
+            }
+        }
+    }
+    // Account for multiple tbody instances
+    > tbody + tbody {
+        border-top: 2px solid $table-border-color;
+    }
+    // Nesting
+    .table {
+        background-color: inherit;
+    }
+}
+
+/* YAPL
+name: Table - Condensed
+notes: Condensed table w/ half padding
+context: table.condensed
+*/
+
+.table--condensed {
+    th,
+    td {
+        padding: $table-condensed-cell-padding;
+    }
+}
+
+
+/* YAPL
+name: Table - Bordered
+notes: Add borders all around the table and between all the columns.
+context: table.bordered
+*/
+
+.table--bordered {
+    border: 1px solid $table-border-color;
+    th,
+    td {
+        border: 1px solid $table-border-color;
+
+        &:first-child {
+            border-right-width: 2px;
+        }
+    }
+    > thead {
+        th,
+        td {
+            border-bottom-width: 2px;
+        }
+    }
+}
+
+
+/* YAPL
+name: Table - Sortable
+notes: A table with sortable columns
+partial: table--events
+*/
+
+.table--sortable {
+    > thead {
+        th,
+        td {
+            background-color: #F4F4F4;
+            border-bottom: 1px solid $table-border-color;
+            border-top: 1px solid $table-border-color !important;
+        }
+    }
+    .table__sort-toggle {
+        margin: 0;
+    }
+}
+
+
+/* YAPL
+name: Table - Striped
+notes: Adds zebra striping to the tables
+context: table.striped
+*/
+
+.table--striped {
+    > tbody > tr:nth-child(odd) {
+        > td,
+        > th {
+            background-color: $table-bg-accent;
+        }
+    }
+}
+
+/* YAPL
+name: Table w/Hover
+notes: Adds hover styles
+context: table.hover
+*/
+
+.table--hover {
+    > tbody > tr:hover {
+        > td,
+        > th {
+            background-color: $table-bg-hover;
+        }
+    }
+}
+
+
+/* YAPL
+name: Table - Master
+notes: The typical style for most tables. A combination of the striped and bordered styles. Becomes horizontally scrollable at mobile.
+context: table.master
+*/
+
+.table--responsive {
+    overflow-y: hidden;
+    overflow-x: auto;
+    margin: 30px 0;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    > .table {
+        margin: 0;
+    }
+    @media screen and (max-width: $mq-1) {
+        margin: 30px 0;
+        border: 1px solid $table-border-color;
+        // Special overrides for the bordered tables
+        > .table--bordered {
+            border: 0;
+            // Nuke the appropriate borders so that the parent can handle them
+            > thead,
+            > tbody,
+            > tfoot {
+                > tr {
+                    > th:first-child,
+                    > td:first-child {
+                        border-left: 0;
+                    }
+                    > th:last-child,
+                    > td:last-child {
+                        border-right: 0;
+                    }
+                }
+            }
+            // Only nuke the last row's bottom-border in `tbody` and `tfoot` since
+            // chances are there will be only one `tr` in a `thead` and that would
+            // remove the border altogether.
+            > tbody,
+            > tfoot {
+                > tr:last-child {
+                    > th,
+                    > td {
+                        border-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.table__sort-toggle {
+    @extend %icon-chevron-green-s;
+    color: $linkBlue;
+    background-position: 100% 50%;
+    font-size: 17px;
+    font-weight: bold;
+    padding-right: 20px;
+    &[data-order="asc"][data-active="active"] {
+        @extend %icon-chevron-red-s;
+    }
+    &[data-order="desc"][data-active="active"] {
+        @extend %icon-chevron-red-n;
+    }
+}

@@ -1,0 +1,49 @@
+/* ======  Search Styles ====== */
+
+/* YAPL
+name: Search
+notes: Cancer search
+context: search.largeRed
+*/
+
+.search {
+    border: 1px solid #cecece;
+    max-width: 520px;
+    position: relative;
+}
+
+.search--large {
+    height: 40px;
+    font-size: 18px;
+}
+
+.search__input,
+.search__submit {
+    border: 0;
+}
+
+.search__input {
+    height: 100%;
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    .search--large & {
+        padding: 0 80px 0 14px;
+    }
+    @include small-only {
+        font-size: 14px;
+    }
+}
+
+.search__submit {
+    margin: 0;
+    position: absolute;
+    top: -1px; right: -1px; bottom: -1px;
+    width: 52px;
+}
+
+.search__submit--red {
+    @extend %icon-search-white-w;
+    background-color: #CE3F32;
+    background-position: 50% 50%;
+}

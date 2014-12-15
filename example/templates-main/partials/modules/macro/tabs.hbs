@@ -1,0 +1,20 @@
+<aside class="tabs js-tabs">
+    <div class="tabs__toggles">
+    {{#iterate this}}
+       <a href="#tab-{{this.number}}" class="tabs__toggle js-tabs__toggle">{{this.shortTitle}}</a>
+    {{/iterate}}
+    </div>
+    <div class="tabs__content-wrap">
+    {{#iterate this}}
+        <div class="tabs__content js-tabs__content" data-tab="{{this.number}}">
+            <a href="#tab-{{this.number}}" class="tabs__toggle--mobile js-tabs__toggle--mobile">{{this.shortTitle}}</a>
+            <div class="tabs__content-inner cf">
+                <h2 class="tabs__title h3">{{this.longTitle}}</h2>
+                <div class="rtf">
+                    {{{this.content}}}
+                </div>
+            </div>
+        </div>
+    {{/iterate}}
+    </div>
+</aside><!-- .tabs -->

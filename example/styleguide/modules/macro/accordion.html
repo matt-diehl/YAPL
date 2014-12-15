@@ -1,0 +1,390 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+
+
+    <!-- We'll require the same CSS/JS as the main templates, so load that in as a shared partial (also in footer) -->
+    <link rel="stylesheet" href="/css/main.css">
+<!--[if lt IE 8]><link rel="stylesheet" href="/css/main-ie7.css"><![endif]-->
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/styleguide.css">
+
+    <!--[if lt IE 9]>
+<!-- build:js /js/vendor/respond.js -->
+<script src="/bower_components/respond/dest/respond.src.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /js/vendor/modernizr.js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+</head>
+
+<body class="sg-body js-sg-body">
+
+    <div class="sg-nav-wrap open-sans">
+    <span class="sg-nav__close js-sg-nav-toggle">Close</span>
+    <nav class="sg-nav">
+        <ul class="sg-nav__level1">
+            <li>
+                <span class="sg-nav__level1-title open-sans--semibold">Micro Modules</span>
+                <ul class="sg-nav__level2">
+                
+                    <li><a href="/styleguide/modules/micro/btn.html">btn</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/figure.html">figure</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/form.html">form</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/letters.html">letters</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/table.html">table</a></li>
+                
+                </ul>
+            </li>
+            <li>
+                <span class="sg-nav__level1-title open-sans--semibold">Macro Modules</span>
+                <ul class="sg-nav__level2">
+                
+                    <li><a href="/styleguide/modules/macro/accordion.html">accordion</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/cta.html">cta</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/feed.html">feed</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/hp-hero.html">hp-hero</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/nav-breadcrumbs.html">nav-breadcrumbs</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/search.html">search</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/sharebar.html">sharebar</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/slider.html">slider</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/story-slider.html">story-slider</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/tabs.html">tabs</a></li>
+                
+                </ul>
+            </li>
+            <li>
+                <a href="/styleguide/display-templates.html" class="sg-nav__level1-title open-sans--semibold">Display Templates</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+    <div class="sg-content-wrap">
+
+        <header class="sg-header">
+            <div class="sg-header__inner l-contain">
+                <div class="sg-header__left">
+                    <a href="/styleguide/" class="sg-logo"><img src="/images/assets/logo-pennmed-abramson-med.png" alt="Abramson Cancer Center Logo"></a>
+                </div>
+                <div class="sg-header__right">
+                    <button type="button" class="sg-nav-open open-sans open-sans--semibold js-sg-nav-toggle">Menu</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="l-contain">
+            <div class="sg-utility cf">
+                <ul class="sg-breadcrumb l-float-l">
+    <li class="open-sans open-sans--semibold">
+        <a href="/styleguide/">Design Pattern Library</a>
+    </li>
+    <li class="open-sans open-sans--semibold">
+        <a href="/styleguide/">
+            macro
+        </a>
+    </li>
+    
+    <li class="open-sans open-sans--semibold">
+        accordion
+    </li>
+    
+</ul>
+                <button type="button" class="sg-toggle-all open-sans u-float-r js-sg-toggle-all">
+                    <span class="show-if-collapsed">Show</span>
+                    <span class="show-if-expanded">Hide</span>
+                    All Code/Annotations
+                </button>
+            </div>
+            
+
+            
+<div class="sg-block js-sg-block module-is-collapsed">
+    <div class="sg-block__header">
+        <h2 class="sg-block__title open-sans open-sans--semibold">Accordion</h2>
+        <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+            <span class="show-if-collapsed">Show</span>
+            <span class="show-if-expanded">Hide</span>
+            Code/Annotations
+        </span>
+    </div>
+    <div class="sg-block__content cf">
+        <div class="sg-block__example cf">
+            <div class="accordion accordion--filters filters filters--events padbox1 js-tabs">
+    <h2 class="accordion__title h2">Find Events</h2>
+    <div class="accordion__item-wrap">
+        <div class="accordion__item js-tabs__content" data-tab="1">
+            <h2 class="accordion__item-title h3">
+                <a href="#tab-1" class="js-tabs__toggle a">Date</a>
+            </h2>
+            <div class="accordion__item-inner cf">
+                <div class="filters__datepicker js-filters__datepicker">
+                    <input type="text" class="js-datepicker u-hidden">
+                </div>
+                <div class="filters__form form">
+                    <div class="form__row">
+                        <input id="radio-1" name="radio" type="radio">
+                        <label for="radio-1">Day</label>
+                    </div>
+                    <div class="form__row">
+                        <input id="radio-2" name="radio" type="radio">
+                        <label for="radio-2">Week</label>
+                    </div>
+                    <div class="form__row">
+                        <input id="radio-3" name="radio" type="radio">
+                        <label for="radio-3">Month</label>
+                    </div>
+                    <div class="form__row">
+                        <input id="checkbox-1" name="checkbox" type="checkbox">
+                        <label for="checkbox-1">Include Past Events</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion__item js-tabs__content" data-tab="2">
+            <h2 class="accordion__item-title h3">
+                <a href="#tab-2" class="js-tabs__toggle a">Event Type</a>
+            </h2>
+            <div class="accordion__item-inner cf">
+                <div class="filters__form">
+                    <div class="form__row">
+                        <input id="checkbox-2" name="checkbox" type="checkbox">
+                        <label for="checkbox-2">All Events</label>
+                    </div>
+                    <div class="form__row">
+                        <input id="checkbox-3" name="checkbox" type="checkbox">
+                        <label for="checkbox-3">Support Groups</label>
+                    </div>
+                    <div class="form__row">
+                        <input id="checkbox-4" name="checkbox" type="checkbox">
+                        <label for="checkbox-4">Community Events</label>
+                    </div>
+                    <div class="form__row">
+                        <input id="checkbox-5" name="checkbox" type="checkbox">
+                        <label for="checkbox-5">Academic Events</label>
+                    </div>
+                    <div class="form__row">
+                        <input id="checkbox-6" name="checkbox" type="checkbox">
+                        <label for="checkbox-6">Online Events</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion__item js-tabs__content" data-tab="3">
+            <h2 class="accordion__item-title h3">
+                <a href="#tab-3" class="js-tabs__toggle a">Sponsor</a>
+            </h2>
+            <div class="accordion__item-inner cf">
+                <div class="select-wrap select-wrap--sm u-block">
+                    <select name="" id="" class="select">
+                        <option value="">All Sponsors</option>
+                        <option value="">Sponsor Name</option>
+                        <option value="">Sponsor Name</option>
+                        <option value="">Sponsor Name</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="accordion__item js-tabs__content" data-tab="4">
+            <h2 class="accordion__item-title h3">
+                <a href="#tab-4" class="js-tabs__toggle a">Location</a>
+            </h2>
+            <div class="accordion__item-inner cf">
+                <div class="select-wrap select-wrap--sm u-block">
+                    <select name="" id="" class="select">
+                        <option value="">All Locations</option>
+                        <option value="">Location Name</option>
+                        <option value="">Location Name</option>
+                        <option value="">Location Name</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div><!-- .accordion__item-wrap -->
+</div><!-- .accordion -->
+        </div>
+        <div class="sg-block__more is-collapsed js-sg-block__more">
+            <div class="sg-block__html">
+                <h3 class="sg-block__header2 open-sans open-sans--semibold">HTML</h3>
+                <pre><code class="language-markup">&lt;div class=&quot;accordion accordion--filters filters filters--events padbox1 js-tabs&quot;&gt;
+    &lt;h2 class=&quot;accordion__title h2&quot;&gt;Find Events&lt;/h2&gt;
+    &lt;div class=&quot;accordion__item-wrap&quot;&gt;
+        &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;1&quot;&gt;
+            &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                &lt;a href=&quot;#tab-1&quot; class=&quot;js-tabs__toggle a&quot;&gt;Date&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                &lt;div class=&quot;filters__datepicker js-filters__datepicker&quot;&gt;
+                    &lt;input type=&quot;text&quot; class=&quot;js-datepicker u-hidden&quot;&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;filters__form form&quot;&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;radio-1&quot; name=&quot;radio&quot; type=&quot;radio&quot;&gt;
+                        &lt;label for=&quot;radio-1&quot;&gt;Day&lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;radio-2&quot; name=&quot;radio&quot; type=&quot;radio&quot;&gt;
+                        &lt;label for=&quot;radio-2&quot;&gt;Week&lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;radio-3&quot; name=&quot;radio&quot; type=&quot;radio&quot;&gt;
+                        &lt;label for=&quot;radio-3&quot;&gt;Month&lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;checkbox-1&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                        &lt;label for=&quot;checkbox-1&quot;&gt;Include Past Events&lt;/label&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;2&quot;&gt;
+            &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                &lt;a href=&quot;#tab-2&quot; class=&quot;js-tabs__toggle a&quot;&gt;Event Type&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                &lt;div class=&quot;filters__form&quot;&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;checkbox-2&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                        &lt;label for=&quot;checkbox-2&quot;&gt;All Events&lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;checkbox-3&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                        &lt;label for=&quot;checkbox-3&quot;&gt;Support Groups&lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;checkbox-4&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                        &lt;label for=&quot;checkbox-4&quot;&gt;Community Events&lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;checkbox-5&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                        &lt;label for=&quot;checkbox-5&quot;&gt;Academic Events&lt;/label&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;form__row&quot;&gt;
+                        &lt;input id=&quot;checkbox-6&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                        &lt;label for=&quot;checkbox-6&quot;&gt;Online Events&lt;/label&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;3&quot;&gt;
+            &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                &lt;a href=&quot;#tab-3&quot; class=&quot;js-tabs__toggle a&quot;&gt;Sponsor&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                &lt;div class=&quot;select-wrap select-wrap--sm u-block&quot;&gt;
+                    &lt;select name=&quot;&quot; id=&quot;&quot; class=&quot;select&quot;&gt;
+                        &lt;option value=&quot;&quot;&gt;All Sponsors&lt;/option&gt;
+                        &lt;option value=&quot;&quot;&gt;Sponsor Name&lt;/option&gt;
+                        &lt;option value=&quot;&quot;&gt;Sponsor Name&lt;/option&gt;
+                        &lt;option value=&quot;&quot;&gt;Sponsor Name&lt;/option&gt;
+                    &lt;/select&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;4&quot;&gt;
+            &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                &lt;a href=&quot;#tab-4&quot; class=&quot;js-tabs__toggle a&quot;&gt;Location&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                &lt;div class=&quot;select-wrap select-wrap--sm u-block&quot;&gt;
+                    &lt;select name=&quot;&quot; id=&quot;&quot; class=&quot;select&quot;&gt;
+                        &lt;option value=&quot;&quot;&gt;All Locations&lt;/option&gt;
+                        &lt;option value=&quot;&quot;&gt;Location Name&lt;/option&gt;
+                        &lt;option value=&quot;&quot;&gt;Location Name&lt;/option&gt;
+                        &lt;option value=&quot;&quot;&gt;Location Name&lt;/option&gt;
+                    &lt;/select&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;&lt;!-- .accordion__item-wrap --&gt;
+&lt;/div&gt;&lt;!-- .accordion --&gt;</code></pre>
+            </div>
+            <div class="sg-block__notes">
+                <h3 class="sg-block__header2 open-sans open-sans--semibold">Notes</h3>
+                <p class="open-sans">
+                    Simple accordion with only one section open at a time
+                </p>
+                
+                    <p class="open-sans open-sans--semibold">Appears on:</p>
+                    <ul class="open-sans">
+                    
+                        <li><a href="/ProductionTemplates/event-calendar.html" target="_blank">event calendar</a></li>
+                    
+                    </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+
+    </div>
+
+    <div id="page-scripts">
+    <!-- build:js /js/main.js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="/js/modules/Media.js"></script>
+    <script src="/js/modules/Expand.js"></script>
+    <script src="/js/modules/Nav.js"></script>
+    <script src="/js/modules/Header.js"></script>
+    <script src="/js/modules/OffCanvas.js"></script>
+    <script src="/js/modules/Select.js"></script>
+    <script src="/js/modules/Table.js"></script>
+    <script src="/js/modules/Tabs.js"></script>
+    <script src="/js/modules/Video.js"></script>
+
+    <script src="/bower_components/Helper-JS-Modules/Dependencies.js"></script>
+    <!-- endbuild -->
+
+    <!--[if lte IE 9]><script src="/js/modules/IEfixes.js"></script><![endif]-->
+</div>
+
+    <script src="/js/modules/SG.js"></script>
+
+    <!-- build:js /js/vendor/prism.js -->
+    <script src="/bower_components/prism/prism.js"></script>
+    <!-- endbuild -->
+
+    <script>
+
+        $('.js-sg-nav-toggle').on('click', function() {
+            $('.js-sg-body').toggleClass('is-showing-nav');
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+/* ======  Sharebar Styles ====== */
+
+/* YAPL
+name: Sharebar
+notes: The sharebar is located at the bottom of pages and shares the current page on different social media sites
+*/
+
+.sharebar {
+    clear: both;
+    padding-top: 22px;
+    position: relative;
+    text-align: right;
+    &:before {
+        border-top: 3px solid #7380A9;
+        box-shadow: 0px 0px 40px 4px rgba(0,0,0, .05);
+        content: "";
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+    }
+
+    > a {
+        background-position: 50% 0%;
+        background-size: 26px 26px;
+        color: #777;
+        display: inline-block;
+        font-size: 12px;
+        padding-top: 36px;
+        text-align: center;
+        width: 52px;
+    }
+}
+
+.sharebar > a,
+.sharebar__text {
+    vertical-align: middle;
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.sharebar__text {
+    border-right: 1px solid #DADCD7;
+    color: #858593;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    height: 50px;
+    margin-right: 10px;
+    padding: 16px 10px;
+}
+
+
+@include small-only {
+
+    .sharebar {
+        margin: 30px 0;
+    }
+
+}
+
+
+@include medium-only {
+
+    .sharebar {
+        margin: 50px 0;
+    }
+
+}
+
+
+@include large-and-above {
+
+    .sharebar {
+        margin-top: 50px;
+    }
+
+}

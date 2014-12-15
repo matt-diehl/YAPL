@@ -1,0 +1,92 @@
+---
+layout: 2-col-master-w-content-nav.hbs
+title: Treatment Types
+description: Description
+section: 2
+showOffcanvasToggles: true
+breadcrumbData: <%= breadcrumbs.master %>
+inPageCTAs:
+    - <%= cta.inPageAppt %>
+    - <%= cta.inPageDoctor %>
+    - <%= cta.inPageClinicalTrial %>
+related_content:
+    - <%= relatedContent.linksWideNews %>
+portlets:
+    - <%= portlet.trials %>
+    - <%= portlet.text %>
+---
+
+<!-- YAPL
+name: Treatment Types
+-->
+
+
+
+<div class="rtf l-row">
+    <p>Teaser text dolor sit amet, consectetur adipiscing elit. Integer auctor eget risus ac laoreet.</p>
+</div><!-- .rtf -->
+
+
+<div class="cta-row js-ie-row u-cf">
+    {{#each inPageCTAs}}
+        {{> cta this}}
+    {{/each}}
+</div><!-- .cta-row -->
+
+
+<div class="padbox1 padbox1--full-bottom padbox1-grid-of-3 l-row u-cf">
+    <div class="padbox1-grid__col">
+        {{> figure figure.video }}
+    </div><!-- .padbox1-grid__col -->
+
+    <div class="padbox1-grid__col padbox1-grid__col--2 rtf">
+        <h3>Featured Treatment</h3>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor eget risus ac laoreet. Sed at ipsum tempus, vulputate lacus vitae, auctor leo. Mauris sodales diam mauris, non imperdiet tellus rutrum id. Nullam dolor nisl, eleifend eget dignissim fringras ut nisl at justo ultrices interdum massa. <a class="link-generic-action"> Read more about Proton Therapy</a></p>
+    </div><!-- .padbox1-grid__col -->
+</div><!-- .padbox1 -->
+
+
+<div class="l-grid-of-3 l-grid-of-3-mq-small u-cf">
+    <div class="l-grid__col--2 rtf">
+        <h2>Treatments</h2>
+
+        <p>Rich text intro text about treatments and the groupings goes here.</p>
+
+        <ul class="big-list">
+            <li>
+                <a class="h3" href="#">Chemotherapy and Other Systemic Treatments</a>
+
+                <ul>
+                    <li><a href="#">Biologic Therapy / Immunotherapy</a></li>
+                    <li><a href="#">Bone Marrow and Stem Cell Transplantation</a></li>
+                    <li><a href="#">Chemotherapy</a></li>
+                    <li><a href="#">Hormone Therapy</a></li>
+                    <li><a href="#">Targeted Therapy</a></li>
+                    <li><a href="#">Vaccine Therap</a></li>
+                </ul>
+            </li>
+
+            <li><a class="h3" href="#">Clinical Trials</a></li>
+
+            <li><a class="h3" href="#">Integrative Medicine &amp; Wellness</a></li>
+
+            <li>
+                <a class="h3" href="#">Radiation Treatments</a>
+
+                <ul>
+                    <li><a href="#">Photodynamic Therapy (PDT)</a></li>
+                    <li><a href="#">Proton Therapy</a></li>
+                    <li><a href="#">Radiation Treatment</a></li>
+                </ul>
+            </li>
+            <li><a class="h3" href="#">Surgery</a></li>
+        </ul>
+    </div><!-- .l-grid__col2 -->
+
+    <div class="l-grid__col">
+        {{#each portlets}}
+            {{> portlet this}}
+        {{/each}}
+    </div><!-- .l-grid__col -->
+</div>

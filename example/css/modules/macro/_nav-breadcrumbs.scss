@@ -1,330 +1,98 @@
-// Variables
+/* ======  Breadcrumb Navigation Styles ====== */
 
-$breadcrumbSubPaddingSide: 4px;
-$breadcrumbTriangleLeftStart: 13px;
+/* YAPL
+name: Breadcrumb Navigation
+notes: Shows the trail of pages up to the current and also acts as secondary navigation
+context: breadcrumbs.master
+*/
 
-// Mixins
-@mixin breadcrumbNthChildStyle($i, $screen, $hero:false) {
-    @if $screen == "small-only"  {
-        background: rgb(25,61,103) + (rgb(23,19,15) * ($i - 1));
-    }
-    @if $screen == "medium-only" and $hero == true {
-        background: rgba(0,40,87, .9) + (rgba(23,19,15, .9) * ($i - 1));
-    }
-    @if $screen == "medium-only" and $hero == false {
-        background: rgb(25,61,103) + (rgb(23,19,15) * ($i - 1));
-    }
-    @if $screen == "large-only" {
-        background: rgb(25,61,103) + (rgb(23,19,15) * ($i - 1));
-    }
-}
-
-
-// Breadcrumb Styles
 .nav-breadcrumbs {
-    display: none;
-    overflow: hidden;
-}
-
-.nav-breadcrumbs-level1,
-.nav-breadcrumbs-level2 {
-    li {
-        display: block;
-        margin: 0;
-        > a {
-            color: #FFF;
-            display: block;
-            font-family: $VAGLight;
-            font-size: 15px;
-            letter-spacing: 1px;
-            position: relative;
-            &:hover {
-                @extend %a:hover;
-                color: rgba(255,255,255,0.7);
-            }
-            &.is-active {
-                font-family: $VAGBold;
-                font-style: italic;
-            }
+    @extend %helveticaMedium;
+    background-color: #FFF;
+    border-top: $medDkBlueBorder;
+    padding: 0 5%;
+    a {
+        color: #666;
+        &.is-active {
+            color: $orange;
         }
     }
 }
 
-.nav-breadcrumbs-level1 > li {
-    border-top: 1px solid #FFF;
-    border-top: 1px solid rgba(255,255,255, 0.2);
-}
-.nav-breadcrumbs-level2.is-expanded {
-    border-top: 1px solid #4C637F;
-    border-top: 1px solid rgba(0,0,0, 0.15);
-}
-
-.nav-breadcrumbs-level1 {
+.nav-breadcrumbs__level1 {
     > li {
-        > a {
-            padding-bottom: 16px;
-            padding-right: 8px;
-            padding-top: 16px;
-            &:hover {
-                text-decoration: none;
-            }
-        }
-        &:last-child {
-            .nav-breadcrumbs-toggle-text {
-                @extend %icon-chevron-transparentblack-s;
-            }
+        border-top: $thinGrayBorder;
+        padding-left: 4px;
+        &:first-child {
+            border-top: 0;
         }
     }
-
-}
-
-// A fancy Sass for-loop to handle the logic of indenting and coloring each breadcrumb
-.nav-breadcrumbs-level1 {
-    @for $i from 1 through 6 {
+    @for $i from 3 through 6 {
         > li:nth-child(#{$i}) {
-            @include breadcrumbNthChildStyle($i, "all");
+            padding-left: 12px * ($i - 2);
         }
         // IE8 makes this much loop much lamer since it gets angry at having an nth-child selector on the same line
         > li.nth-child-#{$i} {
-            @include breadcrumbNthChildStyle($i, "all");
+            padding-left: 12px * ($i - 2);
         }
     }
 }
 
-/* temp until sass loop is fixed */
-.lt-ie9 .nav-breadcrumbs-level1 > li.nth-child-1 { background: #002857!important; }
-.lt-ie9 .nav-breadcrumbs-level1 > li.nth-child-2 { background: #193d67!important; }
-.lt-ie9 .nav-breadcrumbs-level1 > li.nth-child-3 { background: #305076!important; }
-.lt-ie9 .nav-breadcrumbs-level1 > li.nth-child-4 { background: #476385!important; }
-.lt-ie9 .nav-breadcrumbs-level1 > li.nth-child-5 { background: #5e7694!important; }
-.lt-ie9 .nav-breadcrumbs-level1 > li.nth-child-6 { background: #7589A3!important; }
-
-.nav-breadcrumbs-level2 {
-    .csstransitions &.is-collapsed {
-        -webkit-transition: none;
-        -moz-transition: none;
-        -o-transition: max-height 0 ease-in, padding 0 ease-in;
-        transition: none;
-    }
-
-    .csstransitions &.is-expanded {
-        max-height: 1000px;
-        -webkit-transition: max-height 400ms ease-in, padding 200ms ease-in;
-        -moz-transition: max-height 400ms ease-in, padding 200ms ease-in;
-        -o-transition: max-height 400ms ease-in, padding 200ms ease-in;
-        transition: max-height 400ms ease-in, padding 200ms ease-in;
-    }
-
+.nav-breadcrumbs__level2 {
     li {
+        border-top: $thinGrayBorder;
+        font-size: 15px;
+        padding: 14px 4px 14px 13px;
+        .nav-breadcrumbs__level1 > li:first-child,
+        .nav-breadcrumbs__level1 > li:first-child + li {
+            padding-left: 10px;
+        }
         > a {
-            padding: 10px 8px 10px 0;
-        }
-    }
-    ul {
-        margin-bottom: 3px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        .lt-ie9 & {
-            margin-bottom: 0;
+            color: #4B4C4D;
         }
     }
 }
 
-.nav-breadcrumbs-level1 a { position: relative; }
 
-.nav-breadcrumbs-toggle {
-    @extend %icon-nav-toggle;
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    display: inline-block;
-    height: 50px;
-    position: relative;
-    width: 50px;
-    &:focus {
-        outline: 0;
-    }
-    &.is-active {
-        @extend %icon-nav-toggle-active;
-    }
-}
-
-.nav-breadcrumbs-toggle-text {
-    background-position: 100% 50%;
-    display: block;
-    padding-right: 30px;
-}
-
-.nav-breadcrumbs-toggle-icon {
-    @extend %icon-circle-white-chevron-blue-e;
-    background-position: 100% 50%;
-    background-repeat: no-repeat;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 29px;
-    .module-is-collapsed a:hover & {
-        @extend %icon-circle-white-chevron-blue-e-hover;
-    }
-    .module-is-expanded & {
-        @extend %icon-circle-white-chevron-blue-s;
-    }
-}
-
-
-@include small-only {
-
-    .nav-breadcrumbs-toggle-icon {
-        right: $mobileSidePad;
-    }
-
-    .nav-breadcrumbs-level1 {
-        > li {
-            > a {
-                padding-left: $mobileSidePad;
-                padding-right: $mobileSidePad;
-            }
-        }
-        @for $i from 1 through 6 {
-            > li:nth-child(#{$i}) {
-                @include breadcrumbNthChildStyle($i, "small-only");
-            }
-            // IE8 makes this much loop much lamer since it gets angry at having an nth-child selector on the same line
-            > li.nth-child-#{$i} {
-                @include breadcrumbNthChildStyle($i, "small-only");
-            }
-        }
-    }
-
-    .nav-breadcrumbs-level2 {
-        margin: 0 $mobileSidePad;
-    }
-
-}
-
-
-@include medium-and-below {
-
-    .nav-breadcrumbs {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        z-index: 1;
-        &.is-active {
-            display: block;
-        }
-    }
-
-    .nav-breadcrumbs-level1 > li:first-child > a {
-        font-family: $VAGBold;
-    }
-
-}
-
-
-@include medium-only {
-
-    .nav-breadcrumbs-level1 {
-        > li {
-            margin-bottom: -3px; /* fix to prevent page bg from showing through in ie9 */
-
-            > a {
-                padding-left: $tabletSidePad
-            }
-        }
-        @for $i from 1 through 6 {
-            > li:nth-child(#{$i}) {
-                @include breadcrumbNthChildStyle($i, "medium-only", false);
-            }
-            // IE8 makes this much loop much lamer since it gets angry at having an nth-child selector on the same line
-            > li.nth-child-#{$i} {
-                @include breadcrumbNthChildStyle($i, "medium-only", false);
-            }
-        }
-        .hero-is-active & {
-            @for $i from 1 through 6 {
-                > li:nth-child(#{$i}) {
-                    @include breadcrumbNthChildStyle($i, "medium-only", true);
-                }
-                // IE8 makes this much loop much lamer since it gets angry at having an nth-child selector on the same line
-                > li.nth-child-#{$i} {
-                    @include breadcrumbNthChildStyle($i, "medium-only", true);
-                }
-            }
-        }
-    }
-
-    .nav-breadcrumbs-level2 {
-        margin: 0 $tabletSidePad;
-    }
-
-    .nav-breadcrumbs-toggle-icon {
-        right: $tabletSidePad;
-    }
-
-    .nav-breadcrumbs-toggle-text {
-        margin-right: 11px;
-    }
-
-
-}
-
-
-@include large-and-above {
-
-    .nav-breadcrumbs {
-        margin-bottom: 15px;
-    }
-
-    .content-home .nav-breadcrumbs {
-        display: none;
-    }
-
-    .l-2-col-master .nav-breadcrumbs,
-    .l-3-col-master .nav-breadcrumbs {
+// ADD SCROLLABLE STYLES
+.nav-breadcrumbs__scroll-next,
+.nav-breadcrumbs__scroll-prev {
+    display: none;
+    .is-scrollable & {
         display: block;
     }
+}
 
-    .nav-breadcrumbs-level1 {
-
-        > li {
-            > a {
-                padding-left: 15px;
-            }
-        }
-
-        @for $i from 1 through 6 {
-            > li:nth-child(#{$i + 1}) {
-                @include breadcrumbNthChildStyle($i, "large-only");
-            }
-            // IE8 makes this much loop much lamer since it gets angry at having an nth-child selector on the same line
-            > li.nth-child-#{$i + 1} {
-                @include breadcrumbNthChildStyle($i, "large-only");
-            }
+.nav-breadcrumbs__toggle {
+    font-size: 16px;
+    padding: 14px 40px 14px 0;
+    position: relative;
+    .nav-breadcrumbs__level1 li:first-child & {
+        font-size: 19px;
+    }
+    a {
+        .nav-breadcrumbs__level1 > li:first-child & {
+            color: #174A87;
         }
     }
+}
 
-    .nav-breadcrumbs-level1 > li:first-child {
-        display: none;
-        + li > a {
-            font-family: $VAGBold;
-        }
+.nav-breadcrumbs__toggle-icon {
+    @extend %icon-circle-chevron-e;
+    background-position: 50% 50%;
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0; right: 0;
+    width: 32px;
+
+    .nav-breadcrumbs__level1 > li.module-is-expanded & {
+        @extend %icon-circle-chevron-s;
     }
-
-    .nav-breadcrumbs-level2 {
-        margin: 0 16px;
+    .nav-breadcrumbs__level1 > li:first-child & {
+        @extend %icon-circle-chevron-blue-sm-e;
     }
-
-    .nav-breadcrumbs-toggle {
-        display: none;
+    .nav-breadcrumbs__level1 > li.module-is-expanded:first-child & {
+        @extend %icon-circle-chevron-blue-sm-s;
     }
-
-    .nav-breadcrumbs-toggle-icon {
-        right: 13px;
-    }
-
-    .nav-breadcrumbs-toggle-text {
-        margin-right: 5px;
-    }
-
 }

@@ -1,0 +1,36 @@
+links:
+  modifier: portlet--links
+  title: Portlet Title
+  list:
+    - Basser Grants
+    - Basser Global Prize
+    - Seminars and Symposia
+    - Find a Clinical Trial
+trials:
+  modifier: portlet--white portlet--important
+  title: Clinical Trials
+  text: "Teaser text dolor sit amet, consectetur adipiscing elit. Integer auctor eget risus ac laoreet. Sed at ipsum tempus, vulputate lacus vitae, auctor leo."
+  showTrials: true
+text:
+  modifier: portlet--white
+  title: Portlet Title That Wraps To Multiple Lines
+  text: "Teaser text dolor sit amet, consectetur adipiscing elit. Integer auctor eget risus ac laoreet. Sed at ipsum tempus, vulputate lacus vitae, auctor leo."
+  moreLink: Read More
+relatedservices:
+  modifier: portlet--links
+  title: Related Services
+  list:
+    - Service
+    - Another Service
+    - Yet Another Service
+    - Service with a Longer Name
+    - Another Service
+events:
+  modifier: portlet--links
+  title: Events
+  list:
+    - Support-Related Event
+    - Another Support-Related Event
+    - Yet Another Support-Related Event
+    - Support-Related Event
+    - Another Support-Related Event

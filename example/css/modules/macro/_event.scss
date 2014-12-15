@@ -1,0 +1,140 @@
+
+.event-date {
+    @extend %helveticaMedium;
+    color: #000;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.event-date--lg {
+    height: 82px;
+    padding-top: 28px;
+    width: 80px;
+
+    .event-date__day {
+        font-size: 31px;
+    }
+
+    .event-date__month {
+        font-size: 17px;
+    }
+}
+
+.event-date--sm {
+    background-size: 54px 55px;
+    height: 55px;
+    padding-top: 18px;
+    width: 54px;
+
+    .event-date__day {
+        font-size: 20px;
+        line-height: 0.8;
+    }
+
+    .event-date__month {
+        font-size: 11px;
+    }
+}
+
+.event-date__day,
+.event-date__month {
+    display: block;
+}
+
+.event-listing {
+    border-top: $lightBlueBorder;
+
+    .table__col {
+        line-height: 1.18;
+    }
+
+    .table__col--date {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 95px;
+    }
+
+}
+
+.event-listing__shift {
+    min-width: 250px;
+    overflow: hidden;
+}
+
+.event-listing__shift-next,
+.event-listing__shift-prev,
+.event-listing-shift-type {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.event-listing__shift-next,
+.event-listing__shift-prev {
+    color: #000;
+    font-size: 16px;
+    position: relative;
+    &:after {
+        margin-top: -5px;
+        top: 50%;
+    }
+}
+
+.event-listing__shift-next {
+    padding-right: 18px;
+    &:after {
+        right: 0;
+        @include triangle(8px, 10px, e, $mediumBlue);
+    }
+}
+
+.event-listing__shift-prev {
+    padding-left: 18px;
+    &:after {
+        left: 0;
+        @include triangle(8px, 10px, w, $mediumBlue);
+    }
+}
+
+.event-listing-shift-type {
+    margin: 0 15px;
+    width: 160px;
+}
+
+.event-listing__title {
+    float: left;
+    margin-bottom: 1em;
+    margin-right: 80px;
+}
+
+
+@include small-only {
+
+    .event-listing {
+
+        .table__col--loc,
+        .table__col--sponsor {
+            display: none;
+        }
+
+    }
+
+    .event-listing-shift-type {
+        margin: 0 9px;
+        width: 103px;
+    }
+
+}
+
+
+@include large-and-above {
+
+    .event-listing {
+
+        .table__col--loc,
+        .table__col--sponsor {
+            width: 160px;
+        }
+
+    }
+
+}

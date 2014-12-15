@@ -1,0 +1,120 @@
+/* ======  Shared Navigation Styles ====== */
+
+
+.nav__level1-toggle-icon {
+    @extend %icon-circle-chevron-e;
+    background-position: 50% 50%;
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0; right: 0;
+    width: 54px;
+
+    .nav__level1 > li.module-is-expanded & {
+        @extend %icon-circle-chevron-s;
+    }
+}
+
+.nav__level2-close {
+    background: url(/images/assets/flyout-close-bottom.png) no-repeat 50% 100%;
+    height: 69px;
+    margin-left: -31px;
+    position: absolute;
+    bottom: -53px; left: 50%;
+    width: 82px;
+    &:after {
+        @extend %icon-circle-chevron-blue-n;
+        content: "";
+        height: 43px;
+        margin-left: -21px;
+        position: absolute;
+        top: 0; left: 50%;
+        width: 43px;
+    }
+}
+
+
+@include medium-and-below {
+
+    .nav__level1 {
+        > li {
+            border-bottom: 1px solid #F5F4F1;
+        }
+        > li.module-is-expanded {
+            background-color: #FFF;
+            border-bottom: 0;
+        }
+    }
+
+    .nav__level1-toggle {
+        border-bottom: 1px solid #CAC9C6;
+        background-position: -9999px;
+        color: #0059A3;
+        display: block;        font-size: 19px;
+        padding: 15px 60px 15px 28px;
+        position: relative;
+        @include helveticaMedium;
+
+        .module-is-collapsed > & {
+            color: #666;
+        }
+        .module-is-expanded > & {
+            border-bottom: 1px solid #D4D4D4;
+            // Triangle
+            &:after, &:before {
+                margin-left: -11px;
+                position: absolute;
+                left: 50%;
+                @include triangle(22px, 12px, s, #FFF);
+            }
+            &:after {
+                bottom: -10px;
+            }
+            &:before {
+                border-top-color: #D4D4D4;
+                bottom: -12px;
+            }
+        }
+    }
+
+    .nav__level1-toggle-icon {
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    .nav__level2 {
+        > li {
+            > a {
+                color: #1F71B3;
+                display: block;
+                font-size: 14px;
+                font-weight: bold;
+                padding: 10px 0;
+            }
+        }
+    }
+
+    .nav__level2-close {
+        display: none;
+    }
+
+    .nav__level2-wrap {
+        padding: 15px 28px;
+    }
+
+    .nav__wrap {
+        background-color: #F0EFEA;
+        padding: 10px 0;
+    }
+
+}
+
+
+@include large-and-above {
+
+    .nav__level1-toggle-icon {
+        display: none;
+    }
+
+}

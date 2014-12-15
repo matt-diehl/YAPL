@@ -1,0 +1,168 @@
+/* ======  Global/Reusable Layout Styles ====== */
+
+.u-align-l {
+    text-align: left;
+}
+
+.u-align-r {
+    text-align: right;
+}
+
+.u-block {
+    display: block;
+}
+
+.u-break-word {
+    word-wrap: break-word;
+}
+
+.u-centered {
+    text-align: center;
+}
+
+// Micro clearfix
+.u-cf:before,
+.u-cf:after {
+    content: " ";
+    display: table;
+}
+
+.u-cf:after {
+    clear: both;
+}
+
+.u-cf {
+    *zoom: 1;
+}
+
+.u-float-l {
+    float: left;
+}
+
+.u-float-r {
+    float: right;
+}
+
+.u-hidden {
+    display: none !important;
+}
+
+.u-inline {
+    display: inline;
+}
+
+.u-inline-block {
+    display: inline-block;
+    .lt-ie8 & {
+        display: inline;
+        *zoom: 1;
+    }
+}
+
+.u-table {
+    display: table;
+    table-layout: fixed;
+}
+
+.u-ir {
+    background-color: transparent;
+    border: 0;
+    color: transparent;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.u-ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+}
+
+.u-overflow-visible {
+    overflow: visible;
+}
+
+.u-overflow-x-scroll {
+    overflow-x: scroll;
+}
+
+.u-visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.u-visuallyhidden.u-focusable:active,
+.u-visuallyhidden.u-focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+
+@include small-only {
+
+    .u-float-l-mq-small {
+        float: left;
+    }
+
+    .u-float-r-mq-small {
+        float: right;
+    }
+
+    .u-hidden-mq-small {
+        display: none !important;
+    }
+
+}
+
+@include medium-and-below {
+
+    .u-hidden-mq-medium-and-below {
+        display: none !important;
+    }
+
+}
+
+
+@include medium-only {
+
+    .u-float-l-mq-medium {
+        float: left;
+    }
+
+    .u-float-r-mq-medium {
+        float: right;
+    }
+
+    .u-hidden-mq-medium {
+        display: none !important;
+    }
+
+}
+
+
+@include large-and-above {
+
+    .u-float-l-mq-large {
+        float: left;
+    }
+
+    .u-float-r-mq-large {
+        float: right;
+    }
+
+    .u-hidden-mq-large {
+        display: none !important;
+    }
+
+}

@@ -1,0 +1,38 @@
+/* ======  Vertical Rhythm – Standard vertical spacing between elements ====== */
+
+$std-gutter: 15px;
+
+
+
+// Margin Top
+
+@mixin mt($gutter: $std-gutter, $increment: 1) {
+    margin-top: $gutter * $increment;
+}
+
+.mt1 {
+    @include mt;
+}
+.mt2 {
+    @include mt($std-gutter, 2);
+}
+.mt3 {
+    @include mt($std-gutter, 3);
+}
+
+
+// Margin Bottom
+
+@mixin mb($gutter: $std-gutter, $increment: 1) {
+    margin-bottom: $gutter * $increment;
+}
+
+.mb1 {
+    @include mb;
+}
+.mb2 {
+    @include mb($std-gutter, 2);
+}
+.mb3 {
+    @include mb($std-gutter, 3);
+}

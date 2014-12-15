@@ -1,0 +1,58 @@
+{{! The Breadcrumb Navigation Partial }}
+
+<nav class="nav-utility js-nav-utility">
+    <ul class="nav__level1 nav-utility__level1">
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle{{#is subSection 0}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">About</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li>
+            <!-- Remove "js-nav__level1-toggle" class if no children -->
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle{{#is subSection 1 }} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Why Penn?</span>
+            </a>
+        </li>
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle{{#is subSection 2}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Giving</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle{{#is subSection 3}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Locations</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li class="module-is-collapsed">
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle js-nav__level1-toggle{{#is subSection 4}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">Events</span>
+                <span class="nav__level1-toggle-icon nav-utility__level1-toggle-icon" tabindex="0"></span>
+            </a>
+            <ul class="nav-utility__level2 is-collapsed js-expand-item">
+                <li><a href="#"></a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle{{#is subSection 5}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">For Physicians</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" class="nav__level1-toggle nav-utility__level1-toggle{{#is subSection 6}} is-active{{/is}}">
+                <span class="nav__level1-toggle-text nav-utility__level1-toggle-text">My PennMedicine</span>
+            </a>
+        </li>
+    </ul><!-- .nav-utility__level1 -->
+</nav><!-- .nav-utility -->

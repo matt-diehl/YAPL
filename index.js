@@ -21,16 +21,21 @@
 var fs = require('fs'),
     path = require('path'),
     glob = require('glob'),
-    handlebars = require('handlebars'),
+    handlebars = require('handlebars'), // Remove if unnecessary
     helpers = require('handlebars-helpers'),
     yaml = require('js-yaml'),
     extend = require('node.extend'),
-    cheerio = require('cheerio');
+    cheerio = require('cheerio'),
+    Template = require('template'),
+    consolidate = require('consolidate');
 
 // register built-in helpers
 if (helpers && helpers.register) {
     helpers.register(handlebars, {}, {});
 }
+
+var template = new Template();
+template.engine('hbs', consolidate.handlebars);
 
 
 var YAPL = (function() {

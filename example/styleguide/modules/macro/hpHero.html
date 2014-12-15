@@ -1,0 +1,260 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="">
+
+
+    <!-- We'll require the same CSS/JS as the main templates, so load that in as a shared partial (also in footer) -->
+    <link rel="stylesheet" href="/css/main.css">
+<!--[if lt IE 8]><link rel="stylesheet" href="/css/main-ie7.css"><![endif]-->
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/styleguide.css">
+
+    <!--[if lt IE 9]>
+<!-- build:js /js/vendor/respond.js -->
+<script src="/bower_components/respond/dest/respond.src.js"></script>
+<!-- endbuild -->
+<![endif]-->
+
+<!-- build:js /js/vendor/modernizr.js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<!-- endbuild -->
+
+</head>
+
+<body class="sg-body js-sg-body">
+
+    <div class="sg-nav-wrap open-sans">
+    <span class="sg-nav__close js-sg-nav-toggle">Close</span>
+    <nav class="sg-nav">
+        <ul class="sg-nav__level1">
+            <li>
+                <span class="sg-nav__level1-title open-sans--semibold">Micro Modules</span>
+                <ul class="sg-nav__level2">
+                
+                    <li><a href="/styleguide/modules/micro/btn.html">btn</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/figure.html">figure</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/form.html">form</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/letters.html">letters</a></li>
+                
+                    <li><a href="/styleguide/modules/micro/table.html">table</a></li>
+                
+                </ul>
+            </li>
+            <li>
+                <span class="sg-nav__level1-title open-sans--semibold">Macro Modules</span>
+                <ul class="sg-nav__level2">
+                
+                    <li><a href="/styleguide/modules/macro/cta.html">cta</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/hp-hero.html">hp-hero</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/nav-breadcrumbs.html">nav-breadcrumbs</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/search.html">search</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/sharebar.html">sharebar</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/slider.html">slider</a></li>
+                
+                    <li><a href="/styleguide/modules/macro/tabs.html">tabs</a></li>
+                
+                </ul>
+            </li>
+            <li>
+                <a href="/styleguide/display-templates.html" class="sg-nav__level1-title open-sans--semibold">Display Templates</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+    <div class="sg-content-wrap">
+
+        <header class="sg-header">
+            <div class="sg-header__inner l-contain">
+                <div class="sg-header__left">
+                    <a href="/styleguide/" class="sg-logo"><img src="/images/assets/logo-pennmed-abramson-med.png" alt="Abramson Cancer Center Logo"></a>
+                </div>
+                <div class="sg-header__right">
+                    <button type="button" class="sg-nav-open open-sans open-sans--semibold js-sg-nav-toggle">Menu</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="l-contain">
+            <div class="sg-utility cf">
+                <ul class="sg-breadcrumb l-float-l">
+    <li class="open-sans open-sans--semibold">
+        <a href="/styleguide/">Design Pattern Library</a>
+    </li>
+    <li class="open-sans open-sans--semibold">
+        <a href="/styleguide/">
+            macro
+        </a>
+    </li>
+    
+    <li class="open-sans open-sans--semibold">
+        hp-hero
+    </li>
+    
+</ul>
+                <button type="button" class="sg-toggle-all open-sans u-float-r js-sg-toggle-all">
+                    <span class="show-if-collapsed">Show</span>
+                    <span class="show-if-expanded">Hide</span>
+                    All Code/Annotations
+                </button>
+            </div>
+            
+
+            
+<div class="sg-block js-sg-block module-is-collapsed">
+    <div class="sg-block__header">
+        <h2 class="sg-block__title open-sans open-sans--semibold">Home Hero</h2>
+        <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+            <span class="show-if-collapsed">Show</span>
+            <span class="show-if-expanded">Hide</span>
+            Code/Annotations
+        </span>
+    </div>
+    <div class="sg-block__content cf">
+        <div class="sg-block__example cf">
+            <!--
+    The hero randomly picks one image on load, and chooses the correct one based on the screen width.
+    Each array of images should match based on index. Separate each image with a vertical bar.
+-->
+<div class="hp-hero js-hp-hero"
+    data-depend="/js/modules/Hero.js"
+    data-images-lg="/images/temp/hero-bg-1-lg.jpg|/images/temp/hero-bg-2-lg.jpg|/images/temp/hero-bg-3-lg.jpg"
+    data-images-med="/images/temp/hero-bg-1-med.jpg|/images/temp/hero-bg-2-med.jpg|/images/temp/hero-bg-3-med.jpg"
+    data-images-sm="/images/temp/hero-bg-1-sm.jpg|/images/temp/hero-bg-2-sm.jpg|/images/temp/hero-bg-3-sm.jpg">
+    <div class="hp-hero__bg hp-hero__bg--sm js-hp-hero__bg--sm u-hidden-mq-medium u-hidden-mq-large"></div>
+    <div class="hp-hero__bg hp-hero__bg--med js-hp-hero__bg--med u-hidden-mq-small u-hidden-mq-large"></div>
+    <div class="hp-hero__bg hp-hero__bg--lg js-hp-hero__bg--lg u-hidden-mq-small u-hidden-mq-medium"></div>
+    <div class="l-contain">
+        <div class="hp-hero__content">
+            <div class="hp-hero__content-inner">
+                <h2 class="hp-hero__title">
+                    <span class="hp-hero__title-text">Only at Penn Medicine</span>
+                </h2>
+                <p class="hp-hero__copy u-hidden-mq-small">With every new breakthrough at Penn’s Abramson Cancer Center, we’re discovering that the cure for cancer isn’t just within reach, it’s within us all.</p>
+                <div class="hp-hero__ctas cf">
+                    <a href="#" class="hp-hero__cta hp-hero__cta--doctor btn btn--blue">
+                        <span class="hp-hero__cta-text">Find a Doctor</span>
+                    </a>
+                    <a href="#" class="hp-hero__cta hp-hero__cta--appt btn btn--blue">
+                        <span class="hp-hero__cta-text">Request an Appointment</span>
+                    </a>
+                </div>
+            </div>
+        </div><!-- .hp-hero__content -->
+    </div><!-- .l-contain -->
+</div><!-- .hp-hero -->
+        </div>
+        <div class="sg-block__more is-collapsed js-sg-block__more">
+            <div class="sg-block__html">
+                <h3 class="sg-block__header2 open-sans open-sans--semibold">HTML</h3>
+                <pre><code class="language-markup">&lt;!--
+    The hero randomly picks one image on load, and chooses the correct one based on the screen width.
+    Each array of images should match based on index. Separate each image with a vertical bar.
+--&gt;
+&lt;div class=&quot;hp-hero js-hp-hero&quot;
+    data-depend=&quot;/js/modules/Hero.js&quot;
+    data-images-lg=&quot;/images/temp/hero-bg-1-lg.jpg|/images/temp/hero-bg-2-lg.jpg|/images/temp/hero-bg-3-lg.jpg&quot;
+    data-images-med=&quot;/images/temp/hero-bg-1-med.jpg|/images/temp/hero-bg-2-med.jpg|/images/temp/hero-bg-3-med.jpg&quot;
+    data-images-sm=&quot;/images/temp/hero-bg-1-sm.jpg|/images/temp/hero-bg-2-sm.jpg|/images/temp/hero-bg-3-sm.jpg&quot;&gt;
+    &lt;div class=&quot;hp-hero__bg hp-hero__bg--sm js-hp-hero__bg--sm u-hidden-mq-medium u-hidden-mq-large&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;hp-hero__bg hp-hero__bg--med js-hp-hero__bg--med u-hidden-mq-small u-hidden-mq-large&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;hp-hero__bg hp-hero__bg--lg js-hp-hero__bg--lg u-hidden-mq-small u-hidden-mq-medium&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;l-contain&quot;&gt;
+        &lt;div class=&quot;hp-hero__content&quot;&gt;
+            &lt;div class=&quot;hp-hero__content-inner&quot;&gt;
+                &lt;h2 class=&quot;hp-hero__title&quot;&gt;
+                    &lt;span class=&quot;hp-hero__title-text&quot;&gt;Only at Penn Medicine&lt;/span&gt;
+                &lt;/h2&gt;
+                &lt;p class=&quot;hp-hero__copy u-hidden-mq-small&quot;&gt;With every new breakthrough at Penn’s Abramson Cancer Center, we’re discovering that the cure for cancer isn’t just within reach, it’s within us all.&lt;/p&gt;
+                &lt;div class=&quot;hp-hero__ctas cf&quot;&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;hp-hero__cta hp-hero__cta--doctor btn btn--blue&quot;&gt;
+                        &lt;span class=&quot;hp-hero__cta-text&quot;&gt;Find a Doctor&lt;/span&gt;
+                    &lt;/a&gt;
+                    &lt;a href=&quot;#&quot; class=&quot;hp-hero__cta hp-hero__cta--appt btn btn--blue&quot;&gt;
+                        &lt;span class=&quot;hp-hero__cta-text&quot;&gt;Request an Appointment&lt;/span&gt;
+                    &lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;&lt;!-- .hp-hero__content --&gt;
+    &lt;/div&gt;&lt;!-- .l-contain --&gt;
+&lt;/div&gt;&lt;!-- .hp-hero --&gt;</code></pre>
+            </div>
+            <div class="sg-block__notes">
+                <h3 class="sg-block__header2 open-sans open-sans--semibold">Notes</h3>
+                <p class="open-sans">
+                    Main feature on the homepage. Chooses a random background image on load.
+                </p>
+                
+                    <p class="open-sans open-sans--semibold">Appears on:</p>
+                    <ul class="open-sans">
+                    
+                        <li><a href="/ProductionTemplates/home.html" target="_blank">home</a></li>
+                    
+                    </ul>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+
+    </div>
+
+    <div id="page-scripts">
+    <!-- build:js /js/main.js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+    <script src="/js/modules/Media.js"></script>
+    <script src="/js/modules/Expand.js"></script>
+    <script src="/js/modules/Nav.js"></script>
+    <script src="/js/modules/OffCanvas.js"></script>
+    <script src="/js/modules/Select.js"></script>
+    <script src="/js/modules/Table.js"></script>
+    <script src="/js/modules/Tabs.js"></script>
+
+    <script src="/bower_components/Helper-JS-Modules/Dependencies.js"></script>
+    <!-- endbuild -->
+
+    <!--[if lte IE 9]><script src="/js/modules/IEfixes.js"></script><![endif]-->
+</div>
+
+    <script src="/js/modules/SG.js"></script>
+
+    <!-- build:js /js/vendor/prism.js -->
+    <script src="/bower_components/prism/prism.js"></script>
+    <!-- endbuild -->
+
+    <script>
+
+        $('.js-sg-nav-toggle').on('click', function() {
+            $('.js-sg-body').toggleClass('is-showing-nav');
+        });
+
+    </script>
+
+</body>
+</html>

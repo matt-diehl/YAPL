@@ -1,242 +1,288 @@
-// Global content styles
+/* ======  Content Layout Styles ====== */
 
 $offCanvasColWidth: 250px;
 
-.content-nav,
+
+body {
+    background-color: #F4F4F4;
+}
+
 .content-primary,
 .content-secondary {
-    @include removeFirstChildMargins();
+    .h1-main ~ & {
+        padding-top: 0;
+    }
 }
 
 .content-primary {
+    @include removeFirstChildMargins;
+}
+
+.content-nav-toggle {
+    cursor: pointer;
+    display: block;
+    height: 42px;
+    width: 144px;
+}
+
+.content__region {
+    > h2 {
+        @extend %helveticaLight;
+        color: #666;
+        font-size: 28.5px;
+        margin-bottom: 20px;
+    }
+    > p {
+        line-height: 1.36;
+    }
+    a {
+        color: #256B96;
+        
+        &:hover {
+            color: #0091CF;
+        }
+    }
+}
+
+.content__region--trials {
+    background-image: url(/images/assets/badge-transparent-med.png); /*ImageEmbed:skip*/
+    background-repeat: no-repeat;
+    min-height: 272px; // so background-image does not get cut off
+    > p {
+        color: #848B84;
+        margin-bottom: 1em;
+    }
+    .select-wrap {
+        display: block;
+        margin-bottom: 15px;
+    }
+}
+
+.content-toggles {
+    background-image: url(/images/assets/badge-transparent-sm.png); /*ImageEmbed:skip*/
+    background-repeat: no-repeat;
+    border-bottom: $thinGrayBorder;
+    //margin-bottom: 20px;
+    padding: 22px 0 16px;
+}
+
+.l-1-col-master,
+.l-2-col-master,
+.l-3-col-master {
     position: relative;
 }
 
-.content-wrap {
-    position: relative;
-}
 
-.l-content-inner {
-    padding-top: 30px;
-    .flexbox &,
-    .flexbox-legacy & {
-        display: flex;
-    }
-    .content-secondary {
-        padding-left: 20px;
-    }
-}
+@include small-only {
 
-.l-site_search {
-    .content-primary {
-        width: 100%;
+    .content__region {
+        padding: 45px 0;
     }
+
+    .content-toggles {
+        background-position: 100% 20%;
+    }
+
+    .l-1-col-master,
+    .l-2-col-master,
+    .l-3-col-master {
+        margin-bottom: 40px;
+    }
+
 }
 
 
 @include medium-and-below {
 
-    .l-content-inner {
-        padding-top: 10px;
-        @include desktopInner;
-        .flexbox &,
-        .flexbox-legacy & {
-            flex-direction: column;
-        }
-        .content-secondary {
-            padding-left: 0;
-        }
+    .content-nav,
+    .content-primary,
+    .content-secondary,
+    .h1-main {
+        padding-top: 30px;
     }
 
-    // Search landing 3 column layout
-    .l-3-col-search_landing {
-        // Right Column
-        .content-secondary {
+    .content-nav {
+        float: left;
+    }
+
+    .content-primary {
+        overflow: hidden;
+    }
+
+    .content__region {
+        font-size: 15px;
+    }
+
+    .content__region--trials {
+        background-position: 50% 12px;
+    }
+
+    // Class added to body when mobile nav is toggled
+    .is-showing-mobile-nav {
+        .content-wrap,
+        .footer {
             display: none;
         }
     }
 
-    .content-primary {
-        margin-top: 18px;
-        .content-toggles ~ & {
-            margin-top: 0;
+    .content-nav {
+        margin-bottom: 18px;
+        margin-left: $offCanvasColWidth * -1;
+        position: relative;
+        left: -4.5%;
+        width: $offCanvasColWidth;
+        .nav-breadcrumbs {
+            position: absolute;
+            .content-nav-is-visible & {
+                position: relative;
+            }
         }
     }
 
-    // Flip the order of the secondary nav and related content
-    .content-secondary {
-        order: 2;
-    }
-    .content-tertiary {
-        margin-bottom: 22px;
-        order: 1;
-        .no-flexbox.no-flexboxlegacy & {
-            float:left;
-            clear:left;
+    .content-nav-is-visible > .l-2-col-master,
+    .content-nav-is-visible > .l-3-col-master {
+        .csstransforms & {
+            transform: translateX(calc(250px + 4%));
+        }
+        .no-csstransforms & {
+            right: $offCanvasColWidth * -1;
         }
     }
+
+    .content-primary {
+        width: 100%;
+    }
+
+    .content-wrap {
+        overflow: hidden;
+        > .l-2-col-master,
+        > .l-3-col-master {
+            position: relative;
+            .no-touch & { // Animation causes some mobile browsers to crash, so we'll only animate on non-touch devices
+                transition: transform 1s;
+            }
+        }
+    }
+
 }
 
 
 @include medium-only {
 
-    .content-secondary-col1,
-    .content-secondary-col2 {
-        float: left;
-        width: 50%;
-    }
-    .content-secondary-col1 {
-        padding-right: 22px;
-    }
-
-    .l-2-col-search_landing,
-    .l-3-col-search_landing {
-        .flexbox &,
-        .flexbox-legacy & {
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-        // Top Row
-        .content-intro {
-            width: 100%;
-        }
-        // Left Column
-        .content-nav {
-            padding-right: 20px;
-            width: 30%;
-        }
-        // Left column
-        .content-primary {
-            width: 70%;
-        }
-    }
-
-    // Site search template
-    .l-site_search {
-        .content-primary {
-            padding-left: 30%;
-        }
-    }
-
-}
-
-@include medium-and-above {
-
-    .l-content-inner {
-        padding-bottom: 50px;
-    }
-
-}
-
-@include large-and-above {
-
-    .content-intro {
-        width: 100%;
-    }
-
-    // With Flexbox support
-    .l-content-inner {
-        @include desktopInner;
-        .flexbox &,
-        .flexbox-legacy & {
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-    }
-
-    // Without Flexbox support
-    .l-content-inner {
-        .content-nav,
-        .content-primary,
-        .content-secondary {
-            .no-flexbox &,
-            .no-flexboxlegacy &,
-            .no-js & {
-                float: left;
+    .content-secondary-col {
+        width: 46.5%;
+        &:first-child {
+            float: left;
+            + .content-secondary-col {
+                float: right;
             }
         }
     }
 
-    // Main 2 column layout
-    // And 2 column search landing layout
+    .l-1-col-master,
     .l-2-col-master,
-    .l-2-col-search_landing {
-        // Left Column
-        .content-nav {
-            padding-right: 20px;
-            width: 19.9%;
-        }
-        // Left column
-        .content-primary {
-            width: 79.9%;
-        }
-    }
-
-    // Main 3 column layout
     .l-3-col-master {
-        // Left Column
+        margin-bottom: 65px;
+    }
+
+}
+
+
+@include medium-and-above {
+
+    .content-home {
+
+        .content__region-wrap {
+            margin-bottom: 35px;
+        }
+
+        .content__region {
+            border-left: 1px solid #AAA;
+            float: left;
+            padding: 0 3.315%;
+            width: 49.95%;
+            &:first-child {
+                border-left: 0;
+                padding-left: 0;
+            }
+        }
+    }
+
+    .content-primary,
+    .content-secondary {
+        padding-top: 15px;
+    }
+
+    .content-toggles {
+        background-position: 70% 20%;
+    }
+
+}
+
+
+@include large-and-above {
+
+    .content__region {
+        font-size: 17px;
+    }
+
+    .content__region--trials {
+        background-position: 100% 0%;
+    }
+
+    .content-wrap {
+        padding-top: 153px; // accounts for fixed header
+    }
+
+    .l-1-col-master,
+    .l-2-col-master,
+    .l-3-col-master {
+        padding-top: 35px;
+        &:last-child {
+            margin-bottom: 90px;
+        }
+    }
+
+    .l-2-col-master,
+    .l-3-col-master {
+        .content-nav,
+        .content-primary,
+        .content-secondary {
+            float: left;
+        }
         .content-nav {
-            padding-right: 20px;
-            width: 19.9%;
+            width: 19.5%;
         }
-        // Middle column
-        .content-primary {
-            width: 59.9%;
-        }
-        // Right Column
         .content-secondary {
-            padding-left: 20px;
-            width: 19.9%;
+            width: 21.5%;
         }
     }
 
-    // Search landing 3 column layout
-    .l-3-col-search_landing {
-        // Left Column
-        .content-nav {
-            padding-right: 20px;
-            width: 19.9%;
+    .l-2-col-master--w-content-nav,
+    .l-3-col-master {
+        .content-primary,
+        .h1-main {
+            padding-left: 40px;
         }
-        // Middle column
+    }
+
+    .l-2-col-master--w-content-nav {
         .content-primary {
-            width: 49.9%;
-        }
-        // Right Column
-        .content-secondary {
-            padding-left: 20px;
-            width: 30%;
+            width: 80.4%;
         }
     }
 
-    // Section landing template
-    .l-section_landing {
-        // Left column
+    .l-2-col-master--w-content-secondary {
         .content-primary {
-            width: 60.9%;
-        }
-        // Right column
-        .content-secondary {
-            padding-left: 20px;
-            width: 38.9%;
+            padding-right: 40px;
+            width: 78.4%;
         }
     }
 
-    // Site search template
-    .l-site_search {
+    .l-3-col-master {
         .content-primary {
-            padding-left: 19.9%;
-        }
-    }
-
-
-    // Top row and bottom row
-    // Both always 100% width
-    .content-intro,
-    .content-tertiary {
-        width: 100%;
-        .no-flexbox &,
-        .no-flexboxlegacy & {
-            clear: both;
+            padding-right: 30px;
+            width: 58.9%;
         }
     }
 

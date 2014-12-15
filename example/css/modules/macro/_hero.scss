@@ -1,309 +1,140 @@
+
 .hero {
+    overflow: hidden;
     position: relative;
 }
 
-// Hero form styles
-.hero .form {
-    input[type="submit"] {
-        border-radius: 50%;
-        cursor: pointer;
-        height: 35px;
-        font-family: $VAGBold;
-        font-size: 18px;
-        line-height: 36px;
-        padding: 0;
-        text-align: center;
-        width: 35px;
-    }
-    input[type="text"] {
-        border-radius: 18px;
-    }
-    label {
-        font-size: 14px;
-        font-weight: bold;
-    }
-    .form-input-text {
-        border-radius: 18px;
-        height: 35px;
-        margin-right: 5px;
-        width: 72%;
-    }
-    .form-row {
-        margin-top: 10px;
-        &:first-child {
-            margin-top: 0;
-        }
-    }
-    .link-arrow {
-        font-weight: bold;
-    }
+.hero__copy,
+.hero__title,
+.hero__subtitle,
+.hero__more {
+    color: inherit;
 }
 
-.hero-section {
-    border-bottom: 1px solid #FFF;
-}
-.hero-section-content {
-    h2 {
-        color: #FFF;
-        font-family: $VAGBold;
-        font-size: 30px;
-        margin-bottom: 20px;
-    }
-}
-.hero-section-toggle {
-    background-color: rgba(240,192,80, .89);
-    color: #000;
-    font-family: $VAGBold;
-    &:hover {
-        text-decoration: none;
-    }
-    &:before {
-        @extend %icon-circle-plus-white;
-        content: "";
-        display: inline-block;
-        height: 29px;
-        margin-right: 10px;
-        vertical-align: middle;
-        width: 30px;
-        .hero-section.is-active & {
-            @extend %icon-circle-minus-white;
-        }
-    }
+.hero__copy {
+    opacity: .86;
 }
 
-.hero-section-toggles {
+.hero__img img {
+    width: 100%;
+}
+
+.hero__next,
+.hero__prev {
+    @extend %icon-slider-prevnext-lg-white;
     position: absolute;
-    bottom: 30px;
-    max-width: 1215px;
-    margin: 0 auto;
-    .hero-section-toggle {
-        border-radius: 30px;
-        display: inline-block;
-        float: left;
-        padding: 0;
-        position: relative;
-        margin-left: 3.5%;
-        vertical-align: middle;
-        width: 31%;
-        &:first-child {
-            margin-left: 0;
-        }
-        &.is-active {
-            &:after { // outline
-                background-color: transparent;
-                border: 8px solid rgba(255,255,255, .29);
-                border-radius: 38px;
-                content: "";
-                position: absolute;
-                top: -8px; left: -8px; bottom: -8px; right: -8px;
-            }
-        }
-        > span { // inner text
-            display: inline-block;
-            vertical-align: middle;
-            width: 75%;
-        }
-    }
-
-    .hero-section-toggle:hover,
-    .hero-section-toggle.is-active {
-        background-color: #FFF;
-    }
-
-    // color-specific toggle styles
-    .hero-section-toggle-blue {
-        &:hover:before {
-            @extend %icon-circle-plus-blue;
-        }
-        &.is-active, &.is-active:hover {
-            &:before {
-                @extend %icon-circle-minus-blue;
-            }
-        }
-        &.is-active:after {
-            border-color: rgba(61,126,219, .83);
-        }
-    }
-    .hero-section-toggle-green {
-        &:hover:before {
-            @extend %icon-circle-plus-green;
-        }
-        &.is-active, &.is-active:hover {
-            &:before {
-                @extend %icon-circle-minus-green;
-            }
-        }
-        &.is-active:after {
-            border-color: rgba(255,255,255, .29);
-        }
-    }
-    .hero-section-toggle-purple {
-        &:hover:before {
-            @extend %icon-circle-plus-purple;
-        }
-        &.is-active, &.is-active:hover {
-            &:before {
-                @extend %icon-circle-minus-purple;
-            }
-        }
-        &.is-active:after {
-            border-color: rgba(102,57,183, .83);
-        }
-    }
-
 }
 
+.hero__next {
+    background-position: 100% 50%;
+    height: 95px;
+    opacity: .25;
+    width: 60px;
+    .lt-ie9 & {
+        filter: alpha(opacity=25)
+    }
+}
 
-@include small-only {
-
-    .hero, .hero-section {
-        background-image: none !important; // If images were loaded in for the larger size, make sure they don't show on small
+.hero__slide {
+    position: absolute;
+    table-layout: fixed;
+    transform: translateX(-100%);
+    transition: transform 1s;
+    width: 100%;
+    &.is-active {
+        display: table;
+        position: relative;
+        transform: translateX(0);
+    }
+    .is-active + & {
+        transform: translateX(100%);
     }
 
-    // Hero form styles
-    .hero .form {
-        input[type="submit"] {
-            background-color: $dkBlue;
-            border: 0;
-            color: #FFF;
-        }
-        label {
-            color: #333;
-        }
-        .form-input-text {
-            width: 82%;
-        }
-    }
-
-    .hero-section-content {
+    .no-csstransitions & {
         display: none;
-        margin-left: 4%;
-        padding: 15px 4% 15px 38px;
-        .hero-section.is-active & {
-            display: block;
+        &.is-active {
+            display: table;
         }
     }
+}
 
-    .hero-section-toggle {
+.hero__tag {
+    background-color: #F4F4F4;
+    color: #003F72;
+    display: inline-block;
+    font-size: 17px;
+    margin-bottom: 2em;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+
+.hero__text {
+    background-color: #133D71;
+    color: #FFF;
+    padding: 30px 20px;
+    position: relative;
+
+    &:after {
+        background-image: url(/images/assets/badge-sm-color.png); /*ImageEmbed:skip*/
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        content: "";
         display: block;
-        padding: 10px $mobileSidePad;
+        height: 50px;
     }
+}
 
+.hero__title {
+    margin-bottom: .5em;
+}
+
+.hero__more {
+    &:after {
+        @extend %icon-circle-chevron-cyan-sm-circle-e;
+        content: '';
+        display: inline-block;
+        height: 28px;
+        left: 6px;
+        position: relative;
+        top: 7px;
+        width: 28px;
+    }
+}
+
+.hero__badge {
+    background-image: url(/images/assets/badge-transparent-med.png); /*ImageEmbed:skip*/
+    background-position: 50%;
+    background-repeat: no-repeat;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2;
 }
 
 
 @include medium-and-below {
 
-    .hero-section-toggle {
-        font-size: 18px;
+    .hero__text {
+        display: table-caption;
+        caption-side: bottom;
     }
 
 }
 
 
-@include medium-only {
+@include large-only {
 
-    .hero, .hero-section {
-        background-size: cover;
+    .hero__img {
+        width: 60%;
     }
 
-    .hero {
-        height: 426px;
-        margin-top: -90px;
-        padding: 90px $tabletSidePad2 0;
-    }
+    .hero__text {
+        width: 40%;
 
-    .hero-section {
-        top: 90px;
-    }
-
-    .hero-section-content {
-        background-position: 0 0;
-    }
-
-    .hero-section-toggles {
-        left: $tabletSidePad2; right: $tabletSidePad2;
-        > .hero-section-toggle {
-            height: 50px;
-            &:before {
-                margin: 10px 8px 10px 10px;
-            }
-        }
-    }
-
-}
-
-
-@include medium-and-above {
-
-    .hero {
-        background-position: 50% 0%;
-        background-repeat: no-repeat;
-        box-shadow: 0px 0px 18px 5px rgba(0,0,0, .35);
-        transition: background-image 0s;
-        > .l-inner {
-            height: 100%;
-            margin: 0 auto;
-            position: relative;
-        }
-        &.is-showing-section {
-            background-image: none !important; // Have to override inline style
-            transition-delay: 1s;
-        }
-    }
-
-    .hero + .action_links {
-        position: relative; // Cover up the bottom of the hero box shadow
-    }
-
-    .hero .form {
-        input[type="submit"] {
-            background-color: transparent;
-            border: 4px solid rgba(255,255,255, .63);
-            color: #FFF;
-            height: 42px;
-            text-align: center;
-            width: 42px;
-        }
-        label, .link-arrow {
-            color: #FFF;
-        }
-        .link-arrow {
-            color: #FFF
-        }
-    }
-
-    .hero-section {
-        background-position: 0 100%;
-        opacity: 0;
-        position: absolute;
-        right: 0; bottom: 0;
-        transition: opacity 1s linear, visibility 0s linear 1s;
-        visibility: hidden; // Using visibility instead of display so images do pre-load, and the fade animation can work properly
-        width: 100%;
-        &.is-active {
-            opacity: 1;
-            visibility: visible;
-            transition-delay: 0s; // Apply this so there's no visibilty delay when adding the class
-        }
-    }
-
-    .hero-section-content {
-        background-repeat: no-repeat;
-        height: 100%;
-        max-width: 85%;
-        padding: 20px 0 0 340px;
-        position: absolute;
-        top: 0; right: 0;
-        width: 752px;
-        .hero-section-blue & {
-            background-image: url(/images/hero/wave-blue.png); /*ImageEmbed:skip*/
-        }
-        .hero-section-green & {
-            background-image: url(/images/hero/wave-green.png); /*ImageEmbed:skip*/
-        }
-        .hero-section-purple & {
-            background-image: url(/images/hero/wave-purple.png); /*ImageEmbed:skip*/
+        &:after {
+            display: none;
         }
     }
 
@@ -312,39 +143,32 @@
 
 @include large-and-above {
 
-    .hero {
-        height: 601px;
-        margin-top: -93px;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 1280px;
-        padding: 93px 0 0;
-    }
-    .hero-section {
-        height: 508px;
-        top: 93px;
+    .hero__img,
+    .hero__text {
+        display: table-cell;
+        vertical-align: top;
     }
 
-    .hero-section-content {
-        background-position: 100% 0;
-        padding: 100px 0 0 340px;
+    .hero__next {
+        margin-top: -48px;
+        top: 50%; right: 20px;
     }
 
-    .hero-section-toggle {
-        font-size: 21px;
-    }
-    .hero-section-toggles {
-        left: 2%; right: 2%;
-        > .hero-section-toggle {
-            height: 60px;
-            &:before {
-                margin: 15px 8px 15px 15px;
-            }
-        }
+    .hero__text {
+        background-image: radial-gradient(ellipse at 40% 40%, rgba(79,127,200,0.46) 0%,rgba(253,254,254,0) 99%,rgba(255,255,255,0) 100%);
     }
 
-    .hero .form .link-arrow {
-        padding-left: 12px;
+}
+
+
+@include very-large-only {
+
+    .hero__img {
+        width: 70%;
+    }
+
+    .hero__text {
+        width: 30%;
     }
 
 }

@@ -1,0 +1,19 @@
+{{#if link}}
+<a href="#" class="figure {{modifier}}">
+    <span class="figure__img">
+        <img src="{{src}}" alt="{{alt}}">
+    </span>
+    <span class="figure__caption">
+        <span class="link-more">{{caption}}</span>
+    </span>
+</a>
+{{else}}
+<figure class="figure {{modifier}}">
+    <div class="figure__img">
+        <img src="{{src}}" alt="{{alt}}">
+    </div>
+    <figcaption class="figure__caption">
+        {{caption}}
+    </figcaption>
+</figure>
+{{/if}}

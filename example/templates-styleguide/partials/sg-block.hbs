@@ -1,0 +1,37 @@
+{{#each module.blocks}}
+<div class="sg-block js-sg-block module-is-collapsed">
+    <div class="sg-block__header">
+        <h2 class="sg-block__title open-sans open-sans--semibold">{{name}}</h2>
+        <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+            <span class="show-if-collapsed">Show</span>
+            <span class="show-if-expanded">Hide</span>
+            Code/Annotations
+        </span>
+    </div>
+    <div class="sg-block__content cf">
+        <div class="sg-block__example cf">
+            {{{example}}}
+        </div>
+        <div class="sg-block__more is-collapsed js-sg-block__more">
+            <div class="sg-block__html">
+                <h3 class="sg-block__header2 open-sans open-sans--semibold">HTML</h3>
+                <pre><code class="language-markup">{{example}}</code></pre>
+            </div>
+            <div class="sg-block__notes">
+                <h3 class="sg-block__header2 open-sans open-sans--semibold">Notes</h3>
+                <p class="open-sans">
+                    {{notes}}
+                </p>
+                {{#if templates}}
+                    <p class="open-sans open-sans--semibold">Appears on:</p>
+                    <ul class="open-sans">
+                    {{#each templates}}
+                        <li><a href="/ProductionTemplates/{{pathBase}}.html" target="_blank">{{name}}</a></li>
+                    {{/each}}
+                    </ul>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}

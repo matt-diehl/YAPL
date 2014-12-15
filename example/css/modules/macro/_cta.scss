@@ -1,0 +1,147 @@
+/* ======  CTA Styles ====== */
+
+.cta {
+    display: block;
+    .content-secondary & {
+        margin-bottom: 40px;
+    }
+}
+
+// CTA Green Text
+
+.cta--in-page .cta__text,
+.cta-list a {
+    @extend %helveticaRegular;
+    color: $limeGreen;
+    display: block;
+    font-size: 19px;
+    line-height: 1.1;
+    &:after {
+        @extend %icon-chevron-limegreen-e;
+    }
+}
+
+
+/* YAPL
+name: CTA List
+notes: Simple text-only CTAs
+partial: cta-list
+*/
+
+.cta-list > li {
+    border-top: $thinGrayBorderLight;
+    padding: 20px 0;
+    &:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+}
+
+
+/* YAPL
+name: Button CTA
+notes: Call to action - button with short text and an optional icon.
+context: cta.contactUs
+*/
+
+.cta--btn {
+    display: table;
+    font-size: 18px;
+    height: 46px;
+    padding: 10px 10px 10px 60px;
+    position: relative;
+    width: 100%;
+
+    &:before {
+        background-position: 50% 50%;
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0; left: 0;
+        width: 60px;
+    }
+
+    .cta__text {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+.cta--contact:before {
+    @extend %icon-contact;
+    top: 2px;
+}
+
+.cta--appt:before {
+    @extend %icon-calendar-31;
+}
+
+
+/* YAPL
+name: Image CTA
+notes: Call to action - short text on top of an image.
+context: cta.img
+*/
+
+.cta--img {
+    position: relative;
+    .cta__text {
+        @extend %helveticaRegular;
+        color: #FFF;
+        font-size: 22px;
+        line-height: 1.1;
+        padding: 18px 16px;
+        position: absolute;
+        bottom: 0; right: 0; left: 0;
+        text-transform: uppercase;
+        width: 100%;
+
+        &:after {
+            @extend %icon-circle-chevron-blue-sm-circle-e;
+            content: '';
+            display: inline-block;
+            height: 21px;
+            left: 6px;
+            position: relative;
+            top: 3px;
+            width: 21px;
+        }
+    }
+}
+
+
+/* YAPL
+name: In-Page CTA
+notes: Call to action - short text beside a descriptive icon
+context: cta.inPageAppt
+*/
+
+.cta--in-page {
+    background-color: #FFF;
+    background-position: 18px 50%;
+    border-top: $medDkBlueBorder;
+    margin-bottom: 20px;
+    min-height: 85px;
+    .cta__text {
+        padding: 22px 10px 16px 90px;
+    }
+}
+
+@include medium-and-above {
+
+    .cta-row {
+
+        + .l-row {
+            margin-top: 30px;
+        }
+
+        .l-2-col-master & {
+            @include grid(".cta", 3, $gridGutter, $gridGutter);
+        }
+        .l-3-col-master & {
+            @include grid(".cta", 2, $gridGutter, $gridGutter);
+        }
+
+    }
+
+}

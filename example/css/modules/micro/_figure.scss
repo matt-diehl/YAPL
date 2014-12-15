@@ -1,0 +1,139 @@
+// Figure / Image w/caption styles
+
+/* YAPL
+name: Figure (image w/caption)
+notes:
+partial: figure
+context: figure.master
+*/
+
+.rtf figure,
+figure.figure {
+    display: block;
+}
+
+.rtf img {
+    margin: 10px 0 20px;
+}
+
+.figure__caption {
+    background-color: #FFF;
+    color: #666;
+    display: block;
+    font-size: 14px;
+    line-height: 1.2;
+    padding: 15px 10px;
+}
+
+.figure__img {
+    display: block;
+    position: relative;
+
+    img {
+        display: block;
+        margin: 0;
+        width: 100%;
+    }
+
+    .figure--video &:after {
+        @extend %video-play-button;
+    }
+}
+
+.figure-row,
+.figure--on-white {
+    .figure,
+    .figure__caption {
+        background-color: #F3F3F3;
+    }
+
+    .figure__caption {
+        padding: 15px 20px;
+    }
+}
+
+.figure {}
+.figure--profile {
+    .figure__caption {
+        background-color: #FFF;
+        padding: 10px 0 0;
+    }
+}
+
+.figure-row {
+    background-color: #FFF;
+
+    .figure,
+    .figure__caption {
+        display: block;
+    }
+}
+.figure-row--with-nav {
+    padding-left: 80px;
+    padding-right: 80px;
+    position: relative;
+}
+
+.figure-row__next,
+.figure-row__prev {
+    height: 64px;
+    margin-top: -32px;
+    position: absolute;
+    top: 50%;
+    width: 40px;
+}
+.figure-row__next {
+    @extend %icon-arrow-lg-e;
+    right: 0;
+}
+.figure-row__prev {
+    @extend %icon-arrow-lg-w;
+    left: 0;
+}
+
+@include small-only {
+
+    .rtf figure,
+    .rtf img.u-float-l,
+    .rtf img.u-float-r,
+    .figure {
+        float: none;
+        margin-bottom: 20px;
+        width: 100%;
+        img {
+            width: 100%;
+        }
+    }
+
+    .rtf img.u-float-l,
+    .rtf img.u-float-r {
+        margin-top: 10px;
+    }
+
+}
+
+
+@include medium-and-above {
+
+    .rtf figure,
+    .rtf img,
+    .figure {
+        &.u-float-l,
+        &.u-float-r {
+            max-width: 65%;
+        }
+        &.u-float-l {
+            margin: 6px 20px 20px 0;
+        }
+        &.u-float-r {
+            margin: 6px 0 20px 20px;
+        }
+    }
+
+    .figure-row {
+        margin: 0 auto;
+        max-width: 1000px;
+        @include grid(".figure", 3, $gridGutter3, $gridGutter3);
+    }
+
+}

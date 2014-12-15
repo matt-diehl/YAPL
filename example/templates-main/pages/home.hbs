@@ -1,0 +1,40 @@
+---
+layout: default.hbs
+title: Home
+description: Description
+---
+
+<!-- YAPL
+name: Home Page
+notes: The global site home page for Penn Cancer
+-->
+
+
+<div class="content-home">
+
+    {{> hp-hero }}
+
+    <div class="content__region-wrap l-contain cf">
+
+        <div class="content__region content__region--slider u-hidden-mq-small">
+            {{> slider }}
+        </div><!-- .content__region -->
+
+        <div class="content__region content__region--trials">
+            <h2>Clinical Trials Quick Search:</h2>
+            <div class="select-wrap select-wrap--lg select-wrap--trials">
+                <!-- set option value to the URL it should redirect to on change -->
+                <select class="select js-select--follow">
+                    <option value="">Find an active clinical trial</option>
+                    <option value="/ProductionTemplates/mastersub.html">Clinical Trial 1</option>
+                    <option value="/ProductionTemplates/mastersub.html">Clinical Trial 2</option>
+                    <option value="/ProductionTemplates/mastersub.html">Clinical Trial 3</option>
+                </select>
+            </div>
+            <p>Our Cancer Center gives you access to options you can't find anywhere else.</p>
+            <p><a href="#" class="link-more">What is a clinical trial?</a></p>
+        </div><!-- .content__region -->
+
+    </div><!-- .content__region-wrap -->
+
+</div><!-- content-home -->

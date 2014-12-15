@@ -1,0 +1,41 @@
+/* ======  Sub-Navigation Styles ====== */
+
+
+.nav-sub { 
+    background-color: #194A84;
+    background-image: radial-gradient(#155894, #194A84);
+    font-size: 19px;
+    padding: 10px 30px;
+
+    @include medium-only {
+        font-size: 17px;
+        padding: 6px 20px;
+    }
+}
+
+.nav-sub__item {
+    border-top: $thinGrayBorder;
+    border-top: 1px solid rgba(#FFF, .15);
+    display: block;
+    padding: 20px 0;
+
+    &:first-child {
+        border-top: none;
+    }
+
+    a {
+        color: #FFF;
+        &:after {
+            @extend %icon-chevron-cyan-e;
+            color: transparent;
+            content: "\0a00";
+            display: inline;
+            height: 10px;
+            left: 6px;
+            position: relative;
+            top: 5px;
+            vertical-align: middle;
+            width: 6px;
+        }
+    }
+}
