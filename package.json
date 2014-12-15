@@ -29,8 +29,7 @@
     "handlebars-helpers": "~0.5.5",
     "node.extend": "~1.0.10",
     "cheerio": "~0.17.0",
-    "template": "~0.5.4",
-    "consolidate": "~0.10.0",
+    "assemble": "git://github.com/assemble/assemble.git#v0.6.0",
     "lodash": "~2.4.1"
   },
   "devDependencies": {
