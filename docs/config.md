@@ -102,12 +102,10 @@ styles:
       group: group name (ex. batch-1)
       notes: Notes about template
       link: link to template
-      html: <html>
       hide: true/false
   imageSizes:
     -
-      width: pixel val
-      height: pixel val
+      dimensions: [width, height]
       ratio: width / height
       html: <html>
       references:

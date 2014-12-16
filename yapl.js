@@ -37,25 +37,29 @@ function YAPL(options) {
     setupHandlebarsConfig();
     setupAssembleConfig();
     createAllSectionObjects();
-    // -> createSingleSectionObj
-        // -> createAllSectionChildrenObjects
-            // -> createSingleSectionChildObject
-                // -> parseYAPLJsonFromFile
-                    // -> createSingleYAPLBlockObject
-    createAllDisplayTemplateObjects(); // incomplete
-    createAllImageSizeObjects(); // incomplete
+    //-> createSingleSectionObj
+        //-> createAllSectionChildrenObjects
+            //-> createSingleSectionChildObject
+                //-> parseYAPLJsonFromFile
+                    //-> createSingleCssYAPLBlockObject
+    createAllDisplayTemplateObjects();
+    //-> createSingleDisplayTemplateObject
+        //-> parseYAPLJsonFromFile
 
     // Section-level Build
     buildAllHtmlExamples();
 
+    createAllImageSizeObjects(); // incomplete
+        //-> createSingleImageSizeOject
+
     // Cross Linking
-    crossLinkSectionChildren();
+    crossLinkSectionChildren(); // incomplete
 
     // Output JSON to file if set as option
     outputConfigToFile();
 
     // Pattern Library Build
-    buildPatternLibrary();
+    buildPatternLibrary(); // incomplete
 
 }
 
@@ -178,14 +182,14 @@ function createSingleDisplayTemplateObject(file) {
     //console.log('createSingleDisplayTemplateObject');
     // ============================
 
-    var displayTemplateObject = {};
+    var displayTemplateObject = parseYAPLJsonFromFile(file) || {},
+        fileExt = path.extname(file),
+        fileBasename = path.basename(file, fileExt);
 
-    displayTemplateObject['name'] = 'Friendly Name For Template';
-    displayTemplateObject['group'] = 'group name (ex. batch-1)';
-    displayTemplateObject['notes'] = 'Notes about template';
-    displayTemplateObject['link'] = 'link to template';
-    displayTemplateObject['html'] = '<html>';
-    displayTemplateObject['hide'] = 'true/false';
+    displayTemplateObject['name'] = displayTemplateObject.name || utils.titleCase(fileBasename);
+    displayTemplateObject['group'] = 'default';
+    displayTemplateObject['link'] = file;
+    displayTemplateObject['hide'] = false;
 
     return displayTemplateObject;
 }
@@ -194,13 +198,100 @@ function createAllImageSizeObjects() {
     //console.log('createAllImageSizeObjects');
     // ============================
 
+    var imageSizeObjectsAll = [], // All image objects
+        imageSizeObjectGroups = [], // Image objects grouped by size
+        imageSizeObjectsCondensed = []; // Images reduced to unique, with combined references
+
+    // Loop through sections/modules to find images
+    config.sections.forEach(function(section) {
+        if (section.children && section.children.length) {
+            section.children.forEach(function(sectionChild) {
+                if (sectionChild.blocks && sectionChild.blocks.length) {
+                    sectionChild.blocks.forEach(function(block) {
+
+                        if (block.html) {
+                            var imageUrls = getAllImageUrlsFromHtml(block.html);
+                            imageUrls.forEach(function(imageUrl) {
+                                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, section, sectionChild);
+                                imageSizeObjectsAll.push(imageSizeObject);
+                            });
+                        }
+
+                    });
+                }
+            });
+        }
+    });
+
+    // Loop through display templates to find images
+    config.displayTemplates.forEach(function(displayTemplate) {
+        fs.readFile(displayTemplate.link, function(err, html) {
+            if (err) {
+                return false;
+            }
+            var imageUrls = getAllImageUrlsFromHtml(html);
+            imageUrls.forEach(function(imageUrl) {
+                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl);
+                imageSizeObjectsAll.push(imageSizeObject);
+            });
+        });
+    });
+
+    // Sort/Merge Image Objects
+    imageSizeObjectGroups = _.chain(imageSizeObjectsAll)
+        .groupBy(function(object) {
+            return object.dimensions;
+        })
+        .sortBy('dimensions')
+        .value();
+
+    imageSizeObjectGroups.forEach(function(group, index, arr) {
+        var mergedImageObject = {};
+
+        group.forEach(function(imageObject) {
+            _.merge(mergedImageObject, imageObject);
+        });
+        imageSizeObjectsCondensed.push(mergedImageObject);
+    });
+
+    config.imageSizes = imageSizeObjectsCondensed;
+
 }
 
-function createSingleImageSizeObjects() {
-    //console.log('createSingleImageSizeObjects');
+// TODO: Fix weirdness of using for both sections and display templates
+function createSingleImageSizeObject(imageUrl, section, sectionChild) {
+    //console.log('createSingleImageSizeObject');
     // ============================
 
+    var imageObject = {};
+
+    imageObject['dimensions'] = utils.dimensions(imageUrl);
+    imageObject['ratio'] = utils.aspectRatio(imageObject['dimensions']);
+    imageObject['html'] = utils.placeholderImage(imageObject['dimensions']);
+    imageObject['references'] = {
+        sections: [{
+            name: section ? section.name : '',
+            children: section ? [sectionChild] : []
+        }]
+    };
+
+    return imageObject;
 }
+
+function getAllImageUrlsFromHtml(html) {
+    var $ = cheerio.load(html),
+        images = $('img'),
+        imageUrlArray = [];
+
+    images.each(function(i, elem) {
+        var imageUrl = path.join(config.settings.siteRoot, $(this).attr('src'));
+        imageUrlArray.push(imageUrl);
+    });
+
+    return imageUrlArray;
+}
+
+
 
 function parseYAPLJsonFromFile(file, blockParent) {
     //console.log('parseYAPLBlocksFromContent');
@@ -221,14 +312,23 @@ function parseYAPLJsonFromFile(file, blockParent) {
             yamlString = YAPLBlock.replace(regEx, function(match, p1) {
                 return p1;
             });
-            json = createSingleYAPLBlockObject(yaml.safeLoad(yamlString), blockParent);
-            YAPLJson.push(json);
+
+            json = yaml.safeLoad(yamlString);
+
+            if (_.contains(fileExt, 'css')) {
+                json = createSingleCssYAPLBlockObject(json, blockParent);
+                YAPLJson.push(json);
+            } else if (_.contains(fileExt, 'html')) {
+                // HTML files only contain one YAPL block
+                YAPLJson = json;
+            }
+
         });
         return YAPLJson;
     }
 }
 
-function createSingleYAPLBlockObject(obj, blockParent) {
+function createSingleCssYAPLBlockObject(obj, blockParent) {
     var blockObj = {};
 
     blockObj['name'] = obj.name || 'Undefined Name';
@@ -239,8 +339,6 @@ function createSingleYAPLBlockObject(obj, blockParent) {
     blockObj['context'] = obj.context || false;
     blockObj['selector'] = obj.selector || false;
     blockObj['link'] = blockParent.link + '#' + blockObj.nameCssCase;
-    blockObj['html'] = '<html>';
-    blockObj['references'] = {};
 
     return blockObj;
 }
@@ -379,10 +477,11 @@ YAPL({
         data: 'example/templates-main/data/**/*.{json,yaml}',
         displayTemplates: 'example/ProductionTemplates/**/*.html',
         buildDir: 'example/styleguide',
-        index: 'lib/templates/index.hbs',
+        indexTemplate: 'lib/templates/index.hbs',
         outputJsonFile: 'example/styleguide.json',
         libraryLayout: 'example/templates-styleguide/layouts/default.hbs',
-        libraryPartials: 'example/templates-styleguide/partials/**/*.hbs'
+        libraryPartials: 'example/templates-styleguide/partials/**/*.hbs',
+        siteRoot: 'example' // TODO: Any better way to handle this?
     },
     sections: [{
         name: 'Micro Elements',
