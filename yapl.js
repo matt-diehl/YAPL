@@ -18,13 +18,7 @@ var config = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
         htmlBlockRegEx: /\<!--\s*?YAPL\n([\s\S]*?)--\>/g,
-        outputJSONFile: false,
-        css: '',
-        partials: '',
-        data: '',
-        displayTemplates: '',
-        buildDir: '',
-        index: ''
+        outputJsonFile: false
     },
     sections: [],
     displayTemplates: [],
@@ -35,7 +29,7 @@ var config = {
 
 // Initialize Function
 function YAPL(options) {
-    console.log('YAPL');
+    //console.log('YAPL');
     // ============================
 
     // Build Prep Steps
@@ -69,14 +63,14 @@ function YAPL(options) {
 // Build Prep Steps
 
 function extendConfig(options) {
-    console.log('extendConfig');
+    //console.log('extendConfig');
     // ============================
 
     config = extend(true, config, options);
 }
 
 function setupHandlebarsConfig() {
-    console.log('setupHandlebarsConfig');
+    //console.log('setupHandlebarsConfig');
     // ============================
 
     var partials = glob.sync(config.settings.partials);
@@ -88,18 +82,18 @@ function setupHandlebarsConfig() {
     partials.forEach(function(partialPath) {
         var partialName = path.basename(partialPath, '.hbs'),
             partialContent = fs.readFileSync(partialPath, 'utf8')
-        handlebars.registerHelper(partialName, partialContent);
+        handlebars.registerPartial(partialName, partialContent);
     });
 }
 
 function setupAssembleConfig() {
-    console.log('setupAssembleConfig');
+    //console.log('setupAssembleConfig');
     // ============================
 
 }
 
 function createAllSectionObjects() {
-    console.log('createAllSectionObjects');
+    //console.log('createAllSectionObjects');
     // ============================
 
     config.sections.forEach(function(section, index) {
@@ -108,7 +102,7 @@ function createAllSectionObjects() {
 }
 
 function createSingleSectionObj(obj) {
-    console.log('createSingleSectionObj');
+    //console.log('createSingleSectionObj');
     // ============================
 
     var sectionObject = {};
@@ -119,17 +113,19 @@ function createSingleSectionObj(obj) {
     sectionObject['landingTemplate'] = obj.landingTemplate || false;
     sectionObject['childTemplate'] = obj.childTemplate || false;
     sectionObject['css'] = obj.css || false;
-    sectionObject['partials'] = obj.partials || config.settings.partials;
-    sectionObject['data'] = obj.data || config.settings.data;
-    sectionObject['link'] = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
     sectionObject['cssFiles'] = sectionObject['css'] ? glob.sync(sectionObject['css']) : false;
+    sectionObject['partials'] = obj.partials || config.settings.partials;
+    sectionObject['partialFiles'] = sectionObject['partials'] ? glob.sync(sectionObject['partials']) : false;
+    sectionObject['data'] = obj.data || config.settings.data;
+    sectionObject['dataFiles'] = sectionObject['data'] ? glob.sync(sectionObject['data']) : false;
+    sectionObject['link'] = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
     sectionObject['children'] = sectionObject['cssFiles'] ? createAllSectionChildrenObjects(sectionObject['cssFiles'], sectionObject.nameCssCase) : false;
 
     return sectionObject;
 }
 
 function createAllSectionChildrenObjects(cssFiles, sectionName) {
-    console.log('createAllSectionChildrenObjects');
+    //console.log('createAllSectionChildrenObjects');
     // ============================
 
     var childrenObjects = [];
@@ -143,7 +139,7 @@ function createAllSectionChildrenObjects(cssFiles, sectionName) {
 }
 
 function createSingleSectionChildObject(cssFile, sectionName) {
-    console.log('createSingleSectionChildObject');
+    //console.log('createSingleSectionChildObject');
     // ============================
 
     var childObject = {},
@@ -155,7 +151,8 @@ function createSingleSectionChildObject(cssFile, sectionName) {
     childObject['nameCamelCase'] = utils.camelCase(cssFileBasename);
     childObject['nameCssCase'] = cssFileBasename;
     childObject['link'] = path.join(config.settings.buildDir, sectionName, childObjectFilename);
-    childObject['blocks'] = parseYAPLJsonFromFile(cssFile, childObject['link']);
+    childObject['partial'] = cssFileBasename;
+    childObject['blocks'] = parseYAPLJsonFromFile(cssFile, childObject);
 
     if (childObject['blocks'] && childObject['blocks'].length) {
         return childObject;
@@ -163,31 +160,50 @@ function createSingleSectionChildObject(cssFile, sectionName) {
 }
 
 function createAllDisplayTemplateObjects() {
-    console.log('createAllDisplayTemplateObjects');
+    //console.log('createAllDisplayTemplateObjects');
     // ============================
 
+    var displayTemplateFiles = glob.sync(config.settings.displayTemplates),
+        displayTemplatesArray = [];
+
+    displayTemplateFiles.forEach(function(file) {
+        var displayTemplateObject = createSingleDisplayTemplateObject(file);
+        displayTemplatesArray.push(displayTemplateObject);
+    });
+
+    config.displayTemplates = displayTemplatesArray;
 }
 
-function createSingleDisplayTemplateObject() {
-    console.log('createSingleDisplayTemplateObject');
+function createSingleDisplayTemplateObject(file) {
+    //console.log('createSingleDisplayTemplateObject');
     // ============================
 
+    var displayTemplateObject = {};
+
+    displayTemplateObject['name'] = 'Friendly Name For Template';
+    displayTemplateObject['group'] = 'group name (ex. batch-1)';
+    displayTemplateObject['notes'] = 'Notes about template';
+    displayTemplateObject['link'] = 'link to template';
+    displayTemplateObject['html'] = '<html>';
+    displayTemplateObject['hide'] = 'true/false';
+
+    return displayTemplateObject;
 }
 
 function createAllImageSizeObjects() {
-    console.log('createAllImageSizeObjects');
+    //console.log('createAllImageSizeObjects');
     // ============================
 
 }
 
 function createSingleImageSizeObjects() {
-    console.log('createSingleImageSizeObjects');
+    //console.log('createSingleImageSizeObjects');
     // ============================
 
 }
 
-function parseYAPLJsonFromFile(file, link) {
-    console.log('parseYAPLBlocksFromContent');
+function parseYAPLJsonFromFile(file, blockParent) {
+    //console.log('parseYAPLBlocksFromContent');
     // ============================
 
     var fileExt = path.extname(file),
@@ -205,26 +221,24 @@ function parseYAPLJsonFromFile(file, link) {
             yamlString = YAPLBlock.replace(regEx, function(match, p1) {
                 return p1;
             });
-            json = createSingleYAPLBlockObject(yaml.safeLoad(yamlString), link);
+            json = createSingleYAPLBlockObject(yaml.safeLoad(yamlString), blockParent);
             YAPLJson.push(json);
         });
         return YAPLJson;
-    } else {
-        return false;
     }
 }
 
-function createSingleYAPLBlockObject(obj, link) {
+function createSingleYAPLBlockObject(obj, blockParent) {
     var blockObj = {};
 
     blockObj['name'] = obj.name || 'Undefined Name';
-    blockObj['nameCamelCase'] = utils.camelCase(blockObj['name']);
-    blockObj['nameCssCase'] = utils.cssCase(blockObj['name']);
+    blockObj['nameCamelCase'] = utils.camelCase(blockObj.name);
+    blockObj['nameCssCase'] = utils.cssCase(blockObj.name);
     blockObj['notes'] = obj.notes || false;
-    blockObj['partial'] = obj.partial || blockObj['nameCamelCase'];
+    blockObj['partial'] = obj.partial || blockParent.partial;
     blockObj['context'] = obj.context || false;
     blockObj['selector'] = obj.selector || false;
-    blockObj['link'] = link + '#' + blockObj['nameCssCase'];
+    blockObj['link'] = blockParent.link + '#' + blockObj.nameCssCase;
     blockObj['html'] = '<html>';
     blockObj['references'] = {};
 
@@ -236,7 +250,7 @@ function createSingleYAPLBlockObject(obj, link) {
 // Section-Level Build
 
 function buildAllHtmlExamples() {
-    console.log('buildAllHtmlExamples');
+    //console.log('buildAllHtmlExamples');
     // ============================
 
     config.sections.forEach(function(section) {
@@ -245,7 +259,7 @@ function buildAllHtmlExamples() {
                 if (sectionChild.blocks && sectionChild.blocks.length) {
                     sectionChild.blocks.forEach(function(block) {
 
-                        block['html'] = buildSingleHtmlExample(block, sectionChild);
+                        block['html'] = buildSingleHtmlExample(block, section);
 
                     });
                 }
@@ -254,9 +268,54 @@ function buildAllHtmlExamples() {
     });
 }
 
-function buildSingleHtmlExample(block, sectionChild) {
-    console.log('buildSingleHtmlExample');
+function buildSingleHtmlExample(block, section) {
+    //console.log('buildSingleHtmlExample');
     // ============================
+
+    var partialFile,
+        partialFileContent,
+        dataFile,
+        dataFileContent,
+        blockContextRoot = block.context && block.context.split('.')[0],
+        blockContextTip = block.context && block.context.split('.')[1],
+        blockContextJson = '',
+        template,
+        html;
+
+    partialFile = _.find(section.partialFiles, function(file) {
+        var fileExt = path.extname(file),
+            fileBasename = path.basename(file, fileExt);
+        return block.partial === fileBasename;
+    });
+
+    if (partialFile) {
+        partialFileContent = fs.readFileSync(partialFile, 'utf8');
+    }
+
+    if (block.context) {
+        dataFile = _.find(section.dataFiles, function(file) {
+            var fileExt = path.extname(file),
+                fileBasename = path.basename(file, fileExt);
+            return blockContextRoot === fileBasename;
+        });
+    }
+
+    if (dataFile) {
+        dataFileContent = fs.readFileSync(dataFile, 'utf8');
+        if (path.extname(dataFile) === '.yaml') {
+            blockContextJson = yaml.safeLoad(dataFileContent)[blockContextTip];
+        } else if (path.extname(dataFile) === '.json') {
+            blockContextJson = JSON.parse(dataFileContent)[blockContextTip];
+        }
+    }
+
+    if (partialFileContent) {
+        template = handlebars.compile(partialFileContent);
+        html = template(blockContextJson);
+        html = html.replace(/^\s+|\s+$/g, '');
+        html = html.replace(/\n+/g, '\n');
+        return html;
+    }
 
 }
 
@@ -265,7 +324,7 @@ function buildSingleHtmlExample(block, sectionChild) {
 // Cross Linking
 
 function crossLinkSectionChildren() {
-    console.log('crossLinkSectionChildren');
+    //console.log('crossLinkSectionChildren');
     // ============================
 
 }
@@ -273,14 +332,19 @@ function crossLinkSectionChildren() {
 
 
 function outputConfigToFile() {
-    console.log('outputConfigToFile');
+    //console.log('outputConfigToFile');
     // ============================
 
-    var outputPath = config.settings.outputJSONFile,
+    var outputPath = config.settings.outputJsonFile,
         outputDir = path.dirname(outputPath),
         outputFilename = path.basename(outputPath)
 
-    //fs.exists();
+    fs.exists(outputDir, function(exists) {
+        if (!exists) {
+            fs.mkdirSync(outputDir);
+        }
+        fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
+    });
 }
 
 
@@ -288,7 +352,7 @@ function outputConfigToFile() {
 // Pattern Library Build
 
 function buildPatternLibrary() {
-    console.log('buildPatternLibrary');
+    //console.log('buildPatternLibrary');
     // ============================
 
 }
@@ -316,7 +380,7 @@ YAPL({
         displayTemplates: 'example/ProductionTemplates/**/*.html',
         buildDir: 'example/styleguide',
         index: 'lib/templates/index.hbs',
-        outputJSONFile: 'example/styleguide.json',
+        outputJsonFile: 'example/styleguide.json',
         libraryLayout: 'example/templates-styleguide/layouts/default.hbs',
         libraryPartials: 'example/templates-styleguide/partials/**/*.hbs'
     },

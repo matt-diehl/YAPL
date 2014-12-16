@@ -36,3 +36,21 @@ linksWideBreakthroughs:
     - "Clinical Trial” Retreatment of Recurrent Tumors Using Proton Therapy"
     - "Clinical Trial: A Phase I-II Open Label Non-Randomized Study Using TL32711 for Patients with Gestational Choriocarcinoma"
   listModifier: portlet__list--row
+yaplExample:
+  related_content:
+    linksHalf:
+      modifier: portlet--half portlet--white
+      title: Related List of Links
+      list:
+        - "Related Link"
+        - "Another Related Link Here"
+        - "Ssit amet ultrices"
+        - "Lorem ipsum dolor sit amet"
+    linksHalf:
+      modifier: portlet--half portlet--white
+      title: Related List of Links
+      list:
+        - "Related Link"
+        - "Another Related Link Here"
+        - "Ssit amet ultrices"
+        - "Lorem ipsum dolor sit amet"
