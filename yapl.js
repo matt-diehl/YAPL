@@ -404,5 +404,8 @@ YAPL({
     }, {
         name: 'Image Sizes',
         landingTemplate: 'lib/templates/image-sizes-landing.hbs'
+    }, {
+        name: 'Appendix',
+        landingTemplate: 'lib/templates/appendix.hbs'
     }]
 });
