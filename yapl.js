@@ -55,7 +55,9 @@ function YAPL(options) {
         //-> sortAndMergeImageObjects
 
     // Cross Linking
-    crossLinkBlocksAndTemplates(); // incomplete
+    crossLinkBlocksAndTemplates();
+        //-> searchAllBlocksAndTemplatesForSelector
+            //-> htmlSelectorMatch
 
     // Output JSON to file if set as option
     outputConfigToFile();
