@@ -1,0 +1,26 @@
+<div class="sg-nav-wrap open-sans">
+    <span class="sg-nav__close js-sg-nav-toggle">Close</span>
+    <nav class="sg-nav">
+        <ul class="sg-nav__level1">
+            <li>
+                <span class="sg-nav__level1-title open-sans--semibold">Micro Modules</span>
+                <ul class="sg-nav__level2">
+                {{#each styles.micro}}
+                    <li><a href="/styleguide/modules/micro/{{name}}.html">{{name}}</a></li>
+                {{/each}}
+                </ul>
+            </li>
+            <li>
+                <span class="sg-nav__level1-title open-sans--semibold">Macro Modules</span>
+                <ul class="sg-nav__level2">
+                {{#each styles.macro}}
+                    <li><a href="/styleguide/modules/macro/{{name}}.html">{{name}}</a></li>
+                {{/each}}
+                </ul>
+            </li>
+            <li>
+                <a href="/styleguide/display-templates.html" class="sg-nav__level1-title open-sans--semibold">Display Templates</a>
+            </li>
+        </ul>
+    </nav>
+</div>

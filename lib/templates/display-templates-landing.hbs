@@ -1,1 +1,36 @@
-display-templates-landing.hbs
+<div class="sg-block js-sg-block module-is-collapsed">
+    <div class="sg-block__header">
+        <h2 class="sg-block__title open-sans open-sans--semibold">Display Templates</h2>
+        <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+            <span class="show-if-collapsed">Show</span>
+            <span class="show-if-expanded">Hide</span>
+            Code/Annotations
+        </span>
+    </div>
+    <div class="sg-block__content cf">
+        <ul class="sg-block__template-list">
+        {{#each displayTemplates}}
+            <li>
+                <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                    <a href="{{link}}" target="_blank">{{name}}</a>
+                </h3>
+                <div class="sg-block__more is-collapsed js-sg-block__more">
+                    <div class="sg-block__notes">
+                        <p class="open-sans">
+                            {{notes}}
+                        </p>
+                        <!--<p class="open-sans">
+                            <strong class="open-sans--semibold">Macro Modules:</strong>
+
+                        </p>
+                        <p class="open-sans">
+                            <strong class="open-sans--semibold">Micro Modules:</strong>
+
+                        </p>-->
+                    </div>
+                </div>
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+</div>

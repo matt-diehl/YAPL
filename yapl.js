@@ -33,7 +33,7 @@ function YAPL(options) {
     // Build Prep Steps
     extendConfig(options);
     setupHandlebarsConfig();
-    setupAssembleConfig();
+    setupAssembleConfig(); // INCOMPLETE
     createAllSectionObjects();
     //-> createSingleSectionObj
         //-> createAllSectionChildrenObjects
@@ -71,7 +71,6 @@ function YAPL(options) {
 // Build Prep Steps
 
 function extendConfig(options) {
-
     config = extend(true, config, options);
 }
 
@@ -91,18 +90,16 @@ function setupHandlebarsConfig() {
 }
 
 function setupAssembleConfig() {
-
+    // TODO: COMPLETE
 }
 
 function createAllSectionObjects() {
-
     config.sections.forEach(function(section, index) {
         config.sections[index] = createSingleSectionObj(section);
     });
 }
 
 function createSingleSectionObj(obj) {
-
     var sectionObject = {};
 
     sectionObject['name'] = obj.name || 'Undefined Section';
@@ -123,7 +120,6 @@ function createSingleSectionObj(obj) {
 }
 
 function createAllSectionChildrenObjects(cssFiles, sectionName) {
-
     var childrenObjects = [];
 
     cssFiles.forEach(function(cssFile) {
@@ -135,7 +131,6 @@ function createAllSectionChildrenObjects(cssFiles, sectionName) {
 }
 
 function createSingleSectionChildObject(cssFile, sectionName) {
-
     var childObject = {},
         cssFileExt = path.extname(cssFile),
         cssFileBasename = path.basename(cssFile, cssFileExt).replace('_', ''),
@@ -154,7 +149,6 @@ function createSingleSectionChildObject(cssFile, sectionName) {
 }
 
 function createAllDisplayTemplateObjects() {
-
     var displayTemplateFiles = glob.sync(config.settings.displayTemplates),
         displayTemplatesArray = [];
 
@@ -167,7 +161,6 @@ function createAllDisplayTemplateObjects() {
 }
 
 function createSingleDisplayTemplateObject(file) {
-
     var displayTemplateObject = parseYAPLJsonFromFile(file) || {},
         fileExt = path.extname(file),
         fileBasename = path.basename(file, fileExt);
@@ -181,7 +174,6 @@ function createSingleDisplayTemplateObject(file) {
 }
 
 function createAllImageSizeObjects() {
-
     var imageSizeObjectsAll = [];
 
     // Loop through YAPL blocks to find images
@@ -208,12 +200,10 @@ function createAllImageSizeObjects() {
     });
 
     config.imageSizes = sortAndMergeImageObjects(imageSizeObjectsAll);
-
 }
 
 // TODO: Fix weirdness of using for both sections and display templates
 function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTemplate) {
-
     var imageObject = {};
 
     imageObject['dimensions'] = utils.dimensions(imageUrl);
@@ -278,7 +268,6 @@ function sortAndMergeImageObjects(objects) {
 
 
 function parseYAPLJsonFromFile(file, blockParent) {
-
     var fileExt = path.extname(file),
         fileContent = fs.readFileSync(file, 'utf8'),
         regEx = _.contains(fileExt, 'html') ? config.settings.htmlBlockRegEx :
@@ -330,14 +319,12 @@ function createSingleCssYAPLBlockObject(obj, blockParent) {
 // Section-Level Build
 
 function buildAllHtmlExamples() {
-
     allYAPLBlocks().forEach(function(block) {
         block['html'] = buildSingleHtmlExample(block, block.get('section'));
     });
 }
 
 function buildSingleHtmlExample(block, section) {
-
     var partialFile,
         partialFileContent,
         dataFile,
@@ -411,7 +398,7 @@ function crossLinkBlocksAndTemplates() {
     });
 }
 
-function searchAllBlocksAndTemplatesForSelector(selector) {
+function searchAllBlocksAndTemplatesForSelector(block, selector) {
     var references = {
             sections: [],
             displayTemplates: []
@@ -486,7 +473,7 @@ function outputConfigToFile() {
 // Pattern Library Build
 
 function buildPatternLibrary() {
-
+    // TODO: COMPLETE
 }
 
 
