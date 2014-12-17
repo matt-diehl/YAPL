@@ -398,7 +398,7 @@ function crossLinkBlocksAndTemplates() {
     });
 }
 
-function searchAllBlocksAndTemplatesForSelector(block, selector) {
+function searchAllBlocksAndTemplatesForSelector(selector) {
     var references = {
             sections: [],
             displayTemplates: []
