@@ -29,8 +29,6 @@ var config = {
 
 // Initialize Function
 function YAPL(options) {
-    //console.log('YAPL');
-    // ============================
 
     // Build Prep Steps
     extendConfig(options);
@@ -48,12 +46,16 @@ function YAPL(options) {
 
     // Section-level Build
     buildAllHtmlExamples();
+        //-> buildSingleHtmlExample
+    generateAllBlockCssSelectors();
 
-    createAllImageSizeObjects(); // incomplete
+    createAllImageSizeObjects();
         //-> createSingleImageSizeOject
+        //-> getAllImageUrlsFromHtml
+        //-> sortAndMergeImageObjects
 
     // Cross Linking
-    crossLinkSectionChildren(); // incomplete
+    crossLinkBlocksAndTemplates(); // incomplete
 
     // Output JSON to file if set as option
     outputConfigToFile();
@@ -67,15 +69,11 @@ function YAPL(options) {
 // Build Prep Steps
 
 function extendConfig(options) {
-    //console.log('extendConfig');
-    // ============================
 
     config = extend(true, config, options);
 }
 
 function setupHandlebarsConfig() {
-    //console.log('setupHandlebarsConfig');
-    // ============================
 
     var partials = glob.sync(config.settings.partials);
     // register built-in helpers
@@ -91,14 +89,10 @@ function setupHandlebarsConfig() {
 }
 
 function setupAssembleConfig() {
-    //console.log('setupAssembleConfig');
-    // ============================
 
 }
 
 function createAllSectionObjects() {
-    //console.log('createAllSectionObjects');
-    // ============================
 
     config.sections.forEach(function(section, index) {
         config.sections[index] = createSingleSectionObj(section);
@@ -106,8 +100,6 @@ function createAllSectionObjects() {
 }
 
 function createSingleSectionObj(obj) {
-    //console.log('createSingleSectionObj');
-    // ============================
 
     var sectionObject = {};
 
@@ -129,8 +121,6 @@ function createSingleSectionObj(obj) {
 }
 
 function createAllSectionChildrenObjects(cssFiles, sectionName) {
-    //console.log('createAllSectionChildrenObjects');
-    // ============================
 
     var childrenObjects = [];
 
@@ -143,8 +133,6 @@ function createAllSectionChildrenObjects(cssFiles, sectionName) {
 }
 
 function createSingleSectionChildObject(cssFile, sectionName) {
-    //console.log('createSingleSectionChildObject');
-    // ============================
 
     var childObject = {},
         cssFileExt = path.extname(cssFile),
@@ -164,8 +152,6 @@ function createSingleSectionChildObject(cssFile, sectionName) {
 }
 
 function createAllDisplayTemplateObjects() {
-    //console.log('createAllDisplayTemplateObjects');
-    // ============================
 
     var displayTemplateFiles = glob.sync(config.settings.displayTemplates),
         displayTemplatesArray = [];
@@ -179,8 +165,6 @@ function createAllDisplayTemplateObjects() {
 }
 
 function createSingleDisplayTemplateObject(file) {
-    //console.log('createSingleDisplayTemplateObject');
-    // ============================
 
     var displayTemplateObject = parseYAPLJsonFromFile(file) || {},
         fileExt = path.extname(file),
@@ -195,85 +179,54 @@ function createSingleDisplayTemplateObject(file) {
 }
 
 function createAllImageSizeObjects() {
-    //console.log('createAllImageSizeObjects');
-    // ============================
 
-    var imageSizeObjectsAll = [], // All image objects
-        imageSizeObjectGroups = [], // Image objects grouped by size
-        imageSizeObjectsCondensed = []; // Images reduced to unique, with combined references
+    var imageSizeObjectsAll = [];
 
-    // Loop through sections/modules to find images
-    config.sections.forEach(function(section) {
-        if (section.children && section.children.length) {
-            section.children.forEach(function(sectionChild) {
-                if (sectionChild.blocks && sectionChild.blocks.length) {
-                    sectionChild.blocks.forEach(function(block) {
-
-                        if (block.html) {
-                            var imageUrls = getAllImageUrlsFromHtml(block.html);
-                            imageUrls.forEach(function(imageUrl) {
-                                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, section, sectionChild);
-                                imageSizeObjectsAll.push(imageSizeObject);
-                            });
-                        }
-
-                    });
-                }
+    // Loop through YAPL blocks to find images
+    allYAPLBlocks().forEach(function(block) {
+        if (block.html) {
+            var imageUrls = getAllImageUrlsFromHtml(block.html);
+            imageUrls.forEach(function(imageUrl) {
+                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, block.get('section'), block.get('sectionChild'));
+                imageSizeObjectsAll.push(imageSizeObject);
             });
         }
     });
 
     // Loop through display templates to find images
-    config.displayTemplates.forEach(function(displayTemplate) {
-        fs.readFile(displayTemplate.link, function(err, html) {
-            if (err) {
-                return false;
-            }
+    allDisplayTemplates().forEach(function(displayTemplate) {
+        var html = fs.readFileSync(displayTemplate.link);
+        if (html) {
             var imageUrls = getAllImageUrlsFromHtml(html);
             imageUrls.forEach(function(imageUrl) {
-                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl);
+                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, null, null, displayTemplate);
                 imageSizeObjectsAll.push(imageSizeObject);
             });
-        });
+        }
     });
 
-    // Sort/Merge Image Objects
-    imageSizeObjectGroups = _.chain(imageSizeObjectsAll)
-        .groupBy(function(object) {
-            return object.dimensions;
-        })
-        .sortBy('dimensions')
-        .value();
-
-    imageSizeObjectGroups.forEach(function(group, index, arr) {
-        var mergedImageObject = {};
-
-        group.forEach(function(imageObject) {
-            _.merge(mergedImageObject, imageObject);
-        });
-        imageSizeObjectsCondensed.push(mergedImageObject);
-    });
-
-    config.imageSizes = imageSizeObjectsCondensed;
+    config.imageSizes = sortAndMergeImageObjects(imageSizeObjectsAll);
 
 }
 
 // TODO: Fix weirdness of using for both sections and display templates
-function createSingleImageSizeObject(imageUrl, section, sectionChild) {
-    //console.log('createSingleImageSizeObject');
-    // ============================
+function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTemplate) {
 
     var imageObject = {};
 
     imageObject['dimensions'] = utils.dimensions(imageUrl);
     imageObject['ratio'] = utils.aspectRatio(imageObject['dimensions']);
     imageObject['html'] = utils.placeholderImage(imageObject['dimensions']);
-    imageObject['references'] = {
-        sections: [{
+    imageObject['references'] = {};
+
+    if (section) {
+        imageObject.references['sections'] = [{
             name: section ? section.name : '',
             children: section ? [sectionChild] : []
-        }]
-    };
+        }];
+    } else if (displayTemplate) {
+        imageObject.references['displayTemplates'] = [displayTemplate];
+    }
 
     return imageObject;
 }
@@ -284,18 +237,45 @@ function getAllImageUrlsFromHtml(html) {
         imageUrlArray = [];
 
     images.each(function(i, elem) {
-        var imageUrl = path.join(config.settings.siteRoot, $(this).attr('src'));
-        imageUrlArray.push(imageUrl);
+        var imageUrl = path.join(config.settings.siteRoot, $(this).attr('src')),
+            imageExt = path.extname(imageUrl).toLowerCase();
+        // Don't collect SVGs as they're only used for icons/global elements
+        // The image size package also sometimes throws an error on them
+        // TODO: May want to make this a setting to test for an ignore pattern
+        if (imageExt !== '.svg') {
+            imageUrlArray.push(imageUrl);
+        }
     });
 
     return imageUrlArray;
 }
 
+function sortAndMergeImageObjects(objects) {
+    var imageSizeObjectsCondensed = [],
+        imageSizeObjectGroups;
+
+    imageSizeObjectGroups = _.chain(objects)
+        .groupBy(function(object) {
+            return object.dimensions;
+        })
+        .sortBy('dimensions')
+        .value();
+
+    imageSizeObjectGroups.forEach(function(group) {
+        var mergedImageObject = {};
+
+        group.forEach(function(imageObject) {
+            _.merge(mergedImageObject, imageObject);
+        });
+        imageSizeObjectsCondensed.push(mergedImageObject);
+    });
+
+    return imageSizeObjectsCondensed;
+}
+
 
 
 function parseYAPLJsonFromFile(file, blockParent) {
-    //console.log('parseYAPLBlocksFromContent');
-    // ============================
 
     var fileExt = path.extname(file),
         fileContent = fs.readFileSync(file, 'utf8'),
@@ -348,27 +328,13 @@ function createSingleCssYAPLBlockObject(obj, blockParent) {
 // Section-Level Build
 
 function buildAllHtmlExamples() {
-    //console.log('buildAllHtmlExamples');
-    // ============================
 
-    config.sections.forEach(function(section) {
-        if (section.children && section.children.length) {
-            section.children.forEach(function(sectionChild) {
-                if (sectionChild.blocks && sectionChild.blocks.length) {
-                    sectionChild.blocks.forEach(function(block) {
-
-                        block['html'] = buildSingleHtmlExample(block, section);
-
-                    });
-                }
-            });
-        }
+    allYAPLBlocks().forEach(function(block) {
+        block['html'] = buildSingleHtmlExample(block, block.get('section'));
     });
 }
 
 function buildSingleHtmlExample(block, section) {
-    //console.log('buildSingleHtmlExample');
-    // ============================
 
     var partialFile,
         partialFileContent,
@@ -417,22 +383,90 @@ function buildSingleHtmlExample(block, section) {
 
 }
 
+function generateAllBlockCssSelectors() {
+    allYAPLBlocks().forEach(function(block) {
+        var $dom, domItems, selector;
 
-
-// Cross Linking
-
-function crossLinkSectionChildren() {
-    //console.log('crossLinkSectionChildren');
-    // ============================
-
+        if (block.html && !block.selector) {
+            $dom = cheerio.load(block.html);
+            domItems = $dom('*');
+            selector = domItems.eq(0).attr('class').trim();
+            selector = '.' + selector.replace(/ /g, '.');
+            block.selector = selector;
+        }
+    });
 }
 
 
 
-function outputConfigToFile() {
-    //console.log('outputConfigToFile');
-    // ============================
+// Cross Linking
 
+function crossLinkBlocksAndTemplates() {
+    allYAPLBlocks().forEach(function(block) {
+        if (block.selector) {
+            block.references = searchAllBlocksAndTemplatesForSelector(block.selector);
+        }
+    });
+}
+
+function searchAllBlocksAndTemplatesForSelector(selector) {
+    var references = {
+            sections: [],
+            displayTemplates: []
+        },
+        sectionsCondensed = [],
+        sectionGroups;
+
+    allYAPLBlocks().forEach(function(block) {
+        // If the block selector matches the one we're looking for, don't search it
+        // Otherwise, search the html for the selector
+        if (block.selector && selector.indexOf(block.selector) < 0 && block.html && htmlSelectorMatch(block.html, selector)) {
+            var reference = {
+                name: block.get('section').name,
+                children: [block.get('sectionChild')]
+            }
+            references.sections.push(reference);
+        }
+    });
+
+    allDisplayTemplates().forEach(function(template) {
+        var html = fs.readFileSync(template.link);
+        if (html && htmlSelectorMatch(html, selector)) {
+            references.displayTemplates.push(template);
+        }
+    });
+
+    sectionGroups = _.chain(references.sections)
+        .groupBy(function(section) {
+            return section.name;
+        })
+        .value();
+
+    _.forIn(sectionGroups, function(group, key) {
+        var mergedReference = {};
+
+        group.forEach(function(reference) {
+            _.merge(mergedReference, reference);
+        });
+        sectionsCondensed.push(mergedReference);
+    });
+
+    references.sections = sectionsCondensed;
+
+    return references;
+}
+
+function htmlSelectorMatch(html, selector) {
+    var $dom = cheerio.load(html),
+        selectorMatch = $dom(selector).length;
+    return selectorMatch;
+}
+
+
+
+// File Output
+
+function outputConfigToFile() {
     var outputPath = config.settings.outputJsonFile,
         outputDir = path.dirname(outputPath),
         outputFilename = path.basename(outputPath)
@@ -450,9 +484,38 @@ function outputConfigToFile() {
 // Pattern Library Build
 
 function buildPatternLibrary() {
-    //console.log('buildPatternLibrary');
-    // ============================
 
+}
+
+
+// Internal Utilities
+
+function allYAPLBlocks() {
+    var blocks = [];
+
+    config.sections.forEach(function(section) {
+        if (section.children && section.children.length) {
+            section.children.forEach(function(sectionChild) {
+                if (sectionChild.blocks && sectionChild.blocks.length) {
+                    sectionChild.blocks.forEach(function(block) {
+
+                        block['get'] = function(val) {
+                            return val === 'section' ? section :
+                                   val === 'sectionChild' ? sectionChild : false;
+                        }
+                        blocks.push(block);
+
+                    });
+                }
+            });
+        }
+    });
+
+    return blocks;
+}
+
+function allDisplayTemplates() {
+    return config.displayTemplates;
 }
 
 
