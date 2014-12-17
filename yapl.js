@@ -409,7 +409,7 @@ function searchAllBlocksAndTemplatesForSelector(block, selector) {
     allYAPLBlocks().forEach(function(block) {
         // If the block selector matches the one we're looking for, don't search it
         // Otherwise, search the html for the selector
-        if (block.selector && selector.indexOf(block.selector) < 0 && block.html && htmlSelectorMatch(block.html, selector)) {
+        if (block.selector && selector && selector.indexOf(block.selector) < 0 && block.html && htmlSelectorMatch(block.html, selector)) {
             var reference = {
                 name: block.get('section').name,
                 children: [block.get('sectionChild')]
@@ -460,12 +460,10 @@ function outputConfigToFile() {
         outputDir = path.dirname(outputPath),
         outputFilename = path.basename(outputPath)
 
-    fs.exists(outputDir, function(exists) {
-        if (!exists) {
-            fs.mkdirSync(outputDir);
-        }
-        fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
-    });
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
+    fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
 }
 
 
