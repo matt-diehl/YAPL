@@ -1,242 +1,509 @@
+'use strict';
 
-/**
- * YET ANOTHER PATTERN LIBRARY
- *
- * Steps:
- * - Create a "styles" object, broken down by the folder structure of that containing all of the CSS (base, layout, modules, etc.)
- * - Find all source files containing style guide YAML blocks, and add them to the "styles" object (layout.header, modules.micro.btn, etc.)
- * - For each file, create an array of objects (using js-yaml), one for each style guide YAML block
- * - For each object in the array, check if there is an associated handlebars partial (as well as data/context)
- * - If there if an associated handlebars partial, compile the example, clean it up, and add it to the object
- *
- * Options:
- * - Directories to css, partials, and data
- * - Regular expression for finding style guide blocks in css
- * - Whether to save "styles" object as JSON file, and what to call it
- *
- */
-
-
-// Requires
+// YAPL Requires
 var fs = require('fs'),
     path = require('path'),
     glob = require('glob'),
-    handlebars = require('handlebars'), // Remove if unnecessary
+    assemble = require('assemble'),
+    handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
-    yaml = require('js-yaml'),
     extend = require('node.extend'),
+    yaml = require('js-yaml'),
     cheerio = require('cheerio'),
-    Template = require('template'),
-    consolidate = require('consolidate');
+    utils = require('./lib/utils.js'),
+    _ = require('lodash');
 
-// register built-in helpers
-if (helpers && helpers.register) {
-    helpers.register(handlebars, {}, {});
+// YAPL Internal Variables
+var config = {
+    settings: {
+        cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
+        htmlBlockRegEx: /\<!--\s*?YAPL\n([\s\S]*?)--\>/g,
+        outputJsonFile: false
+    },
+    sections: [],
+    displayTemplates: [],
+    imageSizes: []
+};
+
+
+
+// Initialize Function
+function YAPL(options) {
+
+    // Build Prep Steps
+    extendConfig(options);
+    setupHandlebarsConfig();
+    setupAssembleConfig(); // INCOMPLETE
+    createAllSectionObjects();
+    //-> createSingleSectionObj
+        //-> createAllSectionChildrenObjects
+            //-> createSingleSectionChildObject
+                //-> parseYAPLJsonFromFile
+                    //-> createSingleCssYAPLBlockObject
+    createAllDisplayTemplateObjects();
+    //-> createSingleDisplayTemplateObject
+        //-> parseYAPLJsonFromFile
+
+    // Section-level Build
+    buildAllHtmlExamples();
+        //-> buildSingleHtmlExample
+    generateAllBlockCssSelectors();
+
+    createAllImageSizeObjects();
+        //-> createSingleImageSizeOject
+        //-> getAllImageUrlsFromHtml
+        //-> sortAndMergeImageObjects
+
+    // Cross Linking
+    crossLinkBlocksAndTemplates();
+        //-> searchAllBlocksAndTemplatesForSelector
+            //-> htmlSelectorMatch
+
+    // Output JSON to file if set as option
+    outputConfigToFile();
+
+    // Pattern Library Build
+    buildPatternLibrary(); // incomplete
+
 }
 
-var template = new Template();
-template.engine('hbs', consolidate.handlebars);
 
+// Build Prep Steps
 
-var YAPL = (function() {
-    var files = {},
-        styles = {},
-        s;
+function extendConfig(options) {
+    config = extend(true, config, options);
+}
 
-    return {
+function setupHandlebarsConfig() {
 
-        // Default settings
-        // Other settings passed as arguments in init include:
-        // - cssDir (mandatory)
-        // - partialsDir (optional)
-        // - templatesDir (optional)
-        // - dataDir (optional)
-        settings: {
-            cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
-            htmlBlockRegEx: /\<!--\s*?YAPL\n([\s\S]*?)--\>/g,
-            outputFile: false
-        },
+    var partials = glob.sync(config.settings.partials);
+    // register built-in helpers
+    if (helpers && helpers.register) {
+        helpers.register(handlebars, {}, {});
+    }
+    // register all partials
+    partials.forEach(function(partialPath) {
+        var partialName = path.basename(partialPath, '.hbs'),
+            partialContent = fs.readFileSync(partialPath, 'utf8')
+        handlebars.registerPartial(partialName, partialContent);
+    });
+}
 
-        init: function(options) {
-            s = extend({}, this.settings, options);
+function setupAssembleConfig() {
+    // TODO: COMPLETE
+}
 
-            // Only continue if a css directory was spec'd
-            if (s.cssDir) {
-                this.getFiles();
-                this.gatherCssJSON();
-                s.templatesDir && this.gatherTemplateJSON();
-                s.outputFile && this.saveJSONFile();
-                return styles;
-            } else {
-                console.log('No CSS directory was specified');
-            }
-        },
+function createAllSectionObjects() {
+    config.sections.forEach(function(section, index) {
+        config.sections[index] = createSingleSectionObj(section);
+    });
+}
 
-        getFiles: function() {
-            files.css = glob.sync(s.cssDir + '/**/*.{css,scss}');
-            files.templates = glob.sync(s.templatesDir + '/**/*.html');
-        },
+function createSingleSectionObj(obj) {
+    var sectionObject = {};
 
-        gatherCssJSON: function() {
-            // Loop through each of the css files
-            for (var index in files.css) {
-                var filePath = files.css[index],
-                    filePathBase = path.basename(filePath, '.scss').replace('_', ''),
-                    filePathBaseCamelized = filePathBase.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); }),
-                    filePathArray = path.dirname(filePath).split('/'),
-                    fileParent = filePathArray[filePathArray.length - 1],
-                    fileContent = fs.readFileSync(filePath, 'utf8'),
-                    YAPLBlocks = fileContent.match(s.cssBlockRegEx),
-                    sgBlocks = [];
+    sectionObject['name'] = obj.name || 'Undefined Section';
+    sectionObject['nameCamelCase'] = utils.camelCase(sectionObject['name']);
+    sectionObject['nameCssCase'] = utils.cssCase(sectionObject['name']);
+    sectionObject['landingTemplate'] = obj.landingTemplate || false;
+    sectionObject['childTemplate'] = obj.childTemplate || false;
+    sectionObject['css'] = obj.css || false;
+    sectionObject['cssFiles'] = sectionObject['css'] ? glob.sync(sectionObject['css']) : false;
+    sectionObject['partials'] = obj.partials || config.settings.partials;
+    sectionObject['partialFiles'] = sectionObject['partials'] ? glob.sync(sectionObject['partials']) : false;
+    sectionObject['data'] = obj.data || config.settings.data;
+    sectionObject['dataFiles'] = sectionObject['data'] ? glob.sync(sectionObject['data']) : false;
+    sectionObject['link'] = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
+    sectionObject['children'] = sectionObject['cssFiles'] ? createAllSectionChildrenObjects(sectionObject['cssFiles'], sectionObject.nameCssCase) : false;
 
-                if (YAPLBlocks && YAPLBlocks.length) {
-                    YAPLBlocks.forEach(function(val) {
-                        var newString = val.replace(/\/\*\s*?YAPL\n/, ''),
-                            json;
-                        newString = newString.replace('*/', '');
-                        json = yaml.safeLoad(newString);
+    return sectionObject;
+}
 
-                        if (s.partialsDir) {
-                            // If a specific partial wasn't spec'd, use the css file name
-                            var partial = json.partial || filePathBase;
-                            json.example = YAPL.compileHtmlExample(partial, json.context);
-                        }
+function createAllSectionChildrenObjects(cssFiles, sectionName) {
+    var childrenObjects = [];
 
-                        sgBlocks.push(json);
-                    });
+    cssFiles.forEach(function(cssFile) {
+        var childObject = createSingleSectionChildObject(cssFile, sectionName);
+        childObject && childrenObjects.push(childObject);
+    });
 
-                    // Create an object for the current module if one doesn't already exist
-                    styles[fileParent] = styles[fileParent] ? styles[fileParent] : {};
+    return childrenObjects;
+}
 
-                    // Save module info and array of blocks to the master styles object
-                    styles[fileParent][filePathBaseCamelized] = {
-                        name: filePathBase,
-                        parent: fileParent,
-                        path: filePath,
-                        blocks: sgBlocks
-                    };
-                }
-            }
-        },
+function createSingleSectionChildObject(cssFile, sectionName) {
+    var childObject = {},
+        cssFileExt = path.extname(cssFile),
+        cssFileBasename = path.basename(cssFile, cssFileExt).replace('_', ''),
+        childObjectFilename = cssFileBasename + '.html';
 
-        findModulesinHTML: function(html, templateMeta) {
-            var $template = cheerio.load(html),
-                modules = {};
+    childObject['name'] = utils.titleCase(cssFileBasename);
+    childObject['nameCamelCase'] = utils.camelCase(cssFileBasename);
+    childObject['nameCssCase'] = cssFileBasename;
+    childObject['link'] = path.join(config.settings.buildDir, sectionName, childObjectFilename);
+    childObject['partial'] = cssFileBasename;
+    childObject['blocks'] = parseYAPLJsonFromFile(cssFile, childObject);
 
-            for (var folder in styles) {
+    if (childObject['blocks'] && childObject['blocks'].length) {
+        return childObject;
+    }
+}
 
-                for (var file in styles[folder]) {
-                    styles[folder][file].blocks.forEach(function(val, index, arr) {
-                        if (val.example) {
-                            var partialName = val.name;
-                                $partialHTML = cheerio.load(val.example),
-                                partialChildren = $partialHTML('*'),
-                                partialClass = '';
+function createAllDisplayTemplateObjects() {
+    var displayTemplateFiles = glob.sync(config.settings.displayTemplates),
+        displayTemplatesArray = [];
 
-                            if (partialChildren && partialChildren.length) {
-                                partialClass = partialChildren.eq(0).attr('class').trim();
-                                partialClass = '.' + partialClass.replace(/ /g, '.');
-                            }
+    displayTemplateFiles.forEach(function(file) {
+        var displayTemplateObject = createSingleDisplayTemplateObject(file);
+        displayTemplatesArray.push(displayTemplateObject);
+    });
 
-                            if (partialClass && $template(partialClass).length) {
+    config.displayTemplates = displayTemplatesArray;
+}
 
-                                modules[folder] = modules[folder] ? modules[folder] : [];
-                                modules[folder].push(partialName);
+function createSingleDisplayTemplateObject(file) {
+    var displayTemplateObject = parseYAPLJsonFromFile(file) || {},
+        fileExt = path.extname(file),
+        fileBasename = path.basename(file, fileExt);
 
-                                if (templateMeta) {
-                                    styles[folder][file].blocks[index].templates = styles[folder][file].blocks[index].templates ? styles[folder][file].blocks[index].templates : [];
-                                    styles[folder][file].blocks[index].templates.push(templateMeta);
-                                }
-                            }
+    displayTemplateObject['name'] = displayTemplateObject.name || utils.titleCase(fileBasename);
+    displayTemplateObject['group'] = 'default';
+    displayTemplateObject['link'] = file;
+    displayTemplateObject['hide'] = false;
 
-                        }
-                    });
-                }
+    return displayTemplateObject;
+}
 
-            }
+function createAllImageSizeObjects() {
+    var imageSizeObjectsAll = [];
 
-            return modules;
-        },
-
-        gatherTemplateJSON: function() {
-
-            var templates = {};
-
-            for (var index in files.templates) {
-                // Loop through each of the template files
-                var filePath = files.templates[index],
-                    filePathBase = path.basename(filePath, '.html'),
-                    filePathArray = path.dirname(filePath).split('/'),
-                    fileParent = filePathArray[filePathArray.length - 1],
-                    fileContent = fs.readFileSync(filePath, 'utf8'),
-                    YAPLBlocks = fileContent.match(s.htmlBlockRegEx),
-                    templateModules,
-                    json = {};
-
-                templates[filePathBase] = {
-                    name: filePathBase.replace(/\-/g, ' '), // Use this in case no name spec'd in YAPL block
-                    path: filePath,
-                    pathBase: filePathBase,
-                    parent: fileParent
-                };
-
-                templateModules = YAPL.findModulesinHTML(fileContent, templates[filePathBase]);
-
-                if (YAPLBlocks && YAPLBlocks.length) {
-                    var newString = YAPLBlocks[0].replace(/\<!--\s*?YAPL\n/, '');
-
-                    newString = newString.replace('-->', '');
-                    json = yaml.safeLoad(newString);
-                }
-
-                // Save module info to the master templates object
-                templates[filePathBase].modules = templateModules;
-                templates[filePathBase] = extend({}, templates[filePathBase], json);
-
-            }
-
-            styles.templates = templates;
-        },
-
-        compileHtmlExample: function(partialLink, contextLink) {
-            var source,
-                template,
-                html,
-                context = '',
-                contextFile,
-                contextFileRoot = contextLink ? contextLink.split('.')[0] : null,
-                contextFileTip = contextLink ? contextLink.split('.')[1] : null;
-
-            sourceFiles = glob.sync(s.partialsDir + '/**/' + partialLink + '.hbs')
-            if (sourceFiles && sourceFiles.length) {
-                source = fs.readFileSync(sourceFiles[0], 'utf8');
-            }
-
-            if (contextLink && s.dataDir) {
-
-                contextFiles = glob.sync(s.dataDir + '/**/' + contextFileRoot + '.{json,yaml}');
-                if (contextFiles && contextFiles.length) {
-                    contextFile = fs.readFileSync(contextFiles[0], 'utf8');
-                    context = yaml.safeLoad(contextFile)[contextFileTip];
-                }
-
-            }
-
-            if (source) {
-                template = handlebars.compile(source);
-                html = template(context);
-                html = html.replace(/^\s+|\s+$/g, '');
-                html = html.replace(/\n+/g, '\n');
-                return html;
-            }
-        },
-
-        saveJSONFile: function() {
-            fs.writeFileSync(s.outputFile, JSON.stringify(styles));
+    // Loop through YAPL blocks to find images
+    allYAPLBlocks().forEach(function(block) {
+        if (block.html) {
+            var imageUrls = getAllImageUrlsFromHtml(block.html);
+            imageUrls.forEach(function(imageUrl) {
+                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, block.get('section'), block.get('sectionChild'));
+                imageSizeObjectsAll.push(imageSizeObject);
+            });
         }
+    });
 
-    };
-})();
+    // Loop through display templates to find images
+    allDisplayTemplates().forEach(function(displayTemplate) {
+        var html = fs.readFileSync(displayTemplate.link);
+        if (html) {
+            var imageUrls = getAllImageUrlsFromHtml(html);
+            imageUrls.forEach(function(imageUrl) {
+                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, null, null, displayTemplate);
+                imageSizeObjectsAll.push(imageSizeObject);
+            });
+        }
+    });
+
+    config.imageSizes = sortAndMergeImageObjects(imageSizeObjectsAll);
+}
+
+// TODO: Fix weirdness of using for both sections and display templates
+function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTemplate) {
+    var imageObject = {};
+
+    imageObject['dimensions'] = utils.dimensions(imageUrl);
+    imageObject['ratio'] = utils.aspectRatio(imageObject['dimensions']);
+    imageObject['html'] = utils.placeholderImage(imageObject['dimensions']);
+    imageObject['references'] = {};
+
+    if (section) {
+        imageObject.references['sections'] = [{
+            name: section ? section.name : '',
+            children: section ? [sectionChild] : []
+        }];
+    } else if (displayTemplate) {
+        imageObject.references['displayTemplates'] = [displayTemplate];
+    }
+
+    return imageObject;
+}
+
+function getAllImageUrlsFromHtml(html) {
+    var $ = cheerio.load(html),
+        images = $('img'),
+        imageUrlArray = [];
+
+    images.each(function(i, elem) {
+        var imageUrl = path.join(config.settings.siteRoot, $(this).attr('src')),
+            imageExt = path.extname(imageUrl).toLowerCase();
+        // Don't collect SVGs as they're only used for icons/global elements
+        // The image size package also sometimes throws an error on them
+        // TODO: May want to make this a setting to test for an ignore pattern
+        if (imageExt !== '.svg') {
+            imageUrlArray.push(imageUrl);
+        }
+    });
+
+    return imageUrlArray;
+}
+
+function sortAndMergeImageObjects(objects) {
+    var imageSizeObjectsCondensed = [],
+        imageSizeObjectGroups;
+
+    imageSizeObjectGroups = _.chain(objects)
+        .groupBy(function(object) {
+            return object.dimensions;
+        })
+        .sortBy('dimensions')
+        .value();
+
+    imageSizeObjectGroups.forEach(function(group) {
+        var mergedImageObject = {};
+
+        group.forEach(function(imageObject) {
+            _.merge(mergedImageObject, imageObject);
+        });
+        imageSizeObjectsCondensed.push(mergedImageObject);
+    });
+
+    return imageSizeObjectsCondensed;
+}
+
+
+
+function parseYAPLJsonFromFile(file, blockParent) {
+    var fileExt = path.extname(file),
+        fileContent = fs.readFileSync(file, 'utf8'),
+        regEx = _.contains(fileExt, 'html') ? config.settings.htmlBlockRegEx :
+                _.contains(fileExt, 'css') ? config.settings.cssBlockRegEx : false,
+        YAPLBlocks = fileContent.match(regEx),
+        YAPLJson = [];
+
+    if (YAPLBlocks && YAPLBlocks.length) {
+        YAPLBlocks.forEach(function(YAPLBlock) {
+            var yamlString,
+                json;
+
+            yamlString = YAPLBlock.replace(regEx, function(match, p1) {
+                return p1;
+            });
+
+            json = yaml.safeLoad(yamlString);
+
+            if (_.contains(fileExt, 'css')) {
+                json = createSingleCssYAPLBlockObject(json, blockParent);
+                YAPLJson.push(json);
+            } else if (_.contains(fileExt, 'html')) {
+                // HTML files only contain one YAPL block
+                YAPLJson = json;
+            }
+
+        });
+        return YAPLJson;
+    }
+}
+
+function createSingleCssYAPLBlockObject(obj, blockParent) {
+    var blockObj = {};
+
+    blockObj['name'] = obj.name || 'Undefined Name';
+    blockObj['nameCamelCase'] = utils.camelCase(blockObj.name);
+    blockObj['nameCssCase'] = utils.cssCase(blockObj.name);
+    blockObj['notes'] = obj.notes || false;
+    blockObj['partial'] = obj.partial || blockParent.partial;
+    blockObj['context'] = obj.context || false;
+    blockObj['selector'] = obj.selector || false;
+    blockObj['link'] = blockParent.link + '#' + blockObj.nameCssCase;
+
+    return blockObj;
+}
+
+
+
+// Section-Level Build
+
+function buildAllHtmlExamples() {
+    allYAPLBlocks().forEach(function(block) {
+        block['html'] = buildSingleHtmlExample(block, block.get('section'));
+    });
+}
+
+function buildSingleHtmlExample(block, section) {
+    var partialFile,
+        partialFileContent,
+        dataFile,
+        dataFileContent,
+        blockContextRoot = block.context && block.context.split('.')[0],
+        blockContextTip = block.context && block.context.split('.')[1],
+        blockContextJson = '',
+        template,
+        html;
+
+    partialFile = _.find(section.partialFiles, function(file) {
+        var fileExt = path.extname(file),
+            fileBasename = path.basename(file, fileExt);
+        return block.partial === fileBasename;
+    });
+
+    if (partialFile) {
+        partialFileContent = fs.readFileSync(partialFile, 'utf8');
+    }
+
+    if (block.context) {
+        dataFile = _.find(section.dataFiles, function(file) {
+            var fileExt = path.extname(file),
+                fileBasename = path.basename(file, fileExt);
+            return blockContextRoot === fileBasename;
+        });
+    }
+
+    if (dataFile) {
+        dataFileContent = fs.readFileSync(dataFile, 'utf8');
+        if (path.extname(dataFile) === '.yaml') {
+            blockContextJson = yaml.safeLoad(dataFileContent)[blockContextTip];
+        } else if (path.extname(dataFile) === '.json') {
+            blockContextJson = JSON.parse(dataFileContent)[blockContextTip];
+        }
+    }
+
+    if (partialFileContent) {
+        template = handlebars.compile(partialFileContent);
+        html = template(blockContextJson);
+        html = html.replace(/^\s+|\s+$/g, '');
+        html = html.replace(/\n+/g, '\n');
+        return html;
+    }
+
+}
+
+function generateAllBlockCssSelectors() {
+    allYAPLBlocks().forEach(function(block) {
+        var $dom, domItems, selector;
+
+        if (block.html && !block.selector) {
+            $dom = cheerio.load(block.html);
+            domItems = $dom('*');
+            selector = domItems.eq(0).attr('class').trim();
+            selector = '.' + selector.replace(/ /g, '.');
+            block.selector = selector;
+        }
+    });
+}
+
+
+
+// Cross Linking
+
+function crossLinkBlocksAndTemplates() {
+    allYAPLBlocks().forEach(function(block) {
+        if (block.selector) {
+            block.references = searchAllBlocksAndTemplatesForSelector(block.selector);
+        }
+    });
+}
+
+function searchAllBlocksAndTemplatesForSelector(selector) {
+    var references = {
+            sections: [],
+            displayTemplates: []
+        },
+        sectionsCondensed = [],
+        sectionGroups;
+
+    allYAPLBlocks().forEach(function(block) {
+        // If the block selector matches the one we're looking for, don't search it
+        // Otherwise, search the html for the selector
+        if (block.selector && selector && selector.indexOf(block.selector) < 0 && block.html && htmlSelectorMatch(block.html, selector)) {
+            var reference = {
+                name: block.get('section').name,
+                children: [block.get('sectionChild')]
+            }
+            references.sections.push(reference);
+        }
+    });
+
+    allDisplayTemplates().forEach(function(template) {
+        var html = fs.readFileSync(template.link);
+        if (html && htmlSelectorMatch(html, selector)) {
+            references.displayTemplates.push(template);
+        }
+    });
+
+    sectionGroups = _.chain(references.sections)
+        .groupBy(function(section) {
+            return section.name;
+        })
+        .value();
+
+    _.forIn(sectionGroups, function(group, key) {
+        var mergedReference = {};
+
+        group.forEach(function(reference) {
+            _.merge(mergedReference, reference);
+        });
+        sectionsCondensed.push(mergedReference);
+    });
+
+    references.sections = sectionsCondensed;
+
+    return references;
+}
+
+function htmlSelectorMatch(html, selector) {
+    var $dom = cheerio.load(html),
+        selectorMatch = $dom(selector).length;
+    return selectorMatch;
+}
+
+
+
+// File Output
+
+function outputConfigToFile() {
+    var outputPath = config.settings.outputJsonFile,
+        outputDir = path.dirname(outputPath),
+        outputFilename = path.basename(outputPath)
+
+    if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir);
+    }
+    fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
+}
+
+
+
+// Pattern Library Build
+
+function buildPatternLibrary() {
+    // TODO: COMPLETE
+}
+
+
+// Internal Utilities
+
+function allYAPLBlocks() {
+    var blocks = [];
+
+    config.sections.forEach(function(section) {
+        if (section.children && section.children.length) {
+            section.children.forEach(function(sectionChild) {
+                if (sectionChild.blocks && sectionChild.blocks.length) {
+                    sectionChild.blocks.forEach(function(block) {
+
+                        block['get'] = function(val) {
+                            return val === 'section' ? section :
+                                   val === 'sectionChild' ? sectionChild : false;
+                        }
+                        blocks.push(block);
+
+                    });
+                }
+            });
+        }
+    });
+
+    return blocks;
+}
+
+function allDisplayTemplates() {
+    return config.displayTemplates;
+}
+
 
 module.exports = YAPL;
-
