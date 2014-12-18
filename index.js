@@ -27,11 +27,6 @@ var fs = require('fs'),
     extend = require('node.extend'),
     cheerio = require('cheerio');
 
-// register built-in helpers
-if (helpers && helpers.register) {
-    helpers.register(handlebars, {}, {});
-}
-
 
 var YAPL = (function() {
     var files = {},
@@ -58,6 +53,7 @@ var YAPL = (function() {
             // Only continue if a css directory was spec'd
             if (s.cssDir) {
                 this.getFiles();
+                this.setupHandlebars();
                 this.gatherCssJSON();
                 s.templatesDir && this.gatherTemplateJSON();
                 s.outputFile && this.saveJSONFile();
@@ -69,7 +65,21 @@ var YAPL = (function() {
 
         getFiles: function() {
             files.css = glob.sync(s.cssDir + '/**/*.{css,scss}');
+            files.partials = glob.sync(s.partialsDir + '/**/*.hbs');
             files.templates = glob.sync(s.templatesDir + '/**/*.html');
+        },
+
+        setupHandlebars: function() {
+            // register built-in helpers
+            if (helpers && helpers.register) {
+                helpers.register(handlebars, {}, {});
+            }
+            // register all partials
+            files.partials.forEach(function(partialPath) {
+                var partialName = path.basename(partialPath, '.hbs'),
+                    partialContent = fs.readFileSync(partialPath, 'utf8')
+                handlebars.registerPartial(partialName, partialContent);
+            });
         },
 
         gatherCssJSON: function() {
