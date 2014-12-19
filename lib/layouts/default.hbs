@@ -7,14 +7,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{{ page.title }}</title>
-    <meta name="description" content="{{ page.description }}">
-    <meta name="keywords" content="{{ page.keywords }}">
-    <meta name="viewport" content="width=device-width">
-
-    <meta property="og:title" content="{{ page.title }}">
-    <meta property="og:description" content="{{ page.description }}">
-    <meta property="og:url" content="{{ page.url }}">
+    <title>{{title}}</title>
+    <meta name="description" content="Pattern Library">
 
 
     <!-- We'll require the same CSS/JS as the main templates, so load that in as a shared partial (also in footer) -->
@@ -53,8 +47,9 @@
                     All Code/Annotations
                 </button>
             </div>
-            {{> body }}
-            {{> sg-block }}
+            {{#block "body"}}
+                BODY
+            {{/block}}
         </div>
 
     </div>

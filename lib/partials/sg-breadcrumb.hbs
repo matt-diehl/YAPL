@@ -1,15 +1,19 @@
 <ul class="sg-breadcrumb l-float-l">
     <li class="open-sans open-sans--semibold">
-        <a href="/styleguide/">Design Pattern Library</a>
+        <a href="{{library.settings.link}}">Design Pattern Library</a>
     </li>
+
     <li class="open-sans open-sans--semibold">
-        {{#if module.name}}<a href="/styleguide/">{{/if}}
-            {{module.parent}}
-        {{#if module.name}}</a>{{/if}}
+    {{#is section.name title}}
+        {{section.name}}
+    {{else}}
+        <a href="{{section.link}}">{{section.name}}</a>
+    {{/is}}
     </li>
-    {{#if module.name}}
+
+    {{#if page}}
     <li class="open-sans open-sans--semibold">
-        {{module.name}}
+        {{page.name}}
     </li>
     {{/if}}
 </ul>

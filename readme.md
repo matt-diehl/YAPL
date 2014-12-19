@@ -22,4 +22,6 @@ The final object is formed based on the folder structure of the given CSS direct
 
 ## Development TO-DO List:
 
-- Set up to look for partials that match the css/scss filename if none is specified
+- Set up library build w/o requiring separate Grunt task
+- (DONE) Fix creation of blocks to merge and not overwrite data set in css yapl blocks
+- (DONE) Fix linking of elements (currently does not remove site root folder)

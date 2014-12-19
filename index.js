@@ -4,14 +4,14 @@
 var fs = require('fs'),
     path = require('path'),
     glob = require('glob'),
-    assemble = require('assemble'),
     handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
     extend = require('node.extend'),
     yaml = require('js-yaml'),
     cheerio = require('cheerio'),
+    _ = require('lodash'),
     utils = require('./lib/utils.js'),
-    _ = require('lodash');
+    build = require('./lib/build.js');
 
 // YAPL Internal Variables
 var config = {
@@ -33,7 +33,6 @@ function YAPL(options) {
     // Build Prep Steps
     extendConfig(options);
     setupHandlebarsConfig();
-    setupAssembleConfig(); // INCOMPLETE
     createAllSectionObjects();
     //-> createSingleSectionObj
         //-> createAllSectionChildrenObjects
@@ -63,7 +62,8 @@ function YAPL(options) {
     outputConfigToFile();
 
     // Pattern Library Build
-    buildPatternLibrary(); // incomplete
+    build(config); // incomplete
+        //-> setupAssembleConfig // INCOMPLETE
 
 }
 
@@ -72,10 +72,10 @@ function YAPL(options) {
 
 function extendConfig(options) {
     config = extend(true, config, options);
+    config.settings.link = path.join(linkFromRoot(config.settings.buildDir), 'index.html');
 }
 
 function setupHandlebarsConfig() {
-
     var partials = glob.sync(config.settings.partials);
     // register built-in helpers
     if (helpers && helpers.register) {
@@ -89,10 +89,6 @@ function setupHandlebarsConfig() {
     });
 }
 
-function setupAssembleConfig() {
-    // TODO: COMPLETE
-}
-
 function createAllSectionObjects() {
     config.sections.forEach(function(section, index) {
         config.sections[index] = createSingleSectionObj(section);
@@ -100,7 +96,7 @@ function createAllSectionObjects() {
 }
 
 function createSingleSectionObj(obj) {
-    var sectionObject = {};
+    var sectionObject = obj || {};
 
     sectionObject['name'] = obj.name || 'Undefined Section';
     sectionObject['nameCamelCase'] = utils.camelCase(sectionObject['name']);
@@ -113,7 +109,8 @@ function createSingleSectionObj(obj) {
     sectionObject['partialFiles'] = sectionObject['partials'] ? glob.sync(sectionObject['partials']) : false;
     sectionObject['data'] = obj.data || config.settings.data;
     sectionObject['dataFiles'] = sectionObject['data'] ? glob.sync(sectionObject['data']) : false;
-    sectionObject['link'] = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
+    sectionObject['path'] = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
+    sectionObject['link'] = sectionObject.path ? linkFromRoot(sectionObject.path) : false;
     sectionObject['children'] = sectionObject['cssFiles'] ? createAllSectionChildrenObjects(sectionObject['cssFiles'], sectionObject.nameCssCase) : false;
 
     return sectionObject;
@@ -139,7 +136,8 @@ function createSingleSectionChildObject(cssFile, sectionName) {
     childObject['name'] = utils.titleCase(cssFileBasename);
     childObject['nameCamelCase'] = utils.camelCase(cssFileBasename);
     childObject['nameCssCase'] = cssFileBasename;
-    childObject['link'] = path.join(config.settings.buildDir, sectionName, childObjectFilename);
+    childObject['path'] = path.join(config.settings.buildDir, sectionName, childObjectFilename);
+    childObject['link'] = linkFromRoot(childObject['path']);
     childObject['partial'] = cssFileBasename;
     childObject['blocks'] = parseYAPLJsonFromFile(cssFile, childObject);
 
@@ -167,7 +165,8 @@ function createSingleDisplayTemplateObject(file) {
 
     displayTemplateObject['name'] = displayTemplateObject.name || utils.titleCase(fileBasename);
     displayTemplateObject['group'] = 'default';
-    displayTemplateObject['link'] = file;
+    displayTemplateObject['path'] = file;
+    displayTemplateObject['link'] = linkFromRoot(file);
     displayTemplateObject['hide'] = false;
 
     return displayTemplateObject;
@@ -189,7 +188,7 @@ function createAllImageSizeObjects() {
 
     // Loop through display templates to find images
     allDisplayTemplates().forEach(function(displayTemplate) {
-        var html = fs.readFileSync(displayTemplate.link);
+        var html = fs.readFileSync(displayTemplate.path);
         if (html) {
             var imageUrls = getAllImageUrlsFromHtml(html);
             imageUrls.forEach(function(imageUrl) {
@@ -300,7 +299,7 @@ function parseYAPLJsonFromFile(file, blockParent) {
 }
 
 function createSingleCssYAPLBlockObject(obj, blockParent) {
-    var blockObj = {};
+    var blockObj = obj || {};
 
     blockObj['name'] = obj.name || 'Undefined Name';
     blockObj['nameCamelCase'] = utils.camelCase(blockObj.name);
@@ -419,7 +418,7 @@ function searchAllBlocksAndTemplatesForSelector(selector) {
     });
 
     allDisplayTemplates().forEach(function(template) {
-        var html = fs.readFileSync(template.link);
+        var html = fs.readFileSync(template.path);
         if (html && htmlSelectorMatch(html, selector)) {
             references.displayTemplates.push(template);
         }
@@ -458,20 +457,12 @@ function htmlSelectorMatch(html, selector) {
 function outputConfigToFile() {
     var outputPath = config.settings.outputJsonFile,
         outputDir = path.dirname(outputPath),
-        outputFilename = path.basename(outputPath)
+        outputFilename = path.basename(outputPath);
 
     if (!fs.existsSync(outputDir)) {
         fs.mkdirSync(outputDir);
     }
     fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
-}
-
-
-
-// Pattern Library Build
-
-function buildPatternLibrary() {
-    // TODO: COMPLETE
 }
 
 
@@ -503,6 +494,11 @@ function allYAPLBlocks() {
 
 function allDisplayTemplates() {
     return config.displayTemplates;
+}
+
+function linkFromRoot(link) {
+    var relativePath = path.relative(config.settings.siteRoot, link);
+    return '/' + relativePath;
 }
 
 

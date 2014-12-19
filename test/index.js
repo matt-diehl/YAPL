@@ -9,10 +9,10 @@ yapl({
         data: './example/templates-main/data/**/*.{json,yaml}',
         displayTemplates: './example/ProductionTemplates/**/*.html',
         buildDir: './example/styleguide',
-        indexTemplate: './lib/templates/index.hbs',
         outputJsonFile: './example/styleguide.json',
-        libraryLayout: './example/templates-styleguide/layouts/default.hbs',
-        libraryPartials: './example/templates-styleguide/partials/**/*.hbs',
+        libraryIndex: './lib/templates/index.hbs',
+        libraryLayout: './lib/layouts/default.hbs',
+        libraryPartials: './lib/partials/**/*.hbs',
         siteRoot: './example' // TODO: Any better way to handle this?
     },
     sections: [{
@@ -27,7 +27,7 @@ yapl({
         css: './example/css/modules/macro/**/*.scss'
     }, {
         name: 'Layouts',
-        landingTemplate: './lib/templates/layouts-landing.hbs',
+        landingTemplate: './lib/templates/layout-landing.hbs',
         childTemplate: './lib/templates/layout.hbs'
     }, {
         name: 'Display Templates',

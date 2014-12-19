@@ -1,26 +1,25 @@
 <div class="sg-nav-wrap open-sans">
     <span class="sg-nav__close js-sg-nav-toggle">Close</span>
     <nav class="sg-nav">
+    {{#if library.sections}}
         <ul class="sg-nav__level1">
+        {{#each library.sections}}
             <li>
-                <span class="sg-nav__level1-title open-sans--semibold">Micro Modules</span>
+            {{#if link}}
+                <a href="{{link}}" class="sg-nav__level1-title open-sans--semibold">{{name}}</a>
+            {{else}}
+                <span class="sg-nav__level1-title open-sans--semibold">{{name}}</span>
+            {{/if}}
+            {{#if children}}
                 <ul class="sg-nav__level2">
-                {{#each styles.micro}}
-                    <li><a href="/styleguide/modules/micro/{{name}}.html">{{name}}</a></li>
+                {{#each children}}
+                    <li><a href="{{link}}">{{name}}</a></li>
                 {{/each}}
                 </ul>
+            {{/if}}
             </li>
-            <li>
-                <span class="sg-nav__level1-title open-sans--semibold">Macro Modules</span>
-                <ul class="sg-nav__level2">
-                {{#each styles.macro}}
-                    <li><a href="/styleguide/modules/macro/{{name}}.html">{{name}}</a></li>
-                {{/each}}
-                </ul>
-            </li>
-            <li>
-                <a href="/styleguide/display-templates.html" class="sg-nav__level1-title open-sans--semibold">Display Templates</a>
-            </li>
+        {{/each}}
         </ul>
+    {{/if}}
     </nav>
 </div>

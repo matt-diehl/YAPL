@@ -1,0 +1,295 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Display Templates</title>
+    <meta name="description" content="Pattern Library">
+
+
+    <!-- We'll require the same CSS/JS as the main templates, so load that in as a shared partial (also in footer) -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!--[if lt IE 8]><link rel="stylesheet" href="/css/main-ie7.css"><![endif]-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/styleguide.css">
+
+    <!--[if lt IE 9]>
+    <!-- build:js /js/vendor/respond.js -->
+    <script src="/bower_components/respond/dest/respond.src.js"></script>
+    <!-- endbuild -->
+    <![endif]-->
+    
+    <!-- build:js /js/vendor/modernizr.js -->
+    <script src="/bower_components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+</head>
+
+<body class="sg-body js-sg-body">
+
+    <div class="sg-nav-wrap open-sans">
+        <span class="sg-nav__close js-sg-nav-toggle">Close</span>
+        <nav class="sg-nav">
+            <ul class="sg-nav__level1">
+                <li>
+                    <a href="/styleguide/micro-elements/index.html" class="sg-nav__level1-title open-sans--semibold">Micro Elements</a>
+                    <ul class="sg-nav__level2">
+                        <li><a href="/styleguide/micro-elements/btn.html">Btn</a></li>
+                        <li><a href="/styleguide/micro-elements/figure.html">Figure</a></li>
+                        <li><a href="/styleguide/micro-elements/form.html">Form</a></li>
+                        <li><a href="/styleguide/micro-elements/letters.html">Letters</a></li>
+                        <li><a href="/styleguide/micro-elements/table.html">Table</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/styleguide/macro-elements/index.html" class="sg-nav__level1-title open-sans--semibold">Macro Elements</a>
+                    <ul class="sg-nav__level2">
+                        <li><a href="/styleguide/macro-elements/accordion.html">Accordion</a></li>
+                        <li><a href="/styleguide/macro-elements/cta.html">Cta</a></li>
+                        <li><a href="/styleguide/macro-elements/feed.html">Feed</a></li>
+                        <li><a href="/styleguide/macro-elements/hp-hero.html">Hp Hero</a></li>
+                        <li><a href="/styleguide/macro-elements/nav-breadcrumbs.html">Nav Breadcrumbs</a></li>
+                        <li><a href="/styleguide/macro-elements/related_content.html">Related_content</a></li>
+                        <li><a href="/styleguide/macro-elements/search.html">Search</a></li>
+                        <li><a href="/styleguide/macro-elements/sharebar.html">Sharebar</a></li>
+                        <li><a href="/styleguide/macro-elements/slider.html">Slider</a></li>
+                        <li><a href="/styleguide/macro-elements/spotlight-hero.html">Spotlight Hero</a></li>
+                        <li><a href="/styleguide/macro-elements/story-slider.html">Story Slider</a></li>
+                        <li><a href="/styleguide/macro-elements/tabs.html">Tabs</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/styleguide/layouts/index.html" class="sg-nav__level1-title open-sans--semibold">Layouts</a>
+                </li>
+                <li>
+                    <a href="/styleguide/display-templates/index.html" class="sg-nav__level1-title open-sans--semibold">Display Templates</a>
+                </li>
+                <li>
+                    <a href="/styleguide/image-sizes/index.html" class="sg-nav__level1-title open-sans--semibold">Image Sizes</a>
+                </li>
+                <li>
+                    <a href="/styleguide/appendix/index.html" class="sg-nav__level1-title open-sans--semibold">Appendix</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sg-content-wrap">
+
+        <header class="sg-header">
+            <div class="sg-header__inner l-contain">
+                <div class="sg-header__left">
+                    <a href="/styleguide/" class="sg-logo"><img src="/images/assets/logo-pennmed-abramson-med.png" alt="Abramson Cancer Center Logo"></a>
+                </div>
+                <div class="sg-header__right">
+                    <button type="button" class="sg-nav-open open-sans open-sans--semibold js-sg-nav-toggle">Menu</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="l-contain">
+            <div class="sg-utility cf">
+                <ul class="sg-breadcrumb l-float-l">
+                    <li class="open-sans open-sans--semibold">
+                        <a href="/styleguide/index.html">Design Pattern Library</a>
+                    </li>
+                
+                    <li class="open-sans open-sans--semibold">
+                        Display Templates
+                    </li>
+                
+                </ul>                <button type="button" class="sg-toggle-all open-sans u-float-r js-sg-toggle-all">
+                    <span class="show-if-collapsed">Show</span>
+                    <span class="show-if-expanded">Hide</span>
+                    All Code/Annotations
+                </button>
+            </div>
+    <div class="sg-block js-sg-block module-is-collapsed">
+            <div class="sg-block__header">
+                <h2 class="sg-block__title open-sans open-sans--semibold">Display Templates</h2>
+                <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+                    <span class="show-if-collapsed">Show</span>
+                    <span class="show-if-expanded">Hide</span>
+                    Code/Annotations
+                </span>
+            </div>
+            <div class="sg-block__content cf">
+                <ul class="sg-block__template-list">
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/breakthroughs-landing.html" target="_blank">Breakthroughs Landing</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    This template uses a unique layout.
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/cancer-subcenter-landing.html" target="_blank">Cancer Subcenter Landing</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/cancer-type-landing.html" target="_blank">Cancer Type Landing</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    Landing page for a single cancer type.
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/cancer-types-landing.html" target="_blank">Cancer Types Landing</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    Landing page for all cancer types.
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/event-calendar.html" target="_blank">Event Calendar</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/event-detail.html" target="_blank">Event Detail</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    Displays details about a single event.
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/home.html" target="_blank">Home Page</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    The global site home page for Penn Cancer
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/images.html" target="_blank">Images</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/mastersub.html" target="_blank">Master Sub</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    The master sub template is a typical sub page containing all usual global elements with a rich text body area.
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="/ProductionTemplates/program-landing.html" target="_blank">Program Landing</a>
+                        </h3>
+                        <div class="sg-block__more is-collapsed js-sg-block__more">
+                            <div class="sg-block__notes">
+                                <p class="open-sans">
+                                    
+                                </p>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <div id="page-scripts">
+        <!-- build:js /js/main.js -->
+        <script src="/bower_components/jquery/dist/jquery.js"></script>
+        <script src="/bower_components/jquery-placeholder/jquery.placeholder.js"></script>
+        <script src="/js/modules/Media.js"></script>
+        <script src="/js/modules/Expand.js"></script>
+        <script src="/js/modules/ContextBox.js"></script>
+        <script src="/js/modules/Nav.js"></script>
+        <script src="/js/modules/Header.js"></script>
+        <script src="/js/modules/OffCanvas.js"></script>
+        <script src="/js/modules/Select.js"></script>
+        <script src="/js/modules/Table.js"></script>
+        <script src="/js/modules/Tabs.js"></script>
+        <script src="/js/modules/Video.js"></script>
+    
+        <script src="/bower_components/Helper-JS-Modules/Dependencies.js"></script>
+        <!-- endbuild -->
+    
+        <!--[if lte IE 9]>
+            <script src="/js/modules/IERow.js"></script>
+            <script src="/js/modules/IEfixes.js"></script>
+        <![endif]-->
+    </div>
+    <script src="/js/modules/SG.js"></script>
+
+    <!-- build:js /js/vendor/prism.js -->
+    <script src="/bower_components/prism/prism.js"></script>
+    <!-- endbuild -->
+
+    <script>
+
+        $('.js-sg-nav-toggle').on('click', function() {
+            $('.js-sg-body').toggleClass('is-showing-nav');
+        });
+
+    </script>
+
+</body>
+</html>
