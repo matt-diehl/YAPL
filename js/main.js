@@ -8,6 +8,8 @@ var Yapl = (function (args) {
 
     return {
         settings: {
+            body: $('.js-sg-body'),
+            navToggle: $('.js-sg-nav-toggle'),
             blockToggles: $('.js-sg-block__expand-toggle'),
             blockToggleAll: $('.js-sg-toggle-all'),
             allOpen: false
@@ -21,8 +23,13 @@ var Yapl = (function (args) {
         },
 
         bindUIActions: function() {
+            s.navToggle.on('click', Yapl.toggleNav);
             s.blockToggles.on('click', Yapl.toggleBlock);
             s.blockToggleAll.on('click', Yapl.toggleAllBlocks);
+        },
+
+        toggleNav: function() {
+            s.body.toggleClass('is-showing-nav');
         },
 
         toggleBlock: function() {
