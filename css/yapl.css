@@ -4,8 +4,7 @@
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
  * @author ocodia
  */
-code[class*="language-"],
-pre[class*="language-"] {
+code[class*="language-"], pre[class*="language-"] {
   color: #f8f8f2;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
@@ -26,65 +25,46 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  margin: .5em 0;
+  margin: 0.5em 0;
   overflow: auto;
   border-radius: 0.3em; }
 
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
   background: #272822; }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em; }
+  padding: 0.1em;
+  border-radius: 0.3em; }
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
+.token.comment, .token.prolog, .token.doctype, .token.cdata {
   color: slategray; }
 
 .token.punctuation {
   color: #f8f8f2; }
 
 .namespace {
-  opacity: .7; }
+  opacity: 0.7; }
 
-.token.property,
-.token.tag,
-.token.constant,
-.token.symbol {
+.token.property, .token.tag, .token.constant, .token.symbol, .token.deleted {
   color: #f92672; }
 
-.token.boolean,
-.token.number {
+.token.boolean, .token.number {
   color: #ae81ff; }
 
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.char,
-.token.builtin {
+.token.selector, .token.attr-name, .token.string, .token.char, .token.builtin, .token.inserted {
   color: #a6e22e; }
 
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string, .token.variable {
   color: #f8f8f2; }
 
-.token.atrule,
-.token.attr-value {
+.token.atrule, .token.attr-value {
   color: #e6db74; }
 
 .token.keyword {
   color: #66d9ef; }
 
-.token.regex,
-.token.important {
+.token.regex, .token.important {
   color: #fd971f; }
 
 .token.important {
@@ -94,14 +74,13 @@ pre[class*="language-"] {
   cursor: help; }
 
 .open-sans {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400; }
 
 .open-sans--semibold {
   font-weight: 600; }
 
-.sg-body,
-.sg-content-wrap {
+.sg-body, .sg-content-wrap {
   background-color: #F3F3F0; }
 
 .sg-block {
@@ -115,8 +94,7 @@ pre[class*="language-"] {
 .sg-block__example {
   margin-bottom: 30px; }
 
-.sg-block__expand-toggle,
-.sg-block__title {
+.sg-block__expand-toggle, .sg-block__title {
   color: #141414;
   display: table-cell;
   vertical-align: middle; }
@@ -194,7 +172,7 @@ pre[class*="language-"] {
   padding-top: 180px;
   position: relative;
   z-index: 20;
-  transition: transform .4s; }
+  transition: transform 0.4s; }
   .is-showing-nav .sg-content-wrap {
     transform: translateX(-320px); }
 
@@ -213,21 +191,18 @@ pre[class*="language-"] {
   height: 100%;
   position: relative; }
 
-.sg-header__left,
-.sg-header__right {
+.sg-header__left, .sg-header__right {
   display: table-cell;
   vertical-align: middle; }
 
 .sg-header__right {
   text-align: right; }
 
-.sg-nav,
-.sg-nav__close {
+.sg-nav, .sg-nav__close {
   color: #FFF;
   padding-left: 30px;
   padding-right: 30px; }
-  .sg-nav a,
-  .sg-nav__close a {
+  .sg-nav a, .sg-nav__close a {
     color: inherit; }
 
 .sg-nav-open {
@@ -277,7 +252,7 @@ pre[class*="language-"] {
   height: 100%;
   overflow-y: scroll;
   position: fixed;
-  transition: transform .4s;
+  transition: transform 0.4s;
   top: 0;
   right: -320px;
   width: 320px;
@@ -319,7 +294,9 @@ pre[class*="language-"] {
 
 @media only screen and (max-width: 1050px) {
   .sg-block__html {
-    margin-bottom: 30px; } }
+    margin-bottom: 30px; }
+ }
+
 @media only screen and (min-width: 1051px) {
   .sg-block__html {
     clear: both;
@@ -328,7 +305,9 @@ pre[class*="language-"] {
     width: 50%; }
 
   .sg-block__notes {
-    overflow: hidden; } }
+    overflow: hidden; }
+ }
+
 .sg-body button {
   font-size: 12px;
   font-size: 1.2rem; }

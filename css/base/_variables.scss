@@ -1,0 +1,58 @@
+/* ======  Sass Variables ====== */
+
+// Define global variables here in camelCase. Module-specific go with individual module files.
+
+
+
+// Colors
+$dkRed: #CE3F32;
+$limeGreen: #83860D;
+$lightBlue: #90A6DE;
+$mediumBlue: #3277BA;
+$lightGray: #999;
+$linkBlue: #005187;
+$skyBlue: #0087C4;
+$flyoutTan: #F0EFEA;
+$orange: #D65100;
+
+$bgDkGray: #E9E9E9;
+
+$bodyTextColor: #333;
+
+
+// Type
+$arial: Arial, sans-serif;
+$helveticaLight: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$helveticaRegular: "HelveticaNeue-Regular", "Helvetica Neue Regular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$helveticaMedium: "HelveticaNeue-Medium", "Helvetica Neue Medium", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+
+// Borders
+$thinGrayBorder: 1px solid #E3E3E3;
+$thinGrayBorderLight: 1px solid #CECECE;
+$medDkBlueBorder: 3px solid #394586;
+$lightBlueBorder: 3px solid $lightBlue;
+$thickDkBlueBorder: 6px solid #394586;
+
+
+// Base width/padding for different screen sizes
+$mobileSidePad: 4%;
+$tabletSidePad: 20px;
+$desktopInnerWidth: 96%;
+$desktopMaxWidth: 1215px;
+
+
+// Some default top/bottom margins for modules in a page
+$defaultModuleMarginDesktop: 40px auto;
+$defaultModuleMarginMobile: 30px auto;
+
+
+// Z-index - declare these variables together so it's easy to track values
+$zindexPikaSelect: 500;
+$zindexPika: 501;
+$zindexPikaLabel: 501;
+$zindexHeader: 600;
+$zindexPrimaryNav: 700; // resides outside of header and positioned on top
+$zindexUtilityNav: 700; // resides outside of header and positioned on top
+$zindexLogo: 800; // To prevent utility nav from making part of the logo not clickable
+$zindexModal: 900;

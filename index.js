@@ -8,7 +8,6 @@ var fs = require('fs'),
     glob = require('glob'),
     handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
-    extend = require('node.extend'),
     yaml = require('js-yaml'),
     cheerio = require('cheerio'),
     _ = require('lodash'),
@@ -20,7 +19,12 @@ var config = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
         htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
-        outputJsonFile: false
+        outputJsonFile: false,
+        libraryIndex: './hbs/templates/index.hbs',
+        libraryLayout: './hbs/layouts/default.hbs',
+        libraryPartials: './hbs/partials/**/*.hbs',
+        libraryCss: './css/yapl.css',
+        libraryJs: './js/min/yapl.js'
     },
     sections: [],
     displayTemplates: [],
@@ -72,7 +76,7 @@ function YAPL(options) {
 // Build Prep Steps
 
 function extendConfig(options) {
-    config = extend(true, config, options);
+    config = _.merge(config, options);
     config.settings.link = path.join(linkFromRoot(config.settings.buildDir), 'index.html');
 }
 
@@ -102,9 +106,6 @@ function createSingleSectionObj(obj) {
     sectionObject.name = obj.name || 'Undefined Section';
     sectionObject.nameCamelCase = utils.camelCase(sectionObject.name);
     sectionObject.nameCssCase = utils.cssCase(sectionObject.name);
-    sectionObject.landingTemplate = obj.landingTemplate || false;
-    sectionObject.childTemplate = obj.childTemplate || false;
-    sectionObject.css = obj.css || false;
     sectionObject.cssFiles = sectionObject.css ? glob.sync(sectionObject.css) : false;
     sectionObject.partials = obj.partials || config.settings.partials;
     sectionObject.partialFiles = sectionObject.partials ? glob.sync(sectionObject.partials) : false;
@@ -304,10 +305,7 @@ function createSingleCssYAPLBlockObject(obj, blockParent) {
     blockObj.name = obj.name || 'Undefined Name';
     blockObj.nameCamelCase = utils.camelCase(blockObj.name);
     blockObj.nameCssCase = utils.cssCase(blockObj.name);
-    blockObj.notes = obj.notes || false;
     blockObj.partial = obj.partial || blockParent.partial;
-    blockObj.context = obj.context || false;
-    blockObj.selector = obj.selector || false;
     blockObj.link = blockParent.link + '#' + blockObj.nameCssCase;
 
     return blockObj;

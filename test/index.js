@@ -1,6 +1,6 @@
 var yapl = require('../');
 
-// Test Data (TEMPORARY)
+// Test Data
 
 yapl({
     settings: {
@@ -10,33 +10,33 @@ yapl({
         displayTemplates: './example/ProductionTemplates/**/*.html',
         buildDir: './example/styleguide',
         outputJsonFile: './example/styleguide.json',
-        libraryIndex: './lib/templates/index.hbs',
-        libraryLayout: './lib/layouts/default.hbs',
-        libraryPartials: './lib/partials/**/*.hbs',
+        libraryIndex: './hbs/templates/index.hbs',
+        libraryLayout: './hbs/layouts/default.hbs',
+        libraryPartials: './hbs/partials/**/*.hbs',
         siteRoot: './example' // TODO: Any better way to handle this?
     },
     sections: [{
         name: 'Micro Elements',
-        landingTemplate: './lib/templates/section-landing.hbs',
-        childTemplate: './lib/templates/micro-element.hbs',
+        landingTemplate: './hbs/templates/section-landing.hbs',
+        childTemplate: './hbs/templates/micro-element.hbs',
         css: './example/css/modules/micro/**/*.scss',
     }, {
         name: 'Macro Elements',
-        landingTemplate: './lib/templates/section-landing.hbs',
-        childTemplate: './lib/templates/macro-element.hbs',
+        landingTemplate: './hbs/templates/section-landing.hbs',
+        childTemplate: './hbs/templates/macro-element.hbs',
         css: './example/css/modules/macro/**/*.scss'
     }, {
         name: 'Layouts',
-        landingTemplate: './lib/templates/layout-landing.hbs',
-        childTemplate: './lib/templates/layout.hbs'
+        landingTemplate: './hbs/templates/layout-landing.hbs',
+        childTemplate: './hbs/templates/layout.hbs'
     }, {
         name: 'Display Templates',
-        landingTemplate: './lib/templates/display-templates-landing.hbs'
+        landingTemplate: './hbs/templates/display-templates-landing.hbs'
     }, {
         name: 'Image Sizes',
-        landingTemplate: './lib/templates/image-sizes-landing.hbs'
+        landingTemplate: './hbs/templates/image-sizes-landing.hbs'
     }, {
         name: 'Appendix',
-        landingTemplate: './lib/templates/appendix.hbs'
+        landingTemplate: './hbs/templates/appendix.hbs'
     }]
 });

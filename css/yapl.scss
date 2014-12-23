@@ -1,7 +1,7 @@
 
 @import
     "base/media-queries",
-    "../bower_components/prism/themes/prism-okaidia";
+    "prism-okaidia";
 
 $dkGray: #141414;
 $openSans: 'Open Sans', sans-serif;
@@ -335,7 +335,7 @@ $zIndexHeader: 30;
 
     button {
         font-size: 12px;
-        font-size: 1.2rem; 
+        font-size: 1.2rem;
     }
 
     .content-wrap {

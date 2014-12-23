@@ -1,0 +1,100 @@
+/* ======  Sass Mixins ====== */
+
+@mixin helveticaLight {
+    font-family: $helveticaLight;
+}
+
+@mixin helveticaRegular {
+    font-family: $helveticaRegular;
+}
+
+@mixin helveticaMedium {
+    font-family: $helveticaMedium;
+}
+
+@mixin serif {
+    font-family: Georgia, serif;
+}
+
+@mixin triangle($width, $height, $direction, $color) {
+    content: "";
+    height: 0;
+    position: absolute;
+    width: 0;
+    transform: scale(.99);
+
+    // Right/East
+    @if $direction == e {
+        border-top: $height/2 solid transparent;
+        border-bottom: $height/2 solid transparent;
+        border-left: $width solid $color;
+    }
+
+    // Left/West
+    @if $direction == w {
+        border-top: $height/2 solid transparent;
+        border-bottom: $height/2 solid transparent;
+        border-right: $width solid $color;
+    }
+
+    // Up/North
+    @if $direction == n {
+        border-left: $width/2 solid transparent;
+        border-right: $width/2 solid transparent;
+        border-bottom: $height solid $color;
+    }
+
+    // Down/South
+    @if $direction == s {
+        border-left: $width/2 solid transparent;
+        border-right: $width/2 solid transparent;
+        border-top: $height solid $color;
+    }
+
+}
+
+@mixin removeFirstChildMargins {
+    > *:first-child {
+        margin-top: 0;
+    }
+}
+
+@mixin removeLastChildMargins {
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+// Relies on Modernizr
+@mixin svg-and-fallback($svg, $fallback) {
+    .svg & {
+        background-image: url($svg);
+    }
+    .no-svg & {
+        background-image: url($fallback);
+    }
+}
+
+@mixin contain1 {
+    margin: 0 auto;
+    max-width: $desktopMaxWidth;
+    width: 92%;
+}
+
+@mixin sectionBottomShadow {
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, .10)
+}
+
+@mixin padBox1 {
+    background-color: #FFF;
+    overflow: hidden; // alt clearfix so we can still use pseudo elements
+    position: relative;
+
+    @include small-only {
+        padding: 20px 4%;
+    }
+
+    @include medium-and-above {
+        padding: 35px 35px 15px;
+    }
+}

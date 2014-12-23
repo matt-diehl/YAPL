@@ -1,0 +1,59 @@
+{{#extend "layout"}}
+
+    {{#content "body"}}
+        {{#each library.sections}}
+            {{#if children}}
+                <div class="sg-block">
+                    <div class="sg-block__header">
+                        <h2 class="sg-block__title open-sans open-sans--semibold">{{name}}</h2>
+                    </div>
+                    <div class="sg-block__content cf">
+                        <ul class="sg-block__template-list">
+                        {{#each children}}
+                            <li>
+                                <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                                    <a href="{{link}}">{{name}}</a>
+                                </h3>
+                            </li>
+                        {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            {{/if}}
+        {{/each}}
+        {{#if library.displayTemplates}}
+            <div class="sg-block js-sg-block module-is-collapsed">
+                <div class="sg-block__header">
+                    <h2 class="sg-block__title open-sans open-sans--semibold">Display Templates</h2>
+                    <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+                        <span class="show-if-collapsed">Show</span>
+                        <span class="show-if-expanded">Hide</span>
+                        Notes
+                    </span>
+                </div>
+                <div class="sg-block__content cf">
+                    <ul class="sg-block__template-list">
+                    {{#each library.displayTemplates}}
+                        {{#unless hide}}
+                            <li>
+                                <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                                    <a href="{{link}}">{{name}}</a>
+                                </h3>
+                                <div class="sg-block__more is-collapsed js-sg-block__more">
+                                    <div class="sg-block__notes">
+                                        <p class="open-sans">
+                                            {{notes}}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </li>
+                        {{/unless}}
+                    {{/each}}
+                    </ul>
+                </div>
+            </div>
+        {{/if}}
+    {{/content}}
+
+{{/extend}}
