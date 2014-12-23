@@ -1,0 +1,22 @@
+{{#extend "layout"}}
+
+    {{#content "body"}}
+        <div class="sg-block">
+            <div class="sg-block__header">
+                <h2 class="sg-block__title open-sans open-sans--semibold">{{section.name}}</h2>
+            </div>
+            <div class="sg-block__content cf">
+                <ul class="sg-block__template-list">
+                {{#each section.children}}
+                    <li>
+                        <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                            <a href="{{link}}" target="_blank">{{name}}</a>
+                        </h3>
+                    </li>
+                {{/each}}
+                </ul>
+            </div>
+        </div>
+    {{/content}}
+
+{{/extend}}

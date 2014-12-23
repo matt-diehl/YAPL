@@ -109,7 +109,215 @@
                     All Code/Annotations
                 </button>
             </div>
-                BODY
+            <div id="accordion" class="sg-block js-sg-block module-is-collapsed">
+                <div class="sg-block__header">
+                    <h2 class="sg-block__title open-sans open-sans--semibold">Accordion</h2>
+                    <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+                        <span class="show-if-collapsed">Show</span>
+                        <span class="show-if-expanded">Hide</span>
+                        Code/Annotations
+                    </span>
+                </div>
+                <div class="sg-block__content cf">
+                    <div class="sg-block__example cf">
+                        <div class="accordion accordion--filters filters filters--events padbox1 js-tabs">
+                <h2 class="accordion__title h2">Find Events</h2>
+                <div class="accordion__item-wrap">
+                    <div class="accordion__item js-tabs__content" data-tab="1">
+                        <h2 class="accordion__item-title h3">
+                            <a href="#tab-1" class="js-tabs__toggle a">Date</a>
+                        </h2>
+                        <div class="accordion__item-inner cf">
+                            <div class="filters__datepicker js-filters__datepicker">
+                                <input type="text" class="js-datepicker u-hidden">
+                            </div>
+                            <div class="filters__form form">
+                                <div class="form__row">
+                                    <input id="radio-1" name="radio" type="radio">
+                                    <label for="radio-1">Day</label>
+                                </div>
+                                <div class="form__row">
+                                    <input id="radio-2" name="radio" type="radio">
+                                    <label for="radio-2">Week</label>
+                                </div>
+                                <div class="form__row">
+                                    <input id="radio-3" name="radio" type="radio">
+                                    <label for="radio-3">Month</label>
+                                </div>
+                                <div class="form__row">
+                                    <input id="checkbox-1" name="checkbox" type="checkbox">
+                                    <label for="checkbox-1">Include Past Events</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion__item js-tabs__content" data-tab="2">
+                        <h2 class="accordion__item-title h3">
+                            <a href="#tab-2" class="js-tabs__toggle a">Event Type</a>
+                        </h2>
+                        <div class="accordion__item-inner cf">
+                            <div class="filters__form">
+                                <div class="form__row">
+                                    <input id="checkbox-2" name="checkbox" type="checkbox">
+                                    <label for="checkbox-2">All Events</label>
+                                </div>
+                                <div class="form__row">
+                                    <input id="checkbox-3" name="checkbox" type="checkbox">
+                                    <label for="checkbox-3">Support Groups</label>
+                                </div>
+                                <div class="form__row">
+                                    <input id="checkbox-4" name="checkbox" type="checkbox">
+                                    <label for="checkbox-4">Community Events</label>
+                                </div>
+                                <div class="form__row">
+                                    <input id="checkbox-5" name="checkbox" type="checkbox">
+                                    <label for="checkbox-5">Academic Events</label>
+                                </div>
+                                <div class="form__row">
+                                    <input id="checkbox-6" name="checkbox" type="checkbox">
+                                    <label for="checkbox-6">Online Events</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion__item js-tabs__content" data-tab="3">
+                        <h2 class="accordion__item-title h3">
+                            <a href="#tab-3" class="js-tabs__toggle a">Sponsor</a>
+                        </h2>
+                        <div class="accordion__item-inner cf">
+                            <div class="select-wrap select-wrap--sm u-block">
+                                <select name="" id="" class="select">
+                                    <option value="">All Sponsors</option>
+                                    <option value="">Sponsor Name</option>
+                                    <option value="">Sponsor Name</option>
+                                    <option value="">Sponsor Name</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion__item js-tabs__content" data-tab="4">
+                        <h2 class="accordion__item-title h3">
+                            <a href="#tab-4" class="js-tabs__toggle a">Location</a>
+                        </h2>
+                        <div class="accordion__item-inner cf">
+                            <div class="select-wrap select-wrap--sm u-block">
+                                <select name="" id="" class="select">
+                                    <option value="">All Locations</option>
+                                    <option value="">Location Name</option>
+                                    <option value="">Location Name</option>
+                                    <option value="">Location Name</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- .accordion__item-wrap -->
+            </div><!-- .accordion -->
+                    </div>
+                    <div class="sg-block__more is-collapsed js-sg-block__more">
+                        <div class="sg-block__html">
+                            <h3 class="sg-block__header2 open-sans open-sans--semibold">HTML</h3>
+                            <pre><code class="language-markup">&lt;div class=&quot;accordion accordion--filters filters filters--events padbox1 js-tabs&quot;&gt;
+                &lt;h2 class=&quot;accordion__title h2&quot;&gt;Find Events&lt;/h2&gt;
+                &lt;div class=&quot;accordion__item-wrap&quot;&gt;
+                    &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;1&quot;&gt;
+                        &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                            &lt;a href=&quot;#tab-1&quot; class=&quot;js-tabs__toggle a&quot;&gt;Date&lt;/a&gt;
+                        &lt;/h2&gt;
+                        &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                            &lt;div class=&quot;filters__datepicker js-filters__datepicker&quot;&gt;
+                                &lt;input type=&quot;text&quot; class=&quot;js-datepicker u-hidden&quot;&gt;
+                            &lt;/div&gt;
+                            &lt;div class=&quot;filters__form form&quot;&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;radio-1&quot; name=&quot;radio&quot; type=&quot;radio&quot;&gt;
+                                    &lt;label for=&quot;radio-1&quot;&gt;Day&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;radio-2&quot; name=&quot;radio&quot; type=&quot;radio&quot;&gt;
+                                    &lt;label for=&quot;radio-2&quot;&gt;Week&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;radio-3&quot; name=&quot;radio&quot; type=&quot;radio&quot;&gt;
+                                    &lt;label for=&quot;radio-3&quot;&gt;Month&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;checkbox-1&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                                    &lt;label for=&quot;checkbox-1&quot;&gt;Include Past Events&lt;/label&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;2&quot;&gt;
+                        &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                            &lt;a href=&quot;#tab-2&quot; class=&quot;js-tabs__toggle a&quot;&gt;Event Type&lt;/a&gt;
+                        &lt;/h2&gt;
+                        &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                            &lt;div class=&quot;filters__form&quot;&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;checkbox-2&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                                    &lt;label for=&quot;checkbox-2&quot;&gt;All Events&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;checkbox-3&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                                    &lt;label for=&quot;checkbox-3&quot;&gt;Support Groups&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;checkbox-4&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                                    &lt;label for=&quot;checkbox-4&quot;&gt;Community Events&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;checkbox-5&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                                    &lt;label for=&quot;checkbox-5&quot;&gt;Academic Events&lt;/label&gt;
+                                &lt;/div&gt;
+                                &lt;div class=&quot;form__row&quot;&gt;
+                                    &lt;input id=&quot;checkbox-6&quot; name=&quot;checkbox&quot; type=&quot;checkbox&quot;&gt;
+                                    &lt;label for=&quot;checkbox-6&quot;&gt;Online Events&lt;/label&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;3&quot;&gt;
+                        &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                            &lt;a href=&quot;#tab-3&quot; class=&quot;js-tabs__toggle a&quot;&gt;Sponsor&lt;/a&gt;
+                        &lt;/h2&gt;
+                        &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                            &lt;div class=&quot;select-wrap select-wrap--sm u-block&quot;&gt;
+                                &lt;select name=&quot;&quot; id=&quot;&quot; class=&quot;select&quot;&gt;
+                                    &lt;option value=&quot;&quot;&gt;All Sponsors&lt;/option&gt;
+                                    &lt;option value=&quot;&quot;&gt;Sponsor Name&lt;/option&gt;
+                                    &lt;option value=&quot;&quot;&gt;Sponsor Name&lt;/option&gt;
+                                    &lt;option value=&quot;&quot;&gt;Sponsor Name&lt;/option&gt;
+                                &lt;/select&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class=&quot;accordion__item js-tabs__content&quot; data-tab=&quot;4&quot;&gt;
+                        &lt;h2 class=&quot;accordion__item-title h3&quot;&gt;
+                            &lt;a href=&quot;#tab-4&quot; class=&quot;js-tabs__toggle a&quot;&gt;Location&lt;/a&gt;
+                        &lt;/h2&gt;
+                        &lt;div class=&quot;accordion__item-inner cf&quot;&gt;
+                            &lt;div class=&quot;select-wrap select-wrap--sm u-block&quot;&gt;
+                                &lt;select name=&quot;&quot; id=&quot;&quot; class=&quot;select&quot;&gt;
+                                    &lt;option value=&quot;&quot;&gt;All Locations&lt;/option&gt;
+                                    &lt;option value=&quot;&quot;&gt;Location Name&lt;/option&gt;
+                                    &lt;option value=&quot;&quot;&gt;Location Name&lt;/option&gt;
+                                    &lt;option value=&quot;&quot;&gt;Location Name&lt;/option&gt;
+                                &lt;/select&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;&lt;!-- .accordion__item-wrap --&gt;
+            &lt;/div&gt;&lt;!-- .accordion --&gt;</code></pre>
+                        </div>
+                        <div class="sg-block__notes">
+                            <h3 class="sg-block__header2 open-sans open-sans--semibold">Notes</h3>
+                            <p class="open-sans">
+                                Simple accordion with only one section open at a time
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

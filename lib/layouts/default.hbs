@@ -41,11 +41,13 @@
         <div class="l-contain">
             <div class="sg-utility cf">
                 {{> sg-breadcrumb }}
+                {{#if page}}
                 <button type="button" class="sg-toggle-all open-sans u-float-r js-sg-toggle-all">
                     <span class="show-if-collapsed">Show</span>
                     <span class="show-if-expanded">Hide</span>
                     All Code/Annotations
                 </button>
+                {{/if}}
             </div>
             {{#block "body"}}
                 BODY

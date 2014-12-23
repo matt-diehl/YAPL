@@ -17,12 +17,12 @@ yapl({
     },
     sections: [{
         name: 'Micro Elements',
-        landingTemplate: './lib/templates/micro-element-landing.hbs',
+        landingTemplate: './lib/templates/section-landing.hbs',
         childTemplate: './lib/templates/micro-element.hbs',
         css: './example/css/modules/micro/**/*.scss',
     }, {
         name: 'Macro Elements',
-        landingTemplate: './lib/templates/macro-element-landing.hbs',
+        landingTemplate: './lib/templates/section-landing.hbs',
         childTemplate: './lib/templates/macro-element.hbs',
         css: './example/css/modules/macro/**/*.scss'
     }, {

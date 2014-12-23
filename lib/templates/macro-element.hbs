@@ -1,3 +1,9 @@
 {{#extend "layout"}}
-macro-element.hbs
+
+    {{#content "body"}}
+        {{#each page.blocks}}
+            {{> sg-block }}
+        {{/each}}
+    {{/content}}
+
 {{/extend}}

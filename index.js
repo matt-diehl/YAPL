@@ -64,8 +64,7 @@ function YAPL(options) {
     outputConfigToFile();
 
     // Pattern Library Build
-    build(config); // incomplete
-        //-> setupAssembleConfig // INCOMPLETE
+    build(config);
 
 }
 
@@ -169,7 +168,6 @@ function createSingleDisplayTemplateObject(file) {
     displayTemplateObject.group = 'default';
     displayTemplateObject.path = file;
     displayTemplateObject.link = linkFromRoot(file);
-    displayTemplateObject.hide = false;
 
     return displayTemplateObject;
 }
@@ -375,14 +373,19 @@ function buildSingleHtmlExample(block, section) {
 
 function generateAllBlockCssSelectors() {
     allYAPLBlocks().forEach(function(block) {
-        var $dom, domItems, selector;
+        var $dom, domItems, classAttr, selector;
 
         if (block.html && !block.selector) {
             $dom = cheerio.load(block.html);
             domItems = $dom('*');
-            selector = domItems.eq(0).attr('class').trim();
-            selector = '.' + selector.replace(/ /g, '.');
-            block.selector = selector;
+            classAttr = domItems.eq(0).attr('class');
+            if (classAttr) {
+                selector = classAttr.trim();
+                selector = '.' + selector.replace(/ /g, '.');
+                block.selector = selector;
+            } else {
+                block.selector = false;
+            }
         }
     });
 }

@@ -109,7 +109,93 @@
                     All Code/Annotations
                 </button>
             </div>
-                BODY
+            <div id="home-hero" class="sg-block js-sg-block module-is-collapsed">
+                <div class="sg-block__header">
+                    <h2 class="sg-block__title open-sans open-sans--semibold">Home Hero</h2>
+                    <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+                        <span class="show-if-collapsed">Show</span>
+                        <span class="show-if-expanded">Hide</span>
+                        Code/Annotations
+                    </span>
+                </div>
+                <div class="sg-block__content cf">
+                    <div class="sg-block__example cf">
+                        <!--
+                The hero randomly picks one image on load, and chooses the correct one based on the screen width.
+                Each array of images should match based on index. Separate each image with a vertical bar.
+            -->
+            <div class="hp-hero js-hero"
+                data-depend="/js/modules/HpHero.js"
+                data-images-lg="/images/temp/hero-bg-1-lg.jpg|/images/temp/hero-bg-2-lg.jpg|/images/temp/hero-bg-3-lg.jpg"
+                data-images-med="/images/temp/hero-bg-1-med.jpg|/images/temp/hero-bg-2-med.jpg|/images/temp/hero-bg-3-med.jpg"
+                data-images-sm="/images/temp/hero-bg-1-sm.jpg|/images/temp/hero-bg-2-sm.jpg|/images/temp/hero-bg-3-sm.jpg">
+                <div class="hp-hero__bg hp-hero__bg--sm js-hero__bg--sm u-hidden-mq-medium u-hidden-mq-large"></div>
+                <div class="hp-hero__bg hp-hero__bg--med js-hero__bg--med u-hidden-mq-small u-hidden-mq-large"></div>
+                <div class="hp-hero__bg hp-hero__bg--lg js-hero__bg--lg u-hidden-mq-small u-hidden-mq-medium"></div>
+                <div class="l-contain">
+                    <div class="hp-hero__content">
+                        <div class="hp-hero__content-inner">
+                            <h2 class="hp-hero__title">
+                                <span class="hp-hero__title-text">Only at Penn Medicine</span>
+                            </h2>
+                            <p class="hp-hero__copy u-hidden-mq-small">With every new breakthrough at Penn’s Abramson Cancer Center, we’re discovering that the cure for cancer isn’t just within reach, it’s within us all.</p>
+                            <div class="hp-hero__ctas cf">
+                                <a href="#" class="hp-hero__cta hp-hero__cta--doctor btn btn--blue">
+                                    <span class="hp-hero__cta-text">Find a Doctor</span>
+                                </a>
+                                <a href="#" class="hp-hero__cta hp-hero__cta--appt btn btn--blue">
+                                    <span class="hp-hero__cta-text">Request an Appointment</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div><!-- .hp-hero__content -->
+                </div><!-- .l-contain -->
+            </div><!-- .hp-hero -->
+                    </div>
+                    <div class="sg-block__more is-collapsed js-sg-block__more">
+                        <div class="sg-block__html">
+                            <h3 class="sg-block__header2 open-sans open-sans--semibold">HTML</h3>
+                            <pre><code class="language-markup">&lt;!--
+                The hero randomly picks one image on load, and chooses the correct one based on the screen width.
+                Each array of images should match based on index. Separate each image with a vertical bar.
+            --&gt;
+            &lt;div class=&quot;hp-hero js-hero&quot;
+                data-depend=&quot;/js/modules/HpHero.js&quot;
+                data-images-lg=&quot;/images/temp/hero-bg-1-lg.jpg|/images/temp/hero-bg-2-lg.jpg|/images/temp/hero-bg-3-lg.jpg&quot;
+                data-images-med=&quot;/images/temp/hero-bg-1-med.jpg|/images/temp/hero-bg-2-med.jpg|/images/temp/hero-bg-3-med.jpg&quot;
+                data-images-sm=&quot;/images/temp/hero-bg-1-sm.jpg|/images/temp/hero-bg-2-sm.jpg|/images/temp/hero-bg-3-sm.jpg&quot;&gt;
+                &lt;div class=&quot;hp-hero__bg hp-hero__bg--sm js-hero__bg--sm u-hidden-mq-medium u-hidden-mq-large&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;hp-hero__bg hp-hero__bg--med js-hero__bg--med u-hidden-mq-small u-hidden-mq-large&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;hp-hero__bg hp-hero__bg--lg js-hero__bg--lg u-hidden-mq-small u-hidden-mq-medium&quot;&gt;&lt;/div&gt;
+                &lt;div class=&quot;l-contain&quot;&gt;
+                    &lt;div class=&quot;hp-hero__content&quot;&gt;
+                        &lt;div class=&quot;hp-hero__content-inner&quot;&gt;
+                            &lt;h2 class=&quot;hp-hero__title&quot;&gt;
+                                &lt;span class=&quot;hp-hero__title-text&quot;&gt;Only at Penn Medicine&lt;/span&gt;
+                            &lt;/h2&gt;
+                            &lt;p class=&quot;hp-hero__copy u-hidden-mq-small&quot;&gt;With every new breakthrough at Penn’s Abramson Cancer Center, we’re discovering that the cure for cancer isn’t just within reach, it’s within us all.&lt;/p&gt;
+                            &lt;div class=&quot;hp-hero__ctas cf&quot;&gt;
+                                &lt;a href=&quot;#&quot; class=&quot;hp-hero__cta hp-hero__cta--doctor btn btn--blue&quot;&gt;
+                                    &lt;span class=&quot;hp-hero__cta-text&quot;&gt;Find a Doctor&lt;/span&gt;
+                                &lt;/a&gt;
+                                &lt;a href=&quot;#&quot; class=&quot;hp-hero__cta hp-hero__cta--appt btn btn--blue&quot;&gt;
+                                    &lt;span class=&quot;hp-hero__cta-text&quot;&gt;Request an Appointment&lt;/span&gt;
+                                &lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;&lt;!-- .hp-hero__content --&gt;
+                &lt;/div&gt;&lt;!-- .l-contain --&gt;
+            &lt;/div&gt;&lt;!-- .hp-hero --&gt;</code></pre>
+                        </div>
+                        <div class="sg-block__notes">
+                            <h3 class="sg-block__header2 open-sans open-sans--semibold">Notes</h3>
+                            <p class="open-sans">
+                                Main feature on the homepage. Chooses a random background image on load.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

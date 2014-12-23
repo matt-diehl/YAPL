@@ -1,5 +1,4 @@
-{{#each module.blocks}}
-<div class="sg-block js-sg-block module-is-collapsed">
+<div id="{{nameCssCase}}" class="sg-block js-sg-block module-is-collapsed">
     <div class="sg-block__header">
         <h2 class="sg-block__title open-sans open-sans--semibold">{{name}}</h2>
         <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
@@ -10,12 +9,12 @@
     </div>
     <div class="sg-block__content cf">
         <div class="sg-block__example cf">
-            {{{example}}}
+            {{{html}}}
         </div>
         <div class="sg-block__more is-collapsed js-sg-block__more">
             <div class="sg-block__html">
                 <h3 class="sg-block__header2 open-sans open-sans--semibold">HTML</h3>
-                <pre><code class="language-markup">{{example}}</code></pre>
+                <pre><code class="language-markup">{{html}}</code></pre>
             </div>
             <div class="sg-block__notes">
                 <h3 class="sg-block__header2 open-sans open-sans--semibold">Notes</h3>
@@ -34,4 +33,3 @@
         </div>
     </div>
 </div>
-{{/each}}
