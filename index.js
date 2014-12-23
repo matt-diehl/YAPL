@@ -24,7 +24,8 @@ var config = {
         libraryLayout: './hbs/layouts/default.hbs',
         libraryPartials: './hbs/partials/**/*.hbs',
         libraryCss: './css/yapl.css',
-        libraryJs: './js/min/yapl.js'
+        libraryJs: './js/min/yapl.js',
+        libraryLogo: './images/logo.png'
     },
     sections: [],
     displayTemplates: [],
@@ -154,7 +155,10 @@ function createAllDisplayTemplateObjects() {
 
     displayTemplateFiles.forEach(function(file) {
         var displayTemplateObject = createSingleDisplayTemplateObject(file);
-        displayTemplatesArray.push(displayTemplateObject);
+        // If "exclude" present in YAPL block, it won't be added
+        if (!displayTemplateObject.exclude) {
+            displayTemplatesArray.push(displayTemplateObject);
+        }
     });
 
     config.displayTemplates = displayTemplatesArray;
@@ -208,6 +212,7 @@ function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTem
 
     imageObject.dimensions = utils.dimensions(imageUrl);
     imageObject.ratio = utils.aspectRatio(imageObject.dimensions);
+    imageObject.name = imageObject.dimensions[0] + ' x ' + imageObject.dimensions[1] + ' - (' + imageObject.ratio + ')';
     imageObject.html = utils.placeholderImage(imageObject.dimensions);
     imageObject.references = {};
 
@@ -247,13 +252,13 @@ function sortAndMergeImageObjects(objects) {
         imageSizeObjectGroups;
 
     imageSizeObjectGroups = _.chain(objects)
+        .sortBy('dimensions')
         .groupBy(function(object) {
             return object.dimensions;
         })
-        .sortBy('dimensions')
         .value();
 
-    imageSizeObjectGroups.forEach(function(group) {
+    _.forIn(imageSizeObjectGroups, function(group) {
         var mergedImageObject = {};
 
         group.forEach(function(imageObject) {
@@ -433,7 +438,7 @@ function searchAllBlocksAndTemplatesForSelector(selector) {
         })
         .value();
 
-    _.forIn(sectionGroups, function(group, key) {
+    _.forIn(sectionGroups, function(group) {
         var mergedReference = {};
 
         group.forEach(function(reference) {

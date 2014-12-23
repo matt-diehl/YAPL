@@ -1,3 +1,9 @@
 {{#extend "layout"}}
-image-sizes-landing.hbs
+
+    {{#content "body"}}
+        {{#each library.imageSizes}}
+            {{> sg-block }}
+        {{/each}}
+    {{/content}}
+
 {{/extend}}

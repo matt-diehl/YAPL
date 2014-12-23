@@ -18,16 +18,30 @@
             </div>
             <div class="sg-block__notes">
                 <h3 class="sg-block__header2 open-sans open-sans--semibold">Notes</h3>
-                <p class="open-sans">
-                    {{notes}}
-                </p>
-                {{#if templates}}
-                    <p class="open-sans open-sans--semibold">Appears on:</p>
-                    <ul class="open-sans">
-                    {{#each templates}}
-                        <li><a href="/ProductionTemplates/{{pathBase}}.html" target="_blank">{{name}}</a></li>
-                    {{/each}}
-                    </ul>
+                <div class="open-sans">
+{{#markdown}}
+{{notes}}
+{{/markdown}}
+                </div>
+                {{#if references}}
+                    {{#if references.displayTemplates}}
+                        <p class="open-sans open-sans--semibold">Templates this appears on:</p>
+                        <ul class="open-sans">
+                        {{#each references.displayTemplates}}
+                            <li><a href="{{link}}" target="_blank">{{name}}</a></li>
+                        {{/each}}
+                        </ul>
+                    {{/if}}
+                    {{#if references.sections}}
+                        {{#each references.sections}}
+                        <p class="open-sans open-sans--semibold">{{name}} this appears on:</p>
+                        <ul class="open-sans">
+                        {{#each children}}
+                            <li><a href="{{link}}" target="_blank">{{name}}</a></li>
+                        {{/each}}
+                        </ul>
+                        {{/each}}
+                    {{/if}}
                 {{/if}}
             </div>
         </div>

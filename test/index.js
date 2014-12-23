@@ -26,10 +26,6 @@ yapl({
         childTemplate: './hbs/templates/macro-element.hbs',
         css: './example/css/modules/macro/**/*.scss'
     }, {
-        name: 'Layouts',
-        landingTemplate: './hbs/templates/layout-landing.hbs',
-        childTemplate: './hbs/templates/layout.hbs'
-    }, {
         name: 'Display Templates',
         landingTemplate: './hbs/templates/display-templates-landing.hbs'
     }, {

@@ -46,7 +46,7 @@ var Yapl = (function (args) {
             } else {
                 s.blockToggles.each(Yapl.expandBlock);
             }
-            s.toggleAll.toggleClass('sg-blocks-collapsed sg-blocks-expanded');
+            s.blockToggleAll.toggleClass('sg-blocks-collapsed sg-blocks-expanded');
             s.allOpen = !s.allOpen;
         },
 
