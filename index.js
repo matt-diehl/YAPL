@@ -1,3 +1,5 @@
+/*jslint node: true */
+
 'use strict';
 
 // YAPL Requires
@@ -17,7 +19,7 @@ var fs = require('fs'),
 var config = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
-        htmlBlockRegEx: /\<!--\s*?YAPL\n([\s\S]*?)--\>/g,
+        htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
         outputJsonFile: false
     },
     sections: [],
@@ -84,7 +86,7 @@ function setupHandlebarsConfig() {
     // register all partials
     partials.forEach(function(partialPath) {
         var partialName = path.basename(partialPath, '.hbs'),
-            partialContent = fs.readFileSync(partialPath, 'utf8')
+            partialContent = fs.readFileSync(partialPath, 'utf8');
         handlebars.registerPartial(partialName, partialContent);
     });
 }
@@ -98,20 +100,20 @@ function createAllSectionObjects() {
 function createSingleSectionObj(obj) {
     var sectionObject = obj || {};
 
-    sectionObject['name'] = obj.name || 'Undefined Section';
-    sectionObject['nameCamelCase'] = utils.camelCase(sectionObject['name']);
-    sectionObject['nameCssCase'] = utils.cssCase(sectionObject['name']);
-    sectionObject['landingTemplate'] = obj.landingTemplate || false;
-    sectionObject['childTemplate'] = obj.childTemplate || false;
-    sectionObject['css'] = obj.css || false;
-    sectionObject['cssFiles'] = sectionObject['css'] ? glob.sync(sectionObject['css']) : false;
-    sectionObject['partials'] = obj.partials || config.settings.partials;
-    sectionObject['partialFiles'] = sectionObject['partials'] ? glob.sync(sectionObject['partials']) : false;
-    sectionObject['data'] = obj.data || config.settings.data;
-    sectionObject['dataFiles'] = sectionObject['data'] ? glob.sync(sectionObject['data']) : false;
-    sectionObject['path'] = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
-    sectionObject['link'] = sectionObject.path ? linkFromRoot(sectionObject.path) : false;
-    sectionObject['children'] = sectionObject['cssFiles'] ? createAllSectionChildrenObjects(sectionObject['cssFiles'], sectionObject.nameCssCase) : false;
+    sectionObject.name = obj.name || 'Undefined Section';
+    sectionObject.nameCamelCase = utils.camelCase(sectionObject.name);
+    sectionObject.nameCssCase = utils.cssCase(sectionObject.name);
+    sectionObject.landingTemplate = obj.landingTemplate || false;
+    sectionObject.childTemplate = obj.childTemplate || false;
+    sectionObject.css = obj.css || false;
+    sectionObject.cssFiles = sectionObject.css ? glob.sync(sectionObject.css) : false;
+    sectionObject.partials = obj.partials || config.settings.partials;
+    sectionObject.partialFiles = sectionObject.partials ? glob.sync(sectionObject.partials) : false;
+    sectionObject.data = obj.data || config.settings.data;
+    sectionObject.dataFiles = sectionObject.data ? glob.sync(sectionObject.data) : false;
+    sectionObject.path = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
+    sectionObject.link = sectionObject.path ? linkFromRoot(sectionObject.path) : false;
+    sectionObject.children = sectionObject.cssFiles ? createAllSectionChildrenObjects(sectionObject.cssFiles, sectionObject.nameCssCase) : false;
 
     return sectionObject;
 }
@@ -121,7 +123,7 @@ function createAllSectionChildrenObjects(cssFiles, sectionName) {
 
     cssFiles.forEach(function(cssFile) {
         var childObject = createSingleSectionChildObject(cssFile, sectionName);
-        childObject && childrenObjects.push(childObject);
+        if (childObject) childrenObjects.push(childObject);
     });
 
     return childrenObjects;
@@ -133,15 +135,15 @@ function createSingleSectionChildObject(cssFile, sectionName) {
         cssFileBasename = path.basename(cssFile, cssFileExt).replace('_', ''),
         childObjectFilename = cssFileBasename + '.html';
 
-    childObject['name'] = utils.titleCase(cssFileBasename);
-    childObject['nameCamelCase'] = utils.camelCase(cssFileBasename);
-    childObject['nameCssCase'] = cssFileBasename;
-    childObject['path'] = path.join(config.settings.buildDir, sectionName, childObjectFilename);
-    childObject['link'] = linkFromRoot(childObject['path']);
-    childObject['partial'] = cssFileBasename;
-    childObject['blocks'] = parseYAPLJsonFromFile(cssFile, childObject);
+    childObject.name = utils.titleCase(cssFileBasename);
+    childObject.nameCamelCase = utils.camelCase(cssFileBasename);
+    childObject.nameCssCase = cssFileBasename;
+    childObject.path = path.join(config.settings.buildDir, sectionName, childObjectFilename);
+    childObject.link = linkFromRoot(childObject.path);
+    childObject.partial = cssFileBasename;
+    childObject.blocks = parseYAPLJsonFromFile(cssFile, childObject);
 
-    if (childObject['blocks'] && childObject['blocks'].length) {
+    if (childObject.blocks && childObject.blocks.length) {
         return childObject;
     }
 }
@@ -163,11 +165,11 @@ function createSingleDisplayTemplateObject(file) {
         fileExt = path.extname(file),
         fileBasename = path.basename(file, fileExt);
 
-    displayTemplateObject['name'] = displayTemplateObject.name || utils.titleCase(fileBasename);
-    displayTemplateObject['group'] = 'default';
-    displayTemplateObject['path'] = file;
-    displayTemplateObject['link'] = linkFromRoot(file);
-    displayTemplateObject['hide'] = false;
+    displayTemplateObject.name = displayTemplateObject.name || utils.titleCase(fileBasename);
+    displayTemplateObject.group = 'default';
+    displayTemplateObject.path = file;
+    displayTemplateObject.link = linkFromRoot(file);
+    displayTemplateObject.hide = false;
 
     return displayTemplateObject;
 }
@@ -180,7 +182,7 @@ function createAllImageSizeObjects() {
         if (block.html) {
             var imageUrls = getAllImageUrlsFromHtml(block.html);
             imageUrls.forEach(function(imageUrl) {
-                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, block.get('section'), block.get('sectionChild'));
+                var imageSizeObject = createSingleImageSizeObject(imageUrl, block.get('section'), block.get('sectionChild'));
                 imageSizeObjectsAll.push(imageSizeObject);
             });
         }
@@ -192,7 +194,7 @@ function createAllImageSizeObjects() {
         if (html) {
             var imageUrls = getAllImageUrlsFromHtml(html);
             imageUrls.forEach(function(imageUrl) {
-                var imageSizeObject = imageSizeObject = createSingleImageSizeObject(imageUrl, null, null, displayTemplate);
+                var imageSizeObject = createSingleImageSizeObject(imageUrl, null, null, displayTemplate);
                 imageSizeObjectsAll.push(imageSizeObject);
             });
         }
@@ -205,18 +207,18 @@ function createAllImageSizeObjects() {
 function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTemplate) {
     var imageObject = {};
 
-    imageObject['dimensions'] = utils.dimensions(imageUrl);
-    imageObject['ratio'] = utils.aspectRatio(imageObject['dimensions']);
-    imageObject['html'] = utils.placeholderImage(imageObject['dimensions']);
-    imageObject['references'] = {};
+    imageObject.dimensions = utils.dimensions(imageUrl);
+    imageObject.ratio = utils.aspectRatio(imageObject.dimensions);
+    imageObject.html = utils.placeholderImage(imageObject.dimensions);
+    imageObject.references = {};
 
     if (section) {
-        imageObject.references['sections'] = [{
+        imageObject.references.sections = [{
             name: section ? section.name : '',
             children: section ? [sectionChild] : []
         }];
     } else if (displayTemplate) {
-        imageObject.references['displayTemplates'] = [displayTemplate];
+        imageObject.references.displayTemplates = [displayTemplate];
     }
 
     return imageObject;
@@ -301,14 +303,14 @@ function parseYAPLJsonFromFile(file, blockParent) {
 function createSingleCssYAPLBlockObject(obj, blockParent) {
     var blockObj = obj || {};
 
-    blockObj['name'] = obj.name || 'Undefined Name';
-    blockObj['nameCamelCase'] = utils.camelCase(blockObj.name);
-    blockObj['nameCssCase'] = utils.cssCase(blockObj.name);
-    blockObj['notes'] = obj.notes || false;
-    blockObj['partial'] = obj.partial || blockParent.partial;
-    blockObj['context'] = obj.context || false;
-    blockObj['selector'] = obj.selector || false;
-    blockObj['link'] = blockParent.link + '#' + blockObj.nameCssCase;
+    blockObj.name = obj.name || 'Undefined Name';
+    blockObj.nameCamelCase = utils.camelCase(blockObj.name);
+    blockObj.nameCssCase = utils.cssCase(blockObj.name);
+    blockObj.notes = obj.notes || false;
+    blockObj.partial = obj.partial || blockParent.partial;
+    blockObj.context = obj.context || false;
+    blockObj.selector = obj.selector || false;
+    blockObj.link = blockParent.link + '#' + blockObj.nameCssCase;
 
     return blockObj;
 }
@@ -319,7 +321,7 @@ function createSingleCssYAPLBlockObject(obj, blockParent) {
 
 function buildAllHtmlExamples() {
     allYAPLBlocks().forEach(function(block) {
-        block['html'] = buildSingleHtmlExample(block, block.get('section'));
+        block.html = buildSingleHtmlExample(block, block.get('section'));
     });
 }
 
@@ -412,7 +414,7 @@ function searchAllBlocksAndTemplatesForSelector(selector) {
             var reference = {
                 name: block.get('section').name,
                 children: [block.get('sectionChild')]
-            }
+            };
             references.sections.push(reference);
         }
     });
@@ -477,10 +479,10 @@ function allYAPLBlocks() {
                 if (sectionChild.blocks && sectionChild.blocks.length) {
                     sectionChild.blocks.forEach(function(block) {
 
-                        block['get'] = function(val) {
+                        block.get = function(val) {
                             return val === 'section' ? section :
                                    val === 'sectionChild' ? sectionChild : false;
-                        }
+                        };
                         blocks.push(block);
 
                     });
