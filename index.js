@@ -34,7 +34,6 @@ function YAPL(options) {
 
     // Build Prep Steps
     extendConfig(options);
-    setupHandlebarsConfig();
     createAllSectionObjects();
     //-> createSingleSectionObj
         //-> createAllSectionChildrenObjects
@@ -46,6 +45,7 @@ function YAPL(options) {
         //-> parseYAPLJsonFromFile
 
     // Section-level Build
+    setupHandlebarsConfig();
     buildAllHtmlExamples();
         //-> buildSingleHtmlExample
     generateAllBlockCssSelectors();
