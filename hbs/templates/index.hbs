@@ -5,10 +5,10 @@
             {{#if children}}
                 <div class="sg-block">
                     <div class="sg-block__header">
-                        <h2 class="sg-block__title open-sans open-sans--semibold">{{name}}</h2>
+                        <h2 class="sg-block__title open-sans open-sans--semibold"><a href="{{link}}">{{name}}</a></h2>
                     </div>
                     <div class="sg-block__content cf">
-                        <ul class="sg-block__template-list">
+                        <ul class="sg-block__list">
                         {{#each children}}
                             <li>
                                 <h3 class="sg-block__header2 open-sans open-sans--semibold">
@@ -20,38 +20,37 @@
                     </div>
                 </div>
             {{/if}}
-        {{/each}}
-        {{#if library.displayTemplates}}
-            <div class="sg-block js-sg-block module-is-collapsed">
-                <div class="sg-block__header">
-                    <h2 class="sg-block__title open-sans open-sans--semibold">Display Templates</h2>
-                    <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
-                        <span class="show-if-collapsed">Show</span>
-                        <span class="show-if-expanded">Hide</span>
-                        Notes
-                    </span>
-                </div>
-                <div class="sg-block__content cf">
-                    <ul class="sg-block__template-list">
-                    {{#each library.displayTemplates}}
-                        <li>
-                            <h3 class="sg-block__header2 open-sans open-sans--semibold">
-                                <a href="{{link}}">{{name}}</a>
-                            </h3>
-                            <div class="sg-block__more is-collapsed js-sg-block__more">
-                                <div class="sg-block__notes">
-                                    <p class="open-sans">
-                                        {{notes}}
-                                    </p>
-
+            {{#is name "Display Templates"}}
+                <div class="sg-block js-sg-block module-is-collapsed">
+                    <div class="sg-block__header">
+                        <h2 class="sg-block__title open-sans open-sans--semibold"><a href="{{link}}">{{name}}</a></h2>
+                        <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+                            <span class="show-if-collapsed">Show</span>
+                            <span class="show-if-expanded">Hide</span>
+                            Notes
+                        </span>
+                    </div>
+                    <div class="sg-block__content cf">
+                        <ul class="sg-block__list">
+                        {{#each ../../library.displayTemplates}}
+                            <li>
+                                <h3 class="sg-block__header2 open-sans open-sans--semibold">
+                                    <a href="{{link}}" target="blank">{{name}}</a>
+                                </h3>
+                                <div class="sg-block__more is-collapsed js-sg-block__more">
+                                    <div class="sg-block__notes">
+                                        <p class="open-sans">
+                                            {{notes}}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    {{/each}}
-                    </ul>
+                            </li>
+                        {{/each}}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        {{/if}}
+            {{/is}}
+        {{/each}}
     {{/content}}
 
 {{/extend}}

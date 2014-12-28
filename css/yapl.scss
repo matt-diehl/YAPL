@@ -23,6 +23,9 @@ $zIndexHeader: 30;
 .sg-body,
 .sg-content-wrap {
     background-color: #F3F3F0;
+    a {
+        color: #18399E;
+    }
 }
 
 .sg-block {
@@ -102,13 +105,15 @@ $zIndexHeader: 30;
     }
 }
 
-.sg-block__template-list {
+.sg-block__list {
     > li {
         margin-bottom: 20px;
     }
 }
 
-.sg-block__title {
+.sg-block__title,
+.sg-block__title > a {
+    color: $dkGray;
     font-size: 18px;
     text-transform: uppercase;
 }
@@ -121,6 +126,7 @@ $zIndexHeader: 30;
         color: #2D2D2D;
         display: inline;
         font-size: 18px;
+        line-height: 1.5;
         text-transform: capitalize;
         &:after {
             content: '\00a0\203A';

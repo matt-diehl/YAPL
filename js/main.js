@@ -17,7 +17,7 @@ var Yapl = (function (args) {
 
         init: function() {
             s = $.extend({}, this.settings, args);
-            if (s.blockToggles && s.blockToggles.length) {
+            if (s.body && s.body.length) {
                 this.bindUIActions();
             }
         },

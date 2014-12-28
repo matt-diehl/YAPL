@@ -82,6 +82,8 @@ pre[class*="language-"] {
 
 .sg-body, .sg-content-wrap {
   background-color: #F3F3F0; }
+  .sg-body a, .sg-content-wrap a {
+    color: #18399E; }
 
 .sg-block {
   background-color: #FFF;
@@ -138,10 +140,11 @@ pre[class*="language-"] {
   margin-left: 35px;
   text-transform: capitalize; }
 
-.sg-block__template-list > li {
+.sg-block__list > li {
   margin-bottom: 20px; }
 
-.sg-block__title {
+.sg-block__title, .sg-block__title > a {
+  color: #141414;
   font-size: 18px;
   text-transform: uppercase; }
 
@@ -151,6 +154,7 @@ pre[class*="language-"] {
     color: #2D2D2D;
     display: inline;
     font-size: 18px;
+    line-height: 1.5;
     text-transform: capitalize; }
     .sg-breadcrumb > li:after {
       content: '\00a0\203A';
