@@ -32,6 +32,17 @@ Any data can be passed, as long as it's formatted correctly as YAML, but the YAP
 
 In addition to finding modules/templates, YAPL also cross links to show where modules/templates are being used in a project. The same applies for all images referenced in any module/template - a complete list of images and their ratios is generated, including a list of where each size is used.
 
+When performing the cross-linking, YAPL searches for a css selector that is auto-generated from the example partial for a given YAPL block. Since this won't always work (say you're searching for a rich text field paragraph), you can pass a selector string in any YAPL block. For example:
+
+```css
+/* YAPL
+name: Paragraph
+notes: A basic rich text paragraph
+partial: paragraph
+selector: .rtf p
+*/
+```
+
 ## Install
 
 ```
@@ -88,13 +99,40 @@ YAPL provides default templates for the library's home/index, a section landing,
 
 ### Options
 
-While YAPL provides some great defaults out of the box, it's also highly customizable.
+While YAPL provides some great defaults out of the box, it's also highly customizable. All of the default settings can be overwritten.
 
+The configuration defaults are:
 
+```js
+{
+    settings: {
+        cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
+        htmlBlockRegEx: /<\!--\s*?YAPL\n([\s\S]*?)--\>/g,
+        outputJsonFile: false,
+        libraryIndex: './hbs/templates/index.hbs',
+        libraryLayout: './hbs/layouts/default.hbs',
+        libraryPartials: './hbs/partials/**/*.hbs',
+        libraryCss: './css/yapl.css',
+        libraryJs: './js/min/yapl.js',
+        libraryLogo: './images/logo.png'
+    },
+    sections: [],
+    displayTemplates: [],
+    imageSizes: []
+}
+```
 
+"outputJsonFile" can be set to a file path, which will output the entire pattern library object to a file. If you're doing heavy customization of the library templates, try outputting the JSON to file, and viewing a prettified version. The [JSONView Add-On for Chrome](https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en) is an easy way to get a clean/prettified view of the JSON source.
 
+### Display Templates
 
+By default, YAPL will grab all "display templates" matching the provided globbing pattern in the settings, even if the template has no YAPL "blocks." If there are any templates in your project which should not show up or be searched for images/modules, create a YAPL block within it with **"exclude: true"**:
 
+```html
+<!-- YAPL
+exclude: true
+-->
+```
 
 
 ## Development TO-DO List:
