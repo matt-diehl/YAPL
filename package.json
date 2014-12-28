@@ -1,6 +1,6 @@
 {
   "name": "yapl",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Utility to parse YAML in stylesheets and use it to generate a style guide.",
   "main": "index.js",
   "scripts": {
@@ -23,19 +23,19 @@
   },
   "homepage": "https://github.com/matt-diehl/PatternLibrary",
   "dependencies": {
-    "js-yaml": "~3.1.0",
-    "glob": "~4.0.4",
+    "js-yaml": "~3.2.5",
+    "glob": "~4.3.2",
     "handlebars": "~2.0.0-beta.1",
     "handlebars-helpers": "~0.5.8",
-    "cheerio": "~0.17.0",
+    "cheerio": "~0.18.0",
     "prism": "git://github.com/LeaVerou/prism.git#gh-pages",
     "lodash": "~2.4.1",
     "image-size": "~0.3.5",
     "handlebars-layouts": "~1.0.0"
   },
   "devDependencies": {
-    "mocha": "~1.20.1",
-    "chai": "~1.9.1",
+    "mocha": "~2.1.0",
+    "chai": "~1.10.0",
     "gulp": "~3.8.10",
     "jshint-stylish": "~1.0.0",
     "gulp-jshint": "~1.9.0",
