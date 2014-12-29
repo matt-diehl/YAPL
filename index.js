@@ -20,12 +20,12 @@ var config = {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
         htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
         outputJsonFile: false,
-        libraryIndex: './hbs/templates/index.hbs',
-        libraryLayout: './hbs/layouts/default.hbs',
-        libraryPartials: './hbs/partials/**/*.hbs',
-        libraryCss: './css/yapl.css',
-        libraryJs: './js/min/yapl.js',
-        libraryLogo: './images/logo.png'
+        libraryIndex: path.resolve(__dirname, 'hbs/templates/index.hbs'),
+        libraryLayout: path.resolve(__dirname, 'hbs/layouts/default.hbs'),
+        libraryPartials: path.resolve(__dirname, 'hbs/partials/**/*.hbs'),
+        libraryCss: path.resolve(__dirname, 'css/yapl.css'),
+        libraryJs: path.resolve(__dirname, 'js/min/yapl.js'),
+        libraryLogo: path.resolve(__dirname, 'images/logo.png')
     },
     sections: [],
     displayTemplates: [],
@@ -472,14 +472,16 @@ function htmlSelectorMatch(html, selector) {
 // File Output
 
 function outputConfigToFile() {
-    var outputPath = config.settings.outputJsonFile,
-        outputDir = path.dirname(outputPath),
-        outputFilename = path.basename(outputPath);
+    if (config.settings.outputJsonFile) {
+        var outputPath = config.settings.outputJsonFile,
+            outputDir = path.dirname(outputPath),
+            outputFilename = path.basename(outputPath);
 
-    if (!fs.existsSync(outputDir)) {
-        fs.mkdirSync(outputDir);
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir);
+        }
+        fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
     }
-    fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
 }
 
 
