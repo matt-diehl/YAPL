@@ -1,0 +1,28 @@
+<li>
+    <h3 class="sg-block__header2 open-sans open-sans--semibold">
+        <a href="{{link}}" target="_blank">{{name}}</a>
+    </h3>
+    <div class="sg-block__more is-collapsed js-sg-block__more">
+        {{#if notes}}
+            <div class="sg-block__notes open-sans">
+{{#markdown}}{{notes}}{{/markdown}}
+            </div>
+        {{/if}}
+        {{#if modules.microElements}}
+            <h4 class="sg-block__header3 open-sans--semibold">Micro Elements:</h4>
+            <ul class="sg-block__module-list open-sans">
+            {{#each modules.microElements}}
+                <li><a href="{{link}}">{{name}}</a></li>
+            {{/each}}
+            </ul>
+        {{/if}}
+        {{#if modules.macroElements}}
+            <h4 class="sg-block__header3 open-sans--semibold">Macro Elements:</h4>
+            <ul class="sg-block__module-list open-sans">
+            {{#each modules.macroElements}}
+                <li><a href="{{link}}">{{name}}</a></li>
+            {{/each}}
+            </ul>
+        {{/if}}
+    </div>
+</li>

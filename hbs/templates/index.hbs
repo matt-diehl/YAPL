@@ -33,18 +33,7 @@
                     <div class="sg-block__content cf">
                         <ul class="sg-block__list">
                         {{#each ../../library.displayTemplates}}
-                            <li>
-                                <h3 class="sg-block__header2 open-sans open-sans--semibold">
-                                    <a href="{{link}}" target="blank">{{name}}</a>
-                                </h3>
-                                <div class="sg-block__more is-collapsed js-sg-block__more">
-                                    <div class="sg-block__notes">
-                                        <p class="open-sans">
-                                            {{notes}}
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
+                            {{> sg-template-list-item}}
                         {{/each}}
                         </ul>
                     </div>
