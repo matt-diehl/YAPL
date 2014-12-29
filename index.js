@@ -170,9 +170,12 @@ function createSingleDisplayTemplateObject(file) {
         fileBasename = path.basename(file, fileExt);
 
     displayTemplateObject.name = displayTemplateObject.name || utils.titleCase(fileBasename);
+    displayTemplateObject.nameCamelCase = utils.camelCase(displayTemplateObject.name);
+    displayTemplateObject.nameCssCase = utils.cssCase(displayTemplateObject.name);
     displayTemplateObject.group = 'default';
     displayTemplateObject.path = file;
     displayTemplateObject.link = linkFromRoot(file);
+    displayTemplateObject.modules = {};
 
     return displayTemplateObject;
 }
@@ -400,12 +403,12 @@ function generateAllBlockCssSelectors() {
 function crossLinkBlocksAndTemplates() {
     allYAPLBlocks().forEach(function(block) {
         if (block.selector) {
-            block.references = searchAllBlocksAndTemplatesForSelector(block.selector);
+            block.references = searchAllBlocksAndTemplatesForSelector(block, block.selector);
         }
     });
 }
 
-function searchAllBlocksAndTemplatesForSelector(selector) {
+function searchAllBlocksAndTemplatesForSelector(parentBlock, selector) {
     var references = {
             sections: [],
             displayTemplates: []
@@ -426,9 +429,15 @@ function searchAllBlocksAndTemplatesForSelector(selector) {
     });
 
     allDisplayTemplates().forEach(function(template) {
-        var html = fs.readFileSync(template.path);
+        var html = fs.readFileSync(template.path),
+            sectionName = parentBlock.get('section').nameCamelCase;
         if (html && htmlSelectorMatch(html, selector)) {
             references.displayTemplates.push(template);
+            template.modules[sectionName] = template.modules[sectionName] || [];
+            template.modules[sectionName].push({
+                name: parentBlock.name,
+                link: parentBlock.link
+            });
         }
     });
 

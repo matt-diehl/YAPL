@@ -83,10 +83,27 @@ $zIndexHeader: 30;
     text-transform: capitalize;
 }
 
+.sg-block__header3 {
+    margin: 10px 0 5px;
+}
+
 .sg-block__html {
     pre {
         border-radius: 0;
         font-family: "Lucida Console", Monaco, monospace;
+    }
+}
+
+.sg-block__module-list {
+    margin-bottom: 15px;
+    > li {
+        display: inline;
+        &:after {
+            content: ", ";
+        }
+        &:last-child:after {
+            content: "";
+        }
     }
 }
 
