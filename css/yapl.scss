@@ -95,15 +95,26 @@ $zIndexHeader: 30;
 }
 
 .sg-block__module-list {
+    line-height: 1.5;
     margin-bottom: 15px;
     > li {
         display: inline;
         &:after {
             content: ", ";
+            font-weight: bold;
         }
         &:last-child:after {
             content: "";
         }
+    }
+}
+
+.sg-block__more {
+    &.is-collapsed {
+        display: none;
+    }
+    &.is-expanded {
+        display: block;
     }
 }
 

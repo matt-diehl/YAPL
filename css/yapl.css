@@ -134,13 +134,20 @@ pre[class*="language-"] {
   font-family: "Lucida Console", Monaco, monospace; }
 
 .sg-block__module-list {
+  line-height: 1.5;
   margin-bottom: 15px; }
   .sg-block__module-list > li {
     display: inline; }
     .sg-block__module-list > li:after {
-      content: ", "; }
+      content: ", ";
+      font-weight: bold; }
     .sg-block__module-list > li:last-child:after {
       content: ""; }
+
+.sg-block__more.is-collapsed {
+  display: none; }
+.sg-block__more.is-expanded {
+  display: block; }
 
 .sg-block__notes p, .sg-block__notes ul {
   line-height: 1.61;
