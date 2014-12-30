@@ -225,7 +225,10 @@ function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTem
             children: section ? [sectionChild] : []
         }];
     } else if (displayTemplate) {
-        imageObject.references.displayTemplates = [displayTemplate];
+        imageObject.references.displayTemplates = [{
+            name: displayTemplate.name,
+            link: displayTemplate.link
+        }];
     }
 
     return imageObject;
@@ -431,7 +434,11 @@ function searchAllBlocksAndTemplatesForSelector(parentBlock, selector) {
     allDisplayTemplates().forEach(function(template) {
         var sectionName = parentBlock.get('section').nameCamelCase;
         if (template.html && htmlSelectorMatch(template.html, selector)) {
-            references.displayTemplates.push(template);
+            references.displayTemplates.push({
+                name: template.name,
+                link: template.link
+            });
+
             template.modules[sectionName] = template.modules[sectionName] || [];
             template.modules[sectionName].push({
                 name: parentBlock.name,
@@ -474,12 +481,17 @@ function outputConfigToFile() {
     if (config.settings.outputJsonFile) {
         var outputPath = config.settings.outputJsonFile,
             outputDir = path.dirname(outputPath),
-            outputFilename = path.basename(outputPath);
+            outputFilename = path.basename(outputPath),
+            cleanedConfig = config;
+
+        cleanedConfig.displayTemplates.forEach(function(template) {
+            delete template.html;
+        });
 
         if (!fs.existsSync(outputDir)) {
             fs.mkdirSync(outputDir);
         }
-        fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(config));
+        fs.writeFileSync(config.settings.outputJsonFile, JSON.stringify(cleanedConfig));
     }
 }
 
