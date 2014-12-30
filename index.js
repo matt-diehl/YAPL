@@ -175,6 +175,7 @@ function createSingleDisplayTemplateObject(file) {
     displayTemplateObject.group = 'default';
     displayTemplateObject.path = file;
     displayTemplateObject.link = linkFromRoot(file);
+    displayTemplateObject.html = fs.readFileSync(file);
     displayTemplateObject.modules = {};
 
     return displayTemplateObject;
@@ -196,9 +197,8 @@ function createAllImageSizeObjects() {
 
     // Loop through display templates to find images
     allDisplayTemplates().forEach(function(displayTemplate) {
-        var html = fs.readFileSync(displayTemplate.path);
-        if (html) {
-            var imageUrls = getAllImageUrlsFromHtml(html);
+        if (displayTemplate.html) {
+            var imageUrls = getAllImageUrlsFromHtml(displayTemplate.html);
             imageUrls.forEach(function(imageUrl) {
                 var imageSizeObject = createSingleImageSizeObject(imageUrl, null, null, displayTemplate);
                 imageSizeObjectsAll.push(imageSizeObject);
@@ -429,9 +429,8 @@ function searchAllBlocksAndTemplatesForSelector(parentBlock, selector) {
     });
 
     allDisplayTemplates().forEach(function(template) {
-        var html = fs.readFileSync(template.path),
-            sectionName = parentBlock.get('section').nameCamelCase;
-        if (html && htmlSelectorMatch(html, selector)) {
+        var sectionName = parentBlock.get('section').nameCamelCase;
+        if (template.html && htmlSelectorMatch(template.html, selector)) {
             references.displayTemplates.push(template);
             template.modules[sectionName] = template.modules[sectionName] || [];
             template.modules[sectionName].push({
