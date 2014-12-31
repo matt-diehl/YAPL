@@ -15,7 +15,7 @@
     {{> head-css }}
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/styleguide/yapl.css">
+    <link rel="stylesheet" href="{{library.settings.cssSrc}}">
 
     {{> head-js }}
 
@@ -31,7 +31,7 @@
             <div class="sg-header__inner l-contain">
                 <div class="sg-header__left">
                     <a href="{{library.settings.link}}" class="sg-logo">
-                        <img src="/styleguide/logo.png" alt="Pattern Library Logo">
+                        <img src="{{library.settings.logoSrc}}" alt="Pattern Library Logo">
                     </a>
                 </div>
                 <div class="sg-header__right">
@@ -61,9 +61,9 @@
     {{> footer-js }}
 
     <!--[if gte IE 9]><!-->
-    <script src="/styleguide/prism.js"></script>
+    <script src="{{library.settings.codeHighlightJsSrc}}"></script>
     <!--<![endif]-->
-    <script src="/styleguide/yapl.js"></script>
+    <script src="{{library.settings.jsSrc}}"></script>
 
 </body>
 </html>

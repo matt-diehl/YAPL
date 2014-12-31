@@ -79,7 +79,20 @@ function YAPL(options) {
 
 function extendConfig(options) {
     config = _.merge(config, options);
-    config.settings.link = path.join(linkFromRoot(config.settings.buildDir), 'index.html');
+
+    config.settings.cssOutputPath = path.join(config.settings.buildDir, path.basename(config.settings.libraryCss));
+    config.settings.cssSrc = path.join(utils.linkFromRoot(config.settings.siteRoot, config.settings.buildDir), path.basename(config.settings.libraryCss));
+
+    config.settings.logoOutputPath = path.join(config.settings.buildDir, path.basename(config.settings.libraryLogo));
+    config.settings.logoSrc = path.join(utils.linkFromRoot(config.settings.siteRoot, config.settings.buildDir), path.basename(config.settings.libraryLogo));
+
+    config.settings.jsOutputPath = path.join(config.settings.buildDir, path.basename(config.settings.libraryJs));
+    config.settings.jsSrc = path.join(utils.linkFromRoot(config.settings.siteRoot, config.settings.buildDir), path.basename(config.settings.libraryJs));
+
+    config.settings.codeHighlightJsOutputPath = path.join(config.settings.buildDir, path.basename(config.settings.libraryCodeHighlightJs));
+    config.settings.codeHighlightJsSrc = path.join(utils.linkFromRoot(config.settings.siteRoot, config.settings.buildDir), path.basename(config.settings.libraryCodeHighlightJs));
+
+    config.settings.link = path.join(utils.linkFromRoot(config.settings.siteRoot, config.settings.buildDir), 'index.html');
 }
 
 function setupHandlebarsConfig() {
@@ -114,7 +127,7 @@ function createSingleSectionObj(obj) {
     sectionObject.data = obj.data || config.settings.data;
     sectionObject.dataFiles = sectionObject.data ? glob.sync(sectionObject.data) : false;
     sectionObject.path = sectionObject.landingTemplate ? path.join(config.settings.buildDir, sectionObject.nameCssCase, 'index.html') : false;
-    sectionObject.link = sectionObject.path ? linkFromRoot(sectionObject.path) : false;
+    sectionObject.link = sectionObject.path ? utils.linkFromRoot(config.settings.siteRoot, sectionObject.path) : false;
     sectionObject.children = sectionObject.cssFiles ? createAllSectionChildrenObjects(sectionObject.cssFiles, sectionObject.nameCssCase) : false;
 
     return sectionObject;
@@ -141,7 +154,7 @@ function createSingleSectionChildObject(cssFile, sectionName) {
     childObject.nameCamelCase = utils.camelCase(cssFileBasename);
     childObject.nameCssCase = cssFileBasename;
     childObject.path = path.join(config.settings.buildDir, sectionName, childObjectFilename);
-    childObject.link = linkFromRoot(childObject.path);
+    childObject.link = utils.linkFromRoot(config.settings.siteRoot, childObject.path);
     childObject.partial = cssFileBasename;
     childObject.blocks = parseYAPLJsonFromFile(cssFile, childObject);
 
@@ -175,7 +188,7 @@ function createSingleDisplayTemplateObject(file) {
     displayTemplateObject.nameCssCase = utils.cssCase(displayTemplateObject.name);
     displayTemplateObject.group = 'default';
     displayTemplateObject.path = file;
-    displayTemplateObject.link = linkFromRoot(file);
+    displayTemplateObject.link = utils.linkFromRoot(config.settings.siteRoot, file);
     displayTemplateObject.html = fs.readFileSync(file);
     displayTemplateObject.modules = {};
 
@@ -534,11 +547,6 @@ function allYAPLBlocks() {
 
 function allDisplayTemplates() {
     return config.displayTemplates;
-}
-
-function linkFromRoot(link) {
-    var relativePath = path.relative(config.settings.siteRoot, link);
-    return '/' + relativePath;
 }
 
 
