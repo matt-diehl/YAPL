@@ -130,8 +130,13 @@ pre[class*="language-"] {
   margin: 10px 0 5px; }
 
 .sg-block__html pre {
+  background-color: #272822;
   border-radius: 0;
-  font-family: "Lucida Console", Monaco, monospace; }
+  color: #f8f8f2;
+  font-family: "Lucida Console", Monaco, monospace;
+  margin: 0.5em 0;
+  overflow: auto;
+  padding: 1em; }
 
 .sg-block__module-list {
   line-height: 1.5;
@@ -282,6 +287,9 @@ pre[class*="language-"] {
   z-index: 10; }
   .is-showing-nav .sg-nav-wrap {
     transform: translateX(-320px); }
+    .lt-ie10 .is-showing-nav .sg-nav-wrap {
+      right: 0;
+      z-index: 50; }
 
 .sg-screenshot {
   border: 5px solid #C8C8C8; }

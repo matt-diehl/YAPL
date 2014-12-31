@@ -14,8 +14,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('js-frontend', function() {
-    gulp.src(['./node_modules/prismjs/prism.js', './js/main.js'])
-        .pipe(concat('yapl.js'))
+    gulp.src(['./node_modules/prismjs/prism.js', './js/yapl.js'])
         .pipe(uglify())
         .pipe(gulp.dest('./js/min'))
 });

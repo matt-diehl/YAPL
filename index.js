@@ -25,6 +25,7 @@ var config = {
         libraryPartials: path.resolve(__dirname, 'hbs/partials/**/*.hbs'),
         libraryCss: path.resolve(__dirname, 'css/yapl.css'),
         libraryJs: path.resolve(__dirname, 'js/min/yapl.js'),
+        libraryCodeHighlightJs: path.resolve(__dirname, 'js/min/prism.js'),
         libraryLogo: path.resolve(__dirname, 'images/logo.png')
     },
     sections: [],

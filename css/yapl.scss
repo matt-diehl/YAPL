@@ -11,6 +11,7 @@ $offCanvasNavW: 320px;
 $zIndexNav: 10;
 $zIndexContent: 20;
 $zIndexHeader: 30;
+$zIndexNavOpenOldIE: 50;
 
 .open-sans {
     font-family: $openSans;
@@ -89,8 +90,13 @@ $zIndexHeader: 30;
 
 .sg-block__html {
     pre {
+        background-color: #272822;
         border-radius: 0;
+        color: #f8f8f2;
         font-family: "Lucida Console", Monaco, monospace;
+        margin: 0.5em 0;
+        overflow: auto;
+        padding: 1em;
     }
 }
 
@@ -287,6 +293,10 @@ $zIndexHeader: 30;
     z-index: $zIndexNav;
     .is-showing-nav & {
         transform: translateX(-$offCanvasNavW);
+        .lt-ie10 & {
+            right: 0;
+            z-index: $zIndexNavOpenOldIE;
+        }
     }
 }
 
