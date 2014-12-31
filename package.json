@@ -1,6 +1,6 @@
 {
   "name": "yapl",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Utility to parse YAML in stylesheets and use it to generate a style guide.",
   "main": "index.js",
   "scripts": {
