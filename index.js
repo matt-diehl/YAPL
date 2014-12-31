@@ -209,7 +209,6 @@ function createAllImageSizeObjects() {
     config.imageSizes = sortAndMergeImageObjects(imageSizeObjectsAll);
 }
 
-// TODO: Fix weirdness of using for both sections and display templates
 function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTemplate) {
     var imageObject = {};
 
@@ -217,18 +216,21 @@ function createSingleImageSizeObject(imageUrl, section, sectionChild, displayTem
     imageObject.ratio = utils.aspectRatio(imageObject.dimensions);
     imageObject.name = imageObject.dimensions[0] + ' x ' + imageObject.dimensions[1] + ' - (' + imageObject.ratio + ')';
     imageObject.html = utils.placeholderImage(imageObject.dimensions);
-    imageObject.references = {};
+    imageObject.references = {
+        sections: {},
+        displayTemplates: {}
+    };
 
     if (section) {
-        imageObject.references.sections = [{
+        imageObject.references.sections[section.nameCamelCase] = {
             name: section ? section.name : '',
-            children: section ? [sectionChild] : []
-        }];
+            children: section ? [{name: sectionChild.name, link: sectionChild.link}] : []
+        };
     } else if (displayTemplate) {
-        imageObject.references.displayTemplates = [{
+        imageObject.references.displayTemplates[displayTemplate.nameCamelCase] = {
             name: displayTemplate.name,
             link: displayTemplate.link
-        }];
+        };
     }
 
     return imageObject;
@@ -419,18 +421,23 @@ function searchAllBlocksAndTemplatesForSelector(parentBlock, selector) {
         sectionsCondensed = [],
         sectionGroups;
 
+    // Loop through all of the YAPL blocks to search for the selector
     allYAPLBlocks().forEach(function(block) {
-        // If the block selector matches the one we're looking for, don't search it
+        // If block has the same parent, or
+        // if the block selector matches the one we're looking for, don't search it
         // Otherwise, search the html for the selector
-        if (block.selector && selector && selector.indexOf(block.selector) < 0 && block.html && htmlSelectorMatch(block.html, selector)) {
-            var reference = {
-                name: block.get('section').name,
-                children: [block.get('sectionChild')]
-            };
-            references.sections.push(reference);
+        if (block.get('sectionChild').name !== parentBlock.get('sectionChild').name) {
+            if (block.selector && selector && selector.indexOf(block.selector) < 0 && block.html && htmlSelectorMatch(block.html, selector)) {
+                var reference = {
+                    name: block.get('section').name,
+                    children: [block.get('sectionChild')]
+                };
+                references.sections.push(reference);
+            }
         }
     });
 
+    // Loop through all of the display templates to search for the selector
     allDisplayTemplates().forEach(function(template) {
         var sectionName = parentBlock.get('section').nameCamelCase;
         if (template.html && htmlSelectorMatch(template.html, selector)) {
@@ -447,12 +454,14 @@ function searchAllBlocksAndTemplatesForSelector(parentBlock, selector) {
         }
     });
 
+    // Group together all of the references by section name
     sectionGroups = _.chain(references.sections)
         .groupBy(function(section) {
             return section.name;
         })
         .value();
 
+    // Then merge together all of the references within each group so sections match, etc.
     _.forIn(sectionGroups, function(group) {
         var mergedReference = {};
 
