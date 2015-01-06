@@ -8,20 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/matt-diehl/PatternLibrary.git"
+    "url": "https://github.com/matt-diehl/YAPL.git"
   },
   "keywords": [
     "style",
     "guide",
     "pattern",
-    "library"
+    "library",
+    "YAPL"
   ],
   "author": "info@portstreetdesign.com (http://portstreetdesign.com/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/matt-diehl/PatternLibrary/issues"
+    "url": "https://github.com/matt-diehl/YAPL/issues"
   },
-  "homepage": "https://github.com/matt-diehl/PatternLibrary",
+  "homepage": "https://github.com/matt-diehl/YAPL",
   "dependencies": {
     "js-yaml": "~3.2.5",
     "glob": "~4.3.2",
