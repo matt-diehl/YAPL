@@ -89,7 +89,7 @@ gulp.task('default', ['lint', 'sass', 'js-frontend', 'watch', 'build']);
 
 function inc(importance) {
     // get all the files to bump version in
-    return gulp.src(['./package.json', './bower.json'])
+    return gulp.src(['./package.json'])
         // bump the version number in those files
         .pipe(bump({type: importance}))
         // save it back to filesystem
