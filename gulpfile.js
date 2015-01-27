@@ -1,10 +1,14 @@
-var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
-var sass = require('gulp-sass');
-var uglify = require('gulp-uglify');
-var concat = require('gulp-concat');
-var yapl = require('./index.js');
+var gulp = require('gulp'),
+    jshint = require('gulp-jshint'),
+    stylish = require('jshint-stylish'),
+    sass = require('gulp-sass'),
+    uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    yapl = require('./index.js'),
+    git = require('gulp-git'),
+    bump = require('gulp-bump'),
+    filter = require('gulp-filter'),
+    tag_version = require('gulp-tag-version');
 
 
 gulp.task('lint', function() {
@@ -67,3 +71,38 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['lint', 'sass', 'js-frontend', 'watch', 'build']);
+
+
+/**
+ * Bumping version number and tagging the repository with it.
+ * Please read http://semver.org/
+ *
+ * You can use the commands
+ *
+ *     gulp patch     # makes v0.1.0 → v0.1.1
+ *     gulp feature   # makes v0.1.1 → v0.2.0
+ *     gulp release   # makes v0.2.1 → v1.0.0
+ *
+ * To bump the version numbers accordingly after you did a patch,
+ * introduced a feature or made a backwards-incompatible release.
+ */
+
+function inc(importance) {
+    // get all the files to bump version in
+    return gulp.src(['./package.json', './bower.json'])
+        // bump the version number in those files
+        .pipe(bump({type: importance}))
+        // save it back to filesystem
+        .pipe(gulp.dest('./'))
+        // commit the changed version number
+        .pipe(git.commit('bumps package version'))
+
+        // read only one file to get the version number
+        .pipe(filter('package.json'))
+        // **tag it in the repository**
+        .pipe(tag_version());
+}
+
+gulp.task('patch', function() { return inc('patch'); })
+gulp.task('feature', function() { return inc('minor'); })
+gulp.task('release', function() { return inc('major'); })
