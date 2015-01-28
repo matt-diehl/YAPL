@@ -419,7 +419,7 @@ function generateAllBlockCssSelectors() {
             classAttr = domItems.eq(0).attr('class');
             if (classAttr) {
                 selector = classAttr.trim();
-                selector = '.' + selector.replace(/ /g, '.');
+                selector = '.' + selector.replace(/ +/g, '.');
                 block.selector = selector;
             } else {
                 block.selector = false;
