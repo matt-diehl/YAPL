@@ -203,8 +203,12 @@ function createAllImageSizeObjects() {
         if (block.html) {
             var imageUrls = getAllImageUrlsFromHtml(block.html);
             imageUrls.forEach(function(imageUrl) {
-                var imageSizeObject = createSingleImageSizeObject(imageUrl, block.get('section'), block.get('sectionChild'));
-                imageSizeObjectsAll.push(imageSizeObject);
+                try {
+                    var imageSizeObject = createSingleImageSizeObject(imageUrl, block.get('section'), block.get('sectionChild'));
+                    imageSizeObjectsAll.push(imageSizeObject);
+                } catch (e) {
+                    console.error(e.message);
+                }
             });
         }
     });
@@ -214,8 +218,12 @@ function createAllImageSizeObjects() {
         if (displayTemplate.html) {
             var imageUrls = getAllImageUrlsFromHtml(displayTemplate.html);
             imageUrls.forEach(function(imageUrl) {
-                var imageSizeObject = createSingleImageSizeObject(imageUrl, null, null, displayTemplate);
-                imageSizeObjectsAll.push(imageSizeObject);
+                try {
+                    var imageSizeObject = createSingleImageSizeObject(imageUrl, null, null, displayTemplate);
+                    imageSizeObjectsAll.push(imageSizeObject);
+                } catch (e) {
+                    console.error(e.message);
+                }
             });
         }
     });
@@ -256,12 +264,17 @@ function getAllImageUrlsFromHtml(html) {
         imageUrlArray = [];
 
     images.each(function(i, elem) {
-        var imageUrl = path.join(config.settings.siteRoot, $(this).attr('src')),
-            imageExt = path.extname(imageUrl).toLowerCase();
+        var imageSrc = $(this).attr('src'),
+            imageUrl = path.join(config.settings.siteRoot, imageSrc),
+            imageExt = path.extname(imageUrl).toLowerCase(),
+            startsWithHttp = imageSrc.indexOf('http') === 0;
+        // If it starts with http, just use the src of the image
+        if (startsWithHttp) {
+            imageUrlArray.push(imageSrc);
+        } else if (imageSrc && imageExt !== '.svg') {
         // Don't collect SVGs as they're only used for icons/global elements
         // The image size package also sometimes throws an error on them
         // TODO: May want to make this a setting to test for an ignore pattern
-        if (imageExt !== '.svg') {
             imageUrlArray.push(imageUrl);
         }
     });
