@@ -25,7 +25,7 @@ code[class*="language-"], pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  margin: 0.5em 0;
+  margin: .5em 0;
   overflow: auto;
   border-radius: 0.3em; }
 
@@ -34,8 +34,8 @@ pre[class*="language-"] {
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: 0.1em;
-  border-radius: 0.3em; }
+  padding: .1em;
+  border-radius: .3em; }
 
 .token.comment, .token.prolog, .token.doctype, .token.cdata {
   color: slategray; }
@@ -44,7 +44,7 @@ pre[class*="language-"] {
   color: #f8f8f2; }
 
 .namespace {
-  opacity: 0.7; }
+  opacity: .7; }
 
 .token.property, .token.tag, .token.constant, .token.symbol, .token.deleted {
   color: #f92672; }
@@ -200,7 +200,7 @@ pre[class*="language-"] {
   padding-top: 180px;
   position: relative;
   z-index: 20;
-  transition: transform 0.4s; }
+  transition: transform .4s; }
   .is-showing-nav .sg-content-wrap {
     transform: translateX(-320px); }
 
@@ -280,7 +280,7 @@ pre[class*="language-"] {
   height: 100%;
   overflow-y: scroll;
   position: fixed;
-  transition: transform 0.4s;
+  transition: transform .4s;
   top: 0;
   right: -320px;
   width: 320px;
@@ -325,8 +325,7 @@ pre[class*="language-"] {
 
 @media only screen and (max-width: 1050px) {
   .sg-block__html {
-    margin-bottom: 30px; }
- }
+    margin-bottom: 30px; } }
 
 @media only screen and (min-width: 1051px) {
   .sg-block__html {
@@ -334,10 +333,8 @@ pre[class*="language-"] {
     float: left;
     margin-right: 5%;
     width: 50%; }
-
   .sg-block__notes {
-    overflow: hidden; }
- }
+    overflow: hidden; } }
 
 .sg-body button {
   font-size: 12px;
