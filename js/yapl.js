@@ -1,7 +1,7 @@
-/*global $ */
+/*global jQuery */
 
 
-var Yapl = (function (args) {
+var Yapl = (function($) {
     'use strict';
 
     var s;
@@ -15,7 +15,7 @@ var Yapl = (function (args) {
             allOpen: false
         },
 
-        init: function() {
+        init: function(args) {
             s = $.extend({}, this.settings, args);
             if (s.body && s.body.length) {
                 this.bindUIActions();
@@ -67,6 +67,6 @@ var Yapl = (function (args) {
         }
 
     };
-})();
+})(jQuery);
 
 Yapl.init();
