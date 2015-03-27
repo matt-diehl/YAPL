@@ -341,6 +341,21 @@ $zIndexNavOpenOldIE: 50;
     margin-bottom: 40px;
 }
 
+// Micro clearfix
+.sg-u-cf:before,
+.sg-u-cf:after {
+    content: " ";
+    display: table;
+}
+
+.sg-u-cf:after {
+    clear: both;
+}
+
+.sg-u-cf {
+    *zoom: 1;
+}
+
 .sg-u-float-l {
     float: left;
 }
