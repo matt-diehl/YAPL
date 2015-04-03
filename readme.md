@@ -43,6 +43,17 @@ selector: .rtf p
 */
 ```
 
+You may need to use a wrapping class to accurately display a module, such as ones which occupy the full width of a parent element. Include wrapperClasses in your YAPL block as shown below:
+
+```css
+/* YAPL
+name: Paragraph
+notes: A basic rich text paragraph
+partial: paragraph
+wrapperClasses: wrapper-class
+*/
+```
+
 ## Install
 
 ```

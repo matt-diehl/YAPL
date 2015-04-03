@@ -5,14 +5,14 @@
             {{#if children}}
                 <div class="sg-block">
                     <div class="sg-block__header">
-                        <h2 class="sg-block__title open-sans open-sans--semibold"><a href="{{link}}">{{name}}</a></h2>
+                        <h2 class="sg-block__title open-sans open-sans--semibold"><a class="sg-link" href="{{link}}">{{name}}</a></h2>
                     </div>
                     <div class="sg-block__content sg-u-cf">
                         <ul class="sg-block__list">
                         {{#each children}}
                             <li>
                                 <h3 class="sg-block__header2 open-sans open-sans--semibold">
-                                    <a href="{{link}}">{{name}}</a>
+                                    <a class="sg-link" href="{{link}}">{{name}}</a>
                                 </h3>
                             </li>
                         {{/each}}
@@ -23,7 +23,7 @@
             {{#is name "Display Templates"}}
                 <div class="sg-block js-sg-block module-is-collapsed">
                     <div class="sg-block__header">
-                        <h2 class="sg-block__title open-sans open-sans--semibold"><a href="{{link}}">{{name}}</a></h2>
+                        <h2 class="sg-block__title open-sans open-sans--semibold"><a class="sg-link" href="{{link}}">{{name}}</a></h2>
                         <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
                             <span class="show-if-collapsed">Show</span>
                             <span class="show-if-expanded">Hide</span>

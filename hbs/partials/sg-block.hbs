@@ -9,7 +9,9 @@
     </div>
     <div class="sg-block__content sg-u-cf">
         <div class="sg-block__example sg-u-cf">
-            {{{html}}}
+            <section {{#if wrapperClasses}}class="{{wrapperClasses}}"{{/if}}>
+                {{{html}}}
+            </section>
         </div>
         <div class="sg-block__more is-collapsed js-sg-block__more">
             <div class="sg-block__html">
@@ -23,12 +25,20 @@
 {{notes}}
 {{/markdown}}
                 </div>
+                {{#if wrapperClasses}}
+                    <p>
+                        <span class="open-sans open-sans--semibold">Wrapping classes:</span>
+                        <span class="open-sans">
+                            {{wrapperClasses}}
+                        </span>
+                    </p>
+                {{/if}}
                 {{#if references}}
                     {{#if references.displayTemplates}}
                         <p class="open-sans open-sans--semibold">Templates this appears on:</p>
                         <ul class="open-sans">
                         {{#each references.displayTemplates}}
-                            <li><a href="{{link}}" target="_blank">{{name}}</a></li>
+                            <li><a class="sg-link" href="{{link}}" target="_blank">{{name}}</a></li>
                         {{/each}}
                         </ul>
                     {{/if}}
@@ -37,7 +47,7 @@
                         <p class="open-sans open-sans--semibold">{{name}} this appears on:</p>
                         <ul class="open-sans">
                         {{#each children}}
-                            <li><a href="{{link}}" target="_blank">{{name}}</a></li>
+                            <li><a class="sg-link" href="{{link}}" target="_blank">{{name}}</a></li>
                         {{/each}}
                         </ul>
                         {{/each}}

@@ -10,14 +10,14 @@
                 {{#each section.children}}
                     <li>
                         <h3 class="sg-block__header2 open-sans open-sans--semibold">
-                            <a href="{{link}}">{{name}}</a>
+                            <a class="sg-link" href="{{link}}">{{name}}</a>
                         </h3>
                         {{#lengthEqual blocks 1}}
                         {{else}}
                         <div class="sg-block__notes open-sans">
                             <ul>
                             {{#each blocks}}
-                                <li><a href="{{link}}">{{name}}</a></li>
+                                <li><a class="sg-link" href="{{link}}">{{name}}</a></li>
                             {{/each}}
                             </ul>
                         </div>

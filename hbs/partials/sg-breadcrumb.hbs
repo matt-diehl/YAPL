@@ -1,13 +1,13 @@
 <ul class="sg-breadcrumb l-float-l">
     <li class="open-sans open-sans--semibold">
-        <a href="{{library.settings.link}}">Design Pattern Library</a>
+        <a class="sg-link" href="{{library.settings.link}}">Design Pattern Library</a>
     </li>
 
     <li class="open-sans open-sans--semibold">
     {{#is section.name title}}
         {{section.name}}
     {{else}}
-        <a href="{{section.link}}">{{section.name}}</a>
+        <a class="sg-link" href="{{section.link}}">{{section.name}}</a>
     {{/is}}
     </li>
 

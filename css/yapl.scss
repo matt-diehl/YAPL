@@ -4,6 +4,7 @@
     "prism-okaidia";
 
 $dkGray: #141414;
+$linkColor: #18399E;
 $openSans: 'Open Sans', sans-serif;
 
 $offCanvasNavW: 320px;
@@ -24,9 +25,6 @@ $zIndexNavOpenOldIE: 50;
 .sg-body,
 .sg-content-wrap {
     background-color: #F3F3F0;
-    a {
-        color: #18399E;
-    }
 }
 
 .sg-block {
@@ -125,6 +123,9 @@ $zIndexNavOpenOldIE: 50;
 }
 
 .sg-block__notes {
+    a {
+        color: $linkColor;
+    }
     p, ul {
         line-height: 1.61;
         margin-top: 0.5em;
@@ -221,6 +222,10 @@ $zIndexNavOpenOldIE: 50;
 
 .sg-header__right {
     text-align: right;
+}
+
+.sg-link {
+    color: $linkColor;
 }
 
 // NAV

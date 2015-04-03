@@ -82,8 +82,6 @@ pre[class*="language-"] {
 
 .sg-body, .sg-content-wrap {
   background-color: #F3F3F0; }
-  .sg-body a, .sg-content-wrap a {
-    color: #18399E; }
 
 .sg-block {
   background-color: #FFF;
@@ -154,6 +152,8 @@ pre[class*="language-"] {
 .sg-block__more.is-expanded {
   display: block; }
 
+.sg-block__notes a {
+  color: #18399E; }
 .sg-block__notes p, .sg-block__notes ul {
   line-height: 1.61;
   margin-top: 0.5em; }
@@ -225,6 +225,9 @@ pre[class*="language-"] {
 
 .sg-header__right {
   text-align: right; }
+
+.sg-link {
+  color: #18399E; }
 
 .sg-nav, .sg-nav__close {
   color: #FFF;
