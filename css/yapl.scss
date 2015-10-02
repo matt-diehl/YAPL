@@ -240,19 +240,78 @@ $zIndexNavOpenOldIE: 50;
 }
 
 .sg-nav-open {
-    background-color: transparent;
-    background-image: url(/images/styleguide/icon-nav-toggle.svg);
-    background-position: 100% 50%;
-    background-repeat: no-repeat;
     border: 0;
     display: inline-block;
     font-size: 15px;
     height: 40px;
     line-height: 38px;
+    position: relative;
     text-align: left;
     width: 102px;
     &:focus {
         outline: 0;
+    }
+}
+
+.sg-nav-icon-wrap {
+    background-color: $dkGray;
+    display: inline-block;
+    margin-left: 10px;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+}
+
+.sg-nav-icon {
+    background: white;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 18px;
+    height: 4px;
+    width: 70%;
+    transition: background 0s 0.3s;
+
+    &:before,
+    &:after {
+        position: absolute;
+        display: block;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: #fff;
+        content: '';
+        transition-duration: 0.3s, 0.3s;
+        transition-delay: 0.3s, 0s;
+    }
+
+    &:before {
+        top: -8px;
+        transition-property: top, transform;
+    }
+
+    &:after {
+        bottom: -8px;
+        transition-property: bottom, transform;
+    }
+
+    .is-showing-nav & {
+        background: none;
+
+        &:before,
+        &:after {
+            transition-delay: 0s, 0.3s;
+        }
+
+        &:before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+        &:after {
+            bottom: 0;
+            transform: rotate(-45deg);
+        }
+
     }
 }
 
