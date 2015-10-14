@@ -19,7 +19,7 @@ var config = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
         htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
-        outputJsonFile: false,
+        outputJsonFile: '',
         libraryIndex: path.resolve(__dirname, 'hbs/templates/index.hbs'),
         libraryLayout: path.resolve(__dirname, 'hbs/layouts/default.hbs'),
         libraryPartials: path.resolve(__dirname, 'hbs/partials/**/*.hbs'),
@@ -514,10 +514,9 @@ function htmlSelectorMatch(html, selector) {
 // File Output
 
 function outputConfigToFile() {
-    if (config.settings.outputJsonFile) {
+    if (config.settings.outputJsonFile !== '') {
         var outputPath = config.settings.outputJsonFile,
             outputDir = path.dirname(outputPath),
-            outputFilename = path.basename(outputPath),
             cleanedConfig = config;
 
         cleanedConfig.displayTemplates.forEach(function(template) {
