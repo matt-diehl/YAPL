@@ -264,7 +264,7 @@ function getAllImageUrlsFromHtml(html) {
         imageUrlArray = [];
 
     images.each(function(i, elem) {
-        var imageSrc = $(this).attr('src'),
+        var imageSrc = $(this).attr('src') || '',
             imageUrl = path.join(config.settings.siteRoot, imageSrc),
             imageExt = path.extname(imageUrl).toLowerCase(),
             startsWithHttp = imageSrc.indexOf('http') === 0;
@@ -287,7 +287,9 @@ function sortAndMergeImageObjects(objects) {
         imageSizeObjectGroups;
 
     imageSizeObjectGroups = _.chain(objects)
-        .sortBy('dimensions')
+        .sortBy(function(object) {
+            return object.dimensions[0];
+        })
         .groupBy(function(object) {
             return object.dimensions;
         })
