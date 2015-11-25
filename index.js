@@ -475,8 +475,11 @@ function searchAllBlocksAndTemplatesForSelector(parentBlock, selector) {
                 link: template.link
             });
 
-            template.modules[sectionName] = template.modules[sectionName] || [];
-            template.modules[sectionName].push({
+            template.modules[sectionName] = template.modules[sectionName] || {
+                section: parentBlock.get('section').name,
+                items: []
+            };
+            template.modules[sectionName].items.push({
                 name: parentBlock.name,
                 link: parentBlock.link
             });

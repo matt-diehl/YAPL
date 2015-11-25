@@ -8,21 +8,13 @@
 {{#markdown}}{{notes}}{{/markdown}}
             </div>
         {{/if}}
-        {{#if modules.microElements}}
-            <h4 class="sg-block__header3 open-sans--semibold">Micro Elements:</h4>
+        {{#eachProperty modules}}
+            <h4 class="sg-block__header3 open-sans--semibold">{{value.section}}</h4>
             <ul class="sg-block__module-list open-sans">
-            {{#each modules.microElements}}
+            {{#each value.items}}
                 <li><a class="sg-link" href="{{link}}">{{name}}</a></li>
             {{/each}}
             </ul>
-        {{/if}}
-        {{#if modules.macroElements}}
-            <h4 class="sg-block__header3 open-sans--semibold">Macro Elements:</h4>
-            <ul class="sg-block__module-list open-sans">
-            {{#each modules.macroElements}}
-                <li><a class="sg-link" href="{{link}}">{{name}}</a></li>
-            {{/each}}
-            </ul>
-        {{/if}}
+        {{/eachProperty}}
     </div>
 </li>
