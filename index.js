@@ -5,7 +5,7 @@
 // YAPL Requires
 var fs = require('fs'),
     path = require('path'),
-    glob = require('glob'),
+    glob = require('globby'),
     handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
     yaml = require('js-yaml'),

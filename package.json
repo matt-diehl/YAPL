@@ -25,7 +25,7 @@
   "homepage": "https://github.com/matt-diehl/YAPL",
   "dependencies": {
     "js-yaml": "~3.4.3",
-    "glob": "~5.0.15",
+    "globby": "~4.0.0",
     "handlebars": "~4.0.3",
     "handlebars-helpers": "~0.5.8",
     "cheerio": "~0.19.0",
