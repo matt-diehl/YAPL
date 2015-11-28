@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
+    mocha = require('gulp-mocha'),
+    istanbul = require('gulp-istanbul'),
     stylish = require('jshint-stylish'),
     sass = require('gulp-sass'),
     uglify = require('gulp-uglify'),
@@ -27,6 +29,18 @@ gulp.task('sass', function () {
     gulp.src('./css/*.scss')
         .pipe(sass())
         .pipe(gulp.dest('./css'));
+});
+
+gulp.task('pre-test', function () {
+    return gulp.src(['./lib/*.js'])
+        .pipe(istanbul())
+        .pipe(istanbul.hookRequire());
+});
+
+gulp.task('test', ['pre-test'], function () {
+    return gulp.src('./test/utils.js', { read: false })
+        .pipe(mocha({reporter: 'nyan'}))
+        .pipe(istanbul.writeReports());
 });
 
 gulp.task('build', ['lint', 'js-frontend', 'sass'], function() {
@@ -70,7 +84,18 @@ gulp.task('watch', function() {
     gulp.watch(['./index.js', './lib/*.js', './js/*.js', './css/**/*.scss', './hbs/**/*.hbs'], ['lint', 'js-frontend', 'sass', 'build']);
 });
 
-gulp.task('default', ['lint', 'sass', 'js-frontend', 'watch', 'build']);
+gulp.task('watchtest', function() {
+    gulp.watch(['./index.js', './lib/*.js', './test/*.js'], ['pre-test', 'test']);
+});
+
+gulp.task('default', [
+    'lint',
+    'pre-test',
+    'test',
+    'sass',
+    'js-frontend',
+    'build'
+]);
 
 
 /**
