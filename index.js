@@ -23,6 +23,7 @@ var config = {
         libraryIndex: path.resolve(__dirname, 'hbs/templates/index.hbs'),
         libraryLayout: path.resolve(__dirname, 'hbs/layouts/default.hbs'),
         libraryPartials: path.resolve(__dirname, 'hbs/partials/**/*.hbs'),
+        libraryTemplates: path.resolve(__dirname, 'hbs/templates/**/*.hbs'),
         libraryCss: path.resolve(__dirname, 'css/yapl.css'),
         libraryJs: path.resolve(__dirname, 'js/min/yapl.js'),
         libraryCodeHighlightJs: path.resolve(__dirname, 'js/min/prism.js'),

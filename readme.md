@@ -105,7 +105,32 @@ You will also likely want to provide globbing patterns for your project's partia
 
 Each "section" defined should contain at least a "name" and "landingTemplate." The name appears in navigation, breadcrumbs, etc. The landing for that section would be built as "index.html" with a directory named after the section. So, the "Display Templates" section landing would build to "./example/styleguide/display-templates/index.html."
 
-YAPL provides default templates for the library's home/index, a section landing, display templates landing, image sizes landing, and a single module page. To alter the format of your library's templates, create new templates for the ones you would like to override, and provide the path in your YAPL configuration.
+YAPL provides default templates for the library's home/index, a section landing, display templates landing, image sizes landing, and a single module page. To alter the format of your library's templates, create new templates for the ones you would like to override, and provide the path in your YAPL configuration. To use a default YAPL template, reference only the file name of one of the templates located in the hbs/templates folder, like so:
+
+```js
+...
+    sections: [{
+        name: 'Micro Elements',
+        landingTemplate: 'section-landing.hbs',
+        childTemplate: 'module.hbs',
+        css: './example/css/modules/micro/**/*.scss',
+    }, {
+        name: 'Macro Elements',
+        landingTemplate: 'section-landing.hbs',
+        childTemplate: 'module.hbs',
+        css: './example/css/modules/macro/**/*.scss'
+    }, {
+        name: 'Display Templates',
+        landingTemplate: 'display-templates-landing.hbs'
+    }, {
+        name: 'Image Sizes',
+        landingTemplate: 'image-sizes-landing.hbs'
+    }, {
+        name: 'Appendix',
+        landingTemplate: 'appendix.hbs'
+    }]
+...
+```
 
 
 ### Options
@@ -123,6 +148,7 @@ The configuration defaults are:
         libraryIndex: './hbs/templates/index.hbs',
         libraryLayout: './hbs/layouts/default.hbs',
         libraryPartials: './hbs/partials/**/*.hbs',
+        libraryTemplates: './hbs/templates/**/*.hbs',
         libraryCss: './css/yapl.css',
         libraryJs: './js/min/yapl.js',
         libraryLogo: './images/logo.png'
