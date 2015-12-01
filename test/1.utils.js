@@ -1,4 +1,4 @@
-var assert = require('assert'),
+var assert = require('chai').assert,
     fs = require('fs'),
     path = require('path');
 
@@ -67,6 +67,24 @@ describe('utils', function() {
             assert.throws(function() {
                 utils.dimensions('http://website.com/image.jpg');
             }, Error);
+        });
+    });
+
+    describe('curriedReadFile', function() {
+        it('should be a function', function() {
+            assert.isFunction(utils.curriedReadFile);
+        });
+
+        it('should return a function', function() {
+            assert.isFunction(utils.curriedReadFile(__dirname + '/html/home.html'));
+        });
+
+        it('should return the file content in a callback', function(done) {
+            var content = utils.curriedReadFile(__dirname + '/html/home.html');
+            content(function(err, data) {
+                assert.isString(data);
+                done();
+            });
         });
     });
 

@@ -1,0 +1,23 @@
+/* YAPL
+name: Default button
+notes: The default button
+partial: btn
+context: btn.default
+other: example of random extra data
+*/
+
+.btn {
+    cursor: pointer;
+}
+
+/* YAPL
+name: Other button
+notes: The other button
+partial: btn
+context: btn.other
+other: example of random extra data
+*/
+
+.btn--other {
+    border: 1px solid #000;
+}

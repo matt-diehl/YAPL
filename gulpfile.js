@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 
 gulp.task('lint', function() {
     return gulp.src(['index.js', './lib/*.js', './js/*.js'])
-        .pipe(jshint())
+        .pipe(jshint('./.jshintrc'))
         .pipe(jshint.reporter(stylish));
 });
 
@@ -38,54 +38,72 @@ gulp.task('pre-test', function () {
 });
 
 gulp.task('test', ['pre-test'], function () {
-    return gulp.src('./test/utils.js', { read: false })
+    return gulp.src(['./test/*.js'], { read: false })
         .pipe(mocha({reporter: 'nyan'}))
         .pipe(istanbul.writeReports());
 });
 
 gulp.task('build', ['lint', 'js-frontend', 'sass'], function() {
-    yapl({
-        settings: {
-            css: './example/css/**/*.scss',
-            partials: './example/templates-main/partials/**/*.hbs',
-            data: './example/templates-main/data/**/*.{json,yaml}',
-            displayTemplates: './example/ProductionTemplates/**/*.html',
-            buildDir: './example/styleguide',
-            outputJsonFile: './example/styleguide.json',
-            libraryIndex: './hbs/templates/index.hbs',
-            libraryLayout: './hbs/layouts/default.hbs',
-            libraryPartials: './hbs/partials/**/*.hbs',
-            siteRoot: './example'
-        },
-        sections: [{
-            name: 'Micro Elements',
-            landingTemplate: './hbs/templates/section-landing.hbs',
-            childTemplate: './hbs/templates/module.hbs',
-            css: './example/css/modules/micro/**/*.scss',
-        }, {
-            name: 'Macro Elements',
-            landingTemplate: './hbs/templates/section-landing.hbs',
-            childTemplate: './hbs/templates/module.hbs',
-            css: './example/css/modules/macro/**/*.scss'
-        }, {
-            name: 'Display Templates',
-            landingTemplate: './hbs/templates/display-templates-landing.hbs'
-        }, {
-            name: 'Image Sizes',
-            landingTemplate: './hbs/templates/image-sizes-landing.hbs'
-        }, {
-            name: 'Appendix',
-            landingTemplate: './hbs/templates/appendix.hbs'
-        }]
-    });
+    // yapl({
+    //     settings: {
+    //         css: './example/css/**/*.scss',
+    //         partials: './example/templates-main/partials/**/*.hbs',
+    //         data: './example/templates-main/data/**/*.{json,yaml}',
+    //         displayTemplates: './example/ProductionTemplates/**/*.html',
+    //         buildDir: './example/styleguide',
+    //         outputJsonFile: './example/styleguide.json',
+    //         libraryIndex: './hbs/templates/index.hbs',
+    //         libraryLayout: './hbs/layouts/default.hbs',
+    //         libraryPartials: './hbs/partials/**/*.hbs',
+    //         siteRoot: './example'
+    //     },
+    //     sections: [{
+    //         name: 'Micro Elements',
+    //         landingTemplate: './hbs/templates/section-landing.hbs',
+    //         childTemplate: './hbs/templates/module.hbs',
+    //         css: './example/css/modules/micro/**/*.scss',
+    //     }, {
+    //         name: 'Macro Elements',
+    //         landingTemplate: './hbs/templates/section-landing.hbs',
+    //         childTemplate: './hbs/templates/module.hbs',
+    //         css: './example/css/modules/macro/**/*.scss'
+    //     }, {
+    //         name: 'Display Templates',
+    //         landingTemplate: './hbs/templates/display-templates-landing.hbs'
+    //     }, {
+    //         name: 'Image Sizes',
+    //         landingTemplate: './hbs/templates/image-sizes-landing.hbs'
+    //     }, {
+    //         name: 'Appendix',
+    //         landingTemplate: './hbs/templates/appendix.hbs'
+    //     }]
+    // });
 })
 
 gulp.task('watch', function() {
-    gulp.watch(['./index.js', './lib/*.js', './js/*.js', './css/**/*.scss', './hbs/**/*.hbs'], ['lint', 'js-frontend', 'sass', 'build']);
+    gulp.watch([
+        './index.js',
+        './lib/*.js',
+        './js/*.js',
+        './css/**/*.scss',
+        './hbs/**/*.hbs'
+    ], [
+        'lint',
+        'js-frontend',
+        'sass',
+        'build'
+    ]);
 });
 
 gulp.task('watchtest', function() {
-    gulp.watch(['./index.js', './lib/*.js', './test/*.js'], ['pre-test', 'test']);
+    gulp.watch([
+        './index.js',
+        './lib/*.js',
+        './test/*.js'
+    ], [
+        'pre-test',
+        'test'
+    ]);
 });
 
 gulp.task('default', [
