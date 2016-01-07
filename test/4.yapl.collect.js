@@ -44,9 +44,33 @@ describe('yapl, post-collect', function() {
     });
 
     describe('yapl.sections', function() {
-        it('should contain items', function() {
-            assert.isAbove(yapl.sections.items.length, 0);
+        it('should contain 5 items', function() {
+            assert.lengthOf(yapl.sections.items, 5);
         });
     });
+
+    describe('yapl.modules', function() {
+        it('should contain items', function() {
+            assert.isAbove(yapl.modules.items.length, 0);
+        });
+    });
+
+    describe('yapl.blocks', function() {
+        it('should contain items', function() {
+            assert.isAbove(yapl.blocks.items.length, 0);
+        });
+    });
+
+    describe('yapl.templates', function() {
+        it('should contain items', function() {
+            assert.isAbove(yapl.templates.items.length, 0);
+        });
+    });
+
+    // describe('yapl.images', function() {
+    //     it('should contain items', function() {
+    //         assert.isAbove(yapl.images.items.length, 0);
+    //     });
+    // });
 
 });

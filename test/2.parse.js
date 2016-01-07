@@ -2,7 +2,7 @@ var assert = require('assert'),
     fs = require('fs'),
     path = require('path');
 
-var parse = require('../lib/parse.js');
+var parse = require('../lib/task.parse.js');
 
 describe('parse', function() {
 

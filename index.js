@@ -1,20 +1,52 @@
 'use strict';
 
 // TODO - Necessary:
-// - test collection of components
+// - image collection
+// - cross linking
+// - tests:
+    // - all constructors - necessary?
+        // - Block
+        // - Container
+        // - Image
+        // - Join
+        // - Section
+        // - Template
+    // - init
+        // - test regarding throwing errors for missing necessary data
+// - entire build step
+// - standardized way of handling paths
+    // - links within library
+    // - paths that are passed from task to task
+// - directory structure clean up
+    // - consider moving all front-end code to it's own folder
+// - proper examples - maybe it's own repo?
+// - streamline/simplify configuration/settings aspect - possibly single folder to contain templates/assets
+    // - then, rather than specifiying each individual path to templates, library css, etc., just search by file name in the override directory, falling back to Yapl default if none found (settings.overrideDir?)
+// - way to specify assets that need to load in (css,js), in head, foot
+// - ES6 - if it's used, use Babel to compile
+
+// TODO - Maybe:
+// - array methods on container, without referring to "items"
+// - curried readfile - how does that affect other items?
 
 // TODO - Nice:
+// - way to edit notes in-context and save to file??
+    // - and/or a way to create pages/sections
+        // - markdown files? could those be created/stored in a directory
+        // - suggests there should be a "load" step that loads a previously saved config file
 // - think about coverage idea and how that affects design decisions
     // - report at end of task on totals
-// - think about using a front end framework instead of building, or making build an optional step
+    // - by file with yapl comments, by colors found/used, by classes/selectors in css vs in examples
 // - think about how caching can be applied to cross-linking (and the rest of the tasks)
     // - fs.stat: stat object has key, mtime, for when data was last modified
     // - so for each action that would involve reading file contents, can we store the results of that action, and only perform it again if the mtime has changed?
         // - could be applied to 'parse', cross-linking?
 // - set up image collection parameters (max/min size, etc.)
 
-// TODO - Maybe:
-// - curried readfile
+// TODO - just thoughts:
+// - think about using a front end framework instead of building, or making build an optional step
+
+
 
 // external libs
 var fs = require('fs'),
@@ -26,17 +58,17 @@ var fs = require('fs'),
     _ = require('lodash');
 
 // internal libs
-var parse = require('./lib/parse.js'),
-    utils = require('./lib/utils.js'),
-    build = require('./lib/build.js');
+var parse = require('./lib/task.parse.js'),
+    build = require('./lib/task.build.js'),
+    utils = require('./lib/utils.js');
 
-// constructors
-var Container = require('./lib/Container.js'),
-    BlockObj = require('./lib/Block.js'),
-    TemplateObj = require('./lib/Template'),
-    ImageObj = require('./lib/Image'),
-    ModuleObj = require('./lib/Module'),
-    SectionObj = require('./lib/Section');
+// constructors/objects
+var Container = require('./lib/obj.container.js'),
+    BlockObj = require('./lib/obj.block.js'),
+    TemplateObj = require('./lib/obj.template'),
+    ImageObj = require('./lib/obj.image'),
+    ModuleObj = require('./lib/obj.module'),
+    SectionObj = require('./lib/obj.section');
 
 // YAPL Internal Variables
 var config = {
@@ -146,7 +178,7 @@ var Yapl = {
         Yapl.collectModules(this);
         Yapl.collectTemplates(this);
         Yapl.collectBlocks(this);
-        //Yapl.collectImages();
+        //Yapl.collectImages(this);
     },
 
     // all collection functions need to take an argument to use instead of 'Yapl'
@@ -158,7 +190,7 @@ var Yapl = {
     },
 
     collectModules: function(_this) {
-        _this.sections.items.forEach(function(section) {
+        _this.sections.forEach(function(section) {
             section.cssFiles.forEach(function(cssFile) {
                 _this.modules.add({ cssFile: cssFile }, {
                     parent: section
@@ -168,7 +200,7 @@ var Yapl = {
     },
 
     collectBlocks: function(_this) {
-        _this.modules.items.forEach(function(module) {
+        _this.modules.forEach(function(module) {
             var blocks = parse.fromFile(module.cssFile, 'css');
             blocks.forEach(function(block) {
                 _this.blocks.add(block, {
@@ -191,7 +223,7 @@ var Yapl = {
     },
 
     collectImages: function(_this) {
-        _this.templates.items.forEach(function(template) {
+        _this.templates.forEach(function(template) {
 
             // TODO: Do this:
             _this.images.add({});
