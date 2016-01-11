@@ -176,6 +176,19 @@ function createAllDisplayTemplateObjects() {
         }
     });
 
+    displayTemplatesArray.sort(function(a, b) {
+        var aTemplateName = a.name.toLowerCase(),
+            bTemplateName = b.name.toLowerCase();
+
+        if (aTemplateName < bTemplateName){
+            return -1;
+        } else if (aTemplateName > bTemplateName) {
+            return  1;
+        } else {
+            return 0;
+        }
+    });
+
     config.displayTemplates = displayTemplatesArray;
 }
 
