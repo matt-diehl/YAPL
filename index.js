@@ -1,8 +1,7 @@
 'use strict';
 
 // TODO - Necessary:
-// - image collection
-// - cross linking
+// - entire build step
 // - tests:
     // - all constructors - necessary?
         // - Block
@@ -13,7 +12,7 @@
         // - Template
     // - init
         // - test regarding throwing errors for missing necessary data
-// - entire build step
+    // - cross-linking - with creation of new example modules/templates, confirm cross-linking works as expected
 // - standardized way of handling paths
     // - links within library
     // - paths that are passed from task to task
@@ -23,11 +22,13 @@
 // - streamline/simplify configuration/settings aspect - possibly single folder to contain templates/assets
     // - then, rather than specifiying each individual path to templates, library css, etc., just search by file name in the override directory, falling back to Yapl default if none found (settings.overrideDir?)
 // - way to specify assets that need to load in (css,js), in head, foot
-// - ES6 - if it's used, use Babel to compile
 
 // TODO - Maybe:
+// - ES6 - if it's used, use Babel to compile
 // - array methods on container, without referring to "items"
 // - curried readfile - how does that affect other items?
+// - re-examine "_this" used in collection
+// - re-examine use of call for "mixin" functionality with core objects (consider Object.create instead)
 
 // TODO - Nice:
 // - way to edit notes in-context and save to file??
@@ -54,7 +55,7 @@ var fs = require('fs'),
     glob = require('glob'),
     handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
-    // cheerio = require('cheerio'),
+    cheerio = require('cheerio'),
     _ = require('lodash');
 
 // internal libs
@@ -68,7 +69,8 @@ var Container = require('./lib/obj.container.js'),
     TemplateObj = require('./lib/obj.template'),
     ImageObj = require('./lib/obj.image'),
     ModuleObj = require('./lib/obj.module'),
-    SectionObj = require('./lib/obj.section');
+    SectionObj = require('./lib/obj.section'),
+    JoinObj = require('./lib/obj.join')
 
 // YAPL Internal Variables
 var config = {
@@ -95,19 +97,23 @@ var Yapl = {
 
     init: function(options) {
         this.config = Yapl.extendConfig(options);
+
         parse.init({
             cssBlockRegEx: this.config.settings.cssBlockRegEx,
             htmlBlockRegEx: this.config.settings.htmlBlockRegEx
         });
 
+        build.init(this.config.settings);
+
         // think about how to do this better, contain to instantiated object
-        Yapl.setupHandlebarsConfig();
+        this.setupHandlebarsConfig();
 
         this.sections = Object.create(Container).init(SectionObj, 'section', this.config.settings);
         this.modules = Object.create(Container).init(ModuleObj, 'module', this.config.settings);
         this.blocks = Object.create(Container).init(BlockObj, 'block', this.config.settings);
         this.templates = Object.create(Container).init(TemplateObj, 'template', this.config.settings);
         this.images = Object.create(Container).init(ImageObj, 'image', this.config.settings);
+        this.joins = Object.create(Container).init(JoinObj, 'join', this.config.settings);
     },
 
     // TODO: look into how this can be streamlined / simplified
@@ -174,22 +180,25 @@ var Yapl = {
     },
 
     collect: function() {
-        Yapl.collectSections(this);
-        Yapl.collectModules(this);
-        Yapl.collectTemplates(this);
-        Yapl.collectBlocks(this);
-        //Yapl.collectImages(this);
+        this.collectSections();
+        this.collectModules();
+        this.collectTemplates();
+        this.collectBlocks();
+        this.collectImages();
+        this.collectJoins();
     },
 
-    // all collection functions need to take an argument to use instead of 'Yapl'
-    // the argument will be the 'this' of the init function
-    collectSections: function(_this) {
+    collectSections: function() {
+        var _this = this;
+
         _this.config.sections.forEach(function(section) {
             _this.sections.add(section, {});
         });
     },
 
-    collectModules: function(_this) {
+    collectModules: function() {
+        var _this = this;
+
         _this.sections.forEach(function(section) {
             section.cssFiles.forEach(function(cssFile) {
                 _this.modules.add({ cssFile: cssFile }, {
@@ -199,18 +208,23 @@ var Yapl = {
         });
     },
 
-    collectBlocks: function(_this) {
+    collectBlocks: function() {
+        var _this = this;
+
         _this.modules.forEach(function(module) {
             var blocks = parse.fromFile(module.cssFile, 'css');
             blocks.forEach(function(block) {
                 _this.blocks.add(block, {
-                    parent: module
-                }).compile(handlebars);
+                    parent: module,
+                    compiler: handlebars
+                });
             });
         });
     },
 
-    collectTemplates: function(_this) {
+    collectTemplates: function() {
+        var _this = this;
+
         glob.sync(_this.config.settings.templates).forEach(function(file) {
             var template = parse.fromFile(file, 'html') || {};
             template.file = file;
@@ -222,20 +236,64 @@ var Yapl = {
         });
     },
 
-    collectImages: function(_this) {
-        _this.templates.forEach(function(template) {
+    collectImages: function() {
+        var _this = this,
+            images = [];
 
-            // TODO: Do this:
-            _this.images.add({});
-
-            // var template = parse.fromFile(file, 'html') || {};
-            // template.file = file;
-
-            // // If "exclude" present in YAPL block, it won't be added
-            // if (!template.exclude) {
-            //     Yapl.templates.add(template);
-            // }
+        _this.blocks.forEach(function(block) {
+            if (block.html) {
+                var imagePaths = utils.getImagePathsFromHtml(block.html, _this.config.settings.siteRoot);
+                images = images.concat(imagePaths);
+            }
         });
+
+        _this.templates.forEach(function(template) {
+            if (template.html) {
+                var imagePaths = utils.getImagePathsFromHtml(template.html, _this.config.settings.siteRoot);
+                images = images.concat(imagePaths);
+            }
+        });
+
+        images.forEach(function(image) {
+            _this.images.add({ src: image });
+        });
+    },
+
+    collectJoins: function() {
+        var _this = this,
+            allSelectors = [],
+            blocksAndTemplates = _this.blocks.items.concat(_this.templates.items);
+
+        allSelectors = _this.blocks.items.filter(function(block) {
+            return block.selector;
+        }).map(function(block) {
+            return block.selector
+        });
+
+        blocksAndTemplates.forEach(function(blockOrTemplate) {
+            if (blockOrTemplate.html) {
+                var matches = utils.findMatchingSelectors(blockOrTemplate.html, allSelectors);
+
+                matches = matches.filter(function(match) {
+                    return match !== blockOrTemplate.selector;
+                }).map(function(match) {
+                    return _this.blocks.items.filter(function(block) {
+                        return match === block.selector;
+                    })[0];
+                });
+
+                matches.forEach(function(match) {
+                    _this.joins.add({
+                        parent: blockOrTemplate,
+                        child: match
+                    });
+                });
+            }
+        });
+    },
+
+    build: function() {
+        build.build();
     },
 
     outputToFile: function() {
@@ -243,7 +301,9 @@ var Yapl = {
             sections: this.sections.items,
             modules: this.modules.items,
             blocks: this.blocks.items,
-            templates: this.templates.items
+            templates: this.templates.items,
+            images: this.images.items,
+            joins: this.joins.items
         });
 
         // TODO: finish this so it is configurable, creates missing directories

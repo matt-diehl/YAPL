@@ -70,24 +70,6 @@ describe('utils', function() {
         });
     });
 
-    describe('curriedReadFile', function() {
-        it('should be a function', function() {
-            assert.isFunction(utils.curriedReadFile);
-        });
-
-        it('should return a function', function() {
-            assert.isFunction(utils.curriedReadFile(__dirname + '/html/home.html'));
-        });
-
-        it('should return the file content in a callback', function(done) {
-            var content = utils.curriedReadFile(__dirname + '/html/home.html');
-            content(function(err, data) {
-                assert.isString(data);
-                done();
-            });
-        });
-    });
-
     describe('copyFile', function() {
         it('should copy a file from one location to another', function() {
             utils.copyFile(

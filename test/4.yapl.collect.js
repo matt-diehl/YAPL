@@ -67,10 +67,16 @@ describe('yapl, post-collect', function() {
         });
     });
 
-    // describe('yapl.images', function() {
-    //     it('should contain items', function() {
-    //         assert.isAbove(yapl.images.items.length, 0);
-    //     });
-    // });
+    describe('yapl.images', function() {
+        it('should contain items', function() {
+            assert.isAbove(yapl.images.items.length, 0);
+        });
+    });
+
+    describe('yapl.joins', function() {
+        it('should contain items', function() {
+            assert.isAbove(yapl.joins.items.length, 0);
+        });
+    });
 
 });

@@ -350,4 +350,57 @@ describe('yapl, post-init', function() {
         });
     });
 
+
+    // Joins
+
+    describe('joins', function() {
+        it('should be an object', function() {
+            assert.isObject(yapl.joins);
+        });
+    });
+
+    describe('joins.constructor', function() {
+        it('should be an object', function() {
+            assert.isObject(yapl.joins.constructor);
+        });
+    });
+
+    describe('joins.constructor.init', function() {
+        it('should be a function', function() {
+            assert.isFunction(yapl.joins.constructor.init);
+        });
+    });
+
+    describe('joins.items', function() {
+        it('should be a array', function() {
+            assert.isArray(yapl.joins.items);
+        });
+
+        it('should have a length of 0', function() {
+            assert.lengthOf(yapl.joins.items, 0);
+        });
+    });
+
+    describe('joins.add', function() {
+        it('should be a function', function() {
+            assert.isFunction(yapl.joins.add);
+        });
+
+        it('should add an item with a unique id', function() {
+            yapl.joins.add({ parent: { id: 'parent_1' }, child: { id: 'child_1' } });
+            assert.lengthOf(yapl.joins.items, 1);
+            assert.equal(yapl.joins.items[0].id, 'join_0');
+            yapl.joins.add({ parent: { id: 'parent_2' }, child: { id: 'child_2' } });
+            assert.equal(yapl.joins.items[1].id, 'join_1');
+        });
+
+    });
+
+    describe('joins.empty', function() {
+        it('should remove all joins', function() {
+            yapl.joins.empty();
+            assert.strictEqual(yapl.joins.items.length, 0);
+        });
+    });
+
 });

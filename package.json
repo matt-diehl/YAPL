@@ -51,6 +51,7 @@
     "jshint-stylish": "~2.0.1",
     "mocha": "~2.3.3",
     "mocha-lcov-reporter": "^1.0.0",
-    "prism": "git://github.com/LeaVerou/prism.git#gh-pages"
+    "prism": "git://github.com/LeaVerou/prism.git#gh-pages",
+    "rimraf": "^2.5.1"
   }
 }
