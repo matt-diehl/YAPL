@@ -32,7 +32,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('pre-test', function () {
-    return gulp.src(['./lib/*.js'])
+    return gulp.src(['./index.js', './lib/*.js'])
         .pipe(istanbul())
         .pipe(istanbul.hookRequire());
 });

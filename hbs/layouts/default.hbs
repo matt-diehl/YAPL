@@ -15,7 +15,7 @@
     {{> head-css }}
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{{library.settings.cssSrc}}">
+    <link rel="stylesheet" href="{{global.settings.cssSrc}}">
 
     {{> head-js }}
 
@@ -30,8 +30,8 @@
         <header class="sg-header">
             <div class="sg-header__inner sg-contain">
                 <div class="sg-header__left">
-                    <a href="{{library.settings.link}}" class="sg-logo">
-                        <img src="{{library.settings.logoSrc}}" alt="Pattern Library Logo">
+                    <a href="{{global.settings.link}}" class="sg-logo">
+                        <img src="{{global.settings.logoSrc}}" alt="Pattern Library Logo">
                     </a>
                 </div>
                 <div class="sg-header__right">
@@ -61,9 +61,9 @@
     {{> footer-js }}
 
     <!--[if gte IE 9]><!-->
-    <script src="{{library.settings.codeHighlightJsSrc}}"></script>
+    <script src="{{global.settings.codeHighlightJsSrc}}"></script>
     <!--<![endif]-->
-    <script src="{{library.settings.jsSrc}}"></script>
+    <script src="{{global.settings.jsSrc}}"></script>
 
 </body>
 </html>

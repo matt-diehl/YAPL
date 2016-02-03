@@ -7,13 +7,12 @@
             </div>
             <div class="sg-block__content sg-u-cf">
                 <ul class="sg-block__list">
-                {{#each section.children}}
+                {{#each section.modules}}
                     <li>
                         <h3 class="sg-block__header2 open-sans open-sans--semibold">
                             <a class="sg-link" href="{{link}}">{{name}}</a>
                         </h3>
-                        {{#lengthEqual blocks 1}}
-                        {{else}}
+
                         <div class="sg-block__notes open-sans">
                             <ul>
                             {{#each blocks}}
@@ -21,7 +20,6 @@
                             {{/each}}
                             </ul>
                         </div>
-                        {{/lengthEqual}}
                     </li>
                 {{/each}}
                 </ul>

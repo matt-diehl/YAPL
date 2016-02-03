@@ -1,8 +1,14 @@
 'use strict';
 
 // TODO - Necessary:
-// - entire build step
+// - directory structure clean up
+    // - consider moving all front-end code to it's own folder
+// - proper examples - maybe it's own repo?
+// - streamline/simplify configuration/settings aspect - possibly single folder to contain templates/assets
+// - way to specify assets that need to load in (css,js), in head, foot
 // - tests:
+    // - cross-linking - with creation of new example modules/templates, confirm cross-linking works as expected (modules and images) - MAYBE DO THIS WITH CREATION OF NEW EXAMPLE PROJECT
+    // - build - everything in right place
     // - all constructors - necessary?
         // - Block
         // - Container
@@ -10,24 +16,14 @@
         // - Join
         // - Section
         // - Template
-    // - init
-        // - test regarding throwing errors for missing necessary data
-    // - cross-linking - with creation of new example modules/templates, confirm cross-linking works as expected
 // - standardized way of handling paths
     // - links within library
     // - paths that are passed from task to task
-// - directory structure clean up
-    // - consider moving all front-end code to it's own folder
-// - proper examples - maybe it's own repo?
-// - streamline/simplify configuration/settings aspect - possibly single folder to contain templates/assets
     // - then, rather than specifiying each individual path to templates, library css, etc., just search by file name in the override directory, falling back to Yapl default if none found (settings.overrideDir?)
-// - way to specify assets that need to load in (css,js), in head, foot
 
 // TODO - Maybe:
 // - ES6 - if it's used, use Babel to compile
 // - array methods on container, without referring to "items"
-// - curried readfile - how does that affect other items?
-// - re-examine "_this" used in collection
 // - re-examine use of call for "mixin" functionality with core objects (consider Object.create instead)
 
 // TODO - Nice:
@@ -43,6 +39,7 @@
     // - so for each action that would involve reading file contents, can we store the results of that action, and only perform it again if the mtime has changed?
         // - could be applied to 'parse', cross-linking?
 // - set up image collection parameters (max/min size, etc.)
+// - full JSdoc
 
 // TODO - just thoughts:
 // - think about using a front end framework instead of building, or making build an optional step
@@ -55,7 +52,6 @@ var fs = require('fs'),
     glob = require('glob'),
     handlebars = require('handlebars'),
     helpers = require('handlebars-helpers'),
-    cheerio = require('cheerio'),
     _ = require('lodash');
 
 // internal libs
@@ -64,16 +60,16 @@ var parse = require('./lib/task.parse.js'),
     utils = require('./lib/utils.js');
 
 // constructors/objects
-var Container = require('./lib/obj.container.js'),
+var ContainerObj = require('./lib/obj.container.js'),
     BlockObj = require('./lib/obj.block.js'),
     TemplateObj = require('./lib/obj.template'),
     ImageObj = require('./lib/obj.image'),
     ModuleObj = require('./lib/obj.module'),
     SectionObj = require('./lib/obj.section'),
-    JoinObj = require('./lib/obj.join')
+    JoinObj = require('./lib/obj.join');
 
 // YAPL Internal Variables
-var config = {
+var baseConfig = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
         htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
@@ -97,28 +93,30 @@ var Yapl = {
 
     init: function(options) {
         this.config = Yapl.extendConfig(options);
+        this.testConfig();
 
         parse.init({
             cssBlockRegEx: this.config.settings.cssBlockRegEx,
             htmlBlockRegEx: this.config.settings.htmlBlockRegEx
         });
 
-        build.init(this.config.settings);
-
         // think about how to do this better, contain to instantiated object
         this.setupHandlebarsConfig();
 
-        this.sections = Object.create(Container).init(SectionObj, 'section', this.config.settings);
-        this.modules = Object.create(Container).init(ModuleObj, 'module', this.config.settings);
-        this.blocks = Object.create(Container).init(BlockObj, 'block', this.config.settings);
-        this.templates = Object.create(Container).init(TemplateObj, 'template', this.config.settings);
-        this.images = Object.create(Container).init(ImageObj, 'image', this.config.settings);
-        this.joins = Object.create(Container).init(JoinObj, 'join', this.config.settings);
+        this.sections = Object.create(ContainerObj).init(SectionObj, 'section', this.config.settings);
+        this.modules = Object.create(ContainerObj).init(ModuleObj, 'module', this.config.settings);
+        this.blocks = Object.create(ContainerObj).init(BlockObj, 'block', this.config.settings);
+        this.templates = Object.create(ContainerObj).init(TemplateObj, 'template', this.config.settings);
+        this.images = Object.create(ContainerObj).init(ImageObj, 'image', this.config.settings);
+        this.joins = Object.create(ContainerObj).init(JoinObj, 'join', this.config.settings);
+
+        return this;
     },
+
 
     // TODO: look into how this can be streamlined / simplified
     extendConfig: function(options) {
-        var mergedConfig = _.merge(config, options),
+        var mergedConfig = _.merge(baseConfig, options),
             s = mergedConfig.settings;
 
         s.cssOutputPath = path.join(
@@ -165,8 +163,25 @@ var Yapl = {
         return mergedConfig;
     },
 
+
+    testConfig: function() {
+        if (!this.config.settings.partials) {
+            throw new Error('settings.partials is a required parameter');
+        }
+        if (!this.config.settings.templates) {
+            throw new Error('settings.templates is a required parameter');
+        }
+        if (!this.config.settings.buildDir) {
+            throw new Error('settings.buildDir is a required parameter');
+        }
+        if (!this.config.sections.length) {
+            throw new Error('at least one section is required');
+        }
+    },
+
+
     setupHandlebarsConfig: function() {
-        var partials = glob.sync(config.settings.partials);
+        var partials = glob.sync(this.config.settings.partials);
         // register built-in helpers
         if (helpers && helpers.register) {
             helpers.register(handlebars, {}, {});
@@ -179,6 +194,7 @@ var Yapl = {
         });
     },
 
+
     collect: function() {
         this.collectSections();
         this.collectModules();
@@ -186,7 +202,10 @@ var Yapl = {
         this.collectBlocks();
         this.collectImages();
         this.collectJoins();
+
+        return this;
     },
+
 
     collectSections: function() {
         var _this = this;
@@ -195,6 +214,7 @@ var Yapl = {
             _this.sections.add(section, {});
         });
     },
+
 
     collectModules: function() {
         var _this = this;
@@ -206,7 +226,10 @@ var Yapl = {
                 });
             });
         });
+
+        _this.modules.sortAlpha('name');
     },
+
 
     collectBlocks: function() {
         var _this = this;
@@ -220,7 +243,10 @@ var Yapl = {
                 });
             });
         });
+
+        _this.blocks.sortAlpha('name');
     },
+
 
     collectTemplates: function() {
         var _this = this;
@@ -234,22 +260,19 @@ var Yapl = {
                 _this.templates.add(template);
             }
         });
+
+        _this.templates.sortAlpha('name');
     },
+
 
     collectImages: function() {
         var _this = this,
-            images = [];
+            images = [],
+            blocksAndTemplates = _this.blocks.items.concat(_this.templates.items);
 
-        _this.blocks.forEach(function(block) {
-            if (block.html) {
-                var imagePaths = utils.getImagePathsFromHtml(block.html, _this.config.settings.siteRoot);
-                images = images.concat(imagePaths);
-            }
-        });
-
-        _this.templates.forEach(function(template) {
-            if (template.html) {
-                var imagePaths = utils.getImagePathsFromHtml(template.html, _this.config.settings.siteRoot);
+        blocksAndTemplates.forEach(function(blockOrTemplate) {
+            if (blockOrTemplate.html) {
+                var imagePaths = utils.getImagePathsFromHtml(blockOrTemplate.html, _this.config.settings.siteRoot);
                 images = images.concat(imagePaths);
             }
         });
@@ -257,7 +280,10 @@ var Yapl = {
         images.forEach(function(image) {
             _this.images.add({ src: image });
         });
+
+        _this.images.sortNumeric('width');
     },
+
 
     collectJoins: function() {
         var _this = this,
@@ -267,20 +293,31 @@ var Yapl = {
         allSelectors = _this.blocks.items.filter(function(block) {
             return block.selector;
         }).map(function(block) {
-            return block.selector
+            return block.selector;
         });
 
+        // Find modules and images in templates and modules
         blocksAndTemplates.forEach(function(blockOrTemplate) {
             if (blockOrTemplate.html) {
-                var matches = utils.findMatchingSelectors(blockOrTemplate.html, allSelectors);
+                var matches = [],
+                    selectorMatches = utils.findMatchingSelectors(blockOrTemplate.html, allSelectors),
+                    imageMatches = utils.getImageDimensionsFromHtml(blockOrTemplate.html, _this.config.settings.siteRoot);
 
-                matches = matches.filter(function(match) {
+                selectorMatches = selectorMatches.filter(function(match) {
                     return match !== blockOrTemplate.selector;
                 }).map(function(match) {
                     return _this.blocks.items.filter(function(block) {
                         return match === block.selector;
                     })[0];
                 });
+
+                imageMatches = imageMatches.map(function(match) {
+                    return _this.images.items.filter(function(image) {
+                        return image.width === match[0] && image.height === match[1];
+                    })[0];
+                });
+
+                matches = matches.concat(selectorMatches, imageMatches);
 
                 matches.forEach(function(match) {
                     _this.joins.add({
@@ -292,9 +329,14 @@ var Yapl = {
         });
     },
 
+
     build: function() {
+        build.init(this);
         build.build();
+
+        return this;
     },
+
 
     outputToFile: function() {
         var output = JSON.stringify({

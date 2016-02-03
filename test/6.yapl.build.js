@@ -10,7 +10,7 @@ var yapl = require('../index.js');
 describe('yapl, outputToFile', function() {
 
     beforeEach(function() {
-        rimraf.sync('../example/styleguide');
+        rimraf.sync(path.resolve(__dirname, '../example/styleguide'));
 
         yapl.init({
             settings: {
@@ -49,7 +49,7 @@ describe('yapl, outputToFile', function() {
 
     describe('build directory', function() {
         it('should exist', function(done) {
-            fs.stat('../example/styleguide', function(err, stats) {
+            fs.stat(path.resolve(__dirname, '../example/styleguide'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
@@ -59,7 +59,7 @@ describe('yapl, outputToFile', function() {
         });
 
         it('should contain an index', function(done) {
-            fs.stat('../example/styleguide/index.html', function(err, stats) {
+            fs.stat(path.resolve(__dirname, '../example/styleguide/index.html'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
@@ -70,7 +70,7 @@ describe('yapl, outputToFile', function() {
         });
 
         it('should contain all the specified sections (micro elements)', function(done) {
-            fs.stat('../example/styleguide/micro-elements', function(err, stats) {
+            fs.stat(path.resolve(__dirname, '../example/styleguide/micro-elements'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
@@ -80,7 +80,7 @@ describe('yapl, outputToFile', function() {
         });
 
         it('should contain all the specified sections (macro elements)', function(done) {
-            fs.stat('../example/styleguide/macro-elements', function(err, stats) {
+            fs.stat(path.resolve(__dirname, '../example/styleguide/macro-elements'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
@@ -90,7 +90,7 @@ describe('yapl, outputToFile', function() {
         });
 
         it('should contain all the specified sections (display templates)', function(done) {
-            fs.stat('../example/styleguide/display-templates', function(err, stats) {
+            fs.stat(path.resolve(__dirname, '../example/styleguide/display-templates'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
@@ -100,7 +100,7 @@ describe('yapl, outputToFile', function() {
         });
 
         it('should contain all the specified sections (image sizes)', function(done) {
-            fs.stat('../example/styleguide/image-sizes', function(err, stats) {
+            fs.stat(path.resolve(__dirname, '../example/styleguide/image-sizes'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
@@ -110,7 +110,7 @@ describe('yapl, outputToFile', function() {
         });
 
         it('should contain all the specified sections (appendix)', function(done) {
-            fs.stat('../example/styleguide/appendix', function(err, stats) {
+            fs.stat(path.resolve(__dirname, '../example/styleguide/appendix'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
@@ -118,6 +118,9 @@ describe('yapl, outputToFile', function() {
                 done();
             });
         });
+
+        // test for presence of section children
+        // test for presence of assets (css, logo, etc.)
     });
 
 });

@@ -34,24 +34,12 @@
                     </p>
                 {{/if}}
                 {{#if references}}
-                    {{#if references.displayTemplates}}
-                        <p class="open-sans open-sans--semibold">Templates this appears on:</p>
-                        <ul class="open-sans">
-                        {{#each references.displayTemplates}}
-                            <li><a class="sg-link" href="{{link}}" target="_blank">{{name}}</a></li>
-                        {{/each}}
-                        </ul>
-                    {{/if}}
-                    {{#if references.sections}}
-                        {{#each references.sections}}
-                        <p class="open-sans open-sans--semibold">{{name}} this appears on:</p>
-                        <ul class="open-sans">
-                        {{#each children}}
-                            <li><a class="sg-link" href="{{link}}" target="_blank">{{name}}</a></li>
-                        {{/each}}
-                        </ul>
-                        {{/each}}
-                    {{/if}}
+                    <p class="open-sans open-sans--semibold">Appears on:</p>
+                    <ul class="open-sans">
+                    {{#each references}}
+                        <li><a class="sg-link" href="{{link}}" target="_blank">{{name}}</a> ({{type}})</li>
+                    {{/each}}
+                    </ul>
                 {{/if}}
             </div>
         </div>
