@@ -1,51 +1,5 @@
 'use strict';
 
-// TODO - Necessary:
-// - directory structure clean up
-    // - consider moving all front-end code to it's own folder
-// - proper examples - maybe it's own repo?
-// - streamline/simplify configuration/settings aspect - possibly single folder to contain templates/assets
-// - way to specify assets that need to load in (css,js), in head, foot
-// - tests:
-    // - cross-linking - with creation of new example modules/templates, confirm cross-linking works as expected (modules and images) - MAYBE DO THIS WITH CREATION OF NEW EXAMPLE PROJECT
-    // - build - everything in right place
-    // - all constructors - necessary?
-        // - Block
-        // - Container
-        // - Image
-        // - Join
-        // - Section
-        // - Template
-// - standardized way of handling paths
-    // - links within library
-    // - paths that are passed from task to task
-    // - then, rather than specifiying each individual path to templates, library css, etc., just search by file name in the override directory, falling back to Yapl default if none found (settings.overrideDir?)
-
-// TODO - Maybe:
-// - ES6 - if it's used, use Babel to compile
-// - array methods on container, without referring to "items"
-// - re-examine use of call for "mixin" functionality with core objects (consider Object.create instead)
-
-// TODO - Nice:
-// - way to edit notes in-context and save to file??
-    // - and/or a way to create pages/sections
-        // - markdown files? could those be created/stored in a directory
-        // - suggests there should be a "load" step that loads a previously saved config file
-// - think about coverage idea and how that affects design decisions
-    // - report at end of task on totals
-    // - by file with yapl comments, by colors found/used, by classes/selectors in css vs in examples
-// - think about how caching can be applied to cross-linking (and the rest of the tasks)
-    // - fs.stat: stat object has key, mtime, for when data was last modified
-    // - so for each action that would involve reading file contents, can we store the results of that action, and only perform it again if the mtime has changed?
-        // - could be applied to 'parse', cross-linking?
-// - set up image collection parameters (max/min size, etc.)
-// - full JSdoc
-
-// TODO - just thoughts:
-// - think about using a front end framework instead of building, or making build an optional step
-
-
-
 // external libs
 var fs = require('fs'),
     path = require('path'),
@@ -57,6 +11,7 @@ var fs = require('fs'),
 // internal libs
 var parse = require('./lib/task.parse.js'),
     build = require('./lib/task.build.js'),
+    coverage = require('./lib/task.coverage.js'),
     utils = require('./lib/utils.js');
 
 // constructors/objects
@@ -73,8 +28,8 @@ var baseConfig = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
         htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
-        imageSizeMin: [50, 50], // currently unused
-        imageExtExclude: /svg/, // currently unused
+        imageSizeMin: [50, 50], // TODO: document new option
+        imageExtExclude: /svg/, // TODO: document new option
         outputJsonFile: '',
         libraryIndex: path.resolve(__dirname, 'hbs/templates/index.hbs'),
         libraryLayout: path.resolve(__dirname, 'hbs/layouts/default.hbs'),
@@ -89,8 +44,17 @@ var baseConfig = {
 };
 
 
+/**
+ * Yapl
+ * @module yapl
+ */
 var Yapl = {
 
+    /**
+     * Initialize a new Yapl object.
+     * @param  {Object} options  Options to pass to the initialization.
+     * @return {Object}          The initialized Yapl object.
+     */
     init: function(options) {
         this.config = Yapl.extendConfig(options);
         this.testConfig();
@@ -115,6 +79,12 @@ var Yapl = {
 
 
     // TODO: look into how this can be streamlined / simplified
+
+    /**
+     * Extend the base configuration settings with passed options.
+     * @param  {Object} options  Options to pass to the initialization.
+     * @return {Object}          The extended configuration object.
+     */
     extendConfig: function(options) {
         var mergedConfig = _.merge(baseConfig, options),
             s = mergedConfig.settings;
@@ -164,6 +134,9 @@ var Yapl = {
     },
 
 
+    /**
+     * Test that all required settings/parameters are included for Yapl to work.
+     */
     testConfig: function() {
         if (!this.config.settings.partials) {
             throw new Error('settings.partials is a required parameter');
@@ -179,7 +152,11 @@ var Yapl = {
         }
     },
 
+    // TODO: any way to make this more flexible - pass in options about helpers, not make handlebars mandatory?
 
+    /**
+     * Set up handlebars partials, register helpers, etc.
+     */
     setupHandlebarsConfig: function() {
         var partials = glob.sync(this.config.settings.partials);
         // register built-in helpers
@@ -195,6 +172,10 @@ var Yapl = {
     },
 
 
+    /**
+     * Search files based on configuration and collect Yapl comments/data.
+     * @return {Object}  The Yapl object with collected data.
+     */
     collect: function() {
         this.collectSections();
         this.collectModules();
@@ -207,6 +188,9 @@ var Yapl = {
     },
 
 
+    /**
+     * Collect all sections and add to Yapl.
+     */
     collectSections: function() {
         var _this = this;
 
@@ -216,6 +200,9 @@ var Yapl = {
     },
 
 
+    /**
+     * Collect all modules and add to Yapl.
+     */
     collectModules: function() {
         var _this = this;
 
@@ -231,6 +218,9 @@ var Yapl = {
     },
 
 
+    /**
+     * Collect all blocks and add to Yapl.
+     */
     collectBlocks: function() {
         var _this = this;
 
@@ -248,11 +238,14 @@ var Yapl = {
     },
 
 
+    /**
+     * Collect all templates and add to Yapl.
+     */
     collectTemplates: function() {
         var _this = this;
 
         glob.sync(_this.config.settings.templates).forEach(function(file) {
-            var template = parse.fromFile(file, 'html') || {};
+            var template = parse.fromFile(file, 'html')[0] || {};
             template.file = file;
 
             // If "exclude" present in _this block, it won't be added
@@ -265,6 +258,9 @@ var Yapl = {
     },
 
 
+    /**
+     * Collect all images (sizes) found in templates and blocks and add to Yapl.
+     */
     collectImages: function() {
         var _this = this,
             images = [],
@@ -285,6 +281,9 @@ var Yapl = {
     },
 
 
+    /**
+     * Collect joins/relationships between modules, templates, and images
+     */
     collectJoins: function() {
         var _this = this,
             allSelectors = [],
@@ -308,16 +307,19 @@ var Yapl = {
                 }).map(function(match) {
                     return _this.blocks.items.filter(function(block) {
                         return match === block.selector;
-                    })[0];
+                    });
                 });
 
                 imageMatches = imageMatches.map(function(match) {
                     return _this.images.items.filter(function(image) {
                         return image.width === match[0] && image.height === match[1];
-                    })[0];
+                    });
                 });
 
-                matches = matches.concat(selectorMatches, imageMatches);
+                // concat all the selectorMatches and imageMatches, but remove any empty arrays
+                matches = matches.concat(selectorMatches, imageMatches).filter(function(match) {
+                    return match.length;
+                });
 
                 matches.forEach(function(match) {
                     _this.joins.add({
@@ -330,6 +332,10 @@ var Yapl = {
     },
 
 
+    /**
+     * Build the pattern library.
+     * @return {Object}  The Yapl object.
+     */
     build: function() {
         build.init(this);
         build.build();
@@ -338,6 +344,27 @@ var Yapl = {
     },
 
 
+    /**
+     * Generate a coverage report of how well documented the site components are.
+     * @return {Object}  The Yapl object, with reports added.
+     */
+    generateCoverageReport: function() {
+        coverage.init(this);
+        coverage.generateReport();
+        coverage.generateTextReport();
+
+        console.log(coverage.textReport);
+
+        this.coverageReport = coverage.report;
+        this.textCoverageReport = coverage.textReport;
+
+        return this;
+    },
+
+
+    /**
+     * Save the core pattern library components to a JSON file.
+     */
     outputToFile: function() {
         var output = JSON.stringify({
             sections: this.sections.items,

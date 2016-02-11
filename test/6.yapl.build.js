@@ -7,7 +7,7 @@ var chai = require('chai'),
 var yapl = require('../index.js');
 
 
-describe('yapl, outputToFile', function() {
+describe('yapl, build', function() {
 
     beforeEach(function() {
         rimraf.sync(path.resolve(__dirname, '../example/styleguide'));

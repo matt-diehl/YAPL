@@ -58,15 +58,15 @@ describe('yapl, post-init', function() {
         });
     });
 
-    describe('sections.constructor', function() {
+    describe('sections.childObj', function() {
         it('should be an object', function() {
-            assert.isObject(yapl.sections.constructor);
+            assert.isObject(yapl.sections.childObj);
         });
     });
 
-    describe('sections.constructor.init', function() {
+    describe('sections.childObj.init', function() {
         it('should be a function', function() {
-            assert.isFunction(yapl.sections.constructor.init);
+            assert.isFunction(yapl.sections.childObj.init);
         });
     });
 
@@ -117,15 +117,15 @@ describe('yapl, post-init', function() {
         });
     });
 
-    describe('modules.constructor', function() {
+    describe('modules.childObj', function() {
         it('should be an object', function() {
-            assert.isObject(yapl.modules.constructor);
+            assert.isObject(yapl.modules.childObj);
         });
     });
 
-    describe('modules.constructor.init', function() {
+    describe('modules.childObj.init', function() {
         it('should be a function', function() {
-            assert.isFunction(yapl.modules.constructor.init);
+            assert.isFunction(yapl.modules.childObj.init);
         });
     });
 
@@ -177,15 +177,15 @@ describe('yapl, post-init', function() {
         });
     });
 
-    describe('blocks.constructor', function() {
+    describe('blocks.childObj', function() {
         it('should be an object', function() {
-            assert.isObject(yapl.blocks.constructor);
+            assert.isObject(yapl.blocks.childObj);
         });
     });
 
-    describe('blocks.constructor.init', function() {
+    describe('blocks.childObj.init', function() {
         it('should be a function', function() {
-            assert.isFunction(yapl.blocks.constructor.init);
+            assert.isFunction(yapl.blocks.childObj.init);
         });
     });
 
@@ -247,15 +247,15 @@ describe('yapl, post-init', function() {
         });
     });
 
-    describe('templates.constructor', function() {
+    describe('templates.childObj', function() {
         it('should be an object', function() {
-            assert.isObject(yapl.templates.constructor);
+            assert.isObject(yapl.templates.childObj);
         });
     });
 
-    describe('templates.constructor.init', function() {
+    describe('templates.childObj.init', function() {
         it('should be a function', function() {
-            assert.isFunction(yapl.templates.constructor.init);
+            assert.isFunction(yapl.templates.childObj.init);
         });
     });
 
@@ -300,15 +300,15 @@ describe('yapl, post-init', function() {
         });
     });
 
-    describe('images.constructor', function() {
+    describe('images.childObj', function() {
         it('should be an object', function() {
-            assert.isObject(yapl.images.constructor);
+            assert.isObject(yapl.images.childObj);
         });
     });
 
-    describe('images.constructor.init', function() {
+    describe('images.childObj.init', function() {
         it('should be a function', function() {
-            assert.isFunction(yapl.images.constructor.init);
+            assert.isFunction(yapl.images.childObj.init);
         });
     });
 
@@ -331,7 +331,7 @@ describe('yapl, post-init', function() {
             yapl.images.add({ src: __dirname + '/images/logo.png' });
             assert.lengthOf(yapl.images.items, 1);
             assert.equal(yapl.images.items[0].id, 'image_0');
-            yapl.images.add({ src: __dirname + '/images/logo2.png' });
+            yapl.images.add({ src: __dirname + '/images/headshot-f.png' });
             assert.equal(yapl.images.items[1].id, 'image_1');
             assert.lengthOf(yapl.images.items, 2);
         });
@@ -339,6 +339,12 @@ describe('yapl, post-init', function() {
         it('should prevent adding an item with the same src', function() {
             yapl.images.add({ src: __dirname + '/images/logo.png' });
             yapl.images.add({ src: __dirname + '/images/logo.png' })
+            assert.lengthOf(yapl.images.items, 1);
+        });
+
+        it('should prevent adding an item with the same dimensions', function() {
+            yapl.images.add({ src: __dirname + '/images/logo.png' });
+            yapl.images.add({ src: __dirname + '/images/logo2.png' })
             assert.lengthOf(yapl.images.items, 1);
         });
     });
@@ -359,15 +365,15 @@ describe('yapl, post-init', function() {
         });
     });
 
-    describe('joins.constructor', function() {
+    describe('joins.childObj', function() {
         it('should be an object', function() {
-            assert.isObject(yapl.joins.constructor);
+            assert.isObject(yapl.joins.childObj);
         });
     });
 
-    describe('joins.constructor.init', function() {
+    describe('joins.childObj.init', function() {
         it('should be a function', function() {
-            assert.isFunction(yapl.joins.constructor.init);
+            assert.isFunction(yapl.joins.childObj.init);
         });
     });
 

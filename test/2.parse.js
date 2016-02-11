@@ -14,12 +14,12 @@ describe('parse', function() {
         it('should update the regular expression used to match YAML blocks', function() {
             parse.init({
                 cssBlockRegEx: /\/\*\s*?SG\n([\s\S]*?)\*\//g,
-                htmlBlockRegEx: /<!--\s*?SG\n([\s\S]*?)--\>/
+                htmlBlockRegEx: /<!--\s*?SG\n([\s\S]*?)--\>/g
             });
 
             assert.deepEqual(parse.regEx, {
                 css: /\/\*\s*?SG\n([\s\S]*?)\*\//g,
-                html: /<!--\s*?SG\n([\s\S]*?)--\>/
+                html: /<!--\s*?SG\n([\s\S]*?)--\>/g
             });
         });
     });
@@ -75,11 +75,11 @@ describe('parse', function() {
     });
 
     describe('fromHtml', function() {
-        it('should return a single object given HTML containing a commented YAML block', function() {
-            assert.deepEqual({
+        it('should return an array of objects given HTML containing commented YAML blocks', function() {
+            assert.deepEqual([{
                 name: 'Home Page',
                 notes: 'The Home Page'
-            }, parse.fromHtml([
+            }], parse.fromHtml([
                 '<p>Miscellaneous HTML content</p>',
                 '<p>Miscellaneous HTML content</p>',
                 '<!-- YAPL',
@@ -91,8 +91,8 @@ describe('parse', function() {
             ].join('\n')));
         });
 
-        it('should return an empty object given HTML containing no YAML blocks', function() {
-            assert.deepEqual({}, parse.fromHtml([
+        it('should return an empty array given HTML containing no YAML blocks', function() {
+            assert.deepEqual([], parse.fromHtml([
                 '<p>Miscellaneous HTML content</p>',
                 '<p>Miscellaneous HTML content</p>'
             ].join('\n')));
@@ -116,11 +116,11 @@ describe('parse', function() {
             }], parse.fromFile(__dirname + '/css/_btn.scss', 'css'));
         });
 
-        it('should return a single object given an HTML file containing a commented YAML block', function() {
-            assert.deepEqual({
+        it('should return an array containing a single object given an HTML file containing a commented YAML block', function() {
+            assert.deepEqual([{
                 name: 'Home Page',
                 notes: 'The Home Page'
-            }, parse.fromFile(__dirname + '/html/home.html', 'html'));
+            }], parse.fromFile(__dirname + '/html/home.html', 'html'));
         });
 
         it('should throw an error if the file type is not defined', function() {
