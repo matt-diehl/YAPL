@@ -1,7 +1,7 @@
 'use strict';
 
 // external libs
-var fs = require('fs'),
+const fs = require('fs'),
     path = require('path'),
     glob = require('glob'),
     handlebars = require('handlebars'),
@@ -9,13 +9,13 @@ var fs = require('fs'),
     _ = require('lodash');
 
 // internal libs
-var parse = require('./lib/task.parse.js'),
+const parse = require('./lib/task.parse.js'),
     build = require('./lib/task.build.js'),
     coverage = require('./lib/task.coverage.js'),
     utils = require('./lib/utils.js');
 
 // constructors/objects
-var ContainerObj = require('./lib/obj.container.js'),
+const ContainerObj = require('./lib/obj.container.js'),
     BlockObj = require('./lib/obj.block.js'),
     TemplateObj = require('./lib/obj.template'),
     ImageObj = require('./lib/obj.image'),
@@ -24,7 +24,7 @@ var ContainerObj = require('./lib/obj.container.js'),
     JoinObj = require('./lib/obj.join');
 
 // YAPL Internal Variables
-var baseConfig = {
+const baseConfig = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
         htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
@@ -48,14 +48,14 @@ var baseConfig = {
  * Yapl
  * @module yapl
  */
-var Yapl = {
+const Yapl = {
 
     /**
      * Initialize a new Yapl object.
      * @param  {Object} options  Options to pass to the initialization.
      * @return {Object}          The initialized Yapl object.
      */
-    init: function(options) {
+    init(options) {
         this.config = Yapl.extendConfig(options);
         this.testConfig();
 
@@ -85,8 +85,8 @@ var Yapl = {
      * @param  {Object} options  Options to pass to the initialization.
      * @return {Object}          The extended configuration object.
      */
-    extendConfig: function(options) {
-        var mergedConfig = _.merge(baseConfig, options),
+    extendConfig(options) {
+        let mergedConfig = _.merge(baseConfig, options),
             s = mergedConfig.settings;
 
         s.cssOutputPath = path.join(
@@ -137,7 +137,7 @@ var Yapl = {
     /**
      * Test that all required settings/parameters are included for Yapl to work.
      */
-    testConfig: function() {
+    testConfig() {
         if (!this.config.settings.partials) {
             throw new Error('settings.partials is a required parameter');
         }
@@ -157,15 +157,15 @@ var Yapl = {
     /**
      * Set up handlebars partials, register helpers, etc.
      */
-    setupHandlebarsConfig: function() {
-        var partials = glob.sync(this.config.settings.partials);
+    setupHandlebarsConfig() {
+        let partials = glob.sync(this.config.settings.partials);
         // register built-in helpers
         if (helpers && helpers.register) {
             helpers.register(handlebars, {}, {});
         }
         // register all partials
-        partials.forEach(function(partialPath) {
-            var partialName = path.basename(partialPath, '.hbs'),
+        partials.forEach(partialPath => {
+            let partialName = path.basename(partialPath, '.hbs'),
                 partialContent = fs.readFileSync(partialPath, 'utf8');
             handlebars.registerPartial(partialName, partialContent);
         });
@@ -176,7 +176,7 @@ var Yapl = {
      * Search files based on configuration and collect Yapl comments/data.
      * @return {Object}  The Yapl object with collected data.
      */
-    collect: function() {
+    collect() {
         this.collectSections();
         this.collectModules();
         this.collectTemplates();
@@ -191,10 +191,10 @@ var Yapl = {
     /**
      * Collect all sections and add to Yapl.
      */
-    collectSections: function() {
-        var _this = this;
+    collectSections() {
+        let _this = this;
 
-        _this.config.sections.forEach(function(section) {
+        _this.config.sections.forEach(section => {
             _this.sections.add(section, {});
         });
     },
@@ -203,11 +203,11 @@ var Yapl = {
     /**
      * Collect all modules and add to Yapl.
      */
-    collectModules: function() {
-        var _this = this;
+    collectModules() {
+        let _this = this;
 
-        _this.sections.forEach(function(section) {
-            section.cssFiles.forEach(function(cssFile) {
+        _this.sections.forEach(section => {
+            section.cssFiles.forEach(cssFile => {
                 _this.modules.add({ cssFile: cssFile }, {
                     parent: section
                 });
@@ -221,12 +221,12 @@ var Yapl = {
     /**
      * Collect all blocks and add to Yapl.
      */
-    collectBlocks: function() {
-        var _this = this;
+    collectBlocks() {
+        let _this = this;
 
-        _this.modules.forEach(function(module) {
-            var blocks = parse.fromFile(module.cssFile, 'css');
-            blocks.forEach(function(block) {
+        _this.modules.forEach(module => {
+            let blocks = parse.fromFile(module.cssFile, 'css');
+            blocks.forEach(block => {
                 _this.blocks.add(block, {
                     parent: module,
                     compiler: handlebars
@@ -241,11 +241,11 @@ var Yapl = {
     /**
      * Collect all templates and add to Yapl.
      */
-    collectTemplates: function() {
-        var _this = this;
+    collectTemplates() {
+        let _this = this;
 
-        glob.sync(_this.config.settings.templates).forEach(function(file) {
-            var template = parse.fromFile(file, 'html')[0] || {};
+        glob.sync(_this.config.settings.templates).forEach(file => {
+            let template = parse.fromFile(file, 'html')[0] || {};
             template.file = file;
 
             // If "exclude" present in _this block, it won't be added
@@ -261,19 +261,19 @@ var Yapl = {
     /**
      * Collect all images (sizes) found in templates and blocks and add to Yapl.
      */
-    collectImages: function() {
-        var _this = this,
+    collectImages() {
+        let _this = this,
             images = [],
             blocksAndTemplates = _this.blocks.items.concat(_this.templates.items);
 
-        blocksAndTemplates.forEach(function(blockOrTemplate) {
+        blocksAndTemplates.forEach(blockOrTemplate => {
             if (blockOrTemplate.html) {
-                var imagePaths = utils.getImagePathsFromHtml(blockOrTemplate.html, _this.config.settings.siteRoot);
+                let imagePaths = utils.getImagePathsFromHtml(blockOrTemplate.html, _this.config.settings.siteRoot);
                 images = images.concat(imagePaths);
             }
         });
 
-        images.forEach(function(image) {
+        images.forEach(image => {
             _this.images.add({ src: image });
         });
 
@@ -284,44 +284,44 @@ var Yapl = {
     /**
      * Collect joins/relationships between modules, templates, and images
      */
-    collectJoins: function() {
-        var _this = this,
+    collectJoins() {
+        let _this = this,
             allSelectors = [],
             blocksAndTemplates = _this.blocks.items.concat(_this.templates.items);
 
-        allSelectors = _this.blocks.items.filter(function(block) {
+        allSelectors = _this.blocks.items.filter(block => {
             return block.selector;
         }).map(function(block) {
             return block.selector;
         });
 
         // Find modules and images in templates and modules
-        blocksAndTemplates.forEach(function(blockOrTemplate) {
+        blocksAndTemplates.forEach(blockOrTemplate => {
             if (blockOrTemplate.html) {
-                var matches = [],
+                let matches = [],
                     selectorMatches = utils.findMatchingSelectors(blockOrTemplate.html, allSelectors),
                     imageMatches = utils.getImageDimensionsFromHtml(blockOrTemplate.html, _this.config.settings.siteRoot);
 
-                selectorMatches = selectorMatches.filter(function(match) {
+                selectorMatches = selectorMatches.filter(match => {
                     return match !== blockOrTemplate.selector;
-                }).map(function(match) {
-                    return _this.blocks.items.filter(function(block) {
+                }).map(match => {
+                    return _this.blocks.items.filter(block => {
                         return match === block.selector;
                     });
                 });
 
-                imageMatches = imageMatches.map(function(match) {
-                    return _this.images.items.filter(function(image) {
+                imageMatches = imageMatches.map(match => {
+                    return _this.images.items.filter(image => {
                         return image.width === match[0] && image.height === match[1];
                     });
                 });
 
                 // concat all the selectorMatches and imageMatches, but remove any empty arrays
-                matches = matches.concat(selectorMatches, imageMatches).filter(function(match) {
+                matches = matches.concat(selectorMatches, imageMatches).filter(match => {
                     return match.length;
                 });
 
-                matches.forEach(function(match) {
+                matches.forEach(match => {
                     _this.joins.add({
                         parent: blockOrTemplate,
                         child: match
@@ -336,7 +336,7 @@ var Yapl = {
      * Build the pattern library.
      * @return {Object}  The Yapl object.
      */
-    build: function() {
+    build() {
         build.init(this);
         build.build();
 
@@ -348,7 +348,7 @@ var Yapl = {
      * Generate a coverage report of how well documented the site components are.
      * @return {Object}  The Yapl object, with reports added.
      */
-    generateCoverageReport: function() {
+    generateCoverageReport() {
         coverage.init(this);
         coverage.generateReport();
         coverage.generateTextReport();
@@ -365,8 +365,8 @@ var Yapl = {
     /**
      * Save the core pattern library components to a JSON file.
      */
-    outputToFile: function() {
-        var output = JSON.stringify({
+    outputToFile() {
+        let output = JSON.stringify({
             sections: this.sections.items,
             modules: this.modules.items,
             blocks: this.blocks.items,

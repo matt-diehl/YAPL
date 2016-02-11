@@ -54,5 +54,8 @@
     "mocha-lcov-reporter": "^1.0.0",
     "prism": "git://github.com/LeaVerou/prism.git#gh-pages",
     "rimraf": "^2.5.1"
+  },
+  "engines": {
+      "node": ">= 4.0.0"
   }
 }
