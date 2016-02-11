@@ -17,11 +17,11 @@ const parse = require('./lib/task.parse.js'),
 // constructors/objects
 const ContainerObj = require('./lib/obj.container.js'),
     BlockObj = require('./lib/obj.block.js'),
-    TemplateObj = require('./lib/obj.template'),
-    ImageObj = require('./lib/obj.image'),
-    ModuleObj = require('./lib/obj.module'),
-    SectionObj = require('./lib/obj.section'),
-    JoinObj = require('./lib/obj.join');
+    TemplateObj = require('./lib/obj.template.js'),
+    ImageObj = require('./lib/obj.image.js'),
+    ModuleObj = require('./lib/obj.module.js'),
+    SectionObj = require('./lib/obj.section.js'),
+    JoinObj = require('./lib/obj.join.js');
 
 // YAPL Internal Variables
 const baseConfig = {
