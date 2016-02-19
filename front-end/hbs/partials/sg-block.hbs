@@ -1,4 +1,4 @@
-<div id="{{nameCssCase}}" class="sg-block js-sg-block module-is-collapsed">
+<div id="{{#if nameCssCase}}{{nameCssCase}}{{else}}{{id}}{{/if}}" class="sg-block js-sg-block module-is-collapsed">
     <div class="sg-block__header">
         <h2 class="sg-block__title open-sans open-sans--semibold">{{name}}</h2>
         <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">

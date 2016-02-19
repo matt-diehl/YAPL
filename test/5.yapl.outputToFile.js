@@ -10,10 +10,10 @@ describe('yapl, outputToFile', function() {
 
     beforeEach(function() {
         try {
-            var outputFile = fs.statSync(__dirname + '/output/output.json');
+            var outputFile = fs.statSync(path.join(__dirname, '../example/styleguide/yapl.json'));
 
             if (outputFile.isFile()) {
-                fs.unlinkSync(__dirname + '/output/output.json');
+                fs.unlinkSync(path.join(__dirname, '../example/styleguide/yapl.json'));
             }
         } catch (e) {
             // throw e;
@@ -26,7 +26,6 @@ describe('yapl, outputToFile', function() {
                 data: './example/templates-main/data/**/*.{json,yaml}',
                 templates: './example/ProductionTemplates/**/*.html',
                 buildDir: './example/styleguide',
-                outputJsonFile: './example/styleguide.json',
                 siteRoot: './example',
                 headCssFiles: ['/css/main.css'],
                 headJsFiles: ['/bower_components/modernizr/modernizr.js'],
@@ -57,16 +56,16 @@ describe('yapl, outputToFile', function() {
         yapl.outputToFile();
     });
 
-    describe('output.json', function() {
+    describe('yapl.json', function() {
         it('should exist and contain content', function(done) {
-            fs.stat(__dirname + '/output/output.json', function(err, stats) {
+            fs.stat(path.join(__dirname, '../example/styleguide/yapl.json'), function(err, stats) {
                 if (err) {
                     throw err;
                 }
                 assert.isTrue(stats.isFile());
                 assert.isAbove(stats.size, 0);
                 done();
-            })
+            });
         });
     });
 

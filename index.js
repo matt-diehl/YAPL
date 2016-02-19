@@ -12,6 +12,7 @@ const fs = require('fs'),
 const parse = require('./lib/task.parse.js'),
     build = require('./lib/task.build.js'),
     coverage = require('./lib/task.coverage.js'),
+    outputJson = require('./lib/task.outputJson.js'),
     utils = require('./lib/utils.js');
 
 // constructors/objects
@@ -255,7 +256,10 @@ const Yapl = {
     collectImages() {
         let _this = this,
             images = [],
-            blocksAndTemplates = _this.blocks.items.concat(_this.templates.items);
+            blocksAndTemplates = _this.blocks.items.concat(_this.templates.items),
+            imagesSection = _this.sections.items.filter(section => {
+                return section.landingTemplate === 'image-sizes-landing.hbs';
+            })[0];
 
         blocksAndTemplates.forEach(blockOrTemplate => {
             if (blockOrTemplate.html) {
@@ -265,7 +269,9 @@ const Yapl = {
         });
 
         images.forEach(image => {
-            _this.images.add({ src: image });
+            _this.images.add({ src: image }, {
+                parent: imagesSection
+            });
         });
 
         _this.images.sortNumeric('width');
@@ -366,17 +372,8 @@ const Yapl = {
      * Save the core pattern library components to a JSON file.
      */
     outputToFile() {
-        let output = JSON.stringify({
-            sections: this.sections.items,
-            modules: this.modules.items,
-            blocks: this.blocks.items,
-            templates: this.templates.items,
-            images: this.images.items,
-            joins: this.joins.items
-        });
-
-        // TODO: finish this so it is configurable, creates missing directories
-        fs.writeFileSync('./test/output/output.json', output);
+        outputJson.init(this);
+        outputJson.output();
     }
 
 };
