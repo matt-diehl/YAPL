@@ -6,7 +6,7 @@ var chai = require('chai'),
 var yapl = require('../index.js');
 
 
-describe('yapl, post-collect', function() {
+describe('yapl, collect', function() {
 
     beforeEach(function() {
         yapl.init({
@@ -17,7 +17,10 @@ describe('yapl, post-collect', function() {
                 templates: './example/ProductionTemplates/**/*.html',
                 buildDir: './example/styleguide',
                 outputJsonFile: './example/styleguide.json',
-                siteRoot: './example'
+                siteRoot: './example',
+                headCssFiles: ['/css/main.css'],
+                headJsFiles: ['/bower_components/modernizr/modernizr.js'],
+                footerJsFiles: ['/js/main.js']
             },
             sections: [{
                 name: 'Micro Elements',

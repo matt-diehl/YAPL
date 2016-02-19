@@ -16,7 +16,11 @@ describe('yapl, post-init', function() {
                 templates: './example/ProductionTemplates/**/*.html',
                 buildDir: './example/styleguide',
                 outputJsonFile: './example/styleguide.json',
-                siteRoot: './example'
+                siteRoot: './example',
+                libraryAssetOverrideDir: './example/styleguide-assets',
+                headCssFiles: ['/css/main.css'],
+                headJsFiles: ['/bower_components/modernizr/modernizr.js'],
+                footerJsFiles: ['/js/main.js']
             },
             sections: [{
                 name: 'Micro Elements',
@@ -46,6 +50,12 @@ describe('yapl, post-init', function() {
     describe('config', function() {
         it('should be an object', function() {
             assert.isObject(yapl.config);
+        });
+
+        it('should override all default yapl assets with those in the override directory', function() {
+            assert.include(yapl.config.settings.libraryAssets.hbsTemplates, 'example/styleguide-assets/hbs/templates/index.hbs');
+            assert.include(yapl.config.settings.libraryAssets.hbsIndexTemplate, 'example/styleguide-assets/hbs/templates/index.hbs');
+            assert.include(yapl.config.settings.libraryAssets.hbsPartials, 'example/styleguide-assets/hbs/partials/sg-block.hbs');
         });
     });
 
@@ -158,10 +168,11 @@ describe('yapl, post-init', function() {
         });
 
         it('should add an item with a unique id', function() {
-            yapl.modules.add({ cssFile: 'css/_btn.scss' }, { parent: yapl.config.sections[0] });
+            yapl.collectSections();
+            yapl.modules.add({ cssFile: 'css/_btn.scss' }, { parent: yapl.sections.items[0] });
             assert.lengthOf(yapl.modules.items, 1);
             assert.equal(yapl.modules.items[0].id, 'module_0');
-            yapl.modules.add({ cssFile: 'css/_other.scss' }, { parent: yapl.config.sections[1] });
+            yapl.modules.add({ cssFile: 'css/_other.scss' }, { parent: yapl.sections.items[1] });
             assert.equal(yapl.modules.items[1].id, 'module_1');
         });
 
@@ -205,6 +216,7 @@ describe('yapl, post-init', function() {
         });
 
         it('should add an item with a unique id', function() {
+            yapl.collectSections();
             yapl.modules.add({ cssFile: 'css/_btn.scss' }, { parent: yapl.config.sections[0] });
             yapl.blocks.add({
                 name: 'Default button',

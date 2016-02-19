@@ -1,0 +1,23 @@
+{{#extend "default-layout"}}
+
+    {{#content "body"}}
+        <div class="sg-block js-sg-block module-is-collapsed">
+            <div class="sg-block__header">
+                <h2 class="sg-block__title open-sans open-sans--semibold">Display Templates</h2>
+                <span class="sg-block__expand-toggle open-sans js-sg-block__expand-toggle">
+                    <span class="show-if-collapsed">Show</span>
+                    <span class="show-if-expanded">Hide</span>
+                    Notes
+                </span>
+            </div>
+            <div class="sg-block__content sg-u-cf">
+                <ul class="sg-block__list">
+                {{#each global.displayTemplates}}
+                    {{> sg-template-list-item}}
+                {{/each}}
+                </ul>
+            </div>
+        </div>
+    {{/content}}
+
+{{/extend}}

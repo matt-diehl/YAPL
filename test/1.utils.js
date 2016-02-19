@@ -50,7 +50,7 @@ describe('utils', function() {
 
     describe('dimensions', function() {
         it('should return an array of dimensions given a local image', function() {
-            assert.deepEqual([138, 70], utils.dimensions('images/logo.png'));
+            assert.deepEqual([138, 70], utils.dimensions(path.join(__dirname, 'images/logo.png')));
         });
 
         it('should return an array of dimensions given a placehold.it image', function() {

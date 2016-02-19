@@ -23,7 +23,7 @@ const ContainerObj = require('./lib/obj.container.js'),
     SectionObj = require('./lib/obj.section.js'),
     JoinObj = require('./lib/obj.join.js');
 
-// YAPL Internal Variables
+// Yapl base configuration
 const baseConfig = {
     settings: {
         cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
@@ -31,14 +31,16 @@ const baseConfig = {
         imageSizeMin: [50, 50], // TODO: document new option
         imageExtExclude: /svg/, // TODO: document new option
         outputJsonFile: '',
-        libraryIndex: path.resolve(__dirname, 'hbs/templates/index.hbs'),
-        libraryLayout: path.resolve(__dirname, 'hbs/layouts/default.hbs'),
-        libraryPartials: path.resolve(__dirname, 'hbs/partials/**/*.hbs'),
-        libraryTemplates: path.resolve(__dirname, 'hbs/templates/**/*.hbs'),
-        libraryCss: path.resolve(__dirname, 'css/yapl.css'),
-        libraryJs: path.resolve(__dirname, 'js/min/yapl.js'),
-        libraryCodeHighlightJs: path.resolve(__dirname, 'js/min/prism.js'),
-        libraryLogo: path.resolve(__dirname, 'images/logo.png')
+        libraryAssetDir: path.resolve(__dirname, 'front-end'),
+        libraryAssets: {
+            hbsTemplates: 'hbs/templates/**/*.hbs',
+            hbsIndexTemplate: 'hbs/templates/index.hbs',
+            hbsLayouts: 'hbs/layouts/*.hbs',
+            hbsPartials: 'hbs/partials/**/*.hbs',
+            css: 'css/*.css',
+            js: 'js/min/*.js',
+            logo: 'images/logo.png'
+        }
     },
     sections: []
 };
@@ -78,52 +80,41 @@ const Yapl = {
     },
 
 
-    // TODO: look into how this can be streamlined / simplified
-
     /**
      * Extend the base configuration settings with passed options.
      * @param  {Object} options  Options to pass to the initialization.
      * @return {Object}          The extended configuration object.
      */
     extendConfig(options) {
-        let mergedConfig = _.merge(baseConfig, options),
-            s = mergedConfig.settings;
+        let mergedConfig = _.merge({}, baseConfig, options),
+            s = mergedConfig.settings,
+            assets = {},
+            overrideAssets = {};
 
-        s.cssOutputPath = path.join(
-            s.buildDir,
-            path.basename(s.libraryCss)
-        );
-        s.cssSrc = path.join(
-            utils.linkFromRoot(s.siteRoot, s.buildDir),
-            path.basename(s.libraryCss)
-        );
+        // Grab all default asset paths
+        Object.keys(s.libraryAssets).forEach(assetKey => {
+            assets[assetKey] = path.join(
+                s.libraryAssetDir,
+                s.libraryAssets[assetKey]
+            );
 
-        s.logoOutputPath = path.join(
-            s.buildDir,
-            path.basename(s.libraryLogo)
-        );
-        s.logoSrc = path.join(
-            utils.linkFromRoot(s.siteRoot, s.buildDir),
-            path.basename(s.libraryLogo)
-        );
+            assets[assetKey] = glob.sync(assets[assetKey]);
+        });
 
-        s.jsOutputPath = path.join(
-            s.buildDir,
-            path.basename(s.libraryJs)
-        );
-        s.jsSrc = path.join(
-            utils.linkFromRoot(s.siteRoot, s.buildDir),
-            path.basename(s.libraryJs)
-        );
+        // Find any override asset paths
+        if (s.libraryAssetOverrideDir) {
+            Object.keys(s.libraryAssets).forEach(assetKey => {
+                overrideAssets[assetKey] = path.join(
+                    s.libraryAssetOverrideDir,
+                    s.libraryAssets[assetKey]
+                );
 
-        s.codeHighlightJsOutputPath = path.join(
-            s.buildDir,
-            path.basename(s.libraryCodeHighlightJs)
-        );
-        s.codeHighlightJsSrc = path.join(
-            utils.linkFromRoot(s.siteRoot, s.buildDir),
-            path.basename(s.libraryCodeHighlightJs)
-        );
+                overrideAssets[assetKey] = glob.sync(overrideAssets[assetKey]);
+            });
+        }
+
+        // Merge the default asset paths with the overrides
+        s.libraryAssets = _.merge({}, assets, overrideAssets);
 
         s.link = path.join(
             utils.linkFromRoot(s.siteRoot, s.buildDir),
@@ -302,14 +293,20 @@ const Yapl = {
                     selectorMatches = utils.findMatchingSelectors(blockOrTemplate.html, allSelectors),
                     imageMatches = utils.getImageDimensionsFromHtml(blockOrTemplate.html, _this.config.settings.siteRoot);
 
+                // For all selectors found in the block or template HTML
+                // filter out that have the exact same selector
                 selectorMatches = selectorMatches.filter(match => {
                     return match !== blockOrTemplate.selector;
+
+                // then transform each selector into the block that it matches
                 }).map(match => {
                     return _this.blocks.items.filter(block => {
                         return match === block.selector;
                     });
                 });
 
+                // For all images found in the block or template HTML
+                // transform it into the image object that it matches
                 imageMatches = imageMatches.map(match => {
                     return _this.images.items.filter(image => {
                         return image.width === match[0] && image.height === match[1];
@@ -319,6 +316,8 @@ const Yapl = {
                 // concat all the selectorMatches and imageMatches, but remove any empty arrays
                 matches = matches.concat(selectorMatches, imageMatches).filter(match => {
                     return match.length;
+                }).map(match => {
+                    return match[0];
                 });
 
                 matches.forEach(match => {
@@ -329,6 +328,7 @@ const Yapl = {
                 });
             }
         });
+
     },
 
 

@@ -1,0 +1,19 @@
+<ul class="sg-breadcrumb l-float-l">
+    <li class="open-sans open-sans--semibold">
+        <a class="sg-link" href="{{global.settings.link}}">Design Pattern Library</a>
+    </li>
+
+    <li class="open-sans open-sans--semibold">
+    {{#is section.name title}}
+        {{section.name}}
+    {{else}}
+        <a class="sg-link" href="{{section.link}}">{{section.name}}</a>
+    {{/is}}
+    </li>
+
+    {{#if page}}
+    <li class="open-sans open-sans--semibold">
+        {{page.name}}
+    </li>
+    {{/if}}
+</ul>
