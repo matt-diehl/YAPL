@@ -1,3 +1,5 @@
+'use strict';
+
 var chai = require('chai'),
     assert = chai.assert,
     fs = require('fs'),
@@ -340,23 +342,38 @@ describe('yapl, post-init', function() {
         });
 
         it('should add an item with a unique id', function() {
-            yapl.images.add({ src: __dirname + '/images/logo.png' });
+            var imagesSection = { parent: { link: '/styleguide/image-sizes.html' } };
+            yapl.images.add({ src: __dirname + '/images/logo.png' }, {
+                parent: imagesSection
+            });
             assert.lengthOf(yapl.images.items, 1);
             assert.equal(yapl.images.items[0].id, 'image_0');
-            yapl.images.add({ src: __dirname + '/images/headshot-f.png' });
+            yapl.images.add({ src: __dirname + '/images/headshot-f.png' }, {
+                parent: imagesSection
+            });
             assert.equal(yapl.images.items[1].id, 'image_1');
             assert.lengthOf(yapl.images.items, 2);
         });
 
         it('should prevent adding an item with the same src', function() {
-            yapl.images.add({ src: __dirname + '/images/logo.png' });
-            yapl.images.add({ src: __dirname + '/images/logo.png' })
+            let imagesSection = { parent: { link: '/styleguide/image-sizes.html' } };
+            yapl.images.add({ src: __dirname + '/images/logo.png' }, {
+                parent: imagesSection
+            });
+            yapl.images.add({ src: __dirname + '/images/logo.png' }, {
+                parent: imagesSection
+            });
             assert.lengthOf(yapl.images.items, 1);
         });
 
         it('should prevent adding an item with the same dimensions', function() {
-            yapl.images.add({ src: __dirname + '/images/logo.png' });
-            yapl.images.add({ src: __dirname + '/images/logo2.png' })
+            let imagesSection = { parent: { link: '/styleguide/image-sizes.html' } };
+            yapl.images.add({ src: __dirname + '/images/logo.png' }, {
+                parent: imagesSection
+            });
+            yapl.images.add({ src: __dirname + '/images/logo2.png' }, {
+                parent: imagesSection
+            });
             assert.lengthOf(yapl.images.items, 1);
         });
     });

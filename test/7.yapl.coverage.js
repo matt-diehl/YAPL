@@ -1,3 +1,5 @@
+'use strict';
+
 var chai = require('chai'),
     assert = chai.assert,
     fs = require('fs'),
