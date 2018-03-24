@@ -65,10 +65,14 @@ describe('utils', function() {
             assert.deepEqual([200, 200], utils.dimensions('http://lorempixel.com/200/200/sports'));
         });
 
-        it('should return an error for a non-local image other than placehold.it or lorempixel.com', function() {
-            assert.throws(function() {
-                utils.dimensions('http://website.com/image.jpg');
-            }, Error);
+        it('should return an array of dimensions given other random placeholder services', function() {
+            assert.deepEqual([200, 300], utils.dimensions('http://unsplash.it/200/300'));
+            assert.deepEqual([200, 300], utils.dimensions('http://unsplash.it/200/300/?random'));
+            assert.deepEqual([600, 300], utils.dimensions('http://dummyimage.com/600x300/000/fff'));
+            assert.deepEqual([200, 300], utils.dimensions('http://placekitten.com/200/300'));
+            assert.deepEqual([200, 300], utils.dimensions('http://placekitten.com/g/200/300'));
+            assert.deepEqual([640, 480], utils.dimensions('https://placeimg.com/640/480/any'));
+            assert.deepEqual([200, 300], utils.dimensions('http://placebear.com/g/200/300'));
         });
     });
 
