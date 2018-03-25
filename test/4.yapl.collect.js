@@ -7,6 +7,8 @@ var chai = require('chai'),
 
 var yapl = require('../index.js');
 
+// TODO: make tests to ensure joins are actually working as expected
+
 
 describe('yapl, collect', function() {
 

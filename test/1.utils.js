@@ -26,6 +26,46 @@ describe('utils', function() {
         });
     });
 
+    describe('findMatchingSelectors', function() {
+        it('should return set of selectors that were found in the given HTML', function() {
+            let html = `
+                <div>
+                    <div class="rtf">
+                        text
+                    </div>
+                    <div class="portlet">
+                        text
+                    </div>
+                    <div class="portlet portlet--lg">
+                        text
+                    </div>
+                    <div id="abba" class="another-thing">
+                        text
+                    </div>
+                </div>
+            `;
+            let matches = utils.findMatchingSelectors(html, ['.rtf', '.portlet', '.portlet--sm', '.dont-find-me'])
+            assert.equal(matches.length, 2);
+        });
+    });
+
+    describe('generateCssSelector', function() {
+        it('create a css selector give the first dom node in an HTML block', function() {
+            let html = `
+                <div class="test-class test-class--mod">
+                    <div class="rtf">
+                        text
+                    </div>
+                    <div class="portlet">
+                        text
+                    </div>
+                </div>
+            `;
+            let selector = utils.generateCssSelector(html)
+            assert.equal(selector, '.test-class.test-class--mod');
+        });
+    });
+
     describe('titleCase', function() {
         it('should convert a string with spaces to title case notation', function() {
             assert.equal('Title Case', utils.titleCase('title case'));
