@@ -64,6 +64,27 @@ describe('parse', function() {
             ].join('\n')));
         });
 
+        it('should understand indentation level', function() {
+            assert.deepEqual([{
+                name: 'Default button',
+                notes: 'The default button',
+                partial: 'btn',
+                context: 'btn.default',
+                other: 'example of random extra data'
+            }], parse.fromCss([
+                '/* YAPL',
+                '   name: Default button',
+                '   notes: The default button',
+                '   partial: btn',
+                '   context: btn.default',
+                '   other: example of random extra data',
+                '*/',
+                '.btn {',
+                '    cursor: pointer;',
+                '}',
+            ].join('\n')));
+        });
+
         it('should return an empty array given CSS containing no YAML blocks', function() {
             assert.deepEqual([], parse.fromCss([
                 '.btn {',
@@ -87,6 +108,22 @@ describe('parse', function() {
                 '<!-- YAPL',
                 'name: Home Page',
                 'notes: The Home Page',
+                '-->',
+                '<p>Miscellaneous HTML content</p>',
+                '<p>Miscellaneous HTML content</p>'
+            ].join('\n')));
+        });
+
+        it('should understand indentation level', function() {
+            assert.deepEqual([{
+                name: 'Home Page',
+                notes: 'The Home Page'
+            }], parse.fromHtml([
+                '<p>Miscellaneous HTML content</p>',
+                '<p>Miscellaneous HTML content</p>',
+                '<!-- YAPL',
+                '       name: Home Page',
+                '       notes: The Home Page',
                 '-->',
                 '<p>Miscellaneous HTML content</p>',
                 '<p>Miscellaneous HTML content</p>'
