@@ -69,7 +69,17 @@ const Yapl = {
 
         // think about how to do this better, contain to instantiated object
         this.setupHandlebarsConfig();
+        this.initContainers();
 
+        return this;
+    },
+
+
+    /**
+     * Creates empty containers for all the data
+     * @return {Object} The Yapl object.
+     */
+    initContainers() {
         this.sections = Object.create(ContainerObj).init(SectionObj, 'section', this.config.settings);
         this.modules = Object.create(ContainerObj).init(ModuleObj, 'module', this.config.settings);
         this.blocks = Object.create(ContainerObj).init(BlockObj, 'block', this.config.settings);
@@ -169,6 +179,8 @@ const Yapl = {
      * @return {Object}  The Yapl object with collected data.
      */
     collect() {
+        // TODO: revisit need to use initContainers here when considering caching/rebuilding strategy
+        this.initContainers();
         this.collectSections();
         this.collectModules();
         this.collectTemplates();
