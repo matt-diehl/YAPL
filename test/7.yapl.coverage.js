@@ -52,7 +52,7 @@ describe('yapl, coverage', function() {
 
     describe('report', function() {
         it('should be an object', function() {
-            assert.isObject({});
+            assert.isObject(yapl.coverageReport);
         });
     });
 

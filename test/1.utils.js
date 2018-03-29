@@ -26,6 +26,106 @@ describe('utils', function() {
         });
     });
 
+    describe('findRelevantSelectorsInNestedCss', function() {
+        let css = `
+            .parent {
+                border: 2px solid #000;
+                position: relative;
+                width: 50px;
+
+                // A Sass comment
+
+                &:hover {
+                    background-color: $someVariable;
+                }
+
+                &__child,
+                &__child2 {
+                    border-radius: 8px;
+
+                    input[type="checkbox"] {
+                        float: left;
+                    }
+                }
+
+                // A Sass comment
+                &__child {
+                    font-size: 20px;
+                    font-weight: bold;
+                    &:hover {
+                        background-color: orange;
+                    }
+
+                    &--bigger {
+                        font-size: 30px;
+                    }
+                }
+
+                // A Sass comment
+                &__child-#{$interpolated-thing} {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                &__other-child {
+                    height: 6px;
+                    width: 6px;
+
+                    &::before {
+                        content: 'pseudo';
+                    }
+                }
+
+                &--modifier {
+                    display: none;
+                }
+
+                .another-module {
+                    position: absolute;
+                    top: 0;
+                }
+
+                #id-based-selector {
+                    display: block;
+                }
+            }
+        `;
+        let selectors = utils.findRelevantSelectorsInNestedCss(css);
+
+        it('should return an array', function() {
+            assert.isArray(selectors);
+        });
+
+        it('should not contain pseudo selectors', function() {
+            assert.lengthOf(
+                selectors.filter(s => s.includes(':')),
+                0
+            )
+        });
+
+        it('should not contain classes containing string interpolation characters', function() {
+            assert.lengthOf(
+            selectors.filter(s => s.includes('#{$')),
+                0
+            )
+        });
+
+        it('should contain the expected selectors', function() {
+            assert.sameMembers(selectors, [
+                '.parent',
+                '.parent__child',
+                '.parent__child2',
+                '.parent__child input[type="checkbox"]',
+                '.parent__child2 input[type="checkbox"]',
+                '.parent__child--bigger',
+                '.parent__other-child',
+                '.parent--modifier',
+                '.parent .another-module',
+                '.parent #id-based-selector',
+            ].sort());
+        });
+    });
+
     describe('findMatchingSelectors', function() {
         it('should return set of selectors that were found in the given HTML', function() {
             let html = `
