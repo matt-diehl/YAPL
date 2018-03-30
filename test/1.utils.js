@@ -28,6 +28,13 @@ describe('utils', function() {
 
     describe('findRelevantSelectorsInNestedCss', function() {
         let css = `
+            @mixin my-mixin {
+                display: flex;
+
+                .mixin-child {
+                    align-self: flex-end;
+                }
+            }
             .parent {
                 border: 2px solid #000;
                 position: relative;
@@ -42,6 +49,7 @@ describe('utils', function() {
                 &__child,
                 &__child2 {
                     border-radius: 8px;
+                    @include my-mixin;
 
                     input[type="checkbox"] {
                         float: left;
@@ -54,6 +62,10 @@ describe('utils', function() {
                     font-weight: bold;
                     &:hover {
                         background-color: orange;
+                    }
+
+                    .ancestor & {
+                        display: none;
                     }
 
                     &--bigger {
@@ -78,15 +90,62 @@ describe('utils', function() {
 
                 &--modifier {
                     display: none;
+
+                    &[type="button"] {
+                        display: block;
+                    }
                 }
 
                 .another-module {
                     position: absolute;
                     top: 0;
+
+                    .ancestor & {
+                        right: 0;
+
+                        .super-ancestor & {
+                            transform: scale(.5);
+
+                            &__child {
+                                border: 0;
+
+                                .super-super-ancestor & {
+                                    border: 2px solid;
+                                }
+                            }
+                        }
+
+                        > .portlet {
+                            bottom: 0;
+
+                            + .portlet {
+                                margin-left: 5px;
+                            }
+                        }
+                    }
                 }
 
                 #id-based-selector {
                     display: block;
+                }
+            }
+
+            .portlet {
+                display: flex;
+
+                &--small,
+                .ancestor &--small {
+                    height: 2px;
+
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                @include large-and-above {
+                    img {
+                        width: 40%;
+                    }
                 }
             }
         `;
@@ -112,16 +171,31 @@ describe('utils', function() {
 
         it('should contain the expected selectors', function() {
             assert.sameMembers(selectors, [
-                '.parent',
-                '.parent__child',
-                '.parent__child2',
-                '.parent__child input[type="checkbox"]',
-                '.parent__child2 input[type="checkbox"]',
-                '.parent__child--bigger',
-                '.parent__other-child',
-                '.parent--modifier',
+                '.ancestor .parent .another-module',
+                '.ancestor .parent .another-module > .portlet',
+                '.ancestor .parent .another-module > .portlet + .portlet',
+                '.ancestor .parent__child',
+                '.ancestor .portlet--small img',
+                '.ancestor .portlet--small',
+                '.mixin-child',
                 '.parent .another-module',
                 '.parent #id-based-selector',
+                '.parent__child input[type="checkbox"]',
+                '.parent__child--bigger',
+                '.parent__child',
+                '.parent__child2 input[type="checkbox"]',
+                '.parent__child2',
+                '.parent__other-child',
+                '.parent--modifier',
+                '.parent--modifier[type="button"]',
+                '.parent',
+                '.portlet img',
+                '.portlet--small',
+                '.portlet--small img',
+                '.portlet',
+                '.super-ancestor .ancestor .parent .another-module__child',
+                '.super-ancestor .ancestor .parent .another-module',
+                '.super-super-ancestor .super-ancestor .ancestor .parent .another-module__child',
             ].sort());
         });
     });
