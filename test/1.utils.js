@@ -71,6 +71,12 @@ describe('utils', function() {
                     &--bigger {
                         font-size: 30px;
                     }
+
+                    @include large-and-above {
+                        &--smaller {
+                            font-size: 20px;
+                        }
+                    }
                 }
 
                 // A Sass comment
@@ -182,6 +188,7 @@ describe('utils', function() {
                 '.parent #id-based-selector',
                 '.parent__child input[type="checkbox"]',
                 '.parent__child--bigger',
+                '.parent__child--smaller',
                 '.parent__child',
                 '.parent__child2 input[type="checkbox"]',
                 '.parent__child2',
