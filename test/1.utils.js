@@ -312,6 +312,10 @@ describe('utils', function() {
        it('should return an absolute path given a root directory and the file to link to', function() {
            assert('/folder/containing/file.html', utils.linkFromRoot('folder', 'containing/file.html'));
        });
+
+       it('should be formatted for the web. Directories should be separated by a single forward slash', function() {
+           assert('/folder/containing/file.html', utils.linkFromRoot('folder', 'containing/file.html'));
+       });
     });
 
 });
