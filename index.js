@@ -17,8 +17,8 @@ var fs = require('fs'),
 // YAPL Internal Variables
 var config = {
     settings: {
-        cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
-        htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
+        cssBlockRegEx: /\/\*\s*?YAPL[\r\n|\r|\n]([\s\S]*?)\*\//g,
+        htmlBlockRegEx: /<!--\s*?YAPL[\r\n|\r|\n]([\s\S]*?)--\>/g,
         outputJsonFile: '',
         libraryIndex: path.resolve(__dirname, 'hbs/templates/index.hbs'),
         libraryLayout: path.resolve(__dirname, 'hbs/layouts/default.hbs'),
