@@ -5,7 +5,6 @@ const fs = require('fs'),
     path = require('path'),
     glob = require('glob'),
     handlebars = require('handlebars'),
-    helpers = require('handlebars-helpers'),
     _ = require('lodash');
 
 // internal libs
@@ -161,10 +160,6 @@ const Yapl = {
      */
     setupHandlebarsConfig() {
         let partials = glob.sync(this.config.settings.partials);
-        // register built-in helpers
-        if (helpers && helpers.register) {
-            helpers.register(handlebars, {}, {});
-        }
         // register all partials
         partials.forEach(partialPath => {
             let partialName = path.basename(partialPath, '.hbs'),
