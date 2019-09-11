@@ -5,7 +5,6 @@ const fs = require('fs'),
     path = require('path'),
     glob = require('glob'),
     handlebars = require('handlebars'),
-    helpers = require('handlebars-helpers'),
     _ = require('lodash');
 
 // internal libs
@@ -27,8 +26,8 @@ const ContainerObj = require('./lib/obj.container.js'),
 // Yapl base configuration
 const baseConfig = {
     settings: {
-        cssBlockRegEx: /\/\*\s*?YAPL\n([\s\S]*?)\*\//g,
-        htmlBlockRegEx: /<!--\s*?YAPL\n([\s\S]*?)--\>/g,
+        cssBlockRegEx: /\/\*\s*?YAPL[\r\n|\r|\n]([\s\S]*?)\*\//g,
+        htmlBlockRegEx: /<!--\s*?YAPL[\r\n|\r|\n]([\s\S]*?)--\>/g,
         imageSizeMin: [50, 50], // TODO: document new option
         imageExtExclude: /svg/, // TODO: document new option
         outputJsonFile: '',
@@ -161,10 +160,6 @@ const Yapl = {
      */
     setupHandlebarsConfig() {
         let partials = glob.sync(this.config.settings.partials);
-        // register built-in helpers
-        if (helpers && helpers.register) {
-            helpers.register(handlebars, {}, {});
-        }
         // register all partials
         partials.forEach(partialPath => {
             let partialName = path.basename(partialPath, '.hbs'),
