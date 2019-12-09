@@ -112,14 +112,16 @@ const Yapl = {
         });
 
         // Find any override asset paths
-        if (s.libraryAssetOverrideDir) {
+        if (s.libraryAssetOverrideDir && s.libraryAssetOverrides) {
             Object.keys(s.libraryAssets).forEach(assetKey => {
-                overrideAssets[assetKey] = path.join(
-                    s.libraryAssetOverrideDir,
-                    s.libraryAssets[assetKey]
-                );
+                if (s.libraryAssetOverrides[assetKey]) {
+                    overrideAssets[assetKey] = path.join(
+                        s.libraryAssetOverrideDir,
+                        s.libraryAssetOverrides[assetKey]
+                    );
 
-                overrideAssets[assetKey] = glob.sync(overrideAssets[assetKey]);
+                    overrideAssets[assetKey] = glob.sync(overrideAssets[assetKey]);
+                }
             });
         }
 
