@@ -159,6 +159,26 @@ const Yapl = {
      * Set up handlebars partials, register helpers, etc.
      */
     setupHandlebarsConfig() {
+        // register custom helpers
+        const helpers = utils.loadFiles(this.config.settings.helpers, '**/*.js');
+        helpers.forEach(helperPath => {
+            let helper;
+            const name = path.basename(helperPath, '.js');
+
+            try {
+                if (handlebars.helpers[name]){
+                    delete require.cache[require.resolve(path.join(helperPath))];
+                    handlebars.unregisterHelper(name);
+                }
+
+                helper = require(path.join(helperPath));
+                handlebars.registerHelper(name, helper);
+                }
+            catch (e) {
+                console.warn('Error when loading ' + name + '.js as a Handlebars helper.');
+            }
+        })
+
         let partials = glob.sync(this.config.settings.partials);
         // register all partials
         partials.forEach(partialPath => {
